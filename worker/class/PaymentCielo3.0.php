@@ -1,7 +1,7 @@
 <?php
 
 namespace follows\cls {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/APICIELO3.0/vendor/autoload.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/APICIELO3.0/vendor/autoload.php';
     require_once 'system_config.php';
 
     use Cielo\API30\Merchant;

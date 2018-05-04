@@ -6,9 +6,9 @@ namespace follows\cls {
     require_once 'Reference_profile.php';
     require_once 'Day_client_work.php';
     require_once 'washdog_type.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
     require_once 'InstaAPI.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/src/vendor/autoload.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/vendor/autoload.php';
 
 //    require_once '../libraries/webdriver/phpwebdriver/WebDriver.php';
 //    echo $_SERVER['DOCUMENT_ROOT'];
