@@ -10,6 +10,19 @@ class Welcome extends CI_Controller {
     public $language =NULL;
        
     
+    public function test(){
+//        $this->load->library('external_services'); 
+//        $a = $this->external_services->bot_login('','','');
+        
+//        $this->load->library('Gmail'); 
+//        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
+            
+//        $this->load->model('class/system_config'); 
+//        $GLOBALS['sistem_config'] = $this->system_config->load();
+//        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
+        echo md5('Anna2014*');
+    }
+
     public function encrypt_credit_card_datas() {
         $this->load->model('class/Crypt');
         $this->load->model('class/client_model');        
@@ -41,24 +54,6 @@ class Welcome extends CI_Controller {
                */
                 
             }
-        }
-    }
-    
-    public function data_bank_decripted($user_id=NULL){
-        $this->load->model('class/Crypt');
-        $this->load->model('class/client_model'); 
-        $user_id = 28577;
-        $client = $this->client_model->get_client_by_id($user_id);
-        if(count($client)){  
-            $client=$client[0];
-            //2. Recuperando y mostrando
-            
-            $number_encripted = $client['credit_card_number'];
-            $number_decripted = $this->Crypt->decodify_level1($number_encripted);
-            $cvc_encripted = $client['credit_card_cvc'];
-            $cvc_decripted = $this->Crypt->decodify_level1($cvc_encripted);
-            echo 'Carton descifrado----> '.$number_decripted.
-                ' cvc  ------> '.$cvc_decripted.'<br><br>';
         }
     }
 
