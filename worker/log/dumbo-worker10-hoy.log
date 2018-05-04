@@ -1,0 +1,646 @@
+Worker Inited...!<br>
+2018-03-16 11:11:01pm<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>96</b><br />
+<br>
+Client: 81875 <br>
+<br>
+nRef Profil: gentedezona<br>
+ Count: 0 Hasnext: 0 - 2018-03-16 11:11:02pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 0): 480 <br>
+<br>
+Ref Profil: gentedezona (id: 31114 | type: 0)<br>
+<br>output {"data":{"user":{"edge_followed_by":{"count":1377510,"page_info":{"has_next_page":true,"end_cursor":"AQApuhbi97jQfYdq2rcoOPtBtowGEx-IltUlxVQpewA39WfVKeVfi2dZcTtg9neuYmZTHm56ZeOU7CSyPY3cy-qfY2Kcvw7usxCY5mw73gBo0A"},"edges":[{"node":{"id":"3580085323","username":"yosicrocco","full_name":"Yoselin Crocco","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"5737783014","username":"valee.aisha","full_name":"Valee Meza","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"7208336682","username":"keita6020","full_name":"keita","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1451319903","username":"ace_vargas","full_name":"Andres Javier","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1364262505","username":"tefitefii","full_name":"\u2022Estefan\u00eda vald\u00e9s\u2022","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/a9dcccd711d2a9aa2ce44a55980b0e8d/5B39040D/t51.2885-19/s150x150/27894441_1531190743658678_7812449617689182208_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}}]}}},"status":"ok"} 
+
+</br><br>
+Ref Profil: gentedezona<br>
+Nodes: 5 <br>
+array(5) {
+  [0]=>
+  object(stdClass)#28 (1) {
+    ["node"]=>
+    object(stdClass)#26 (7) {
+      ["id"]=>
+      string(10) "3580085323"
+      ["username"]=>
+      string(10) "yosicrocco"
+      ["full_name"]=>
+      string(14) "Yoselin Crocco"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [1]=>
+  object(stdClass)#33 (1) {
+    ["node"]=>
+    object(stdClass)#27 (7) {
+      ["id"]=>
+      string(10) "5737783014"
+      ["username"]=>
+      string(11) "valee.aisha"
+      ["full_name"]=>
+      string(10) "Valee Meza"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [2]=>
+  object(stdClass)#35 (1) {
+    ["node"]=>
+    object(stdClass)#34 (7) {
+      ["id"]=>
+      string(10) "7208336682"
+      ["username"]=>
+      string(9) "keita6020"
+      ["full_name"]=>
+      string(5) "keita"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [3]=>
+  object(stdClass)#37 (1) {
+    ["node"]=>
+    object(stdClass)#36 (7) {
+      ["id"]=>
+      string(10) "1451319903"
+      ["username"]=>
+      string(10) "ace_vargas"
+      ["full_name"]=>
+      string(13) "Andres Javier"
+      ["profile_pic_url"]=>
+      string(147) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [4]=>
+  object(stdClass)#39 (1) {
+    ["node"]=>
+    object(stdClass)#38 (7) {
+      ["id"]=>
+      string(10) "1364262505"
+      ["username"]=>
+      string(9) "tefitefii"
+      ["full_name"]=>
+      string(24) "•Estefanía valdés•"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/a9dcccd711d2a9aa2ce44a55980b0e8d/5B39040D/t51.2885-19/s150x150/27894441_1531190743658678_7812449617689182208_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+}
+Profil name: yosicrocco NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: valee.aisha NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: keita6020 NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: ace_vargas NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: tefitefii NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+<br />
+<b>Warning</b>:  Creating default object from empty value in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>241</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$reference_id in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>242</b><br />
+<br>
+Ref Profil: gentedezona (id: 31114 | type: 0)<br>
+<br>output {"data":{"user":{"edge_followed_by":{"count":1377510,"page_info":{"has_next_page":true,"end_cursor":"AQDekxNRDvyk5YjwyR5niEZ_J_QQH-J9jM31hzASgIj4tuSmLhhk23HGPkJ-2yiDqYOL1JKSqIhME9W2fVMmeDBTNMRDdRic0dC6N4gSRfy7_A"},"edges":[{"node":{"id":"3580085323","username":"yosicrocco","full_name":"Yoselin Crocco","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"5737783014","username":"valee.aisha","full_name":"Valee Meza","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"7208336682","username":"keita6020","full_name":"keita","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1451319903","username":"ace_vargas","full_name":"Andres Javier","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1364262505","username":"tefitefii","full_name":"\u2022Estefan\u00eda vald\u00e9s\u2022","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/a9dcccd711d2a9aa2ce44a55980b0e8d/5B39040D/t51.2885-19/s150x150/27894441_1531190743658678_7812449617689182208_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}}]}}},"status":"ok"} 
+
+</br><br>
+Ref Profil: gentedezona<br>
+Nodes: 5 <br>
+array(5) {
+  [0]=>
+  object(stdClass)#407 (1) {
+    ["node"]=>
+    object(stdClass)#406 (7) {
+      ["id"]=>
+      string(10) "3580085323"
+      ["username"]=>
+      string(10) "yosicrocco"
+      ["full_name"]=>
+      string(14) "Yoselin Crocco"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [1]=>
+  object(stdClass)#405 (1) {
+    ["node"]=>
+    object(stdClass)#235 (7) {
+      ["id"]=>
+      string(10) "5737783014"
+      ["username"]=>
+      string(11) "valee.aisha"
+      ["full_name"]=>
+      string(10) "Valee Meza"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [2]=>
+  object(stdClass)#404 (1) {
+    ["node"]=>
+    object(stdClass)#391 (7) {
+      ["id"]=>
+      string(10) "7208336682"
+      ["username"]=>
+      string(9) "keita6020"
+      ["full_name"]=>
+      string(5) "keita"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [3]=>
+  object(stdClass)#402 (1) {
+    ["node"]=>
+    object(stdClass)#403 (7) {
+      ["id"]=>
+      string(10) "1451319903"
+      ["username"]=>
+      string(10) "ace_vargas"
+      ["full_name"]=>
+      string(13) "Andres Javier"
+      ["profile_pic_url"]=>
+      string(147) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [4]=>
+  object(stdClass)#400 (1) {
+    ["node"]=>
+    object(stdClass)#401 (7) {
+      ["id"]=>
+      string(10) "1364262505"
+      ["username"]=>
+      string(9) "tefitefii"
+      ["full_name"]=>
+      string(24) "•Estefanía valdés•"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/a9dcccd711d2a9aa2ce44a55980b0e8d/5B39040D/t51.2885-19/s150x150/27894441_1531190743658678_7812449617689182208_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+}
+Profil name: yosicrocco NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: valee.aisha NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: keita6020 NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: ace_vargas NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+Profil name: tefitefii NOT FOLLOWING: followed_in_db(0) following_me() valid_profile()<br>
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$reference_id in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>242</b><br />
+<br>
+Ref Profil: gentedezona (id: 31114 | type: 0)<br>
+<br>output {"data":{"user":{"edge_followed_by":{"count":1377510,"page_info":{"has_next_page":true,"end_cursor":"AQC4CccOEd7_8_r81IQzbfMdTCkkYDA14-VnRDyxq8SYJT20yOkTrb94t1HdxRu0g1ZPUZsbeJELIyZ_p6j7e5x3Ect0yU462WVDHfQLESHyhA"},"edges":[{"node":{"id":"3580085323","username":"yosicrocco","full_name":"Yoselin Crocco","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"5737783014","username":"valee.aisha","full_name":"Valee Meza","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"7208336682","username":"keita6020","full_name":"keita","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1451319903","username":"ace_vargas","full_name":"Andres Javier","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1364262505","username":"tefitefii","full_name":"\u2022Estefan\u00eda vald\u00e9s\u2022","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/a9dcccd711d2a9aa2ce44a55980b0e8d/5B39040D/t51.2885-19/s150x150/27894441_1531190743658678_7812449617689182208_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}}]}}},"status":"ok"} 
+
+</br><br>
+Ref Profil: gentedezona<br>
+Nodes: 5 <br>
+array(5) {
+  [0]=>
+  object(stdClass)#22 (1) {
+    ["node"]=>
+    object(stdClass)#42 (7) {
+      ["id"]=>
+      string(10) "3580085323"
+      ["username"]=>
+      string(10) "yosicrocco"
+      ["full_name"]=>
+      string(14) "Yoselin Crocco"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/5a6e3a9898af5ea9dda680b9be6e4ca1/5B2B6C58/t51.2885-19/s150x150/29088677_160683881309444_5037634606824685568_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [1]=>
+  object(stdClass)#47 (1) {
+    ["node"]=>
+    object(stdClass)#221 (7) {
+      ["id"]=>
+      string(10) "5737783014"
+      ["username"]=>
+      string(11) "valee.aisha"
+      ["full_name"]=>
+      string(10) "Valee Meza"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/988df53970973f928a47d95b2c0d4bff/5B38F6F1/t51.2885-19/s150x150/25022960_916932491806066_7000511266133377024_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [2]=>
+  object(stdClass)#207 (1) {
+    ["node"]=>
+    object(stdClass)#220 (7) {
+      ["id"]=>
+      string(10) "7208336682"
+      ["username"]=>
+      string(9) "keita6020"
+      ["full_name"]=>
+      string(5) "keita"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/4bf033e019ed3889845f22e56d754a83/5B424AEB/t51.2885-19/s150x150/28154220_364647900678058_9092919496229781504_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [3]=>
+  object(stdClass)#219 (1) {
+    ["node"]=>
+    object(stdClass)#206 (7) {
+      ["id"]=>
+      string(10) "1451319903"
+      ["username"]=>
+      string(10) "ace_vargas"
+      ["full_name"]=>
+      string(13) "Andres Javier"
+      ["profile_pic_url"]=>
+      string(147) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/121fffe07bc66334a7ecf9b9f9f205d6/5B4E0ECB/t51.2885-19/s150x150/12317378_1625606847703204_646810481_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [4]=>
+  object(stdClass)#217 (1) {
+    ["node"]=>
+    object(stdClass)#218 (7) {
+      ["id"]=>
+      string(10) "1364262505"
+      ["username"]=>
+      string(9) "tefitefii"
+      ["full_name"]=>
+      string(24) "•Estefanía valdés•"
+      ["profile_pic_url"]=>
+  Worker Inited...!<br>
+2018-03-17 01:19:42am<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>96</b><br />
+<br>
+Client: 81875 <br>
+<br>
+nRef Profil: gentedezona<br>
+ Count: 0 Hasnext: 0 - 2018-03-17 01:19:42am<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 0): 80 <br>
+<br>
+Ref Profil: gentedezona (id: 31114 | type: 0)<br>
+<br>output {"data":{"user":{"edge_followed_by":{"count":1377642,"page_info":{"has_next_page":true,"end_cursor":"AQAf-n3dFUx4hPcKjByHfehai3LEDHbsz7MIyoH1j_86eF3do7iIXF-IWe4ASJ2S4usRYF-xBi-9T7LQl7egurkoBUpczNd50ZYB7S_6Os733w"},"edges":[{"node":{"id":"1415650864","username":"vania_2144","full_name":"Vania \ud83c\udf37","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/5311d2ff1b98b472bc418483189413ff/5B2DBA2E/t51.2885-19/s150x150/28155487_1853374168008384_7451020036602331136_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"186431071","username":"silvia_inc","full_name":"Silvia_Inc","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/f68712ee8a580c4adea15b2d03397643/5B447E76/t51.2885-19/s150x150/28156517_2043027519127107_5394068346377338880_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1376680397","username":"camiliita.lizardo__","full_name":"\ud83d\udc51 C A M I L A \ud83d\udc51","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/6b29e10d62d4ba2baa63b90d1c3ee78f/5B31F4F1/t51.2885-19/s150x150/28432591_1683014771786167_5305602134727720960_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"3473093320","username":"natyborghesi","full_name":"Naty Herrera","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/9b5a7b756fa9f26c4af1629bb8dc8e1a/5B3B924D/t51.2885-19/s150x150/17125747_610744935800344_136832963651305472_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"3690271273","username":"valeriaalejandra.ac","full_name":"alejandra.ac","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/28a8044c09e3546253f60d93ffaebf59/5B43EA2D/t51.2885-19/s150x150/28430882_1618533501598606_2652911714311340032_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}}]}}},"status":"ok"} 
+
+</br><br>
+Ref Profil: gentedezona<br>
+Nodes: 5 <br>
+array(5) {
+  [0]=>
+  object(stdClass)#28 (1) {
+    ["node"]=>
+    object(stdClass)#26 (7) {
+      ["id"]=>
+      string(10) "1415650864"
+      ["username"]=>
+      string(10) "vania_2144"
+      ["full_name"]=>
+      string(10) "Vania 🌷"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/5311d2ff1b98b472bc418483189413ff/5B2DBA2E/t51.2885-19/s150x150/28155487_1853374168008384_7451020036602331136_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [1]=>
+  object(stdClass)#39 (1) {
+    ["node"]=>
+    object(stdClass)#27 (7) {
+      ["id"]=>
+      string(9) "186431071"
+      ["username"]=>
+      string(10) "silvia_inc"
+      ["full_name"]=>
+      string(10) "Silvia_Inc"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/f68712ee8a580c4adea15b2d03397643/5B447E76/t51.2885-19/s150x150/28156517_2043027519127107_5394068346377338880_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [2]=>
+  object(stdClass)#41 (1) {
+    ["node"]=>
+    object(stdClass)#40 (7) {
+      ["id"]=>
+      string(10) "1376680397"
+      ["username"]=>
+      string(19) "camiliita.lizardo__"
+      ["full_name"]=>
+      string(21) "👑 C A M I L A 👑"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/6b29e10d62d4ba2baa63b90d1c3ee78f/5B31F4F1/t51.2885-19/s150x150/28432591_1683014771786167_5305602134727720960_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [3]=>
+  object(stdClass)#43 (1) {
+    ["node"]=>
+    object(stdClass)#42 (7) {
+      ["id"]=>
+      string(10) "3473093320"
+      ["username"]=>
+      string(12) "natyborghesi"
+      ["full_name"]=>
+      string(12) "Naty Herrera"
+      ["profile_pic_url"]=>
+      string(155) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/9b5a7b756fa9f26c4af1629bb8dc8e1a/5B3B924D/t51.2885-19/s150x150/17125747_610744935800344_136832963651305472_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [4]=>
+  object(stdClass)#45 (1) {
+    ["node"]=>
+    object(stdClass)#44 (7) {
+      ["id"]=>
+      string(10) "3690271273"
+      ["username"]=>
+      string(19) "valeriaalejandra.ac"
+      ["full_name"]=>
+      string(12) "alejandra.ac"
+      ["profile_pic_url"]=>
+      string(157) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/28a8044c09e3546253f60d93ffaebf59/5B43EA2D/t51.2885-19/s150x150/28430882_1618533501598606_2652911714311340032_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+}
+Profil name: vania_2144 FOLLOWING <br>
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>613</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>614</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>615</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>616</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>374</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>375</b><br />
+NULL
+Not error code found!<br>
+ Client (id: ) not error code found (-1)!!! <br>
+NULL
+<br />
+<b>Warning</b>:  Creating default object from empty value in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>241</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$reference_id in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>242</b><br />
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+<br>
+Congratulations!!! Job done...!<br>
+
+<br>2018-03-17 01:19:49am
+
+Worker Inited...!<br>
+2018-03-17 01:28:24am<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>96</b><br />
+<br>
+Client: 81875 <br>
+<br>
+nRef Profil: gentedezona<br>
+ Count: 0 Hasnext: 0 - 2018-03-17 01:28:24am<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 0): 80 <br>
+<br>
+Ref Profil: gentedezona (id: 31114 | type: 0)<br>
+<br>output {"data":{"user":{"edge_followed_by":{"count":1377657,"page_info":{"has_next_page":true,"end_cursor":"AQDn4914D8a08JDVpQaWpA5_m3nArbAt0wdzlxdKYieUEgTwQHUqz7E3uVDysklWgaT8_kob4cFu4QY-6wVFyx1ANd5-j6ZfpSsF3Jk0cq90JA"},"edges":[{"node":{"id":"5965156009","username":"riva.mercedes","full_name":"mercedes rivas","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/e31c6af2fe2f18e6456fab393b6a07c3/5B3792D7/t51.2885-19/s150x150/21227365_268996653615890_7100774232526684160_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"7301322145","username":"pinzon6576","full_name":"Steven Pinz\u00f3n","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/3aacb855539d9f78b33dd7b68479f90c/5B2F8C7F/t51.2885-19/s150x150/29094445_223138438445094_840871707982954496_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"6012054851","username":"lucianitaangeles","full_name":"Lucianita Angeles","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/aa7e2d0008545bf9496fdd38730468b3/5B3D8CF7/t51.2885-19/s150x150/28151974_591183521223957_581291903316656128_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"1761167455","username":"gabbytaandrade","full_name":"Gabbyta Andrade","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/5926aaffeb1878951a463aaecc692b83/5B3BF72D/t51.2885-19/s150x150/12725077_837966679646725_2078345552_a.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}},{"node":{"id":"7148973489","username":"amat19042001","full_name":"Juan Antonio","profile_pic_url":"https://instagram.fsdu8-2.fna.fbcdn.net/vp/de4b32d7fb64020426e03954cb748f44/5B4B6F7C/t51.2885-19/s150x150/28429020_203145220438815_8454492441838354432_n.jpg","is_verified":false,"followed_by_viewer":false,"requested_by_viewer":false}}]}}},"status":"ok"} 
+
+</br><br>
+Ref Profil: gentedezona<br>
+Nodes: 5 <br>
+array(5) {
+  [0]=>
+  object(stdClass)#28 (1) {
+    ["node"]=>
+    object(stdClass)#26 (7) {
+      ["id"]=>
+      string(10) "5965156009"
+      ["username"]=>
+      string(13) "riva.mercedes"
+      ["full_name"]=>
+      string(14) "mercedes rivas"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/e31c6af2fe2f18e6456fab393b6a07c3/5B3792D7/t51.2885-19/s150x150/21227365_268996653615890_7100774232526684160_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [1]=>
+  object(stdClass)#40 (1) {
+    ["node"]=>
+    object(stdClass)#27 (7) {
+      ["id"]=>
+      string(10) "7301322145"
+      ["username"]=>
+      string(10) "pinzon6576"
+      ["full_name"]=>
+      string(14) "Steven Pinzón"
+      ["profile_pic_url"]=>
+      string(155) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/3aacb855539d9f78b33dd7b68479f90c/5B2F8C7F/t51.2885-19/s150x150/29094445_223138438445094_840871707982954496_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [2]=>
+  object(stdClass)#42 (1) {
+    ["node"]=>
+    object(stdClass)#41 (7) {
+      ["id"]=>
+      string(10) "6012054851"
+      ["username"]=>
+      string(16) "lucianitaangeles"
+      ["full_name"]=>
+      string(17) "Lucianita Angeles"
+      ["profile_pic_url"]=>
+      string(155) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/aa7e2d0008545bf9496fdd38730468b3/5B3D8CF7/t51.2885-19/s150x150/28151974_591183521223957_581291903316656128_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [3]=>
+  object(stdClass)#44 (1) {
+    ["node"]=>
+    object(stdClass)#43 (7) {
+      ["id"]=>
+      string(10) "1761167455"
+      ["username"]=>
+      string(14) "gabbytaandrade"
+      ["full_name"]=>
+      string(15) "Gabbyta Andrade"
+      ["profile_pic_url"]=>
+      string(147) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/5926aaffeb1878951a463aaecc692b83/5B3BF72D/t51.2885-19/s150x150/12725077_837966679646725_2078345552_a.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+  [4]=>
+  object(stdClass)#46 (1) {
+    ["node"]=>
+    object(stdClass)#45 (7) {
+      ["id"]=>
+      string(10) "7148973489"
+      ["username"]=>
+      string(12) "amat19042001"
+      ["full_name"]=>
+      string(12) "Juan Antonio"
+      ["profile_pic_url"]=>
+      string(156) "https://instagram.fsdu8-2.fna.fbcdn.net/vp/de4b32d7fb64020426e03954cb748f44/5B4B6F7C/t51.2885-19/s150x150/28429020_203145220438815_8454492441838354432_n.jpg"
+      ["is_verified"]=>
+      bool(false)
+      ["followed_by_viewer"]=>
+      bool(false)
+      ["requested_by_viewer"]=>
+      bool(false)
+    }
+  }
+}
+Profil name: riva.mercedes FOLLOWING <br>
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>613</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>614</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>615</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>616</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>374</b><br />
+<br />
+<b>Notice</b>:  Trying to get property of non-object in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>375</b><br />
+NULL
+Not error code found!<br>
+ Client (id: ) not error code found (-1)!!! <br>
+NULL
+<br />
+<b>Warning</b>:  Creating default object from empty value in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>241</b><br />
+<br />
+<b>Notice</b>:  Undefined property: stdClass::$reference_id in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>242</b><br />
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+<br>
+Congratulations!!! Job done...!<br>
+
+<br>2018-03-17 01:28:26am
+

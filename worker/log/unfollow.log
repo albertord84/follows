@@ -1,0 +1,60 @@
+UNFOLLOW Inited...!<br>
+2016-12-09 06:10:06am<br>\nBEFORE:<br>\nalbertoreyesd1984  |   1  |   28<br>
+josergm86  |   13  |   3694<br>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/dumbu/worker/scripts/unfollow.php:28:</small>
+<b>array</b> <i>(size=3)</i>
+  0 <font color='#888a85'>=&gt;</font> 
+    <b>object</b>(<i>stdClass</i>)[<i>9</i>]
+      <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1'</font> <i>(length=1)</i>
+      <i>public</i> 'name' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'Alberto'</font> <i>(length=7)</i>
+      <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'albertoreyesd1984'</font> <i>(length=17)</i>
+      <i>public</i> 'pass' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'albertord'</font> <i>(length=9)</i>
+      <i>public</i> 'email' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'albertord84@gmail.com'</font> <i>(length=21)</i>
+      <i>public</i> 'telf' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'12344321'</font> <i>(length=8)</i>
+      <i>public</i> 'role_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'2'</font> <i>(length=1)</i>
+      <i>public</i> 'status_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'7'</font> <i>(length=1)</i>
+      <i>public</i> 'status_date' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'languaje' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'EN'</font> <i>(length=2)</i>
+      <i>public</i> 'user_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1'</font> <i>(length=1)</i>
+      <i>public</i> 'credit_card_number' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_status_id' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_cvc' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_name' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_exp_month' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_exp_year' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'pay_day' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'order_key' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'e0c0954a-dbd5-4e79-b513-0769d89bb490'</font> <i>(length=36)</i>
+      <i>public</i> 'insta_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'3916799608'</font> <i>(length=10)</i>
+      <i>public</i> 'insta_followers_ini' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'5'</font> <i>(length=1)</i>
+      <i>public</i> 'insta_following' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'28'</font> <i>(length=2)</i>
+      <i>public</i> 'HTTP_SERVER_VARS' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'foults' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'0'</font> <i>(length=1)</i>
+      <i>public</i> 'last_access' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1481190228'</font> <i>(length=10)</i>
+      <i>public</i> 'cookies' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'{&quot;json_response&quot;:{&quot;status&quot;:&quot;ok&quot;,&quot;authenticated&quot;:true,&quot;user&quot;:&quot;albertoreyesd1984&quot;},&quot;csrftoken&quot;:&quot;y8SwA6g1jUxJTTYUPcLdNsAFZ8xQ0BkI&quot;,&quot;sessionid&quot;:&quot;IGSCaa3e7b7f50125af8231fae7ffb0e061985e3f819091a90f96261c444f35b6cae%3ADgRlBadZ8wLcqj7zOmRLypCTp5gzhh8S%3A%7B%22_token_ver%22%3A2%2C%22_auth_user_id%22%3A3916799608%2C%22_token%22%3A%223916799608%3AezA0sSpMLiST5vbjb3Pi4W4ERcik7SDG%3A7deb511d352679060b6ad7acf7ecba83aa0b92a4879e9de9b70a3a103f3063d1%22%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModel'...</font> <i>(length=688)</i>
+      <i>public</i> 'unfollows' <font color='#888a85'>=&gt;</font> <small>int</small> <font color='#4e9a06'>0</font>
+  1 <font color='#888a85'>=&gt;</font> 
+    <b>object</b>(<i>stdClass</i>)[<i>10</i>]
+      <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'13'</font> <i>(length=2)</i>
+      <i>public</i> 'name' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'JOSE RAMON'</font> <i>(length=10)</i>
+      <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'josergm86'</font> <i>(length=9)</i>
+      <i>public</i> 'pass' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'joseramon1986'</font> <i>(length=13)</i>
+      <i>public</i> 'email' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'telf' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'role_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'2'</font> <i>(length=1)</i>
+      <i>public</i> 'status_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'7'</font> <i>(length=1)</i>
+      <i>public</i> 'status_date' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'languaje' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>''</font> <i>(length=0)</i>
+      <i>public</i> 'user_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'13'</font> <i>(length=2)</i>
+      <i>public</i> 'credit_card_number' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_status_id' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_cvc' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_name' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_exp_month' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'credit_card_exp_year' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'pay_day' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'order_key' <font color='#888a85'>=&gt;</font> <font color='#3465a4'>null</font>
+      <i>public</i> 'insta_id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'3858629065'</font> <i>(length=10)</i>
+      <i>public</i> 'insta_followers_ini' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1218'</font> <i>(length=4)</i>
+      <i>public</i> 'insta_following' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'3694'</font> <i>(length=4)</i>
+      <i>public</i> 'HTTP_SERVER_VARS' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'{&quot;UNIQUE_ID&quot;:&quot;WDd00H8AAQEAAAwBmE4AAAAA&quot;,&quot;HTTP_HOST&quot;:&quot;localhost&quot;,&quot;HTTP_USER_AGENT&quot;:&quot;Mozilla\/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko\/20100101 Firefox\/49.0&quot;,&quot;HTTP_ACCEPT&quot;:&quot;application\/json, text\/javascript, *\/*; q=0.01&quot;,&quot;HTTP_ACCEPT_LANGUAGE&quot;:&quot;en-US,en;q=0.5&quot;,&quot;HTTP_ACCEPT_ENCODING&quot;:&quot;gzip, deflate&quot;,&quot;CONTENT_TYPE&quot;:&quot;application\/x-www-form-urlencoded; charset=UTF-8&quot;,&quot;HTTP_X_REQUESTED_WITH&quot;:&quot;XMLHttpRequest&quot;,&quot;HTTP_REFERER&quot;:&quot;http:\/\/localhost\/dumbu\/src\/&quot;,&quot;CONTENT_LENGTH&quot;:&quot;38&quot;,&quot;HTTP_COOKIE&quot;:&quot

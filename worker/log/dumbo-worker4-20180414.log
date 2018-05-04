@@ -1,0 +1,228 @@
+Worker Inited...!<br>
+2018-04-14 06:50:50pm<br>
+Client: 17179 <br>
+<br>
+nRef Profil: alexmartins_real<br>
+ Count: 5 Hasnext: 5 - 2018-04-14 06:50:50pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+array(0) {
+}
+string(1199) "curl 'https://www.instagram.com/web/friendships/1444087571/unfollow/' -X POST -H 'Cookie: mid=WrsFMAAEAAE2iCIkn4bD-RhGUbso; sessionid=IGSC68b597a2d42204c81c28917a8b7602ec4c26e36c3b6675bdf72e39d4574662ff%3AwE7v4qRnnY5HcDnB97q41xDz97TomylH%3A%7B%22_auth_user_id%22%3A568439216%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%22568439216%3ABHOCINyG556VwVRw4BeUmzYhhMUJxQ5H%3Ab45bfb686c0396c3835f8ebb7bc9e2f0ec17d116fa96d7a5009a701ae6265d1d%22%2C%22last_refreshed%22%3A1522206042.5421845913%7D;  csrftoken=4HfP0riTll7APGIAOxFpM2O2HZxIkjtY; ds_user_id=568439216' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: 4HfP0riTll7APGIAOxFpM2O2HZxIkjtY' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 1444087571<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1199) "curl 'https://www.instagram.com/web/friendships/1658473033/unfollow/' -X POST -H 'Cookie: mid=WrsFMAAEAAE2iCIkn4bD-RhGUbso; sessionid=IGSC68b597a2d42204c81c28917a8b7602ec4c26e36c3b6675bdf72e39d4574662ff%3AwE7v4qRnnY5HcDnB97q41xDz97TomylH%3A%7B%22_auth_user_id%22%3A568439216%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%22568439216%3ABHOCINyG556VwVRw4BeUmzYhhMUJxQ5H%3Ab45bfb686c0396c3835f8ebb7bc9e2f0ec17d116fa96d7a5009a701ae6265d1d%22%2C%22last_refreshed%22%3A1522206042.5421845913%7D;  csrftoken=4HfP0riTll7APGIAOxFpM2O2HZxIkjtY; ds_user_id=568439216' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: 4HfP0riTll7APGIAOxFpM2O2HZxIkjtY' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 1658473033<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1199) "curl 'https://www.instagram.com/web/friendships/6682039058/unfollow/' -X POST -H 'Cookie: mid=WrsFMAAEAAE2iCIkn4bD-RhGUbso; sessionid=IGSC68b597a2d42204c81c28917a8b7602ec4c26e36c3b6675bdf72e39d4574662ff%3AwE7v4qRnnY5HcDnB97q41xDz97TomylH%3A%7B%22_auth_user_id%22%3A568439216%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%22568439216%3ABHOCINyG556VwVRw4BeUmzYhhMUJxQ5H%3Ab45bfb686c0396c3835f8ebb7bc9e2f0ec17d116fa96d7a5009a701ae6265d1d%22%2C%22last_refreshed%22%3A1522206042.5421845913%7D;  csrftoken=4HfP0riTll7APGIAOxFpM2O2HZxIkjtY; ds_user_id=568439216' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: 4HfP0riTll7APGIAOxFpM2O2HZxIkjtY' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 6682039058<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1199) "curl 'https://www.instagram.com/web/friendships/2299332192/unfollow/' -X POST -H 'Cookie: mid=WrsFMAAEAAE2iCIkn4bD-RhGUbso; sessionid=IGSC68b597a2d42204c81c28917a8b7602ec4c26e36c3b6675bdf72e39d4574662ff%3AwE7v4qRnnY5HcDnB97q41xDz97TomylH%3A%7B%22_auth_user_id%22%3A568439216%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%22568439216%3ABHOCINyG556VwVRw4BeUmzYhhMUJxQ5H%3Ab45bfb686c0396c3835f8ebb7bc9e2f0ec17d116fa96d7a5009a701ae6265d1d%22%2C%22last_refreshed%22%3A1522206042.5421845913%7D;  csrftoken=4HfP0riTll7APGIAOxFpM2O2HZxIkjtY; ds_user_id=568439216' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: 4HfP0riTll7APGIAOxFpM2O2HZxIkjtY' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 2299332192<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1199) "curl 'https://www.instagram.com/web/friendships/2590432744/unfollow/' -X POST -H 'Cookie: mid=WrsFMAAEAAE2iCIkn4bD-RhGUbso; sessionid=IGSC68b597a2d42204c81c28917a8b7602ec4c26e36c3b6675bdf72e39d4574662ff%3AwE7v4qRnnY5HcDnB97q41xDz97TomylH%3A%7B%22_auth_user_id%22%3A568439216%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%22568439216%3ABHOCINyG556VwVRw4BeUmzYhhMUJxQ5H%3Ab45bfb686c0396c3835f8ebb7bc9e2f0ec17d116fa96d7a5009a701ae6265d1d%22%2C%22last_refreshed%22%3A1522206042.5421845913%7D;  csrftoken=4HfP0riTll7APGIAOxFpM2O2HZxIkjtY; ds_user_id=568439216' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: 4HfP0riTll7APGIAOxFpM2O2HZxIkjtY' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 2590432744<br>
+<br> Empty response from instagram</br><br>
+make_insta_friendships_command FOLLOW (like firsts = 1): -3 <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+Client: 27728 <br>
+<br>
+nRef Profil: farkile<br>
+ Count: 5 Hasnext: 5 - 2018-04-14 06:50:50pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/4461677670/unfollow/' -X POST -H 'Cookie: mid=WsaXcAAEAAECGRJdNDlMI2v4M_Pl; sessionid=IGSCc1d87530248d3dc851e6c2dba14e6e4d1b91bfe33ccae48a68d5c101588bcd3a%3A9M4oyOG1jEKkETgKjNv1iDObvi28651m%3A%7B%22_auth_user_id%22%3A1535663557%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221535663557%3A8Kbp7F5ZYGuRxeLB7dZNjt2Nc0tsDDPE%3Abef1095dccbc34f8712b948e3dfd2f782fb08ccb73e362f309707ad46db9970d%22%2C%22last_refreshed%22%3A1522964353.2130544186%7D;  csrftoken=fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC; ds_user_id=1535663557' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 4461677670<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/7185432154/unfollow/' -X POST -H 'Cookie: mid=WsaXcAAEAAECGRJdNDlMI2v4M_Pl; sessionid=IGSCc1d87530248d3dc851e6c2dba14e6e4d1b91bfe33ccae48a68d5c101588bcd3a%3A9M4oyOG1jEKkETgKjNv1iDObvi28651m%3A%7B%22_auth_user_id%22%3A1535663557%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221535663557%3A8Kbp7F5ZYGuRxeLB7dZNjt2Nc0tsDDPE%3Abef1095dccbc34f8712b948e3dfd2f782fb08ccb73e362f309707ad46db9970d%22%2C%22last_refreshed%22%3A1522964353.2130544186%7D;  csrftoken=fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC; ds_user_id=1535663557' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 7185432154<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1201) "curl 'https://www.instagram.com/web/friendships/497931912/unfollow/' -X POST -H 'Cookie: mid=WsaXcAAEAAECGRJdNDlMI2v4M_Pl; sessionid=IGSCc1d87530248d3dc851e6c2dba14e6e4d1b91bfe33ccae48a68d5c101588bcd3a%3A9M4oyOG1jEKkETgKjNv1iDObvi28651m%3A%7B%22_auth_user_id%22%3A1535663557%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221535663557%3A8Kbp7F5ZYGuRxeLB7dZNjt2Nc0tsDDPE%3Abef1095dccbc34f8712b948e3dfd2f782fb08ccb73e362f309707ad46db9970d%22%2C%22last_refreshed%22%3A1522964353.2130544186%7D;  csrftoken=fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC; ds_user_id=1535663557' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 497931912<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1201) "curl 'https://www.instagram.com/web/friendships/589545210/unfollow/' -X POST -H 'Cookie: mid=WsaXcAAEAAECGRJdNDlMI2v4M_Pl; sessionid=IGSCc1d87530248d3dc851e6c2dba14e6e4d1b91bfe33ccae48a68d5c101588bcd3a%3A9M4oyOG1jEKkETgKjNv1iDObvi28651m%3A%7B%22_auth_user_id%22%3A1535663557%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221535663557%3A8Kbp7F5ZYGuRxeLB7dZNjt2Nc0tsDDPE%3Abef1095dccbc34f8712b948e3dfd2f782fb08ccb73e362f309707ad46db9970d%22%2C%22last_refreshed%22%3A1522964353.2130544186%7D;  csrftoken=fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC; ds_user_id=1535663557' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 589545210<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/7053911241/unfollow/' -X POST -H 'Cookie: mid=WsaXcAAEAAECGRJdNDlMI2v4M_Pl; sessionid=IGSCc1d87530248d3dc851e6c2dba14e6e4d1b91bfe33ccae48a68d5c101588bcd3a%3A9M4oyOG1jEKkETgKjNv1iDObvi28651m%3A%7B%22_auth_user_id%22%3A1535663557%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221535663557%3A8Kbp7F5ZYGuRxeLB7dZNjt2Nc0tsDDPE%3Abef1095dccbc34f8712b948e3dfd2f782fb08ccb73e362f309707ad46db9970d%22%2C%22last_refreshed%22%3A1522964353.2130544186%7D;  csrftoken=fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC; ds_user_id=1535663557' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: fHkRaNF9kgJQCUe5Sv2NG2QEWSzgcQQC' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 7053911241<br>
+<br> Empty response from instagram</br><br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 0 <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+Client: 84 <br>
+<br>
+nRef Profil: blogumviajante<br>
+ Count: 5 Hasnext: 5 - 2018-04-14 06:50:51pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+array(0) {
+}
+string(1225) "curl 'https://www.instagram.com/web/friendships/14569167/unfollow/' -X POST -H 'Cookie: mid=WsejxQAEAAFkkPGPJi65iHUM4Ykt; sessionid=IGSCd72ded40f361765accee7f583cbc66ff1dfa0f00bd6eccfc28cdbd4d49a3a422%3ApdVXs0WdaUeh8UNy2aMnSgHRAqsQYLMt%3A%7B%22_auth_user_id%22%3A1094636630%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221094636630%3AJL35BB9bytgERVXsWaZSLU66jS3ofePI%3A37315be384117e625c8bf5bfcf12ad1c76f4f97e2970f4d40153fb38bc7f06b0%22%2C%22last_refreshed%22%3A1523033049.9488432407%7D; ig_or=landscape-primary;  csrftoken=Gbag5kKuT69WyiuCIJrcNNtVryqpufBu; ds_user_id=1094636630' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: Gbag5kKuT69WyiuCIJrcNNtVryqpufBu' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 14569167<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1227) "curl 'https://www.instagram.com/web/friendships/5939615889/unfollow/' -X POST -H 'Cookie: mid=WsejxQAEAAFkkPGPJi65iHUM4Ykt; sessionid=IGSCd72ded40f361765accee7f583cbc66ff1dfa0f00bd6eccfc28cdbd4d49a3a422%3ApdVXs0WdaUeh8UNy2aMnSgHRAqsQYLMt%3A%7B%22_auth_user_id%22%3A1094636630%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221094636630%3AJL35BB9bytgERVXsWaZSLU66jS3ofePI%3A37315be384117e625c8bf5bfcf12ad1c76f4f97e2970f4d40153fb38bc7f06b0%22%2C%22last_refreshed%22%3A1523033049.9488432407%7D; ig_or=landscape-primary;  csrftoken=Gbag5kKuT69WyiuCIJrcNNtVryqpufBu; ds_user_id=1094636630' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: Gbag5kKuT69WyiuCIJrcNNtVryqpufBu' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 5939615889<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1226) "curl 'https://www.instagram.com/web/friendships/224697217/unfollow/' -X POST -H 'Cookie: mid=WsejxQAEAAFkkPGPJi65iHUM4Ykt; sessionid=IGSCd72ded40f361765accee7f583cbc66ff1dfa0f00bd6eccfc28cdbd4d49a3a422%3ApdVXs0WdaUeh8UNy2aMnSgHRAqsQYLMt%3A%7B%22_auth_user_id%22%3A1094636630%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221094636630%3AJL35BB9bytgERVXsWaZSLU66jS3ofePI%3A37315be384117e625c8bf5bfcf12ad1c76f4f97e2970f4d40153fb38bc7f06b0%22%2C%22last_refreshed%22%3A1523033049.9488432407%7D; ig_or=landscape-primary;  csrftoken=Gbag5kKuT69WyiuCIJrcNNtVryqpufBu; ds_user_id=1094636630' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: Gbag5kKuT69WyiuCIJrcNNtVryqpufBu' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 224697217<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1226) "curl 'https://www.instagram.com/web/friendships/518508627/unfollow/' -X POST -H 'Cookie: mid=WsejxQAEAAFkkPGPJi65iHUM4Ykt; sessionid=IGSCd72ded40f361765accee7f583cbc66ff1dfa0f00bd6eccfc28cdbd4d49a3a422%3ApdVXs0WdaUeh8UNy2aMnSgHRAqsQYLMt%3A%7B%22_auth_user_id%22%3A1094636630%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221094636630%3AJL35BB9bytgERVXsWaZSLU66jS3ofePI%3A37315be384117e625c8bf5bfcf12ad1c76f4f97e2970f4d40153fb38bc7f06b0%22%2C%22last_refreshed%22%3A1523033049.9488432407%7D; ig_or=landscape-primary;  csrftoken=Gbag5kKuT69WyiuCIJrcNNtVryqpufBu; ds_user_id=1094636630' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: Gbag5kKuT69WyiuCIJrcNNtVryqpufBu' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 518508627<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1225) "curl 'https://www.instagram.com/web/friendships/14509102/unfollow/' -X POST -H 'Cookie: mid=WsejxQAEAAFkkPGPJi65iHUM4Ykt; sessionid=IGSCd72ded40f361765accee7f583cbc66ff1dfa0f00bd6eccfc28cdbd4d49a3a422%3ApdVXs0WdaUeh8UNy2aMnSgHRAqsQYLMt%3A%7B%22_auth_user_id%22%3A1094636630%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%221094636630%3AJL35BB9bytgERVXsWaZSLU66jS3ofePI%3A37315be384117e625c8bf5bfcf12ad1c76f4f97e2970f4d40153fb38bc7f06b0%22%2C%22last_refreshed%22%3A1523033049.9488432407%7D; ig_or=landscape-primary;  csrftoken=Gbag5kKuT69WyiuCIJrcNNtVryqpufBu; ds_user_id=1094636630' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: Gbag5kKuT69WyiuCIJrcNNtVryqpufBu' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 14509102<br>
+<br> Empty response from instagram</br><br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 120 <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+Client: 25451 <br>
+<br>
+nRef Profil: buenos-aires-argentina<br>
+ Count: 0 Hasnext: 0 - 2018-04-14 06:50:51pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 3 <br>
+<br>
+Ref Profil: buenos-aires-argentina (id: 38185 | type: 1)<br>
+<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>804</b><br />
+array(0) {
+}
+curl 'https://www.instagram.com/graphql/query/?query_hash=951c979213d7e7a1cf1d73e2f661cbd1&variables=%7B%22id%22%3A%2211404497%22%2C%22first%22%3A3%2C%22after%22%3A%221697559643890197477%22%7D' -H 'Origin: https://www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'content-type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' --compressed <br>
+ Untrated error!!!NULL
+Not error code found!<br>
+ Client (id: 25451) not error code found (-1)!!! <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+Client: 27938 <br>
+<br>
+nRef Profil: belo-horizonte-brazil<br>
+ Count: 0 Hasnext: 0 - 2018-04-14 06:50:51pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 24 <br>
+<br>
+Ref Profil: belo-horizonte-brazil (id: 42909 | type: 1)<br>
+<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>804</b><br />
+array(0) {
+}
+curl 'https://www.instagram.com/graphql/query/?query_hash=951c979213d7e7a1cf1d73e2f661cbd1&variables=%7B%22id%22%3A%22213255513%22%2C%22first%22%3A5%2C%22after%22%3A%221755657933420349597%22%7D' -H 'Origin: https://www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'content-type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' --compressed <br>
+ Untrated error!!!NULL
+Not error code found!<br>
+ Client (id: 27938) not error code found (-1)!!! <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>
+Client: 15644 <br>
+<br>
+nRef Profil: messi<br>
+ Count: 5 Hasnext: 5 - 2018-04-14 06:50:51pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/1824535492/unfollow/' -X POST -H 'Cookie: mid=WtDAGAAEAAGuwQPd4N9NhUnEebUg; sessionid=IGSCb561b40c7a6e971686d9ec090cee0cd3bb3002065c5dfe74318698be646149ec%3AQx2vB2aAxc0AIXym9rdKXFPeG72LBHTF%3A%7B%22_auth_user_id%22%3A3858629065%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223858629065%3AWu6LSBt8NcWFttSLfgNvyKViHeVQK1oc%3A6138c9f1fcbae9d310f8fdbd969fca78a73544727bc1371ffe745f71d1bb4818%22%2C%22last_refreshed%22%3A1523630764.8665533066%7D;  csrftoken=rDE1wza8iF2YbjJI2y6qgId024izFOMa; ds_user_id=3858629065' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: rDE1wza8iF2YbjJI2y6qgId024izFOMa' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 1824535492<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/1644745252/unfollow/' -X POST -H 'Cookie: mid=WtDAGAAEAAGuwQPd4N9NhUnEebUg; sessionid=IGSCb561b40c7a6e971686d9ec090cee0cd3bb3002065c5dfe74318698be646149ec%3AQx2vB2aAxc0AIXym9rdKXFPeG72LBHTF%3A%7B%22_auth_user_id%22%3A3858629065%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223858629065%3AWu6LSBt8NcWFttSLfgNvyKViHeVQK1oc%3A6138c9f1fcbae9d310f8fdbd969fca78a73544727bc1371ffe745f71d1bb4818%22%2C%22last_refreshed%22%3A1523630764.8665533066%7D;  csrftoken=rDE1wza8iF2YbjJI2y6qgId024izFOMa; ds_user_id=3858629065' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: rDE1wza8iF2YbjJI2y6qgId024izFOMa' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 1644745252<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/5611909168/unfollow/' -X POST -H 'Cookie: mid=WtDAGAAEAAGuwQPd4N9NhUnEebUg; sessionid=IGSCb561b40c7a6e971686d9ec090cee0cd3bb3002065c5dfe74318698be646149ec%3AQx2vB2aAxc0AIXym9rdKXFPeG72LBHTF%3A%7B%22_auth_user_id%22%3A3858629065%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223858629065%3AWu6LSBt8NcWFttSLfgNvyKViHeVQK1oc%3A6138c9f1fcbae9d310f8fdbd969fca78a73544727bc1371ffe745f71d1bb4818%22%2C%22last_refreshed%22%3A1523630764.8665533066%7D;  csrftoken=rDE1wza8iF2YbjJI2y6qgId024izFOMa; ds_user_id=3858629065' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: rDE1wza8iF2YbjJI2y6qgId024izFOMa' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 5611909168<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/4155645559/unfollow/' -X POST -H 'Cookie: mid=WtDAGAAEAAGuwQPd4N9NhUnEebUg; sessionid=IGSCb561b40c7a6e971686d9ec090cee0cd3bb3002065c5dfe74318698be646149ec%3AQx2vB2aAxc0AIXym9rdKXFPeG72LBHTF%3A%7B%22_auth_user_id%22%3A3858629065%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223858629065%3AWu6LSBt8NcWFttSLfgNvyKViHeVQK1oc%3A6138c9f1fcbae9d310f8fdbd969fca78a73544727bc1371ffe745f71d1bb4818%22%2C%22last_refreshed%22%3A1523630764.8665533066%7D;  csrftoken=rDE1wza8iF2YbjJI2y6qgId024izFOMa; ds_user_id=3858629065' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: rDE1wza8iF2YbjJI2y6qgId024izFOMa' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 4155645559<br>
+<br> Empty response from instagram</br>array(0) {
+}
+string(1202) "curl 'https://www.instagram.com/web/friendships/6967273630/unfollow/' -X POST -H 'Cookie: mid=WtDAGAAEAAGuwQPd4N9NhUnEebUg; sessionid=IGSCb561b40c7a6e971686d9ec090cee0cd3bb3002065c5dfe74318698be646149ec%3AQx2vB2aAxc0AIXym9rdKXFPeG72LBHTF%3A%7B%22_auth_user_id%22%3A3858629065%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223858629065%3AWu6LSBt8NcWFttSLfgNvyKViHeVQK1oc%3A6138c9f1fcbae9d310f8fdbd969fca78a73544727bc1371ffe745f71d1bb4818%22%2C%22last_refreshed%22%3A1523630764.8665533066%7D;  csrftoken=rDE1wza8iF2YbjJI2y6qgId024izFOMa; ds_user_id=3858629065' -H 'Host: www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'X-CSRFToken: rDE1wza8iF2YbjJI2y6qgId024izFOMa' -H 'X-Instagram-Ajax: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' -H 'Content-Length: 0' --compressed "
+ID: 6967273630<br>
+<br> Empty response from instagram</br><br>
+make_insta_friendships_command FOLLOW (like firsts = 0): 115 <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>_________ELAPSED TIME (9): <br>
+Client: 19923 <br>
+<br>
+nRef Profil: robertamichele<br>
+ Count: 0 Hasnext: 0 - 2018-04-14 07:00:43pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 0): 0 <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>_________ELAPSED TIME (599): <br>
+Client: 14239 <br>
+<br>
+nRef Profil: sao-paulo-brazil<br>
+ Count: 0 Hasnext: 0 - 2018-04-14 07:00:44pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 4 <br>
+<br>
+Ref Profil: sao-paulo-brazil (id: 17348 | type: 1)<br>
+<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>804</b><br />
+array(0) {
+}
+curl 'https://www.instagram.com/graphql/query/?query_hash=951c979213d7e7a1cf1d73e2f661cbd1&variables=%7B%22id%22%3A%22213163910%22%2C%22first%22%3A4%2C%22after%22%3A%221695957171432701871%22%7D' -H 'Origin: https://www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'content-type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' --compressed <br>
+ Untrated error!!!NULL
+Not error code found!<br>
+ Client (id: 14239) not error code found (-1)!!! <br>
+<br><br>
+
+________________________________________________<br><br>
+
+<br>Update daily_work! follows: 0 | unfollows: 0 <br><br>_________ELAPSED TIME (599): <br>
+Client: 17011 <br>
+<br>
+nRef Profil: vienna-austria<br>
+ Count: 0 Hasnext: 0 - 2018-04-14 07:00:45pm<br>
+ make_insta_friendships_command UNFOLLOW <br>
+<br>
+make_insta_friendships_command FOLLOW (like firsts = 1): 5 <br>
+<br>
+Ref Profil: vienna-austria (id: 40663 | type: 1)<br>
+<br />
+<b>Notice</b>:  Undefined offset: 0 in <b>/opt/lampp/htdocs/dumbu/worker/class/Robot.php</b> on line <b>804</b><br />
+array(0) {
+}
+curl 'https://www.instagram.com/graphql/query/?query_hash=951c979213d7e7a1cf1d73e2f661cbd1&variables=%7B%22id%22%3A%2263134088%22%2C%22first%22%3A5%2C%22after%22%3A%221733656689507216762%22%7D' -H 'Origin: https://www.instagram.com' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' -H 'X-Requested-with: XMLHttpRequest' -H 'content-type: application/x-www-form-urlencoded' -H 'Accept: */*' -H 'Referer: https://www.instagram.com/' -H 'Authority: www.instagram.com' --compressed <br>
+ Untrated error!!!NULL
+Not error code found!<br>
+ Client (id: 17011) not error code found (-1)!!! <br>
+<br><br>
+
+__________________________________________

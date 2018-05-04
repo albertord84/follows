@@ -1,0 +1,11 @@
+Class
+___________________
+
+- All our class are encapsuled into namespace "dumbu/cls"
+- All class have __set and __get generic method defined: 
+see attribute id from class User to a working example.
+- User varialble are defined in php $GLOBAL structure.
+- The System Config Enum is duplicated in "src" and "worker"
+    +user_role
+    +user_status
+- DB Worker config is in "worker/class/DB.php"
