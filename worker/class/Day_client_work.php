@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'system_config.php';
     require_once 'Client.php';
     require_once 'Followed.php';
@@ -63,10 +63,10 @@ namespace dumbu\cls {
         public function get_unfollow_data($client_id) {
             // Get profiles to unfollow today for this Client... 
             // (i.e the last followed)
-            $DB = new \dumbu\cls\DB();
+            $DB = new \follows\cls\DB();
             $unfollow_data = $DB->get_unfollow_data($client_id);
             while ($Followed = $unfollow_data->fetch_object()) {
-                $To_Unfollow = new \dumbu\cls\Followed();
+                $To_Unfollow = new \follows\cls\Followed();
                 // Update Ref Prof Data
                 $To_Unfollow->id = $Followed->id;
                 $To_Unfollow->followed_id = $Followed->followed_id;

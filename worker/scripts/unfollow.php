@@ -6,15 +6,15 @@ require_once '../class/system_config.php';
 require_once '../class/user_role.php';
 require_once '../class/user_status.php';
 require_once '../class/Gmail.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
 echo "UNFOLLOW Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
-$Robot = new \dumbu\cls\Robot();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
+$Robot = new \follows\cls\Robot();
 $Robot->id = -2;
-$DB = new \dumbu\cls\DB();
-$Gmail = new \dumbu\cls\Gmail();
-$Client = new dumbu\cls\Client();
+$DB = new \follows\cls\DB();
+$Gmail = new \follows\cls\Gmail();
+$Client = new follows\cls\Client();
 $clients_data_db = $DB->get_unfollow_clients_data();
 //$clients_data_db = $Client->get_client(1);
 //
@@ -82,7 +82,7 @@ if(isset($clients_data_db))
                             if (is_object($json_response2) && $json_response2->status == 'ok') { // if response is ok
                                 $clients_data[$ckey]->unfollows++;
                             } else { // Porcess error
-                                $Profile = new \dumbu\cls\Profile();
+                                $Profile = new \follows\cls\Profile();
                                 $error = $Profile->parse_profile_follow_errors($json_response2); // TODO: Class for error messages
                                 if ($error == 6) {// Just empty message:
                                     $error = FALSE;

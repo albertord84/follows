@@ -2,7 +2,7 @@
 
 //require_once 'Reference_profile[].php';
 
-//namespace dumbu\cls {
+//namespace follows\cls {
     require_once 'User_model.php';
     //require_once '.php';
 

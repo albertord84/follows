@@ -4,4 +4,4 @@ date=$(date +%Y%m%d)
 
 now=$(date +"%T")
 
-curl http://localhost/dumbu/worker/scripts/index-do.php?id=12 >> /opt/lampp/htdocs/dumbu/worker/log/dumbo-worker12-${date}.log
+curl http://localhost/follows/worker/scripts/index-do.php?id=12 >> /opt/lampp/htdocs/follows/worker/log/dumbo-worker12-${date}.log

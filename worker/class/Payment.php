@@ -2,14 +2,14 @@
 
 
 
-namespace dumbu\cls {
+namespace follows\cls {
     
         ini_set('xdebug.var_display_max_depth', 256);
     ini_set('xdebug.var_display_max_children', 256);
     ini_set('xdebug.var_display_max_data', 1024);
     
     
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/mundipagg/init.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/mundipagg/init.php';
     require_once 'system_config.php';
 //    require_once('libraries/mundipagg/init.php');
 //    require_once('class/system_config.php');
@@ -155,7 +155,7 @@ namespace dumbu\cls {
         public function create_boleto_payment($payment_data) {
             try {
                 // Carrega dependências
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/MundiAPI-PHP/vendor/autoload.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/MundiAPI-PHP/vendor/autoload.php';
                 // Define a url utilizada
                 \Gateway\ApiClient::setBaseUrl("https://transactionv2.mundipaggone.com/"); 
 

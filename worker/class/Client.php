@@ -2,7 +2,7 @@
 
 //require_once 'Reference_profile[].php';
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'User.php';
     require_once 'Robot.php';
     require_once 'DB.php';
@@ -109,7 +109,7 @@ namespace dumbu\cls {
         public function get_clients() {
             try {
                 $Clients = array();
-                $DB = new \dumbu\cls\DB();
+                $DB = new \follows\cls\DB();
                 $clients_data = $DB->get_clients_data();
                 while ($client_data = $clients_data->fetch_object()) {
                     $Client = $this->fill_client_data($client_data);
@@ -124,7 +124,7 @@ namespace dumbu\cls {
         public function insert_clients_daily_report() {
             try {
                 $Clients = array();
-                $DB = new \dumbu\cls\DB();
+                $DB = new \follows\cls\DB();
                 $clients_data = $DB->get_clients_data_for_report();
                 while ($client_data = $clients_data->fetch_object()) {
                     $profile_data = (new Reference_profile())->get_insta_ref_prof_data($client_data->login, $client_data->id);
@@ -274,7 +274,7 @@ namespace dumbu\cls {
             try {
                 $client_id = $client_id ? $client_id : $this->id;
                 $cookies = $cookies ? $cookies : $this->cookies;
-                $DB = new \dumbu\cls\DB();
+                $DB = new \follows\cls\DB();
                 $result = $DB->set_client_cookies($client_id, $cookies);
                 /*if ($result) {
                     //print "Client $client_id cookies changed!!!";
@@ -291,7 +291,7 @@ namespace dumbu\cls {
             try {
                 $client_id = $client_id ? $client_id : $this->id;
                 $status_id = $status_id ? $status_id : $this->status_id;
-                $DB = new \dumbu\cls\DB();
+                $DB = new \follows\cls\DB();
                 $result = $DB->set_client_status($client_id, $status_id);
                 if ($result) {
                     print "Client $client_id to status $status_id!!!";
@@ -314,10 +314,10 @@ namespace dumbu\cls {
         public function get_reference_profiles($client_id = NULL) {
             try {
                 $client_id = $client_id ? $client_id : $this->id;
-                $DB = new \dumbu\cls\DB();
+                $DB = new \follows\cls\DB();
                 $ref_profs_data = $DB->get_reference_profiles_data($client_id);
                 while ($prof_data = $ref_profs_data->fetch_object()) {
-                    $Ref_Prof = new \dumbu\cls\Reference_profile();
+                    $Ref_Prof = new \follows\cls\Reference_profile();
                     //print_r($prof_data);
                     // Update Ref Prof Data if not privated
                     // TODO: Chechk if privated RP

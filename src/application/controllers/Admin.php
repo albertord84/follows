@@ -28,8 +28,8 @@ class Admin extends CI_Controller {
        
     public function T($token, $array_params=NULL, $lang=NULL) {
         if(!$lang){
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-            $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+            $GLOBALS['sistem_config'] = new follows\cls\system_config();
             if(isset($language['language']))
                 $param['language']=$language['language'];
             else
@@ -48,8 +48,8 @@ class Admin extends CI_Controller {
     }
     
     public function admin_do_login() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
         $datas['SERVER_NAME'] = $GLOBALS['sistem_config']->SERVER_NAME;        
         $datas = $this->input->post();        
         $this->load->model('class/user_model');
@@ -85,8 +85,8 @@ class Admin extends CI_Controller {
         $this->load->model('class/user_model');
         $this->load->model('class/user_role');
         if ($this->session->userdata('id') && $this->session->userdata('role_id')==user_role::ADMIN) {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-            $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+            $GLOBALS['sistem_config'] = new follows\cls\system_config();
             $datas['SERVER_NAME'] = $GLOBALS['sistem_config']->SERVER_NAME;
             $query = 'SELECT DISTINCT utm_source FROM clients';
             $datas['utm_source_list'] = $this->user_model->execute_sql_query($query);
@@ -103,8 +103,8 @@ class Admin extends CI_Controller {
         if ($this->session->userdata('id') && $this->session->userdata('role_id')==user_role::ADMIN) {
             $this->load->model('class/admin_model');
             $form_filter = $this->input->get();
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-            $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+            $GLOBALS['sistem_config'] = new follows\cls\system_config();
             $datas['SERVER_NAME'] = $GLOBALS['sistem_config']->SERVER_NAME;
             $datas['result'] = $this->admin_model->view_clients_or_get_emails_by_filter($form_filter);
             $datas['form_filter'] = $form_filter;
@@ -199,8 +199,8 @@ class Admin extends CI_Controller {
             $this->load->model('class/user_status');
             $id = $this->input->post()['id'];
             try {
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/DB.php';
-                $DB = new \dumbu\cls\DB();
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/DB.php';
+                $DB = new \follows\cls\DB();
                 $DB->delete_daily_work_client($id);
                 $this->user_model->update_user($id, array(
                     'status_id' => user_status::DELETED,
@@ -221,15 +221,15 @@ class Admin extends CI_Controller {
     }
 
     public function recorrency_cancel() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
         $this->load->model('class/user_role');
         if ($this->session->userdata('id') && $this->session->userdata('role_id')==user_role::ADMIN) {
             $this->load->model('class/client_model');
             $id = $this->input->post()['id'];
             $client = $this->client_model->get_client_by_id($id)[0];
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-            $Payment = new \dumbu\cls\Payment();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+            $Payment = new \follows\cls\Payment();
             $status_cancelamento=0;
             if(count($client['initial_order_key'])>3){
                 $response = json_decode($Payment->delete_payment($client['initial_order_key']));
@@ -265,8 +265,8 @@ class Admin extends CI_Controller {
     public function reference_profile_view() {
         $this->load->model('class/user_role');
         if ($this->session->userdata('id') && $this->session->userdata('role_id')==user_role::ADMIN) {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/DB.php';
-            $DB = new \dumbu\cls\DB();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/DB.php';
+            $DB = new \follows\cls\DB();
             $this->load->model('class/client_model');
             $this->load->model('class/user_model');
             $id = $this->input->get()['id'];
@@ -426,8 +426,8 @@ class Admin extends CI_Controller {
             $curl = urldecode($datas['curl']);
             
             try {
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Robot.php';
-                $Robot = new \dumbu\cls\Robot();
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+                $Robot = new \follows\cls\Robot();
                 $Robot->set_client_cookies_by_curl($client_id, $curl, NULL);
 //                $result['success'] = false;
 //                $result['message'] = "Test!";
@@ -452,8 +452,8 @@ class Admin extends CI_Controller {
             $client_id = $this->input->post()['client_id'];
             
             try {
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/DB.php';
-                (new \dumbu\cls\DB())->set_cookies_to_null($client_id);
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/DB.php';
+                (new \follows\cls\DB())->set_cookies_to_null($client_id);
             } catch (Exception $exc) {
                 $result['success'] = false;
                 $result['message'] = "Erro no banco de dados. Contate o grupo de desenvolvimento!";
@@ -506,8 +506,8 @@ class Admin extends CI_Controller {
         $payment_data['credit_card_cvc'] = $datas['credit_card_cvc'];
         $payment_data['amount_in_cents'] = $datas['amount_in_cents'];
         $payment_data['pay_day'] = time();        
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-        $Payment = new \dumbu\cls\Payment();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+        $Payment = new \follows\cls\Payment();
         $bandeira = $this->detectCardType($payment_data['credit_card_number']);        
         if ($bandeira)
             $response = $Payment->create_payment($payment_data);
@@ -525,8 +525,8 @@ class Admin extends CI_Controller {
         $payment_data['credit_card_cvc'] = $datas['credit_card_cvc'];
         $payment_data['amount_in_cents'] = $datas['amount_in_cents'];
         $payment_data['pay_day'] = $datas['pay_day'];
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-        $Payment = new \dumbu\cls\Payment();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+        $Payment = new \follows\cls\Payment();
         $bandeira = $this->detectCardType($payment_data['credit_card_number']);
         
         if ($bandeira) {
@@ -577,10 +577,10 @@ class Admin extends CI_Controller {
         $this->load->model('class/admin_model');
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
-//        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-//        $Payment = new \dumbu\cls\Payment();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+//        $Payment = new \follows\cls\Payment();
         
         $datas = $this->input->post();        
         $client_id = $datas['payment_now_client_id'];
@@ -615,10 +615,10 @@ class Admin extends CI_Controller {
         $this->load->model('class/admin_model');
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
-//        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-//        $Payment = new \dumbu\cls\Payment();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+//        $Payment = new \follows\cls\Payment();
         
         $datas = $this->input->post();        
         $client_id = $datas['recurrency_user_id'];

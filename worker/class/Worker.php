@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'DB.php';
     require_once 'Day_client_work.php';
     require_once 'Reference_profile.php';
@@ -27,7 +27,7 @@ namespace dumbu\cls {
             $this->Robot->id = $id;
             $this->id = $id;
             $this->Gmail = new Gmail();
-            $this->DB = $DB? $DB : new \dumbu\cls\DB();
+            $this->DB = $DB? $DB : new \follows\cls\DB();
         }
         
         public function get_worker_config() {
@@ -134,7 +134,7 @@ namespace dumbu\cls {
                     $unfollow_work = $this->DB->get_unfollow_work($daily_work->client_id);
  
                     while ($Followed = $unfollow_work->fetch_object()) {
-                        $To_Unfollow = new \dumbu\cls\Followed();// Update Ref Prof Data
+                        $To_Unfollow = new \follows\cls\Followed();// Update Ref Prof Data
                         $To_Unfollow->id = $Followed->id;
                         $To_Unfollow->followed_id = $Followed->followed_id;
                         array_push($Followeds_to_unfollow, $To_Unfollow);
@@ -176,7 +176,7 @@ namespace dumbu\cls {
 
         public function save_follow_unfollow_work($Followeds_to_unfollow, $Ref_profile_follows, $daily_work) {
             try {
-                //$DB = new \dumbu\cls\DB();
+                //$DB = new \follows\cls\DB();
                 //$this->DB->save_unfollow_work($Followeds_to_unfollow);
                 $this->DB->save_unfollow_work_db2($Followeds_to_unfollow, $daily_work->client_id);
                 $this->DB->save_follow_work($Ref_profile_follows, $daily_work);
@@ -196,14 +196,14 @@ namespace dumbu\cls {
         }
 
         function get_work() {
-            //$DB = new \dumbu\cls\DB();
+            //$DB = new \follows\cls\DB();
             $daily_work = $this->DB->get_follow_work();
             $daily_work->login_data = json_decode($daily_work->cookies);
             $Followeds_to_unfollow = array();
             if ($daily_work->to_unfollow > 0) {
                 $unfollow_work = $this->DB->get_unfollow_work($daily_work->client_id);
                 while ($Followed = $unfollow_work->fetch_object()) { //
-                    $To_Unfollow = new \dumbu\cls\Followed();
+                    $To_Unfollow = new \follows\cls\Followed();
                     // Update Ref Prof Data
                     $To_Unfollow->id = $Followed->id;
                     $To_Unfollow->followed_id = $Followed->followed_id;
@@ -215,14 +215,14 @@ namespace dumbu\cls {
         }
 
         function get_work_by_id($reference_id) {
-            //$DB = new \dumbu\cls\DB();
+            //$DB = new \follows\cls\DB();
             $daily_work = $this->DB->get_follow_work_by_id($reference_id);
             $daily_work->login_data = json_decode($daily_work->cookies);
             $Followeds_to_unfollow = array();
             if ($daily_work->to_unfollow > 0) {
                 $unfollow_work = $this->DB->get_unfollow_work($daily_work->client_id);
                 while ($Followed = $unfollow_work->fetch_object()) { //
-                    $To_Unfollow = new \dumbu\cls\Followed();
+                    $To_Unfollow = new \follows\cls\Followed();
                     // Update Ref Prof Data
                     $To_Unfollow->id = $Followed->id;
                     $To_Unfollow->followed_id = $Followed->followed_id;
@@ -237,7 +237,7 @@ namespace dumbu\cls {
             try {
                 $has_work = TRUE;
                 while ($has_work) {
-                    //$DB = new \dumbu\cls\DB();
+                    //$DB = new \follows\cls\DB();
                     //daily work: cookies reference_id to_follow last_access id insta_name insta_id client_id 	insta_follower_cursor 	user_id 	credit_card_number 	credit_card_status_id 	credit_card_cvc 	credit_card_name 	pay_day 	insta_id 	insta_followers_ini 	insta_following id name	login pass email telf role_id status_id	languaje 
                     $daily_work = $this->DB->get_follow_work();
                     if ($daily_work) {                       
@@ -287,17 +287,17 @@ namespace dumbu\cls {
         }
 
         function insert_daily_work($Ref_Prof, $to_follow, $to_unfollow, $login_data) {
-            //$DB = new \dumbu\cls\DB();
+            //$DB = new \follows\cls\DB();
             $this->DB->insert_daily_work($Ref_Prof->id, $to_follow, $to_unfollow, json_encode($login_data));
         }
 
         function delete_daily_work($ref_prof_id) {
-            //$DB = new \dumbu\cls\DB();
+            //$DB = new \follows\cls\DB();
             $this->DB->truncate_daily_work($ref_prof_id);
         }
 
         function truncate_daily_work() {
-            //$DB = new \dumbu\cls\DB();
+            //$DB = new \follows\cls\DB();
             $this->DB->truncate_daily_work();
         }
 

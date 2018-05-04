@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-namespace dumbu\cls {
+namespace follows\cls {
 //    ini_set('xdebug.var_display_max_depth', 17);
 //    ini_set('xdebug.var_display_max_children', 256);
 //    ini_set('xdebug.var_display_max_data', 1024);
 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/src/vendor/autoload.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/src/vendor/autoload.php';
     //require_once '../../src/vendor/autoload.php'; //asi noooo, cojone
 
     /**

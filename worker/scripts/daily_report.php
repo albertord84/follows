@@ -6,9 +6,9 @@ require_once '../class/system_config.php';
 echo "DAILY REPORT Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$Client = new dumbu\cls\Client();
+$Client = new follows\cls\Client();
 
 $result = $Client->insert_clients_daily_report();
 

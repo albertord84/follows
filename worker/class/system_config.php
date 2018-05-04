@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     include_once 'DB.php';
 
     class system_config {

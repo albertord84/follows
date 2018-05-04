@@ -28,8 +28,8 @@
 ////$dom->loadHTML($response);
 ////print_r($dom);
 //echo "<br><br>Secound petition<br>";
-//$username = \dumbu\cls\system_config::SYSTEM_USER_LOGIN;
-//$password = \dumbu\cls\system_config::SYSTEM_USER_PASS;
+//$username = \follows\cls\system_config::SYSTEM_USER_LOGIN;
+//$password = \follows\cls\system_config::SYSTEM_USER_PASS;
 //$postinfo = "username=$username&password=$password";
 //
 //$headers  = array();

@@ -11,7 +11,7 @@
                 <a href="https://github.com/PHPMailer/PHPMailer/"><img src="images/phpmailer.png" height="90" width="340" alt="PHPMailer rocks"></a>
               </div>-->
             <p>Hello, <strong><?php echo $_GET["username"]; ?></strong>:</p>
-            <p>You just made the first step to sign in <a href="https://www.dumbu.one/dumbu/src/">Dumbu</a> services, congratulations! :D</p>
+            <p>You just made the first step to sign in <a href="https://www.dumbu.one/follows/src/">Dumbu</a> services, congratulations! :D</p>
             <p>Your username in our system is: <strong><?php echo $_GET["instaname"]; ?></strong></p> 
             <p>Please, use the following code of 4 digits to continue your registration:</p>
             

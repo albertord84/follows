@@ -1,18 +1,18 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'DB.php';
     require_once 'Gmail.php';
     require_once 'Reference_profile.php';
     require_once 'Day_client_work.php';
     require_once 'washdog_type.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/utils.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
     require_once 'InstaAPI.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/src/vendor/autoload.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/src/vendor/autoload.php';
 
 //    require_once '../libraries/webdriver/phpwebdriver/WebDriver.php';
 //    echo $_SERVER['DOCUMENT_ROOT'];
-//    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/webdriver/phpwebdriver/WebDriver.php';
+//    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/webdriver/phpwebdriver/WebDriver.php';
     /**
      * class Robot
      * 
@@ -75,7 +75,7 @@ namespace dumbu\cls {
             $this->IPS = $config["IPS"];
             $this->Day_client_work = new Day_client_work();
             $this->Ref_profile = new Reference_profile();
-            $this->DB = $DB ? $DB : new \dumbu\cls\DB();
+            $this->DB = $DB ? $DB : new \follows\cls\DB();
         }
 
         // end of member function login_client
@@ -91,7 +91,7 @@ namespace dumbu\cls {
             //$this->Day_client_work = $Day_client_work;
             //$this->Ref_profile = $Ref_profile;
             //$DB = new DB();
-            $Client = (new \dumbu\cls\Client())->get_client($daily_work->client_id);
+            $Client = (new \follows\cls\Client())->get_client($daily_work->client_id);
             $this->daily_work = $daily_work;
             $login_data = $daily_work->login_data;
             // Unfollow same profiles quantity that we will follow
@@ -536,7 +536,7 @@ namespace dumbu\cls {
                                 $HTTP_SERVER_VARS = new \stdClass();
                                 $HTTP_SERVER_VARS->SERVER_ADDR = $ip;
                             }
-                            //(new \dumbu\cls\DB())->SaveHttpServerVars($Client->id, json_encode($HTTP_SERVER_VARS));
+                            //(new \follows\cls\DB())->SaveHttpServerVars($Client->id, json_encode($HTTP_SERVER_VARS));
                         }
                         return $json_response;
                     } else {
@@ -1623,7 +1623,7 @@ namespace dumbu\cls {
         }
 
         public function bot_login($login, $pass,  $forse = FALSE) {
-            $myDB = new \dumbu\cls\DB();
+            $myDB = new \follows\cls\DB();
             // Is client with cookies, we try to do some instagram action to verify the coockies are allright 
             $result = new \stdClass();
             $result->json_response = new \stdClass();
@@ -1713,7 +1713,7 @@ namespace dumbu\cls {
           $result = new \stdClass();
           $output = array();
           if (!$Client)
-          $Client = (new \dumbu\cls\DB())->get_client_data_bylogin($login);
+          $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
           if (isset($Client->cookies) && $Client->cookies != NULL) {
           $cookies = json_decode($Client->cookies);
           $csrftoken = $cookies->csrftoken;
@@ -1768,7 +1768,7 @@ namespace dumbu\cls {
           //                    print "LOGIN NULL ISSUE ($login)!!! Trying $try_count of 3";
           }
           if (isset($result->json_response->authenticated) && $result->json_response->authenticated == TRUE) {
-          $cookies_changed = (new \dumbu\cls\DB())->set_client_cookies($Client->id, json_encode($result));
+          $cookies_changed = (new \follows\cls\DB())->set_client_cookies($Client->id, json_encode($result));
           }
           //var_dump($result);
           //die("<br><br>Debug Finish!");
@@ -1809,7 +1809,7 @@ namespace dumbu\cls {
         }
 
         public function make_login($login, $pass) {
-            $instaAPI = new \dumbu\cls\InstaAPI();
+            $instaAPI = new \follows\cls\InstaAPI();
             //TODO: capturar excepcion e dar tratamiento cuando usuario y senha no existe en IG
             try {
                 $result = $instaAPI->login($login, $pass);
@@ -1948,7 +1948,7 @@ namespace dumbu\cls {
 
         public function checkpoint_requested($login, $pass, $Client = NULL) {
             try {
-                $instaAPI = new \dumbu\cls\InstaAPI();
+                $instaAPI = new \follows\cls\InstaAPI();
 
                 $result2 = $instaAPI->login($login, $pass, true);
                 return $result2;
@@ -1983,9 +1983,9 @@ namespace dumbu\cls {
         }
 
         function get_challenge_data($challenge, $login, $Client) {
-            //(new \dumbu\cls\Client())->set_client_cookies($Client->id, NULL);
+            //(new \follows\cls\Client())->set_client_cookies($Client->id, NULL);
             if (!$Client)
-                $Client = (new \dumbu\cls\DB())->get_client_data_bylogin($login);
+                $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
             $url = $ch = curl_init("https://www.instagram.com/");
             $csrftoken = $this->get_insta_csrftoken($ch);
             $urlgen = $this->get_cookies_value('urlgen');
@@ -2001,7 +2001,7 @@ namespace dumbu\cls {
 
             $cookies = "{\"csrftoken\":\"$csrftoken\","
                     . "\"mid\":\"$mid\", \"checkpoint_url\": \"$challenge\" }";
-            (new \dumbu\cls\Client())->set_client_cookies($Client->id, $cookies);
+            (new \follows\cls\Client())->set_client_cookies($Client->id, $cookies);
 
             $headers[] = "Origin: https://www.instagram.com";
             $headers[] = "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0' -H 'Accept: */*";
@@ -2034,12 +2034,12 @@ namespace dumbu\cls {
             $resposta = json_decode($json_str);
             //var_dump($output);
             $this->temporal_log($curl_str);
-            (new \dumbu\cls\DB())->InsertEventToWashdog($Client->id, $resposta);
+            (new \follows\cls\DB())->InsertEventToWashdog($Client->id, $resposta);
             return $resposta;
         }
 
         public function make_checkpoint($login, $code) {
-            $Client = (new \dumbu\cls\DB())->get_client_data_bylogin($login);
+            $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
             $cookies = json_decode($Client->cookies);
             $csrftoken = $cookies->csrftoken;
             $mid = $cookies->mid;
@@ -2128,7 +2128,7 @@ namespace dumbu\cls {
                 if ($login_data->mid == NULL || $login_data->mid == "") {
                     $login_data->mid = $mid;
                 }
-                (new \dumbu\cls\Client())->set_client_cookies($Client->id, json_encode($login_data));
+                (new \follows\cls\Client())->set_client_cookies($Client->id, json_encode($login_data));
             }   
             else
             {
@@ -2141,16 +2141,16 @@ namespace dumbu\cls {
               $res = json_decode($output[0]);
               if($res.status === "ok")
               {
-              (new \dumbu\cls\Client())->set_client_cookies($Client->id);
+              (new \follows\cls\Client())->set_client_cookies($Client->id);
               } */
 
-            (new \dumbu\cls\DB())->InsertEventToWashdog($Client->id, json_encode($login_data));
+            (new \follows\cls\DB())->InsertEventToWashdog($Client->id, json_encode($login_data));
             return $login_data;
         }
 
         public function set_client_cookies_by_curl($client_id, $curl, $robot_id = NULL) {
             try {
-                $myDB = new \dumbu\cls\DB();
+                $myDB = new \follows\cls\DB();
                 //curl 'https://www.instagram.com/accounts/login/ajax/' -H 'cookie: mid=Wh8j7wAEAAFI8PVD2LfNQan_fx9D; ig_or=portrait-primary; ig_vw=423; ig_pr=2; ig_vh=591; fbm_124024574287414=base_domain=.instagram.com; fbsr_124024574287414=QUaWW1MeWiEGTHDLVO2tm1aym96hpJFOTfvK8VjdAwk.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUUQ5MFZhTVdBeEtPakZFTFFzTFlKZW9LV1prVmNldFB4TnhYVnBkSmprdU9GMjg5TlFDM3RIZGVabFQ3OFpQOVk0T0NORVZyTHZkX0hLYjIwNDFuNWF5UlJWdDFlLWVoTW81UEpuR0c3bjFlSF83VnpJdXZDb0gzZDNZX1hWbWtfbmVZSV9qSlhGLTNLZFpScmlxc1ctb1pfWVo5QkEyYWFjRHdqNE03YzNJTl9rLTB0SGVkT3l1VVl0d0xaY0VDMjFHOG1sWUdDRTFVQUlpSzRKVUNHSllsVmdSMzBhSS1jV1h5QURRUk5VY2RfYTREQWwweWRtYlBmUDBoSkhxRzJLc2o2d0FoekJrMnhqRHQ3cm5XX0FtempQQ200NWZMUC1BV1RLYlJIblpKWjRsT0h5Y3RnaU9PNDZqSXlUYlVucnkzR0dxTXhCcG1VZWtjc1BNVGllak5DQzRLVW9saWtHcU81RDBsaERfS1FkZWgwNjJiVHNGcDR5dlpjbWJ1MmMiLCJpc3N1ZWRfYXQiOjE1MTMwNDkwNjQsInVzZXJfaWQiOiIxMDAwMDA3MTc3NjY5MDUifQ; csrftoken=3XfKEa81tbNOorjQuO4s1kAowNXYv5fG; rur=FTW; urlgen="{\"time\": 1513018251\054 \"200.20.15.39\": 2715}:1eObBA:XQDYQSuMd6OrRm_G9jZL11t_UsI"' -H 'origin: https://www.instagram.com' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: en-US,en;q=0.8' -H 'user-agent: Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Mobile Safari/537.36' -H 'x-requested-with: XMLHttpRequest' -H 'x-csrftoken: 3XfKEa81tbNOorjQuO4s1kAowNXYv5fG' -H 'x-instagram-ajax: 1' -H 'content-type: application/x-www-form-urlencoded' -H 'accept: */*' -H 'referer: https://www.instagram.com/' -H 'authority: www.instagram.com' --data 'username=riveauxmerino&password=Notredame88' --compressed
                 $myDB->save_curl($client_id, $curl);
                 $csrftoken = "";
@@ -2181,7 +2181,7 @@ namespace dumbu\cls {
                 }
                 if ($sessionid === 'null' || $sessionid === "") {
                     $url = "https://www.instagram.com/";
-                    $Client = (new \dumbu\cls\DB())->get_client_data($client_id);
+                    $Client = (new \follows\cls\DB())->get_client_data($client_id);
                     $ch = curl_init($url);
                     $result = $this->login_insta_with_csrftoken($ch, $Client->login, $password, $csrftoken, $mid);
                     $result->json_response = new \stdClass();
@@ -2227,8 +2227,8 @@ namespace dumbu\cls {
         /*
         public function clean_cursors()
         {
-            $clients = (new \dumbu\cls\Client())->get_clients();
-            $DB = new \dumbu\cls\DB();
+            $clients = (new \follows\cls\Client())->get_clients();
+            $DB = new \follows\cls\DB();
             foreach ($clients as $client)
             {                
                 if($this->verify_cookies($client) && $client->status_id == user_status::ACTIVE)

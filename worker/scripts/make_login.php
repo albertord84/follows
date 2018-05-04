@@ -17,7 +17,7 @@ require_once '../class/Gmail.php';
 $login = filter_input(INPUT_GET, 'login');
 $pass = filter_input(INPUT_GET, 'pass');
 
-$Robot = new dumbu\cls\Robot();
+$Robot = new follows\cls\Robot();
 $json_response = $Robot->make_login($login, $pass);
 
 

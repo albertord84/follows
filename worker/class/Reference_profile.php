@@ -1,9 +1,9 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'Profile.php';
     require_once 'DB.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/DB.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/DB.php';
     //require_once 'Robot.php';    
     /**
      * class Reference_profile

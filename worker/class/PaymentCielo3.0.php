@@ -1,7 +1,7 @@
 <?php
 
-namespace dumbu\cls {
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/APICIELO3.0/vendor/autoload.php';
+namespace follows\cls {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/APICIELO3.0/vendor/autoload.php';
     require_once 'system_config.php';
 
     use Cielo\API30\Merchant;
@@ -76,7 +76,7 @@ namespace dumbu\cls {
 
             // Defina a URL de retorno para que o cliente possa voltar para a loja
             // após a autenticação do cartão
-            $payment->setReturnUrl('http://localhost/dumbu/src/?777');
+            $payment->setReturnUrl('http://localhost/follows/src/?777');
 
             // Crie uma instância de Debit Card utilizando os dados de teste
             // esses dados estão disponíveis no manual de integração

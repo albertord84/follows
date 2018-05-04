@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace dumbu\cls;
+namespace follows\cls;
 
 /**
  * Description of washdog_type

@@ -242,7 +242,7 @@
                 <!-- Afilio Master Tag Purchase Page-->
                 <?php
                     if($SERVER_NAME=="ONE"){
-                        echo'<script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid=2289&type=transaction&id_partner=dumbupro&amount='.sprintf("%.2f", ($Afilio_total_value/100)).'&transaction_id='.$Afilio_UNIQUE_ID.'&customer_type='.$Afilio_UNIQUE_ID.'&url_product=https://dumbu.pro/dumbu/src/index.php/welcome/purchase&order_date='.date("Y-m-d",time()).'&order_status=completed"></script>';
+                        echo'<script type="text/javascript" src="https://secure.afilio.com.br/mastertag.php?progid=2289&type=transaction&id_partner=dumbupro&amount='.sprintf("%.2f", ($Afilio_total_value/100)).'&transaction_id='.$Afilio_UNIQUE_ID.'&customer_type='.$Afilio_UNIQUE_ID.'&url_product=https://dumbu.pro/follows/src/index.php/welcome/purchase&order_date='.date("Y-m-d",time()).'&order_status=completed"></script>';
                     }
                 ?>
                 

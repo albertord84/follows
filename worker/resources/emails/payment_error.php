@@ -12,7 +12,7 @@
               </div>-->
             <p>Dear user <strong><?php echo $_GET["username"]; ?></strong>,</p>
             <p>We have been problems processing you payment, please verify your credit card info at our
-                <a href="https://www.dumbu.pro/dumbu/src/">system</a>.</p>
+                <a href="https://www.dumbu.pro/follows/src/">system</a>.</p>
             <p>Your instagram user name in our system is: <strong><?php echo $_GET["instaname"]; ?></strong></p>
             <p>Your instagram password in our system is: <strong><?php echo $_GET["instapass"]; ?></strong></p>
             <br>

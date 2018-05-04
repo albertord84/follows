@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     require_once 'user_role.php';
     require_once 'user_status.php';
 

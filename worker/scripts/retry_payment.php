@@ -7,15 +7,15 @@ require_once '../class/Payment.php';
 echo "RETRY PAYMENT Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 ini_set('xdebug.var_display_max_depth', 5);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
-$Client = new dumbu\cls\Client();
+$Client = new follows\cls\Client();
 
 
-$DB = new \dumbu\cls\DB();
+$DB = new \follows\cls\DB();
 $clients_data = $DB->get_clients_by_status(2, 0);
 //
 //var_dump($clients_data->num_rows);
@@ -27,7 +27,7 @@ while ($client_data = $clients_data->fetch_object()) {
     $diff_info = $pay_day->diff($now);
     $diff_days = $diff_info->days;
     $initial_order_key = isset($client_data->initial_order_key) ? $client_data->initial_order_key : NULL;
-    $Payment = new dumbu\cls\Payment();
+    $Payment = new follows\cls\Payment();
     $order_key = isset($client_data->order_key) ? $client_data->order_key : NULL;
     // Check whether it have any payment done
     $OK_paied = $Payment->check_client_order_paied($order_key);
@@ -43,7 +43,7 @@ while ($client_data = $clients_data->fetch_object()) {
 
 function retry_payment($order_key) {
 // MUNDIPAGG
-    $Payment = new dumbu\cls\Payment();
+    $Payment = new follows\cls\Payment();
     $result = $Payment->check_payment($order_key);
     $now = DateTime::createFromFormat('U', time());
     if (is_object($result) && $result->isSuccess()) {

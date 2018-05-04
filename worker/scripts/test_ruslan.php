@@ -16,9 +16,9 @@ ini_set('xdebug.var_display_max_depth', 7);
 ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 1024);
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-/*$Robot = new \dumbu\cls\Robot();
+/*$Robot = new \follows\cls\Robot();
 $login = "ruslan.guerra88";
 $pass = "*R5sl@n#";
 $checkpoint_data = $Robot->checkpoint_requested($login, $pass);
@@ -26,7 +26,7 @@ var_dump($checkpoint_data);*/
 
 //
 // MUNDIPAGG
-$Payment = new \dumbu\cls\Payment();
+$Payment = new \follows\cls\Payment();
 
 $pay_day = strtotime('04/19/2018 05:00:00');
 //$pay_day = strtotime("+30 days", $pay_day);
@@ -52,7 +52,7 @@ var_dump($resul);
 var_dump($pay_day);
 
 // GMAIL
-//$Gmail = new \dumbu\cls\Gmail();
+//$Gmail = new \follows\cls\Gmail();
 //$useremail, $username, $instaname, $instapass
 //$result = $Gmail->send_client_payment_error("jangel.riveaux@gmail.comm", "marcelomarins.art", "marcelomarins.art", "");
 //var_dump($result);
@@ -63,20 +63,20 @@ var_dump($pay_day);
 //$result = $Gmail->send_client_not_rps("albertord84@gmail.com", "Alberto R", Raphael PH & Pedrinho Lima"albertord84", "albertord");
 //print_r($result);
 //        ("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
-//$Gmail = new dumbu\cls\Gmail();
+//$Gmail = new follows\cls\Gmail();
 //$result = $Gmail->send_client_contact_form("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
 //$result = $Gmail->send_client_login_error("albertord85@gmail.com", "albertord", "alberto", "Alberto Reyes");
 //$Gmail->send_new_client_payment_done("Alberto Reyes", "albertord84@gmail.com", 4);
 //var_dump($result);
 
-//$Client = new \dumbu\cls\Client();
+//$Client = new \follows\cls\Client();
 //$client = $Client->get_client(1);
 //$login_data = json_decode($client->cookies);
 //var_dump($login_data);
 
-//$DB = new \dumbu\cls\DB();
+//$DB = new \follows\cls\DB();
 
-//$Robot = new \dumbu\cls\Robot();
+//$Robot = new \follows\cls\Robot();
 //$ref_prof = "libertad";
 //$result = $Robot->get_insta_data_from_client($ref_prof, $login_data);
 //$result = $DB->is_profile_followed(1, '858888048');

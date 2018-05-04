@@ -18,9 +18,9 @@ ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 8024);
 
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$InstaAPI = new \dumbu\cls\InstaAPI();
+$InstaAPI = new \follows\cls\InstaAPI();
 
 //$username = "alberto_test";
 //$password = "alberto";
@@ -35,7 +35,7 @@ $InstaAPI = new \dumbu\cls\InstaAPI();
 //var_dump($result);
 
 //DEBIT CIELO
-/* $PaymentCielo = new \dumbu\cls\PaymentCielo();
+/* $PaymentCielo = new \follows\cls\PaymentCielo();
 
   //CARTAO EMPRESSA
   $payment_data['credit_card_flag'] = 'Master';
@@ -60,21 +60,21 @@ $InstaAPI = new \dumbu\cls\InstaAPI();
 //print $GLOBALS['sistem_config']->SYSTEM_EMAIL . "<br>";
 //print $GLOBALS['sistem_config']->SYSTEM_USER_LOGIN . "<br>";
 //print $GLOBALS['sistem_config']->SYSTEM_USER_PASS . "<br>";
-//dumbu\cls\system_config():: 
+//follows\cls\system_config():: 
 // Ref Prof
-$RP = new \dumbu\cls\Reference_profile();
+$RP = new \follows\cls\Reference_profile();
 //$ref_prof = "santatemakeria";
 //$response = $RP->get_insta_ref_prof_data('cristiano');
 //var_dump($response);
-//$follows_count = \dumbu\cls\Reference_profile::static_get_follows(2);
+//$follows_count = \follows\cls\Reference_profile::static_get_follows(2);
 //var_dump($follows_count);
-//$follows_count = \dumbu\cls\Reference_profile::static_get_follows(20);
+//$follows_count = \follows\cls\Reference_profile::static_get_follows(20);
 //var_dump($follows_count);
-//$Worker = new dumbu\cls\Worker();
-//$Robot = new dumbu\cls\Robot();
+//$Worker = new follows\cls\Worker();
+//$Robot = new follows\cls\Robot();
 
 
-$DB = new \dumbu\cls\DB();
+$DB = new \follows\cls\DB();
 $result = $DB->Increase_Client_Last_Access(1, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS + 1);
 //$result = $DB->is_profile_followed(1, '858888048');
 var_dump($result);
@@ -86,14 +86,14 @@ var_dump($result);
 //$Ref_profile_follows = $Robot->do_follow_unfollow_work(NULL, $daily_work);
 //var_dump($Ref_profile_follows);
 
-$Client = new \dumbu\cls\Client();
+$Client = new \follows\cls\Client();
 
 //$result = $Client->insert_clients_daily_report();
 //$client = $Client->get_client(11472);
-//$profile_data = (new dumbu\cls\Robot())->get_insta_ref_prof_data 'josergm86');
+//$profile_data = (new follows\cls\Robot())->get_insta_ref_prof_data 'josergm86');
 //$profile_data = json_decode($profile_data,true);
 //var_dump($profile_data);
-//$DB = new \dumbu\cls\DB();
+//$DB = new \follows\cls\DB();
 //$result = $DB->insert_client_daily_report(1624, $profile_data);
 //$Client->create_daily_work(234);
 //var_dump(date('d-m-Y',time()));
@@ -101,10 +101,10 @@ $Client = new \dumbu\cls\Client();
 //var_dump($a);
 //var_dump(date('d-m-Y',1483449391));
 //var_dump(date('d-m-Y',1486247776));
-//$Client->set_client_status(1, dumbu\cls\user_status::BLOCKED_BY_INSTA);
+//$Client->set_client_status(1, follows\cls\user_status::BLOCKED_BY_INSTA);
 //var_dump(date('d-m-Y',1482951226));
 // MUNDIPAGG
-$Payment = new dumbu\cls\Payment();
+$Payment = new follows\cls\Payment();
 //var_dump(date('d-m-Y',1484023285));
 //$result = $Payment->check_payment(NULL);
 //var_dump($result);
@@ -207,7 +207,7 @@ var_dump($pay_day);
 //$result = $Payment->check_payment("3d66ccd9-9e66-44ed-bd2a-13e4d7a388e1");
 //print_r(json_encode($result->getData(), JSON_PRETTY_PRINT));
 // GMAIL
-$Gmail = new \dumbu\cls\Gmail();
+$Gmail = new \follows\cls\Gmail();
 //$useremail, $username, $instaname, $instapass
 //$result = $Gmail->send_client_payment_error("jangel.riveaux@gmail.com", "marcelomarins.art", "marcelomarins.art", "");
 //var_dump($result);
@@ -220,13 +220,13 @@ $Gmail = new \dumbu\cls\Gmail();
 //$result = $Gmail->send_client_not_rps("albertord84@gmail.com", "Alberto R", Raphael PH & Pedrinho Lima"albertord84", "albertord");
 //print_r($result);
 //        ("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
-//$Gmail = new dumbu\cls\Gmail();
+//$Gmail = new follows\cls\Gmail();
 //$result = $Gmail->send_client_contact_form("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
 //$result = $Gmail->send_client_login_error("albertord85@gmail.com", "albertord", "alberto", "Alberto Reyes");
 //$Gmail->send_new_client_payment_done("Alberto Reyes", "albertord84@gmail.com", 4);
 //var_dump($result);
 
-$Robot = new \dumbu\cls\Robot();
+$Robot = new \follows\cls\Robot();
 //var_dump($Robot->IPS);
 //var_dump($Robot->IPS['IPS'][0]);
 //var_dump($_SERVER['QUERY_STRING']);
@@ -252,7 +252,7 @@ $Robot = new \dumbu\cls\Robot();
 //    array_push($Profiles, $Profile->owner);
 //}
 //$daily_work->login_data = json_decode($daily_work->cookies);
-//(new dumbu\cls\Worker())->do_follow_unfollow_work($daily_work);
+//(new follows\cls\Worker())->do_follow_unfollow_work($daily_work);
 //$Profiles = $Robot->get_profiles_to_follow($daily_work);
 //var_dump($Profiles);
 //var_dump($profiles->data->user->edge_followed_by->edges[0]->node);
@@ -290,7 +290,7 @@ $Robot = new \dumbu\cls\Robot();
 //var_dump($return_var);
 
 
-$Robot = new dumbu\cls\Robot();
+$Robot = new follows\cls\Robot();
 //$response = $Robot->get_insta_ref_prof_following('alberto_dreyes');
 //var_dump($response);
 
@@ -339,7 +339,7 @@ $Robot = new dumbu\cls\Robot();
 //----------------------------------------------------------------
 //
 // WORKER
-$Worker = new dumbu\cls\Worker();
+$Worker = new follows\cls\Worker();
 //$daily_work = $Worker->get_work_by_id(2);
 ////$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;

@@ -35,18 +35,18 @@ class Payment extends CI_Controller {
     }
     
     public function do_payment($payment_data) {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
         // Check client payment in mundipagg
-        $Payment = new \dumbu\cls\Payment();
+        $Payment = new \follows\cls\Payment();
         $response = $Payment->create_recurrency_payment($payment_data);
         // Save Order Key
         var_dump($response->Data->OrderResult->OrderKey);
     }
     
     public function do_bilhete_payment($payment_data) {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
         // Check client payment in mundipagg
-        //$Payment = new \dumbu\cls\Payment();
+        //$Payment = new \follows\cls\Payment();
         $response = $Payment->create_boleto_payment($payment_data);
         // Save Order Key
         var_dump($response->Data->OrderResult->OrderKey);
@@ -55,8 +55,8 @@ class Payment extends CI_Controller {
     
     
     public function do_daily_payment() {
-//        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-//        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+//        $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //        echo "Check Payment Inited...!<br>\n";
 //        echo date("Y-m-d h:i:sa");
 //        $this->load->model('class/user_model');
@@ -104,7 +104,7 @@ class Payment extends CI_Controller {
 //            }            
 //        }
 //        try{
-//            $Gmail = new dumbu\cls\Gmail();
+//            $Gmail = new follows\cls\Gmail();
 //            $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
 //            $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
 //        } catch (Exception $ex){ 
@@ -116,8 +116,8 @@ class Payment extends CI_Controller {
     
 
     public function check_payment() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
         echo "Check Payment Inited...!<br>\n";
         echo date("Y-m-d h:i:sa");
 
@@ -203,7 +203,7 @@ class Payment extends CI_Controller {
             }
         }
     try{
-        $Gmail = new dumbu\cls\Gmail();
+        $Gmail = new follows\cls\Gmail();
         $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
         $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
     } catch (Exception $ex){  echo 'Emails was not send';}
@@ -211,8 +211,8 @@ class Payment extends CI_Controller {
     }
     
     public function test_check_payment() {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
         echo "Check Payment Inited...!<br>\n";
         echo date("Y-m-d h:i:sa");
 
@@ -295,7 +295,7 @@ class Payment extends CI_Controller {
             }
         }
          try{
-            $Gmail = new dumbu\cls\Gmail();
+            $Gmail = new follows\cls\Gmail();
             $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
             $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ",'DUMBU payment checked!!! ','DUMBU payment checked!!! ');
         } catch (Exception $ex){  echo 'Emails was not send';}
@@ -303,14 +303,14 @@ class Payment extends CI_Controller {
     }
 
     public function check_client_payment($client) {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         
-        $this->load->model('class/dumbu_system_config');
-        $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+        $this->load->model('class/follows_system_config');
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
         // Check client payment in mundipagg
-        $Payment = new \dumbu\cls\Payment();
-        $DB = new \dumbu\cls\DB();
+        $Payment = new \follows\cls\Payment();
+        $DB = new \follows\cls\DB();
         // Check outhers payments
         $IOK_ok = $client['initial_order_key'] ? $Payment->check_client_order_paied($client['initial_order_key']) : TRUE; // Deixar para um mes de graça
         $POK_ok = $client['pending_order_key'] ? $Payment->check_client_order_paied($client['pending_order_key']) : FALSE;
@@ -359,7 +359,7 @@ class Payment extends CI_Controller {
                     // Send email to Client
                     // TODO: Think about send email
                     print "Diff in days bigger tham 31 days: $diff_days ";
-                    $this->load->model('class/dumbu_system_config');
+                    $this->load->model('class/follows_system_config');
                     $this->send_payment_email($client, 34 - $diff_days + 1);
                     $this->user_model->update_user($client['user_id'], array('status_id' => user_status::PENDING, 'status_date' => time()));
                 } else {
@@ -436,10 +436,10 @@ class Payment extends CI_Controller {
     }
 
     public function send_payment_email($client, $diff_days = 0) {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Gmail.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/system_config.php';
-        $GLOBALS['sistem_config'] = new \dumbu\cls\system_config();
-        $this->Gmail = new \dumbu\cls\Gmail();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new \follows\cls\system_config();
+        $this->Gmail = new \follows\cls\Gmail();
         //$datas = $this->input->post();
         $result = $this->Gmail->send_client_payment_error($client['email'], $client['name'], $client['login'], $client['pass'], $diff_days);
         if ($result['success']) {
@@ -494,8 +494,8 @@ class Payment extends CI_Controller {
     
     public function check_initial_payment($client)
     {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/DB.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/class/Payment.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/DB.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
         
         $today = strtotime("today");
         $payment_data['credit_card_number'] = $client['credit_card_number'];
@@ -507,7 +507,7 @@ class Payment extends CI_Controller {
         $payment_data['pay_day'] = $client['pay_day'];
         
         //Verificar que tenha asignado 24 horas antes
-        $payment = new \dumbu\cls\Payment();
+        $payment = new \follows\cls\Payment();
         $res_pay_now = $payment->create_payment($payment_data); 
         
         if (is_object($resp_pay_now) && $resp_pay_now->isSuccess() && $resp_pay_now->getData()->CreditCardTransactionResultCollection[0]->CapturedAmountInCents>0) {                             

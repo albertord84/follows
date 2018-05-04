@@ -7,12 +7,12 @@ require_once '../class/Payment.php';
 require_once '../class/Client.php';
 require_once '../class/Reference_profile.php';
 require_once '../class/PaymentCielo3.0.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 //print('Hola Mundo');
-$Robot = new \dumbu\cls\Robot();
-$Client = (new \dumbu\cls\Client())->get_client(27345);
+$Robot = new \follows\cls\Robot();
+$Client = (new \follows\cls\Client())->get_client(27345);
 $cursor = NULL;
 var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
 
@@ -31,7 +31,7 @@ $result = new \stdClass();
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
 /*
-$Robot = new \dumbu\cls\Robot();
+$Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
 $result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
@@ -50,9 +50,9 @@ $client->pay_day = strostamp('today');
 $payment->check_initial_payment($client);*/
 
 
-/*$Client = (new \dumbu\cls\Client())->get_client(65045);
+/*$Client = (new \follows\cls\Client())->get_client(65045);
 
-$DB = new \dumbu\cls\DB();
+$DB = new \follows\cls\DB();
 //var_dump($Client);
 $json_response2 = $Robot->get_insta_geolocalization_data('havana-cuba');
 var_dump($json_response2);
@@ -71,7 +71,7 @@ var_dump($json_response2);
 
 /*
 $json_response = new \stdClass();
-$Client = (new \dumbu\cls\Client())->get_client(81875);
+$Client = (new \follows\cls\Client())->get_client(81875);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
 $daily_work->cookies = $Client->cookies; 
@@ -90,7 +90,7 @@ var_dump($res);*/
 //$Robot->id = 1;
 //$Robot->process_follow_error($json_response);
 
-/*$Client = (new \dumbu\cls\Client())->get_client(27063);
+/*$Client = (new \follows\cls\Client())->get_client(27063);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
 $daily_work->cookies = $Client->cookies; 
@@ -109,7 +109,7 @@ $variables_loc = '{"id":"220021938","first":5,"after":"1742734290348619057"}';
 $variables_tag = '{"tag_name":"casa","first":2,"after":"AQDtqk6w08rRUwIh171RaVDS0IPYVbYaQ2T0QDmgUcp42VjDyumZ2a3kLSzgwiDqmvLhv5VJXX0xXr1lwmf2f4EMj1znzGKFHxH_U0gqrpEdmw"}';
 $variables_people = '{"id":"2023444583","first":5}';
 
-$Robot = new \dumbu\cls\Robot();
+$Robot = new \follows\cls\Robot();
 $error = FALSE;
 $res = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
 echo json_encode($res);

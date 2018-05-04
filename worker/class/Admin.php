@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace followsS\cls {
     require_once 'Attendent.php';
 
     /**

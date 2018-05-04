@@ -13,7 +13,7 @@
             <p>Olá, <strong><?php echo $_GET["username"]; ?></strong>,</p>
             <p>Nosso sistema nos notificou que você não tem perfis de referência em sua conta. Sem perfis de referência não podemos agir sobre a sua conta para que você ganhe seguidores.</p>
             <p>Os perfis de referência são extremamente importantes pois é deles que captamos seus seguidores, grande parte do resultado é derivado das escolhas dos perfis de referência.</p>
-            <p>Por favor, vá ao nosso <a href="https://www.dumbu.pro/dumbu/src/">sistema</a> e insira alguns perfis de referência que combinem com a sua conta para começar a ganhar seguidores rapidamente! :)</p>
+            <p>Por favor, vá ao nosso <a href="https://www.dumbu.pro/follows/src/">sistema</a> e insira alguns perfis de referência que combinem com a sua conta para começar a ganhar seguidores rapidamente! :)</p>
 
             <br>
             <p>Seu nome de usuário Instagram no nosso sistema é: <strong><?php echo $_GET["instaname"]; ?></strong></p>

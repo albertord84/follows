@@ -17,9 +17,9 @@ ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 8024);
 
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-//$InstaAPI = new \dumbu\cls\InstaAPI();
+//$InstaAPI = new \follows\cls\InstaAPI();
 
 
 //$result = $InstaAPI->login($username, $password);
@@ -31,20 +31,20 @@ $GLOBALS['sistem_config'] = new dumbu\cls\system_config();
 
 //--------------------------------------------------------------------------------
 // Ref Prof
-//$RP = new \dumbu\cls\Reference_profile();
+//$RP = new \follows\cls\Reference_profile();
 //
 //
 //
-//$DB = new \dumbu\cls\DB();
+//$DB = new \follows\cls\DB();
 //
 //
-//$Client = new \dumbu\cls\Client();
+//$Client = new \follows\cls\Client();
 
 
 
 //--------------------------------------------------------------------------------
 // MUNDIPAGG
-$Payment = new dumbu\cls\Payment();
+$Payment = new follows\cls\Payment();
 
 //$pay_day = strtotime('05/18/2018 00:18:37');
 //$pay_day = strtotime("+30 days", $pay_day);
@@ -100,13 +100,13 @@ var_dump($pay_day);
 
 //--------------------------------------------------------------------------------
 // GMAIL
-//$Gmail = new \dumbu\cls\Gmail();
+//$Gmail = new \follows\cls\Gmail();
 //
-//$Robot = new \dumbu\cls\Robot();
+//$Robot = new \follows\cls\Robot();
 //
 //
 //
-//$Robot = new dumbu\cls\Robot();
+//$Robot = new follows\cls\Robot();
 ////$response = $Robot->get_insta_ref_prof_following('spadassobrancelhaszonasul');
 ////var_dump($response);
 //
@@ -117,8 +117,8 @@ var_dump($pay_day);
 //
 //
 //
-//$DB =  new dumbu\cls\DB();
-//$Worker =  new dumbu\cls\Worker();
+//$DB =  new follows\cls\DB();
+//$Worker =  new follows\cls\Worker();
 //
 //
 //
@@ -203,7 +203,7 @@ var_dump($pay_day);
 
 //--------------------------------------------------------------------------------
 // WORKER
-$Worker = new dumbu\cls\Worker();
+$Worker = new follows\cls\Worker();
 //$daily_work = $Worker->get_work_by_id(2);
 ////$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;

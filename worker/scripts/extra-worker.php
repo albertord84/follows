@@ -11,11 +11,11 @@ require_once '../class/Reference_profile.php';
 echo date("Y-m-d h:i:sa") . "<br>\n";
 
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
-$DB = new \dumbu\cls\DB("/../../../config-pro.ini");
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
+$DB = new \follows\cls\DB("/../../../config-pro.ini");
 
 // WORKER
-$Worker = new dumbu\cls\Worker($DB,0);
+$Worker = new follows\cls\Worker($DB,0);
 
 $Worker->do_work();
 
@@ -28,7 +28,7 @@ $Worker->do_work();
 try {
     $has_work = TRUE;
     while ($has_work) {
-        //$DB = new \dumbu\cls\DB('');
+        //$DB = new \follows\cls\DB('');
         $daily_work = $DB->get_follow_work();
         if ($daily_work) {
             $daily_work->login_data = json_decode($daily_work->cookies);

@@ -11,11 +11,11 @@
                 <a href="https://github.com/PHPMailer/PHPMailer/"><img src="images/phpmailer.png" height="90" width="340" alt="PHPMailer rocks"></a>
               </div>-->
             <p>Olá <strong><?php echo $_GET["username"]; ?></strong>,</p>
-            <p>Você acaba de assinar a <a href="https://www.dumbu.pro/dumbu/src/">Dumbu</a>, seja bem vindo! :D</p>
+            <p>Você acaba de assinar a <a href="https://www.follows.pro/follows/src/">Dumbu</a>, seja bem vindo! :D</p>
             <p>Seu nome de usuário em nosso sistema é: <strong><?php echo $_GET["instaname"]; ?></strong>, 
                 use sua senha real do Instagram para entrar em nosso sistema. 
                 Agora você precisa adicionar seus perfis de referência em sua conta de usuário, 
-                visite <a href="https://www.dumbu.pro/dumbu/src/">Dumbu</a>, clique em ENTRAR e adicione seu usuário e senha do Instagram. 
+                visite <a href="https://www.follows.pro/follows/src/">Dumbu</a>, clique em ENTRAR e adicione seu usuário e senha do Instagram. 
                 Se você já adicionou seus perfis de referência, é importante que leia nossas dicas abaixo.
             </p>
             <p>A Dumbu é uma ferramenta que capta diariamente seguidores que seguem os seus perfis de referência, esse é um trabalho de performance, 
@@ -38,7 +38,7 @@
                 Se você alterar seu usuário ou senha, você precisa voltar ao nosso site e adicionar seu usuário e senha atualizados na área de login, 
                 isso evita que a ferramenta paralise.
             </p>
-            <p>Visite nossa página com <a href="https://dumbu.pro/dumbu/src/index.php/welcome/help">dicas</a> </p>
+            <p>Visite nossa página com <a href="https://follows.pro/follows/src/index.php/welcome/help">dicas</a> </p>
             <p>Se tiver qualquer dúvida é só nos escrever!</p>
             <p>Obrigado por usar nossos servicios,</p>
             <p>DUMBU SYSTEM</p>

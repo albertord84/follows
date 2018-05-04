@@ -1,6 +1,6 @@
 <?php
 
-namespace dumbu\cls {
+namespace follows\cls {
     
     /**
      * class Payment

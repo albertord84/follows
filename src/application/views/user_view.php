@@ -1084,7 +1084,7 @@
         <!-- Afilio Master Tag Home Page-->
             <?php
                 if($SERVER_NAME==='PRO'){?>
-                    <script type="text/javascript" src="https://secure.afilio.com.br/?progid=2289&type=homepage&id_partner=dumbupro&url_product=https://dumbu.pro/dumbu/src/"></script>        
+                    <script type="text/javascript" src="https://secure.afilio.com.br/?progid=2289&type=homepage&id_partner=pro&url_product=https://dumbu.pro/follows/src/"></script>        
             <?php }?>
                     
             <!--Start of Boostbox Tag Script-->

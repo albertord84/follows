@@ -12,20 +12,20 @@ require_once '../class/system_config.php';
 require_once '../class/user_role.php';
 require_once '../class/user_status.php';
 require_once '../class/Gmail.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/dumbu/worker/libraries/utils.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
 
 echo "RECOVERING Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
 
-$GLOBALS['sistem_config'] = new dumbu\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$Robot = new \dumbu\cls\Robot();
+$Robot = new \follows\cls\Robot();
 
-$DB = new \dumbu\cls\DB();
+$DB = new \follows\cls\DB();
 
-$Gmail = new \dumbu\cls\Gmail();
+$Gmail = new \follows\cls\Gmail();
 
-$Client = new dumbu\cls\Client();
+$Client = new follows\cls\Client();
 
 $clients_data_db = $DB->get_client_with_white_list();
 
