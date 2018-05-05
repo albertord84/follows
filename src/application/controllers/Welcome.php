@@ -12,12 +12,16 @@ class Welcome extends CI_Controller {
     
     public function test(){
 
-        $this->load->model('class/system_config'); 
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
+//        $this->load->model('class/system_config'); 
+//        $GLOBALS['sistem_config'] = $this->system_config->load();
+//        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
+//        
+//        $this->load->library('external_services'); 
+//        $a = $this->external_services->bot_login('josergm86','josergm2',FALSE);
         
-        $this->load->library('external_services'); 
-        $a = $this->external_services->bot_login('','','');
+        $a = $this->is_insta_user('josergm86','josergm2',FALSE);
+        
+        //echo $a;
         
 //        $this->load->library('Gmail'); 
 //        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
@@ -155,9 +159,18 @@ class Welcome extends CI_Controller {
             $datas1['SCRIPT_VERSION'] = $GLOBALS['sistem_config']->SCRIPT_VERSION;
             $datas1['MAX_NUM_PROFILES'] = $GLOBALS['sistem_config']->REFERENCE_PROFILE_AMOUNT;
             
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            $this->Robot = new \follows\cls\Robot();
-            $my_profile_datas = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
+            //antes
+            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+            //$this->Robot = new \follows\cls\Robot();
+            //ahora
+            $this->load->model('class/system_config'); 
+            $GLOBALS['sistem_config'] = $this->system_config->load();        
+            $this->load->library('external_services');  
+            
+            //antes
+            //$my_profile_datas = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
+            //ahora
+            $my_profile_datas = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
             
             if(isset($my_profile_datas->profile_pic_url))
                 $datas1['my_img_profile'] = $my_profile_datas->profile_pic_url;
@@ -2311,9 +2324,17 @@ class Welcome extends CI_Controller {
     public function check_insta_geolocalization($profile) {
         $this->is_ip_hacker();
         if ($this->session->userdata('id')) {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            $this->Robot = new \follows\cls\Robot();
-            $datas_of_profile = $this->Robot->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+            //antes
+            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+            //$this->Robot = new \follows\cls\Robot();
+            //ahora
+            $this->load->model('class/system_config'); 
+            $GLOBALS['sistem_config'] = $this->system_config->load();        
+            $this->load->library('external_services');  
+            //antes
+            //$datas_of_profile = $this->Robot->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+            //ahora
+            $datas_of_profile = $this->external_services->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
             if (is_object($datas_of_profile)) {
                 return $datas_of_profile;
             } else {
@@ -2429,24 +2450,40 @@ class Welcome extends CI_Controller {
     }
     
     public function check_insta_profile($profile) {
-        $this->is_ip_hacker();
-        //if ($this->session->userdata('id')) {
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();       
-        $data = $this->Robot->get_insta_ref_prof_data($profile);
+        $this->is_ip_hacker();        
+        //antes
+        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+        //$this->Robot = new \follows\cls\Robot();
+        //ahora
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services');  
+        //antes
+        //$data = $this->Robot->get_insta_ref_prof_data($profile);
+        //ahora
+        $data = $this->external_services->get_insta_ref_prof_data($profile);
         if (is_object($data)) {
             return $data;
         } else {
             return NULL;
         }
-        //}
     }    
     
     public function check_insta_profile_from_client($profile) {   
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();       
-        $data = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+        
+        //antes
+        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+        //$this->Robot = new \follows\cls\Robot();
+        //ahora
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services');  
+        
+        //antes
+        //$data = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+        //ahora
+        $data = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
         if(is_object($data)){
             return $data;
         }
@@ -2518,14 +2555,18 @@ class Welcome extends CI_Controller {
         $this->is_ip_hacker();
         $data_insta = NULL;
         
+        //antes
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+//        $this->Robot = new \follows\cls\Robot();
+        //ahora
         $this->load->model('class/system_config'); 
         $GLOBALS['sistem_config'] = $this->system_config->load();        
         $this->load->library('external_services'); 
-        $login_data = $this->external_services->bot_login($client_login, $client_pass,$force_login);
         
-//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-//        $this->Robot = new \follows\cls\Robot();        
-//        $login_data = $this->Robot->bot_login($client_login, $client_pass,$force_login);
+        //antes
+        //$login_data = $this->Robot->bot_login($client_login, $client_pass,$force_login);
+        //ahora
+        $login_data = $this->external_services->bot_login($client_login, $client_pass,$force_login);        
         
         if (isset($login_data->json_response->status) && $login_data->json_response->status === "ok") {
             $data_insta['status'] = $login_data->json_response->status;
@@ -2533,10 +2574,10 @@ class Welcome extends CI_Controller {
                 $data_insta['authenticated'] = true;
                 $data_insta['insta_id'] = $login_data->ds_user_id;
                 
-                //$user_data = $this->Robot->get_insta_ref_prof_data($client_login);
-                
-                $user_data = $this->Robot->get_insta_ref_prof_data_from_client($login_data,$client_login);
-                
+                //antes
+                //$user_data = $this->Robot->get_insta_ref_prof_data_from_client($login_data,$client_login);
+                //ahora
+                $user_data = $login_data = $this->external_services->get_insta_ref_prof_data_from_client($login_data,$client_login);
                 if($data_insta && isset($user_data->follower_count))
                     $data_insta['insta_followers_ini'] = $user_data->follower_count;
                 else
@@ -2637,8 +2678,14 @@ class Welcome extends CI_Controller {
     public function create_profiles_datas_to_display() {
         $this->is_ip_hacker();
         if ($this->session->userdata('id')) {
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            $this->Robot = new \follows\cls\Robot();
+            //antes
+            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+            //$this->Robot = new \follows\cls\Robot();
+            //ahora
+            $this->load->model('class/system_config'); 
+            $GLOBALS['sistem_config'] = $this->system_config->load();        
+            $this->load->library('external_services'); 
+            
             $this->load->model('class/client_model');
             $array_profiles=array();
             $array_geolocalization=array();
@@ -2654,7 +2701,11 @@ class Welcome extends CI_Controller {
                     $name_profile = $client_active_profiles[$i]['insta_name'];
                     $id_profile = $client_active_profiles[$i]['id'];
                     if($client_active_profiles[$i]['type']==='0'){ //es un perfil de referencia
-                    $datas_of_profile = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                    //antes    
+                    //$datas_of_profile = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                    //ahora
+                    $datas_of_profile = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                    
                     if($datas_of_profile!=NULL){
                             $array_profiles[$cnt_ref_prof]['login_profile'] = $name_profile;
                             $array_profiles[$cnt_ref_prof]['follows_from_profile'] = $datas_of_profile->follows;
@@ -2682,7 +2733,11 @@ class Welcome extends CI_Controller {
                             $cnt_ref_prof=$cnt_ref_prof+1;
                         }
                     } else if($client_active_profiles[$i]['type']==='1') { //es una geolocalizacion      
-                        $datas_of_profile = $this->Robot->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        //antes
+                        //$datas_of_profile = $this->Robot->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        //ahora
+                        $datas_of_profile = $this->external_services->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        
                         $array_geolocalization[$cnt_geolocalization]['login_geolocalization'] = $name_profile;
                         $array_geolocalization[$cnt_geolocalization]['geolocalization_pk'] = $client_active_profiles[$i]['insta_id'];
                         if($datas_of_profile)
@@ -2699,7 +2754,11 @@ class Welcome extends CI_Controller {
                         }
                         $cnt_geolocalization=$cnt_geolocalization+1;                        
                     } else { //es un hashtag      
-                        $datas_of_profile = $this->Robot->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        //antes
+                        //$datas_of_profile = $this->Robot->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        //ahora
+                        $datas_of_profile = $this->external_services->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        
                         $array_hashtag[$cnt_hashtag]['login_hashtag'] = $name_profile;
                         $array_hashtag[$cnt_hashtag]['hashtag_pk'] = $client_active_profiles[$i]['insta_id'];
                         if($datas_of_profile)
@@ -3610,15 +3669,24 @@ class Welcome extends CI_Controller {
     
     public function security_code_request() {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();
+        //antes
+        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+        //$this->Robot = new \follows\cls\Robot();
+        //ahora
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services'); 
+        
         $this->load->model('class/user_role');
         $this->load->model('class/user_model');
         $xxx=$this->session->userdata('role_id');
         $yyy=user_role::CLIENT;
         if ($this->session->userdata('role_id') == user_role::CLIENT) {
             try {
-                $checkpoint_data = $this->Robot->checkpoint_requested($this->session->userdata('login'), $this->session->userdata('pass'));
+                //antes
+                //$checkpoint_data = $this->Robot->checkpoint_requested($this->session->userdata('login'), $this->session->userdata('pass'));
+                //ahora
+                $checkpoint_data = $this->external_services->checkpoint_requested($this->session->userdata('login'), $this->session->userdata('pass'));
             } catch (Exception $ex) {
                 $result['success'] = false;
                 $result['message'] = $this->T('Erro ao solicitar código de segurança', array(), $this->session->userdata('language'));
@@ -3661,13 +3729,20 @@ class Welcome extends CI_Controller {
     
     public function security_code_confirmation() {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();
-        $this->load->model('class/user_role');
-        
+        //antes
+        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+        //$this->Robot = new \follows\cls\Robot();
+        //ahora
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services');         
+        $this->load->model('class/user_role');        
         if ($this->session->userdata('role_id') == user_role::CLIENT) {
             $security_code = $this->input->post()['security_code'];
-            $checkpoint_data = $this->Robot->make_checkpoint($this->session->userdata('login'), $security_code);
+            //antes
+            //$checkpoint_data = $this->Robot->make_checkpoint($this->session->userdata('login'), $security_code);
+            //ahora
+            $checkpoint_data = $this->external_services->make_checkpoint($this->session->userdata('login'), $security_code);
             $this->load->model('class/user_model');
             
             if ($checkpoint_data && $checkpoint_data->json_response->status === 'ok' && $checkpoint_data->sessionid !== null && $checkpoint_data->ds_user_id !== null) {
@@ -3785,9 +3860,18 @@ class Welcome extends CI_Controller {
 
     public function check_insta_tag_from_client($profile){
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();       
-        $data = $this->Robot->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+        //antes
+        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+        //$this->Robot = new \follows\cls\Robot();
+        //ahora
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services');  
+        
+        //antes
+        //$data = $this->Robot->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
+        //ahora
+        $data = $this->external_services->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$profile);
         if(is_object($data)){
             return $data;
         }
