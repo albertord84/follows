@@ -11,16 +11,17 @@ class Welcome extends CI_Controller {
        
     
     public function test(){
-//        $this->load->library('external_services'); 
-//        $a = $this->external_services->bot_login('','','');
 
         $this->load->model('class/system_config'); 
         $GLOBALS['sistem_config'] = $this->system_config->load();
         $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
         
-        $this->load->library('Gmail'); 
-        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
-        $b=1;   
+        $this->load->library('external_services'); 
+        $a = $this->external_services->bot_login('','','');
+        
+//        $this->load->library('Gmail'); 
+//        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
+        
     }
 
     public function encrypt_credit_card_datas() {
@@ -2515,10 +2516,17 @@ class Welcome extends CI_Controller {
 
     public function is_insta_user($client_login, $client_pass, $force_login) {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        $this->Robot = new \follows\cls\Robot();
         $data_insta = NULL;
-        $login_data = $this->Robot->bot_login($client_login, $client_pass,$force_login);
+        
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();        
+        $this->load->library('external_services'); 
+        $login_data = $this->external_services->bot_login($client_login, $client_pass,$force_login);
+        
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+//        $this->Robot = new \follows\cls\Robot();        
+//        $login_data = $this->Robot->bot_login($client_login, $client_pass,$force_login);
+        
         if (isset($login_data->json_response->status) && $login_data->json_response->status === "ok") {
             $data_insta['status'] = $login_data->json_response->status;
             if($login_data->json_response->authenticated) {

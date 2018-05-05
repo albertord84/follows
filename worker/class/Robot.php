@@ -1622,6 +1622,21 @@ namespace follows\cls {
             return intval($substr2) ? intval($substr2) : 0;
         }
 
+        public function bot_login_prev() {
+            ///follows/worker/class/Robot/bot_login_prev
+//            die('perro cagando');
+//            $login = $_POST['login'];
+//            $pass = $_POST['pass'];
+//            $force = $_POST['force'];
+//            if($login!='' && $login!=FALSE && $login!=NULL && $pass!='' && $pass!=FALSE && $pass!=NULL)
+//                $result = $this->bot_login($login, $pass, $force);
+//            else{
+//                $result->json_response->status = 'ok';
+//                $result->json_response->authenticated = FALSE;
+//            }
+//            echo json_encode($result);
+        }
+        
         public function bot_login($login, $pass,  $forse = FALSE) {
             $myDB = new \follows\cls\DB();
             // Is client with cookies, we try to do some instagram action to verify the coockies are allright 
