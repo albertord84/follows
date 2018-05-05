@@ -13,14 +13,14 @@ class Welcome extends CI_Controller {
     public function test(){
 //        $this->load->library('external_services'); 
 //        $a = $this->external_services->bot_login('','','');
+
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
         
-//        $this->load->library('Gmail'); 
-//        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
-            
-//        $this->load->model('class/system_config'); 
-//        $GLOBALS['sistem_config'] = $this->system_config->load();
-//        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
-        echo md5('Anna2014*');
+        $this->load->library('Gmail'); 
+        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
+        $b=1;   
     }
 
     public function encrypt_credit_card_datas() {
@@ -521,10 +521,9 @@ class Welcome extends CI_Controller {
                 } else
                 if ($data_insta['message'] == 'problem_with_your_request') {
                     $GLOBALS['sistem_config'] = new \follows\cls\system_config();
-                    require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
-                    $this->Gmail = new \follows\cls\Gmail();
-                    $this->$Gmail->send_mail("josergm86@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);
-                    $this->$Gmail->send_mail("uppercut96@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);                   
+                    $this->load->library('Gmail'); 
+                    $this->gmail->send_mail("josergm86@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);
+                    $this->gmail->send_mail("uppercut96@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);                   
                     $result['resource'] = 'index#lnk_sign_in_now';
                     $result['message'] = $this->T('Houve um erro inesperado. Seu problema será solucionado em breve. Tente mais tarde', array(), $GLOBALS['language']);
                     $result['cause'] = 'curl_required';
@@ -965,9 +964,10 @@ class Welcome extends CI_Controller {
                 //TODO: guardar esta cantidad en las cookies para trabajar con lo que este en la cookie
                 $response['MIN_MARGIN_TO_INIT'] = $GLOBALS['sistem_config']->MIN_MARGIN_TO_INIT;
                 // Enviar email al usuario con link para entrar al paso 2
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
+                
                 $GLOBALS['sistem_config'] = new \follows\cls\system_config();
-                $this->Gmail = new \follows\cls\Gmail();
+                
+                $this->load->library('Gmail'); 
                 //$str = $response['pk'].''.$data_insta->pk.''.time();
                 //$purchase_access_token = md5($str);
                 $purchase_access_token = mt_rand(1000, 9999);
@@ -977,7 +977,7 @@ class Welcome extends CI_Controller {
 //                    .'?client_id='.urlencode($this->Crypt->codify_level1($response['pk']))
 //                    .'&purchase_access_token='.$purchase_access_token
 //                    .'#lnk_sign_in_now';
-                $result = $this->Gmail->send_user_to_purchase_step($datas['client_email'], $data_insta->full_name, $datas['client_login'], $purchase_access_token);
+                $result = $this->gmail->send_user_to_purchase_step($datas['client_email'], $data_insta->full_name, $datas['client_login'], $purchase_access_token);
                 if ($result['success']) {
                     $response['cause'] = 'email_send';
                     $response['message'] = $this->T('Para continuar o cadastro deve inserir o código enviado ao email fornecido!', array(), $GLOBALS['language']);
@@ -1003,8 +1003,7 @@ class Welcome extends CI_Controller {
         //0. Carregar librarias e datas vindo do navegador        
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
-        //$this->Gmail = new \follows\cls\Gmail();
+        $this->load->library('Gmail'); 
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         $GLOBALS['sistem_config'] = new follows\cls\system_config();
         
@@ -1139,11 +1138,9 @@ class Welcome extends CI_Controller {
             
             require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
             $GLOBALS['sistem_config'] = new follows\cls\system_config();
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
-            $this->Gmail = new \follows\cls\Gmail();
             $this->load->model('class/Crypt');
             
-            $email = $this->Gmail->send_link_ticket_bank_and_access_link(
+            $email = $this->gmail->send_link_ticket_bank_and_access_link(
                     $username,
                     $useremail,
                     $access_link,
@@ -2505,10 +2502,9 @@ class Welcome extends CI_Controller {
             
     public function message() {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';        
         $GLOBALS['sistem_config'] = new follows\cls\system_config();
-        $this->Gmail = new \follows\cls\Gmail();
+        $this->load->library('Gmail'); 
         $language=$this->input->get();
         if(isset($language['language']))
             $param['language']=$language['language'];
@@ -2517,7 +2513,7 @@ class Welcome extends CI_Controller {
         $param['SERVER_NAME'] = $GLOBALS['sistem_config']->SERVER_NAME;  
         $GLOBALS['language']=$param['language'];
         $datas = $this->input->post();
-        $result = $this->Gmail->send_client_contact_form($datas['name'], $datas['email'], $datas['message'], $datas['company'], $datas['telf']);
+        $result = $this->gmail->send_client_contact_form($datas['name'], $datas['email'], $datas['message'], $datas['company'], $datas['telf']);
         if ($result['success']) {
             $result['message'] = $this->T('Mensagem enviada, agradecemos seu contato', array(), $GLOBALS['language']);
         }
@@ -2526,11 +2522,10 @@ class Welcome extends CI_Controller {
 
     public function email_success_buy_to_atendiment($username, $useremail) {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         $GLOBALS['sistem_config'] = new \follows\cls\system_config();
-        $this->Gmail = new \follows\cls\Gmail();
-        $result = $this->Gmail->send_new_client_payment_done($username, $useremail);
+        $this->load->library('Gmail'); 
+        $result = $this->gmail->send_new_client_payment_done($username, $useremail);
         if ($result['success'])
             return TRUE;
         return false;
@@ -2538,11 +2533,10 @@ class Welcome extends CI_Controller {
 
     public function email_success_buy_to_client($useremail, $username, $userlogin, $userpass) {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         $GLOBALS['sistem_config'] = new \follows\cls\system_config();
-        $this->Gmail2 = new \follows\cls\Gmail();
-        $result = $this->Gmail2->send_client_payment_success($useremail, $username, $userlogin, $userpass);
+        $this->load->library('Gmail'); 
+        $result = $this->gmail->send_client_payment_success($useremail, $username, $userlogin, $userpass);
     }
 
     //auxiliar function
