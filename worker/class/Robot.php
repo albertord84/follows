@@ -1455,17 +1455,15 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL) {
+        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id ) {
             try {
                 $Profile = NULL;
                 if ($ref_prof != "") {
                     $content = $this->get_insta_data_from_client($ref_prof, $cookies);
-                    //var_dump($content);
                     $Profile = $this->process_get_insta_ref_prof_data($content, $ref_prof, $ref_prof_id);
                 }
                 return $Profile;
             } catch (\Exception $ex) {
-                print_r($ex->message);
                 return NULL;
             }
         }

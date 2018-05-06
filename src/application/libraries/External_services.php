@@ -20,7 +20,8 @@ class External_services{
         curl_setopt($handler, CURLOPT_POSTFIELDS, $postData);  
         $response = curl_exec($handler);
         curl_close($handler);
-        return json_decode($response);
+        $response = json_decode($response);
+        return $response;
     }
         
     function get_insta_ref_prof_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
@@ -90,8 +91,8 @@ class External_services{
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
-            'client_login'=>urlencode($cookies),
-            'client_pass'=>urlencode($profile_name)
+            'client_login'=>urlencode($client_login),
+            'client_pass'=>urlencode($client_pass)
         );
         $url = "http://$worker_server_name/follows/worker/callbacks/checkpoint_requested.php";
         $handler = curl_init();
@@ -110,10 +111,10 @@ class External_services{
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
         $security_code = $database_config['server']['worker_server_name'];        
         $postData = array(
-            'user_login'=>urlencode($cookies),
-            'client_pass'=>urlencode($profile_name)
+            'user_login'=>urlencode($user_login),
+            'security_code'=>urlencode($security_code)
         );
-        $url = "http://$worker_server_name/follows/worker/callbacks/checkpoint_requested.php";
+        $url = "http://$worker_server_name/follows/worker/callbacks/make_checkpoint.php";
         $handler = curl_init();
         curl_setopt($handler, CURLOPT_URL, $url);  
         curl_setopt($handler, CURLOPT_POST,true);

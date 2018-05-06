@@ -337,8 +337,8 @@ namespace follows\cls {
         public function get_reference_profiles_follows($ref_prof_id) {
             try {
                 $this->connect();
-                $client_id = $_SESSION['id'];
-                //$client_id = $this->get_client_id_from_reference_profile_id($ref_prof_id);
+                //$client_id = $_SESSION['id'];
+                $client_id = $this->get_client_id_from_reference_profile_id($ref_prof_id);
                 //echo '<br>---->>>Perfil id = '.$ref_prof_id.' Client id = '.$client_id.'<br>';
                 
                 if($client_id!='0' && $client_id!=0 && $ref_prof_id){
