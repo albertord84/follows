@@ -141,6 +141,7 @@ class Welcome extends CI_Controller {
         $this->is_ip_hacker();
         $this->load->model('class/system_config'); 
         $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('external_services');  
         $this->load->model('class/user_role');
         $this->load->model('class/user_model');
         $this->load->model('class/client_model');
@@ -161,12 +162,7 @@ class Welcome extends CI_Controller {
             
             //antes
             //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            //$this->Robot = new \follows\cls\Robot();
-            //ahora
-            $this->load->model('class/system_config'); 
-            $GLOBALS['sistem_config'] = $this->system_config->load();        
-            $this->load->library('external_services');  
-            
+            //$this->Robot = new \follows\cls\Robot();            
             //antes
             //$my_profile_datas = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
             //ahora
@@ -2679,8 +2675,8 @@ class Welcome extends CI_Controller {
         $this->is_ip_hacker();
         if ($this->session->userdata('id')) {
             //antes
-            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            //$this->Robot = new \follows\cls\Robot();
+            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+            $this->Robot = new \follows\cls\Robot();
             //ahora
             $this->load->model('class/system_config'); 
             $GLOBALS['sistem_config'] = $this->system_config->load();        
@@ -2701,12 +2697,12 @@ class Welcome extends CI_Controller {
                     $name_profile = $client_active_profiles[$i]['insta_name'];
                     $id_profile = $client_active_profiles[$i]['id'];
                     if($client_active_profiles[$i]['type']==='0'){ //es un perfil de referencia
-                    //antes    
-                    //$datas_of_profile = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
-                    //ahora
-                    $datas_of_profile = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
-                    
-                    if($datas_of_profile!=NULL){
+                        //antes    
+                        //$datas_of_profile = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+                        //ahora
+                        $datas_of_profile = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
+
+                        if($datas_of_profile!=NULL){
                             $array_profiles[$cnt_ref_prof]['login_profile'] = $name_profile;
                             $array_profiles[$cnt_ref_prof]['follows_from_profile'] = $datas_of_profile->follows;
                             if (!$datas_of_profile) { //perfil existia pero fue eliminado de IG

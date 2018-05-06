@@ -9,7 +9,8 @@
     $cookies = json_decode(urldecode($_POST['cookies']));    
     $profile_name = urldecode($_POST['profile_name']);
     $dumbu_id_profile = urldecode($_POST['dumbu_id_profile']);
-    ($dumbu_id_profile=='')?$dumbu_id_profile=NULL:$dumbu_id_profile = $dumbu_id_profile;    
+    if($dumbu_id_profile=="")
+        $dumbu_id_profile = NULL;   
     $result = $Robot->get_insta_tag_data_from_client($cookies, $profile_name, $dumbu_id_profile);
     echo json_encode($result);
     
