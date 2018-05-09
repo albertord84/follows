@@ -4,50 +4,21 @@
 
 namespace follows\cls {
     
-        ini_set('xdebug.var_display_max_depth', 256);
+    ini_set('xdebug.var_display_max_depth', 256);
     ini_set('xdebug.var_display_max_children', 256);
     ini_set('xdebug.var_display_max_data', 1024);
     
     
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/mundipagg/init.php';
     require_once 'system_config.php';
-//    require_once('libraries/mundipagg/init.php');
-//    require_once('class/system_config.php');
-
-    /**
-     * class Payment
-     * 
-     */
+    
     class Payment {
-        /** Aggregations: */
-        /** Compositions: */
-        /*         * * Attributes: ** */
-
-        /**
-         * 
-         * @access public
-         */
+        
         public $id;
-
-        /**
-         * 
-         * @access public
-         */
         public $value;
-
-        /**
-         * 
-         * @access public
-         */
         public $date;
 
-        /**
-         * 
-         * @param type $payment_data
-         * @param type $recurrence Default to infinite (0)
-         * @param type $$paymentMethodCode (20) | 5 Cielo -> 1.5 | 32 -> eRede | 20 -> Stone | 42 -> Cielo 3.0 | 0 -> Auto;
-         * @return string
-         */
+        
         public function create_recurrency_payment($payment_data, $recurrence = 0, $paymentMethodCode = 20) {
             try {
                 $card_bloqued = [
@@ -88,10 +59,11 @@ namespace follows\cls {
                     throw new \Exception('Credit Card Number Blocked by Hacking! Sending profile and navigation data to police...');
                 }
 
-// Define a url utilizada
+                // Define a url utilizada
                 \Gateway\ApiClient::setBaseUrl($GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL);
-//    \Gateway\ApiClient::setBaseUrl($GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL);
-// Define a chave da loja
+                //\Gateway\ApiClient::setBaseUrl($GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL);
+                
+                // Define a chave da loja
                 \Gateway\ApiClient::setMerchantKey($GLOBALS['sistem_config']->SYSTEM_MERCHANT_KEY);
 
                 // Cria objeto requisição
@@ -155,7 +127,7 @@ namespace follows\cls {
         public function create_boleto_payment($payment_data) {
             try {
                 // Carrega dependências
-                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/MundiAPI-PHP/vendor/autoload.php';
+                require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/MundiAPI-PHP/vendor/autoload.php';
                 // Define a url utilizada
                 \Gateway\ApiClient::setBaseUrl("https://transactionv2.mundipaggone.com/"); 
 

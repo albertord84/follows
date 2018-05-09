@@ -12,19 +12,20 @@ class Welcome extends CI_Controller {
     
     public function test(){
 
-//        $this->load->model('class/system_config'); 
-//        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
 //        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
 //        
 //        $this->load->library('external_services'); 
 //        $a = $this->external_services->bot_login('josergm86','josergm2',FALSE);
         
-        $a = $this->is_insta_user('josergm86','josergm2',FALSE);
-        
-        var_dump($a);
+//        $a = $this->is_insta_user('josergm86','josergm2',FALSE);
+//        
+//        var_dump($a);
         
 //        $this->load->library('Gmail'); 
 //        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
+        
         
     }
 
@@ -1777,26 +1778,30 @@ class Welcome extends CI_Controller {
     
     public function check_mundipagg_credit_card($datas) {
         $this->is_ip_hacker();
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment'); 
         $payment_data['credit_card_number'] = $datas['credit_card_number'];
         $payment_data['credit_card_name'] = $datas['credit_card_name'];
         $payment_data['credit_card_exp_month'] = $datas['credit_card_exp_month'];
         $payment_data['credit_card_exp_year'] = $datas['credit_card_exp_year'];
         $payment_data['credit_card_cvc'] = $datas['credit_card_cvc'];
         $payment_data['amount_in_cents'] = $datas['amount_in_cents'];
-        $payment_data['pay_day'] = time();        
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
-        $Payment = new \follows\cls\Payment();
+        $payment_data['pay_day'] = time();       
         $bandeira = $this->detectCardType($payment_data['credit_card_number']);        
         if ($bandeira)
-            $response = $Payment->create_payment($payment_data);
+            $response = $this->payment->create_payment($payment_data);
         else
             $response = array("message" => $this->T("Confira seu número de cartão e se está certo entre em contato com o atendimento.", array(), $GLOBALS['language']));
         
         return $response;
-    }    
+    }
 
     public function check_mundipagg_boleto($datas) {
         $this->is_ip_hacker();
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment');         
         $payment_data['AmountInCents']=$datas['AmountInCents'];
         $payment_data['DocumentNumber']=$datas['DocumentNumber'];
         $payment_data['OrderReference']=$datas['OrderReference'];
@@ -1808,42 +1813,61 @@ class Welcome extends CI_Controller {
         $payment_data['house_number']=$datas['house_number'];
         $payment_data['neighborhood_address']=$datas['neighborhood_address'];
         $payment_data['municipality_address']=$datas['municipality_address'];
-        $payment_data['state_address']=$datas['state_address'];   
-        
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
-        $Payment = new \follows\cls\Payment();
-        return $Payment->create_boleto_payment( $payment_data);        
+        $payment_data['state_address']=$datas['state_address'];  
+        return $this->payment->create_boleto_payment( $payment_data);        
+    }
+    
+    public function check_mundipagg_boleto2($datas) {
+        $this->is_ip_hacker();
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment'); 
+        $payment_data['AmountInCents'] = '12719';        
+        $payment_data['DocumentNumber'] = '15125';
+        $payment_data['OrderReference'] = '15125';        
+        $payment_data['id'] = '28720';
+        $payment_data['name'] = 'ALESSANDRO AMARANTE PAIXAO';
+        $payment_data['cpf'] = '26957166805';        
+        $payment_data['cep'] = '13042430';        
+        $payment_data['street_address'] = 'Rua Hélcio Lizzardi';
+        $payment_data['house_number'] = '864';
+        $payment_data['neighborhood_address'] = 'Parque Jambeiro';        
+        $payment_data['municipality_address'] = 'Campinas';        
+        $payment_data['state_address'] = 'SP'; 
+        $a= $this->payment->create_boleto_payment($payment_data);        
+        var_dump($a);
     }
 
     public function check_recurrency_mundipagg_credit_card($datas, $cnt) {
         $this->is_ip_hacker();
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment'); 
         $payment_data['credit_card_number'] = $datas['credit_card_number'];
         $payment_data['credit_card_name'] = $datas['credit_card_name'];
         $payment_data['credit_card_exp_month'] = $datas['credit_card_exp_month'];
         $payment_data['credit_card_exp_year'] = $datas['credit_card_exp_year'];
         $payment_data['credit_card_cvc'] = $datas['credit_card_cvc'];
         $payment_data['amount_in_cents'] = $datas['amount_in_cents'];
-        $payment_data['pay_day'] = $datas['pay_day'];
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
-        $Payment = new \follows\cls\Payment();
+        $payment_data['pay_day'] = $datas['pay_day'];        
         $bandeira = $this->detectCardType($payment_data['credit_card_number']);
         
         if ($bandeira) {
             if ($bandeira == "Visa" || $bandeira == "Mastercard") {
                 //5 Cielo -> 1.5 | 32 -> eRede | 20 -> Stone | 42 -> Cielo 3.0 | 0 -> Auto;        
-                $response = $Payment->create_recurrency_payment($payment_data, $cnt, 20);
+                $response = $this->payment->create_recurrency_payment($payment_data, $cnt, 20);
                 
                 if (is_object($response) && $response->isSuccess()) {
                     return $response;
                 } else {
-                    $response = $Payment->create_recurrency_payment($payment_data, $cnt, 42);
+                    $response = $this->payment->create_recurrency_payment($payment_data, $cnt, 42);
                 }
             }
             else if ($bandeira == "Hipercard") {
-                $response = $Payment->create_recurrency_payment($payment_data, $cnt, 20);
+                $response = $this->payment->create_recurrency_payment($payment_data, $cnt, 20);
             }
             else {
-                $response = $Payment->create_recurrency_payment($payment_data, $cnt, 42);
+                $response = $this->payment->create_recurrency_payment($payment_data, $cnt, 42);
             }
         }
         else {
@@ -1855,9 +1879,10 @@ class Welcome extends CI_Controller {
 
     public function delete_recurrency_payment($order_key) {
         $this->is_ip_hacker();
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
-        $Payment = new \follows\cls\Payment();
-        $response = $Payment->delete_payment($order_key);
+        $this->load->model('class/system_config'); 
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment'); 
+        $response = $this->payment->delete_payment($order_key);
         return $response;
     }
 
