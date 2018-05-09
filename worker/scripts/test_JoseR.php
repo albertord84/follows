@@ -1,5 +1,5 @@
 <?PHP
-
+die('hola jose R');
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';

@@ -54,7 +54,7 @@ namespace follows\cls {
                         isset($cookies->ds_user_id) && $cookies->ds_user_id != NULL && $cookies->ds_user_id != "" &&
                         isset($cookies->sessionid) && $cookies->sessionid != NULL && $cookies->sessionid != "" &&
                         isset($cookies->mid) &&  $cookies->mid != NULL && $cookies->mid != "")
-                    {
+                    {//enejkefnjknl o
                         
                         //Jose R: si tiene los 4 parametros de las cookies, devemos intentar hacer una operacion (coger 10 seguidores de qq RP)
                         //para chekear que esas cookies estan correctas, si no, bloquear por ssenha errada  status_id=3
