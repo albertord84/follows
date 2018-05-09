@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
         
         $a = $this->is_insta_user('josergm86','josergm2',FALSE);
         
-        //echo $a;
+        var_dump($a);
         
 //        $this->load->library('Gmail'); 
 //        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');

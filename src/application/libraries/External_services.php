@@ -19,6 +19,8 @@ class External_services{
         curl_setopt($handler, CURLOPT_RETURNTRANSFER,true);  
         curl_setopt($handler, CURLOPT_POSTFIELDS, $postData);  
         $response = curl_exec($handler);
+        $info = curl_getinfo($handler);
+        $string = curl_error($handler);
         curl_close($handler);
         $response = json_decode($response);
         return $response;
