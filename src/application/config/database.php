@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-$config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+$config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
 
 $db['default'] = array(
     'dsn' => '',

@@ -14,15 +14,15 @@ namespace follows\cls {
         private $fConnection = NULL;
         
         
-        public function __construct($conf_file = "/../../../CONFIG.INI") {
+        public function __construct($conf_file = "/../../../FOLLOWS.INI") {
             $this->connect($conf_file);
         }
 
         public function connect($conf_file = NULL) {
             if (!$this->connection) {
                 // Connect to DB
-                //echo dirname(__FILE__) . "/../../../CONFIG.INI";
-                //$config = parse_ini_file(dirname(__FILE__) . "/../../../CONFIG.INI", true);
+                //echo dirname(__FILE__) . "/../../../FOLLOWS.INI";
+                //$config = parse_ini_file(dirname(__FILE__) . "/../../../FOLLOWS.INI", true);
 
                 $config = parse_ini_file(dirname(__FILE__) . $conf_file, true);
 

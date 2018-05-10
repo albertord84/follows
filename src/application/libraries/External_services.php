@@ -5,7 +5,7 @@ class External_services{
     
     function bot_login($client_login, $client_pass,$force_login){
         //bot_login com curl
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'login'=>urlencode($client_login),
@@ -27,7 +27,7 @@ class External_services{
     }
         
     function get_insta_ref_prof_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
@@ -48,7 +48,7 @@ class External_services{
     }
     
     function get_insta_geolocalization_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
@@ -69,7 +69,7 @@ class External_services{
     }
     
     function get_insta_tag_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
@@ -90,7 +90,7 @@ class External_services{
     }
     
     function checkpoint_requested($client_login, $client_pass){
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'client_login'=>urlencode($client_login),
@@ -110,7 +110,7 @@ class External_services{
     }
         
     function make_checkpoint($user_login, $security_code){
-        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../CONFIG.INI", true);
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $security_code = $database_config['server']['worker_server_name'];        
         $postData = array(
             'user_login'=>urlencode($user_login),

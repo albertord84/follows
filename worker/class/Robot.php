@@ -70,7 +70,7 @@ namespace follows\cls {
          */
         public $csrftoken = NULL;
 
-        function __construct($DB = NULL, $conf_file = "/../../../CONFIG.INI", $id = -1) {
+        function __construct($DB = NULL, $conf_file = "/../../../FOLLOWS.INI", $id = -1) {
             $config = parse_ini_file(dirname(__FILE__) . $conf_file, true);
             $this->IPS = $config["IPS"];
             $this->Day_client_work = new Day_client_work();
