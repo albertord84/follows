@@ -175,7 +175,7 @@ class Payment extends CI_Controller {
                             //var_dump($client);
                             print "\n<br>Client in day: $clientname (id: $clientid)<br>\n";
                         } else {
-                            print "\n<br>----Client with payment issue: $clientname (id: $clientid)<br>\n<br>\n<br>\n";
+                            print "\n<br>----Client with pash /opt/lampp/htdocs/follows/worker/scripts/pro/dumbo-worker.shyment issue: $clientname (id: $clientid)<br>\n<br>\n<br>\n";
                         }
                     }
                 } else if($today <= $payday && $payday <= strtotime("+1 day", $today)){
@@ -306,8 +306,8 @@ class Payment extends CI_Controller {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Payment.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         
-        $this->load->model('class/follows_system_config');
-        $GLOBALS['sistem_config'] = new follows\cls\system_config();
+        $this->load->model('class/System_config');
+        $GLOBALS['sistem_config'] = new \follows\cls\system_config();
         // Check client payment in mundipagg
         $Payment = new \follows\cls\Payment();
         $DB = new \follows\cls\DB();
