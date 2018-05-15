@@ -64,7 +64,7 @@ namespace follows\cls {
                         $Client->set_client_status($Client->id, user_status::ACTIVE);
                         // Distribute work between clients
                         $RPWC = $Client->rp_workable_count();
-                        if(strtotime("today") - $Client->init_day < 40*24*60*60 )
+                        if(strtotime("today") - $Client->init_date < 40*24*60*60 )
                         {
                             $DIALY_REQUESTS_BY_CLIENT = 480;
                         }
