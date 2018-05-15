@@ -47,6 +47,25 @@ class External_services{
         return json_decode($response); 
     }
     
+    function get_insta_ref_prof_data($profile_name){
+        $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
+        $worker_server_name = $database_config['server']['worker_server_name'];        
+        $postData = array(
+            'profile_name'=>urlencode($profile_name)
+        );
+        $url = "http://$worker_server_name/follows/worker/callbacks/get_insta_ref_prof_data.php";
+        $handler = curl_init();
+        curl_setopt($handler, CURLOPT_URL, $url);  
+        curl_setopt($handler, CURLOPT_POST,true);  
+        curl_setopt($handler, CURLOPT_RETURNTRANSFER,true);  
+        curl_setopt($handler, CURLOPT_POSTFIELDS, $postData);  
+        $response = curl_exec($handler);
+        $info = curl_getinfo($handler);
+        $string = curl_error($handler);
+        curl_close($handler);
+        return json_decode($response); 
+    }
+    
     function get_insta_geolocalization_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        

@@ -23,10 +23,8 @@ class Welcome extends CI_Controller {
 //        
 //        var_dump($a);
         
-//        $this->load->library('Gmail'); 
-//        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');
-        
-        
+        $this->load->library('Gmail'); 
+        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');        
     }
 
     public function encrypt_credit_card_datas() {
@@ -57,8 +55,7 @@ class Welcome extends CI_Controller {
                 $cvc_decripted = $this->Crypt->decodify_level1($cvc_encripted);
                 echo 'Carton descifrado----> '.$number_decripted.
                      ' cvc  ------> '.$cvc_decripted.'<br><br>';
-               */
-                
+               */                
             }
         }
     }
@@ -514,7 +511,9 @@ class Welcome extends CI_Controller {
             }
         } else
         if ($data_insta['message'] == 'problem_with_your_request') {
-            $GLOBALS['sistem_config'] = new \follows\cls\system_config();
+            //$GLOBALS['sistem_config'] = new \follows\cls\system_config();
+            $this->load->model('class/system_config'); 
+            $GLOBALS['sistem_config'] = $this->system_config->load();
             $this->load->library('Gmail'); 
             $this->gmail->send_mail("josergm86@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);
             $this->gmail->send_mail("uppercut96@gmail.com", "ATENÇÂO",'Ativar por curl o cliente '.$datas['user_login'],'Ativar por curl o cliente '.$datas['user_login']);                   
@@ -867,6 +866,7 @@ class Welcome extends CI_Controller {
         $this->load->model('class/user_model');
         $this->load->model('class/user_status');
         $this->load->model('class/user_role');
+        $this->load->library('Gmail'); 
         $origin_datas=$datas;
         if(!$datas){
             $datas = $this->input->post();
@@ -956,9 +956,8 @@ class Welcome extends CI_Controller {
                 $response['MIN_MARGIN_TO_INIT'] = $GLOBALS['sistem_config']->MIN_MARGIN_TO_INIT;
                 // Enviar email al usuario con link para entrar al paso 2
                 
-                $GLOBALS['sistem_config'] = new \follows\cls\system_config();
-                
-                $this->load->library('Gmail'); 
+                //$GLOBALS['sistem_config'] = new \follows\cls\system_config();                
+                //$this->load->library('Gmail'); 
                 //$str = $response['pk'].''.$data_insta->pk.''.time();
                 //$purchase_access_token = md5($str);
                 $purchase_access_token = mt_rand(1000, 9999);
@@ -2471,17 +2470,13 @@ class Welcome extends CI_Controller {
     }
     
     public function check_insta_profile($profile) {
-        $this->is_ip_hacker();        
-        //antes
-        //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-        //$this->Robot = new \follows\cls\Robot();
-        //ahora
-        $this->load->model('class/system_config'); 
+        $this->is_ip_hacker(); 
+        $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();        
+//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+//        $this->Robot = new \follows\cls\Robot();        
+//        $data = $this->Robot->get_insta_ref_prof_data($profile);
         $this->load->library('external_services');  
-        //antes
-        //$data = $this->Robot->get_insta_ref_prof_data($profile);
-        //ahora
         $data = $this->external_services->get_insta_ref_prof_data($profile);
         if (is_object($data)) {
             return $data;
