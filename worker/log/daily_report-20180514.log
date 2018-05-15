@@ -1,0 +1,803 @@
+DAILY REPORT Inited...!<br>
+2018-05-15 01:16:12am<br>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'alberto_dreyes'</font> <i>(length=14)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'opiniaoconservadora'</font> <i>(length=19)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'sibitecomunicacao'</font> <i>(length=17)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>28</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'93'</font> <i>(length=2)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'prettymommy.blog'</font> <i>(length=16)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'auepromocoes'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'jeunesse_bycrislafratta'</font> <i>(length=23)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'powerlook_'</font> <i>(length=10)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'xodozinho.retratos'</font> <i>(length=18)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'gumeida'</font> <i>(length=7)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>64</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'867'</font> <i>(length=3)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'joaovictorjvb1'</font> <i>(length=14)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>91</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'1059'</font> <i>(length=4)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'graverrj'</font> <i>(length=8)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'ma_luco'</font> <i>(length=7)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'carlloooooss'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'sapatodochef.pa'</font> <i>(length=15)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>219</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'2175'</font> <i>(length=4)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'vireiloira'</font> <i>(length=10)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'felipemarcoscantanhede'</font> <i>(length=22)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'mercadomodelobahia'</font> <i>(length=18)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'thayscalmon'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'decoremundo'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'decorcool'</font> <i>(length=9)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'fragabar'</font> <i>(length=8)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'rannabeckeroficial'</font> <i>(length=18)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>138</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'4236'</font> <i>(length=4)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'lorenaym'</font> <i>(length=8)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'pamelaotero'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'starpointcollection'</font> <i>(length=19)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'katiacsdc'</font> <i>(length=9)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'dra_barbaravasconcelos'</font> <i>(length=22)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'comandantedochurrasco'</font> <i>(length=21)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'cmb_rodrigues_distribuidora'</font> <i>(length=27)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'40antesdos40'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'drricardopalacio'</font> <i>(length=16)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'electromarcas'</font> <i>(length=13)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'pollyruffini'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'carlos_skatmar'</font> <i>(length=14)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'hr__pro'</font> <i>(length=7)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'star_point'</font> <i>(length=10)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'rruizmma'</font> <i>(length=8)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'dumbu.09'</font> <i>(length=8)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>119</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'10000'</font> <i>(length=5)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'medina.marcosp'</font> <i>(length=14)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'sandrozion7'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'grandville_hoteis'</font> <i>(length=17)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'josiasdiass'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'barbaracampospalma'</font> <i>(length=18)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'telless13'</font> <i>(length=9)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'bandamegafire'</font> <i>(length=13)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'sosoportunidade10'</font> <i>(length=17)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'juaimobiliaria'</font> <i>(length=14)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'academia_king_thai'</font> <i>(length=18)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'renatafontany'</font> <i>(length=13)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'cabelosaugusto'</font> <i>(length=14)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'brunocerqueira'</font> <i>(length=14)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'noxboymike'</font> <i>(length=10)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'juliobaptistaoficial'</font> <i>(length=20)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'ateliermarielamoreira'</font> <i>(length=21)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>216</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'11096'</font> <i>(length=5)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'michaelletjp'</font> <i>(length=12)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>143</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'11099'</font> <i>(length=5)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'agostochuvoso'</font> <i>(length=13)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'insultedboy'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'weilla_morg'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'raphabritoo'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'vinihveiga'</font> <i>(length=10)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>209</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'11131'</font> <i>(length=5)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'deliciasdoronk'</font> <i>(length=14)</i>
+</pre><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'duuduuzinhosilva'</font> <i>(length=16)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'carlosbsg'</font> <i>(length=9)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'danndourado0'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'biel312'</font> <i>(length=7)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'caiogrunupp'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'paullonunan'</font> <i>(length=11)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:133:</small><small>string</small> <font color='#cc0000'>'pablodiego15'</font> <i>(length=12)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined property: stdClass::$follows in /opt/lampp/htdocs/follows/worker/class/Client.php on line <i>134</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+</table></font>
+<pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:134:</small><small>string</small> <font color='#cc0000'>'Cantidad de follows = '</font> <i>(length=22)</i>
+</pre><br><br><br><pre class='xdebug-var-dump' dir='ltr'>
+<small>/opt/lampp/htdocs/follows/worker/class/Client.php:137:</small>
+<b>object</b>(<i>stdClass</i>)[<i>157</i>]
+  <i>public</i> 'id' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'11230'</font> <i>(length=5)</i>
+  <i>public</i> 'login' <font color='#888a85'>=&gt;</font> <small>string</small> <font color='#cc0000'>'_luferreiranunes'</font> <i>(length=16)</i>
+</pre><br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_connect(): MySQL server has gone away in /opt/lampp/htdocs/follows/worker/class/DB.php on line <i>39</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>624.7107</td><td bgcolor='#eeeeec' align='right'>1782776</td><td bgcolor='#eeeeec'>follows\cls\Reference_profile->get_insta_ref_prof_data(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Client.php' bgcolor='#eeeeec'>.../Client.php<b>:</b>130</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>624.7108</td><td bgcolor='#eeeeec' align='right'>1782968</td><td bgcolor='#eeeeec'>follows\cls\Robot->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Profile.php' bgcolor='#eeeeec'>.../Profile.php<b>:</b>39</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Robot.php' bgcolor='#eeeeec'>.../Robot.php<b>:</b>78</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->connect(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>18</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>628.2035</td><td bgcolor='#eeeeec' align='right'>1806672</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-connect' target='_new'>mysqli_connect</a>
+(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>39</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_connect(): Error while reading greeting packet. PID=5756 in /opt/lampp/htdocs/follows/worker/class/DB.php on line <i>39</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>624.7107</td><td bgcolor='#eeeeec' align='right'>1782776</td><td bgcolor='#eeeeec'>follows\cls\Reference_profile->get_insta_ref_prof_data(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Client.php' bgcolor='#eeeeec'>.../Client.php<b>:</b>130</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>624.7108</td><td bgcolor='#eeeeec' align='right'>1782968</td><td bgcolor='#eeeeec'>follows\cls\Robot->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Profile.php' bgcolor='#eeeeec'>.../Profile.php<b>:</b>39</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Robot.php' bgcolor='#eeeeec'>.../Robot.php<b>:</b>78</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->connect(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>18</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>628.2035</td><td bgcolor='#eeeeec' align='right'>1806672</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-connect' target='_new'>mysqli_connect</a>
+(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>39</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: mysqli_connect(): (HY000/2006): MySQL server has gone away in /opt/lampp/htdocs/follows/worker/class/DB.php on line <i>39</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0006</td><td bgcolor='#eeeeec' align='right'>359016</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>0.5198</td><td bgcolor='#eeeeec' align='right'>1665944</td><td bgcolor='#eeeeec'>follows\cls\Client->insert_clients_daily_report(  )</td><td title='/opt/lampp/htdocs/follows/worker/scripts/daily_report.php' bgcolor='#eeeeec'>.../daily_report.php<b>:</b>13</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>624.7107</td><td bgcolor='#eeeeec' align='right'>1782776</td><td bgcolor='#eeeeec'>follows\cls\Reference_profile->get_insta_ref_prof_data(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Client.php' bgcolor='#eeeeec'>.../Client.php<b>:</b>130</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>624.7108</td><td bgcolor='#eeeeec' align='right'>1782968</td><td bgcolor='#eeeeec'>follows\cls\Robot->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Profile.php' bgcolor='#eeeeec'>.../Profile.php<b>:</b>39</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>5</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->__construct(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/Robot.php' bgcolor='#eeeeec'>.../Robot.php<b>:</b>78</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>6</td><td bgcolor='#eeeeec' align='center'>624.7111</td><td bgcolor='#eeeeec' align='right'>1788000</td><td bgcolor='#eeeeec'>follows\cls\DB->connect(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>18</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>7</td><td bgcolor='#eeeeec' align='center'>628.2035</td><td bgcolor='#eeeeec' align='right'>1806672</td><td bgcolor='#eeeeec'><a href='http://www.php.net/function.mysqli-connect' target='_new'>mysqli_connect</a>
+(  )</td><td title='/opt/lampp/htdocs/follows/worker/class/DB.php' bgcolor='#eeeeec'>.../DB.php<b>:</b>39</td></tr>
+</table></font>
+Cannot connect to database.
