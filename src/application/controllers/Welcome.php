@@ -993,8 +993,8 @@ class Welcome extends CI_Controller {
         //0. Carregar librarias e datas vindo do navegador        
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        $this->load->library('Gmail'); 
-        $this->load->model('class/system_config'); 
+        $this->load->library('Gmail');
+        $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
         
         $origin_datas=$datas;        
@@ -1125,10 +1125,6 @@ class Welcome extends CI_Controller {
                 'pay_day'=>strtotime("+7 days", time()),
                 'ticket_access_token' =>md5($datas['pk'].'-abc-'.$insta_id.'-cba-'.'8053')
             ));
-            
-            $this->load->model('class/system_config'); 
-            $GLOBALS['sistem_config'] = $this->system_config->load();
-            $this->load->model('class/Crypt');
             
             $email = $this->gmail->send_link_ticket_bank_and_access_link(
                     $username,
