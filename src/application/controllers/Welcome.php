@@ -28,9 +28,9 @@ class Welcome extends CI_Controller {
         $this->gmail->send_link_ticket_bank_and_access_link(
                     'Jose R',
                     'josergm86@gmail.com',
-                    'www.link.boleto.com',
+                    'www.link.accesso.com',
                     'www.link.boleto.com');        
-        $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');        
+        //$this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');        
     }
 
     public function encrypt_credit_card_datas() {
@@ -999,9 +999,9 @@ class Welcome extends CI_Controller {
         //0. Carregar librarias e datas vindo do navegador        
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        $this->load->library('Gmail');
         $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Gmail');
         
         $origin_datas=$datas;        
         $datas = $this->input->post();

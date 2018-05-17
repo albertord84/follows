@@ -65,7 +65,7 @@
             $username = urlencode($username);
             //$instaname = urlencode($instaname);
             //$instapass = urlencode($instapass);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
             $this->mail->Body = $mail;
@@ -100,10 +100,10 @@
             $username = urlencode($username);
             $instaname = urlencode($instaname);
             $instapass = urlencode($instapass);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //Replace the plain text body with one created manually
             //$this->mail->AltBody = 'DUMBU Problemas no seu login';
             $this->mail->AltBody = 'DUMBU Problem with your login';
@@ -138,10 +138,10 @@
             $username = urlencode($username);
             $instaname = urlencode($instaname);
             $instapass = urlencode($instapass);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/not_reference_profiles.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/not_reference_profiles.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //Replace the plain text body with one created manually
             //$this->mail->AltBody = 'DUMBU Cliente sem perfis de referência';
             $this->mail->AltBody = 'DUMBU Client without reference profiles alert';
@@ -176,10 +176,10 @@
             $username = urlencode($username);
             $instaname = urlencode($instaname);
             $instapass = urlencode($instapass);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/payment_error.php?username=$username&instaname=$instaname&instapass=$instapass&diff_days=$diff_days"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/payment_error.php?username=$username&instaname=$instaname&instapass=$instapass&diff_days=$diff_days"), dirname(__FILE__));
             //Replace the plain text body with one created manually
             //$this->mail->AltBody = 'DUMBU Problemas de pagamento';
             $this->mail->Subject = "DUMBU Payment Issues";
@@ -215,10 +215,10 @@
             $username = urlencode($username);
             $instaname = urlencode($instaname);
             $instapass = urlencode($instapass);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/payment_success.php?username=$username&instaname=$instaname"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/payment_success.php?username=$username&instaname=$instaname"), dirname(__FILE__));
             //Replace the plain text body with one created manually
             $this->mail->Subject = 'DUMBU Sign in successfully approved!';
             //Attach an image file
@@ -253,9 +253,9 @@
             $usercompany = urlencode($usercompany);
             $userphone = urlencode($userphone);
            
-           // $this->mail->msgHTML(@file_get_contents("http://dumbu.one/follows/worker/resources/emails/contact_form.php?username=$username&useremail=$useremail&usercompany=$usercompany&userphone=$userphone&usermsg=$usermsg"), dirname(__FILE__));
+           // $this->mail->msgHTML(@file_get_contents("http://dumbu.one/follows/src/resources/emails/contact_form.php?username=$username&useremail=$useremail&usercompany=$usercompany&userphone=$userphone&usermsg=$usermsg"), dirname(__FILE__));
             
-            $this->mail->msgHTML(@file_get_contents("http://". $_SERVER['SERVER_NAME'] ."/follows/worker/resources/emails/contact_form.php?username=$username&useremail=$useremail&usercompany=$usercompany&userphone=$userphone&usermsg=$usermsg"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://". $_SERVER['SERVER_NAME'] ."/follows/src/resources/emails/contact_form.php?username=$username&useremail=$useremail&usercompany=$usercompany&userphone=$userphone&usermsg=$usermsg"), dirname(__FILE__));
             //$this->mail->Body = $usermsg;
             //Replace the plain text body with one created manually
             $this->mail->AltBody = "User Contact: $username";
@@ -296,11 +296,11 @@
             //convert HTML into a basic plain-text alternative body
             $username = urlencode($username);
             $plane = urlencode($plane);
-            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //$this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $email_msg = "http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/emails/new_client_with_payment.php?username=$username&useremail=$useremail";
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/new_client_with_payment.php?username=$username&useremail=$useremail&plane=$plane"), dirname(__FILE__));
+            $email_msg = "http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/emails/new_client_with_payment.php?username=$username&useremail=$useremail";
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/new_client_with_payment.php?username=$username&useremail=$useremail&plane=$plane"), dirname(__FILE__));
             //Replace the plain text body with one created manually
             $this->mail->AltBody = 'New Client with payment';
             //Attach an image file
@@ -341,7 +341,7 @@
             $username = urlencode($username);
             $access_link = urlencode($access_link);
             $ticket_link = urlencode($ticket_link);
-            $this->mail->msgHTML(@file_get_contents("http://". $_SERVER['SERVER_NAME'] ."/follows/worker/resources/emails/tiket_bank.php?username=$username&access_link=$access_link&ticket_link=$ticket_link"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://". $_SERVER['SERVER_NAME'] ."/follows/src/resources/emails/tiket_bank.php?username=$username&access_link=$access_link&ticket_link=$ticket_link"), dirname(__FILE__));
             //$this->mail->AltBody = "Boleto bancário de: $username";
             if (!$this->mail->send()) {
                 $result['success'] = false;
@@ -373,10 +373,10 @@
             $username = urlencode($username);
             $instaname = urlencode($instaname);
             $purchase_access_token = urlencode($purchase_access_token);
-            //            $this->mail->msgHTML(file_get_contents("http://localhost/follows/worker/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
+            //            $this->mail->msgHTML(file_get_contents("http://localhost/follows/src/resources/emails/login_error.php?username=$username&instaname=$instaname&instapass=$instapass"), dirname(__FILE__));
             //echo "http://" . $_SERVER['SERVER_NAME'] . "<br><br>";
             $lang = $GLOBALS['sistem_config']->LANGUAGE;
-            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/worker/resources/$lang/emails/link_purchase_step.php?username=$username&instaname=$instaname&purchase_access_token=$purchase_access_token"), dirname(__FILE__));
+            $this->mail->msgHTML(@file_get_contents("http://" . $_SERVER['SERVER_NAME'] . "/follows/src/resources/$lang/emails/link_purchase_step.php?username=$username&instaname=$instaname&purchase_access_token=$purchase_access_token"), dirname(__FILE__));
 
             //Replace the plain text body with one created manually
             $this->mail->Subject = 'DUMBU Account Confirmation!';
