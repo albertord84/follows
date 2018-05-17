@@ -10,115 +10,17 @@ $(document).ready(function () {
     flag_black_list=false;
     flag_white_list=false;
     
-        
-    //typeahead INIT
-    /*
-    var users_source = new Bloodhound({
-        initialize:false,
-        sufficient:100,
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        //local: ['jose','juan','juaniquito','juancito','joaquin','j','jj','jjj','jjjjjjj']
-        local: function(){
-            data=$.get(
-                    base_url+'index.php/welcome/get_names_by_chars',
-                    {  
-                        str: 'josergm',
-                        profile_type: 'users'
-                    }, 
-                    function (data) {
-                        data = $.parseJSON(data);
-                        users_source.inicializate();
-                        console.log(data);
-                        return data;
-                    }
-                );
-            //data=["jose","juan","juaniquito","juancito","joaquin","j","jj","jjj","jjjjjjj"];
-            //console.log(data);
-            return data;            
-        }
+    //$('#auncio_leads').modal('show');
+    
+    $(document).on('click', '.see_more', function(){                     
+        window.location = "https://dumbu.pro/leads/src/";
     });
     
-    $('#login_profile').typeahead(
-        {
-            hint: true,
-            highlight: true, 
-            minLength: 1
-        },
-        {
-            name: 'users_datas',
-            source: users_source
-        }
-    );
+//    $("#auncio_leads").on('hide.bs.modal', function () {  
+//        return false;
+//    });
+//    
     
-    
-    */
-    
-     
-   /* $.get(
-        base_url+'index.php/welcome/get_names_by_chars',
-        {  
-            str: 'josergm',
-            profile_type: 'users'
-        }, 
-        function (data) {
-            data = $.parseJSON(data);
-            console.log(data);
-            return (data);
-        }
-    );  */
-    
-    
-    
-    /*$("#login_profile").on('keyup', function(){
-        var text = $(this).val();
-        if(text.length){            
-            $.ajax({
-                url: base_url + 'index.php/welcome/get_names_by_chars',
-                data: {
-                    'str':'text',
-                    'profile_type':'users'
-                },
-                type: 'POST',
-                dataType: 'json',
-                success: function (response) {
-                    set_global_var('users_datas',response);                     
-                },
-                error: function (xhr, status) {
-                    
-                }
-            });
-        }
-    }).keyup();      */  
-    //typeahead END
-    
-    //----------------------------------------------------------------------------------------------------------    
-        
-    function modal_alert_message(text_message){
-        $('#modal_alert_message').modal('show');
-        $('#message_text').text(text_message);        
-    }
-    
-    $("#accept_modal_alert_message").click(function () {
-        $('#modal_alert_message').modal('hide');
-    });
-    
-    //$('#modal_ENCUESTA').modal('show');
-    
-    /*var confirmation=false;
-    function modal_confirm_message(text_message){
-        $('#modal_confirm_message').modal('show');
-        $('#message_text_confirmation').text(text_message);
-    }
-    
-    $("#accept_modal_confirm_message").click(function () {
-        $('#modal_confirm_message').modal('hide');
-        confirmation=true;
-    });
-    $("#cancel_modal_confirm_message").click(function () {
-        $('#modal_confirm_message').modal('hide');
-        confirmation=false;
-    });*/
     
     //----------------------------------------------------------------------------------------------------------
     //PERFIS DE REFERENCIA
@@ -130,6 +32,15 @@ $(document).ready(function () {
         4: {'ptr_img_obj': $('#img_ref_prof4'), 'ptr_p_obj': $('#name_ref_prof4'), 'ptr_label_obj': $('#cnt_follows_prof4'), 'ptr_panel_obj': $('#reference_profile4'), 'img_profile': '', 'login_profile': '', 'status_profile': '', 'follows_from_profile': '', 'ptr_lnk_ref_prof': $('#lnk_ref_prof4')},
         5: {'ptr_img_obj': $('#img_ref_prof5'), 'ptr_p_obj': $('#name_ref_prof5'), 'ptr_label_obj': $('#cnt_follows_prof5'), 'ptr_panel_obj': $('#reference_profile5'), 'img_profile': '', 'login_profile': '', 'status_profile': '', 'follows_from_profile': '', 'ptr_lnk_ref_prof': $('#lnk_ref_prof5')},
     };
+    
+    function modal_alert_message(text_message){
+        $('#modal_alert_message').modal('show');
+        $('#message_text').text(text_message);        
+    }
+    
+    $("#accept_modal_alert_message").click(function () {
+        $('#modal_alert_message').modal('hide');
+    });    
     
     
     $("#dicas_geoloc").click(function(){

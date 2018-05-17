@@ -24,6 +24,12 @@ class Welcome extends CI_Controller {
 //        var_dump($a);
         
         $this->load->library('Gmail'); 
+        
+        $this->gmail->send_link_ticket_bank_and_access_link(
+                    'Jose R',
+                    'josergm86@gmail.com',
+                    'www.link.boleto.com',
+                    'www.link.boleto.com');        
         $this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');        
     }
 

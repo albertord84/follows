@@ -45,6 +45,14 @@
         <script type="text/javascript" src="<?php echo base_url() . 'assets/canvasjs-1.9.6/canvasjs.min.js'; ?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . 'assets/js/chart.js?'.$SCRIPT_VERSION; ?>"></script>
          
+        <style>
+            img.leads {
+                width: 80%;
+                height: auto;
+            }
+
+        </style>
+        
         <?php //para SEO 
             if($SERVER_NAME=="ONE"){
                 echo '<link rel="canonical" href="https://www.dumbu.one" />';
@@ -1679,6 +1687,34 @@
                 </div>
             </div>                                                        
         </div>
+        
+        <!-- Modal Anuncio Leads -->                    
+        <div id="auncio_leads" class="modal fade" role="dialog">                
+          <div class="modal-dialog">
+            <div class="modal-content">                                         
+                <a id="btn_close" class="close" data-dismiss="modal" style="margin-top: 5px;margin-right: 10px;">&times;</a>
+                <div class="m-t40">
+                    <div class="col-md-3 col-sm-3 col-xs-12 text-left">
+                        <img src="<?php echo base_url().'assets/img/new_leads.png'?>" alt="novidade">
+                    </div> 
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <b style="font-size: 2em"><?php echo $CI->T("Extração de Leads", array(),$language);?></b>                        
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center">                        
+                        <h5><?php echo $CI->T("Informações valiosas extraidas do público alvo selecionado por você!", array(),$language);?></h5>                            
+                    </div>
+                </div>
+                <p style="text-align:center;">
+                    <img class="leads" src="<?php echo base_url().'assets/img/leads_datas.png'?>" alt="dados de leads"></p>
+                <div style="height: 60px" class="see_more btn btn-success btn-block ladda-button" type="button" data-style="expand-left" data-spinner-color="#ffffff">
+                    <p style="font-size:1.4em"><?php echo $CI->T("Ver mais", array(),$language);?></p>
+                </div>
+            </div>
+          </div>
+        </div>
+        <!-- Fecha Modal Anuncio Leads -->
+        
+        
        
         <!--Start of Boostbox Tag Script-->
         <?php if ($SERVER_NAME == "PRO") { ?>
