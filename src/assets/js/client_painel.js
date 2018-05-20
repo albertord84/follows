@@ -10,17 +10,12 @@ $(document).ready(function () {
     flag_black_list=false;
     flag_white_list=false;
     
-    //$('#auncio_leads').modal('show');
+    $('#auncio_leads').modal('show');
     
-    $(document).on('click', '.see_more', function(){                     
-        window.location = "https://dumbu.pro/leads/src/";
-    });
-    
-//    $("#auncio_leads").on('hide.bs.modal', function () {  
-//        return false;
-//    });
-//    
-    
+    $(document).on('click', '.see_more', function(){  
+        url="https://dumbu.pro/leads/src/";
+        window.open(url, '_blank');
+    });    
     
     //----------------------------------------------------------------------------------------------------------
     //PERFIS DE REFERENCIA

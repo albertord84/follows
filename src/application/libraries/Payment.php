@@ -281,6 +281,7 @@
         public function create_payment($payment_data) {
             try {
                 // Define a url utilizada
+                $a=$GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL;
                 \Gateway\ApiClient::setBaseUrl($GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL);
                 //    \Gateway\ApiClient::setBaseUrl($GLOBALS['sistem_config']->MUNDIPAGG_BASE_URL);
                 // Define a chave da loja
