@@ -1482,7 +1482,7 @@
         </section>
         
         <div class="h150 fleft100"></div>
-        <footer class="text-center fleft100 m-t30 m-b10"><div class="container"><img src="<?php echo base_url() . 'assets/images/logo-footer.png'; ?>" class="wauto" alt=""> <span class="fleft100 text-center">DUMBU - 2017 - <?php echo $CI->T("TODOS OS DIREITOS RESERVADOS", array(), $language); ?></span></div></footer>
+        <footer class="text-center fleft100 m-t30 m-b10"><div class="container"><img src="<?php echo base_url() . 'assets/images/logo-footer.png'; ?>" class="wauto" alt=""> <span class="fleft100 text-center">DUMBU - <?php echo date('Y'); echo $CI->T(" - TODOS OS DIREITOS RESERVADOS", array(), $language); ?></span></div></footer>
 
         <script src="<?php echo base_url() . 'assets/bootstrap/js/bootstrap.min.js'; ?>"></script>
         <script src="<?php echo base_url() . 'assets/js/jquery.dlmenu.js'; ?>"></script>
