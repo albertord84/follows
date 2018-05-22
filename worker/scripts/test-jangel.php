@@ -11,11 +11,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/libraries/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //print('Hola Mundo');
-$Robot = new \follows\cls\Robot();
+/*$Robot = new \follows\cls\Robot();
 $Client = (new \follows\cls\Client())->get_client(27345);
 $cursor = NULL;
 var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
-
+*/
 /*
 $result = new \stdClass();
  try {
@@ -48,9 +48,9 @@ $client->credit_card_exp_year = "23";
 $client->credit_card_cvc = "564";
 $client->pay_day = strostamp('today');
 $payment->check_initial_payment($client);*/
+/*
 
-
-/*$Client = (new \follows\cls\Client())->get_client(65045);
+$Client = (new \follows\cls\Client())->get_client(65045);
 
 $DB = new \follows\cls\DB();
 //var_dump($Client);
@@ -67,8 +67,6 @@ var_dump($json_response2);
 $json_response2 = $Robot->get_insta_tag_data_from_client($Client->cookies, 'cuba');
 var_dump($json_response2);
 */
-
-
 /*
 $json_response = new \stdClass();
 $Client = (new \follows\cls\Client())->get_client(81875);
@@ -90,7 +88,7 @@ var_dump($res);*/
 //$Robot->id = 1;
 //$Robot->process_follow_error($json_response);
 
-/*$Client = (new \follows\cls\Client())->get_client(27063);
+$Client = (new \follows\cls\Client())->get_client(27063);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
 $daily_work->cookies = $Client->cookies; 
@@ -130,10 +128,10 @@ $daily_work->insta_follower_cursor = NULL;
 $res = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
 echo json_encode($res);
 var_dump($res);
-echo "<br></br><br>Peoples: $cnt</br><br></br>";*/
+echo "<br></br><br>Peoples: $cnt</br><br></br>";
 
 
-/*$result_people =  $Robot->make_curl_followers_query($query_hash_people, $variables_people, json_decode($daily_work->cookies));
+$result_people =  $Robot->make_curl_followers_query($query_hash_people, $variables_people, json_decode($daily_work->cookies));
 $json_response = json_decode(exec($result_people));
 $cnt = count($json_response->data->user->edge_followed_by->edges);
 echo "<br></br><br>Follows: $cnt </br><br></br>";
@@ -150,6 +148,6 @@ $json_response = json_decode(exec($result_tag));
 $cnt = count($json_response->data->hashtag->edge_hashtag_to_media->edges);
 echo "<br></br><br>Peoples: $cnt</br><br></br>";
 echo json_encode($json_response);
-*/
+
 
 echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
