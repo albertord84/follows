@@ -2031,8 +2031,8 @@ namespace follows\cls {
            // var_dump($output);
             $resposta = json_decode($json_str);
             //var_dump($output);
-            $this->temporal_log($curl_str);
-            (new \follows\cls\DB())->InsertEventToWashdog($Client->id, $resposta);
+            //$this->temporal_log($curl_str);
+            (new \follows\cls\DB())->InsertEventToWashdog($Client->id, "Code Requested");
             return $resposta;
         }
 
