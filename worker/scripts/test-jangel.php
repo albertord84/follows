@@ -32,8 +32,8 @@ $result = new \stdClass();
             }*/
 
 $Robot = new \follows\cls\Robot();
-$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
-//$Robot->make_checkpoint('riveauxmerino', 624819);
+//$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
+$Robot->make_checkpoint('riveauxmerino', 872305);
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 var_dump($res);

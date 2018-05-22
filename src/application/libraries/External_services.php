@@ -130,7 +130,7 @@ class External_services{
         
     function make_checkpoint($user_login, $security_code){
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
-        $security_code = $database_config['server']['worker_server_name'];        
+        $worker_server_name = $database_config['server']['worker_server_name'];
         $postData = array(
             'user_login'=>urlencode($user_login),
             'security_code'=>urlencode($security_code)
