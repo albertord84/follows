@@ -30,14 +30,14 @@ $result = new \stdClass();
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
-
+/*
 $Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
 $Robot->make_checkpoint('riveauxmerino', 872305);
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 var_dump($res);
-
+*/
 /*
 $payment = new \Payment();
 $client = new \stdClass();
@@ -88,7 +88,7 @@ var_dump($res);*/
 //$Robot->id = 1;
 //$Robot->process_follow_error($json_response);
 
-$Client = (new \follows\cls\Client())->get_client(27063);
+$Client = (new \follows\cls\Client())->get_client(19546);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
 $daily_work->cookies = $Client->cookies; 
@@ -99,7 +99,7 @@ $daily_work->rp_insta_id = 220021938;
 
 
 
-$query_hash_tag = '298b92c8d7cad703f7565aa892ede943';
+$query_hash_tag = 'ded47faa9a1aaded10161a2ff32abb6b';
 $query_hash_loc = '951c979213d7e7a1cf1d73e2f661cbd1';
 $query_hash_people = '37479f2b8209594dde7facb0d904896a';
 
@@ -108,7 +108,7 @@ $variables_tag = '{"tag_name":"casa","first":2,"after":"AQDtqk6w08rRUwIh171RaVDS
 $variables_people = '{"id":"2023444583","first":5}';
 
 $Robot = new \follows\cls\Robot();
-$error = FALSE;
+    $error = FALSE;
 $res = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
 echo json_encode($res);
 $cnt = count($res);
