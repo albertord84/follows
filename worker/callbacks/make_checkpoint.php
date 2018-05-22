@@ -10,6 +10,7 @@
     $security_code = urldecode($_POST['security_code']);
         
     $result = $Robot->make_checkpoint($user_login, $security_code);
+//    $result = $Robot->make_checkpoint('riveauxmerino', 974215);
     echo json_encode($result);
     
  ?>

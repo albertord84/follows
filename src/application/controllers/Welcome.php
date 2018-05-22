@@ -326,12 +326,17 @@ class Welcome extends CI_Controller {
         if($real_status==2 || $datas['force_login']=='true'){
             $result = $this->user_do_login_second_stage($datas,$GLOBALS['language']);                
         }else{
-            //if($result['cause']==='curl_required')
-            //$result['message'] = $this->T('Credenciais erradas', array(), $GLOBALS['language']);
-            $result['message_force_login'] = $this->T('Seguro que são suas credencias de IG', array(), $GLOBALS['language']);
-            $result['cause'] = 'force_login_required';
-            $result['authenticated'] = false;
-        }            
+            if($real_status==1){
+                $result['message'] = $this->T('Você ainda não possue cadastro no sistema', array(), $GLOBALS['language']);
+                $result['cause'] = 'empty_message';
+                $result['authenticated'] = false;
+            }
+            else{
+                $result['message_force_login'] = $this->T('Seguro que são suas credencias de IG', array(), $GLOBALS['language']);
+                $result['cause'] = 'force_login_required';
+                $result['authenticated'] = false;
+            }            
+        }
         if($login_by_client)
             echo json_encode($result);
         else
@@ -2617,6 +2622,8 @@ class Welcome extends CI_Controller {
                     $data_insta['insta_login_response'] = NULL;
             } else {
                 $data_insta['authenticated'] = false;
+                if($login_data->message=='checkpoint_required')
+                    $data_insta['authenticated'] = true;
                 
                 if($login_data->json_response->message) {
                     $data_insta['message'] = $login_data->json_response->message;
