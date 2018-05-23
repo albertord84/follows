@@ -1643,24 +1643,30 @@ namespace follows\cls {
                             $cnt++;
                             // Make instagram action
                             $url = "https://www.instagram.com/graphql/query/";
-                            $curl_str = $this->make_curl_followers_str("$url", $cookies, $Client->insta_id, 15);
-                            if ($curl_str != NULL) {
-                                exec($curl_str, $output, $status);
-                                try {
-                                    if(count($output) > 0)
-                                    {
-                                        $json_response = json_decode($output[0]);
-                                        if (is_object($json_response) && $json_response->status == 'ok' &&
-                                                isset($json_response->data) && isset($json_response->data->user) && $json_response->data->user != NULL) {
-                                            $result->json_response->status = 'ok';
-                                            $result->json_response->authenticated = TRUE;
-                                            break;
-                                        }
+                            $daily_work->rp_type = 1;
+                            $daily_work->cookies = $Client->cookies; 
+                            $daily_work->to_follow = 10;
+                            $daily_work->insta_follower_cursor = NULL;
+                            $daily_work->insta_name = 'cuba';
+                            $daily_work->rp_insta_id = 220021938;
+                            $error = NULL;
+                            $page_info = 0;
+
+                            $res = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
+                            try {
+                                if(count($res) > 0)
+                                {
+                                    $json_response = json_decode($output[0]);
+                                    if (is_object($json_response) && $json_response->status == 'ok' &&
+                                            isset($json_response->data) && isset($json_response->data->user) && $json_response->data->user != NULL) {
+                                        $result->json_response->status = 'ok';
+                                        $result->json_response->authenticated = TRUE;
+                                        break;
                                     }
-                                } catch (\Exception $e) {
-                                    
                                 }
-                            }
+                            } catch (\Exception $e) {
+
+                            }                           
                         }
                     }
                 }
