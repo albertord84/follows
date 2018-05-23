@@ -295,6 +295,97 @@ namespace follows\cls {
           {}
          */
 
+         public function get_profiles_to_follow_without_log($daily_work, $error, &$page_info) {
+            $Profiles = array();
+            $error = TRUE;
+            $login_data = json_decode($daily_work->cookies);
+            $quantity = min(array($daily_work->to_follow, $GLOBALS['sistem_config']->REQUESTS_AT_SAME_TIME));
+            $page_info = new \stdClass();
+            if ($daily_work->rp_type == 0) {
+                $json_response = $this->get_insta_followers(
+                        $login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor
+                );
+                //var_dump($json_response);
+                if ($json_response === NULL) {
+                    $result = $this->DB->delete_daily_work_client($daily_work->users_id);
+                    $this->DB->set_client_status($daily_work->users_id, user_status::VERIFY_ACCOUNT);
+                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
+                    $this->DB->set_client_cookies($daily_work->users_id, NULL);
+                }
+                //echo "<br>\nRef Profil: $daily_work->insta_name<br>\n";
+                if (is_object($json_response) && $json_response->status == 'ok') {
+                    if (isset($json_response->data->user->edge_followed_by)) { // if response is ok
+                       // echo "Nodes: " . count($json_response->data->user->edge_followed_by->edges) . " <br>\n";
+                        $page_info = $json_response->data->user->edge_followed_by->page_info;
+                        $Profiles = $json_response->data->user->edge_followed_by->edges;
+                        //$DB = new DB();
+                        if ($page_info->has_next_page === FALSE && $page_info->end_cursor != NULL) { // Solo qdo es <> de null es que llego al final
+                            $this->DB->update_reference_cursor($daily_work->reference_id, NULL);
+                            //echo ("<br>\n Updated Reference Cursor to NULL!!");
+                            $result = $this->DB->delete_daily_work($daily_work->reference_id);
+                            if ($result) {
+                               // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
+                            }
+                        } else if ($page_info->has_next_page === FALSE && $page_info->end_cursor === NULL) {
+//                            $Client = new Client();
+//                            $Client = $Client->get_client($daily_work->user_id);
+//                            $login_result = $Client->sign_in($Client);
+                            $this->DB->update_reference_cursor($daily_work->reference_id, NULL);
+                            //echo ("<br>\n Updated Reference Cursor to NULL!!");
+                            $result = $this->DB->delete_daily_work($daily_work->reference_id);
+                            if ($result) {
+                               // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
+                            }
+                        }
+                        $error = FALSE;
+                    } else {
+                        $page_info->end_cursor = NULL;
+                        $page_info->has_next_page = false;
+                    }
+                }
+            } else if ($daily_work->rp_type == 1){
+                $json_response = $this->get_insta_geomedia($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
+                if (is_object($json_response) && $json_response->status == 'ok') {
+                    if (isset($json_response->data->location->edge_location_to_media)) { // if response is ok
+                       // echo "Nodes: " . count($json_response->data->location->edge_location_to_media->edges) . " <br>\n";
+                        $page_info = $json_response->data->location->edge_location_to_media->page_info;
+                        foreach ($json_response->data->location->edge_location_to_media->edges as $Edge) {
+                            $profile = new \stdClass();
+                            $profile->node = $this->get_geo_post_user_info($login_data, $daily_work->rp_insta_id, $Edge->node->shortcode);
+                            array_push($Profiles, $profile);
+                        }
+                        $error = FALSE;
+                    } else {
+                        $page_info->end_cursor = NULL;
+                        $page_info->has_next_page = false;
+                    }
+                }
+            }
+            else if($daily_work->rp_type == 2)
+            {
+                $json_response = $this->get_insta_tagmedia($login_data, $daily_work->insta_name, $quantity, $daily_work->insta_follower_cursor);
+                if (is_object($json_response)) {
+                    if (isset($json_response->data->hashtag->edge_hashtag_to_media)) { // if response is ok
+                        // echo "Nodes: " . count($json_response->data->hashtag->edge_hashtag_to_media->edges) . " <br>\n";
+                        $page_info = $json_response->data->hashtag->edge_hashtag_to_media->page_info;
+                        foreach ($json_response->data->hashtag->edge_hashtag_to_media->edges as $Edge) {
+                            $profile = new \stdClass();
+                            $profile->node = $this->get_tag_post_user_info($login_data,  $Edge->node->shortcode);
+                            array_push($Profiles, $profile);
+                        }
+                        $error = FALSE;
+                    } else {
+                        $page_info->end_cursor = NULL;
+                        $page_info->has_next_page = false;
+                    }
+                }
+            }
+            if ($error) {
+                $error = $this->process_follow_error($json_response);
+            }
+            return $Profiles;
+        }
+        
         public function get_profiles_to_follow($daily_work, $error, &$page_info) {
             $Profiles = array();
             $error = TRUE;
@@ -1653,7 +1744,7 @@ namespace follows\cls {
                             $error = NULL;
                             $page_info = 0;
 
-                            $res = $this->get_profiles_to_follow($daily_work, $error, $page_info);
+                            $res = $this->get_profiles_to_follow_without_log($daily_work, $error, $page_info);
                             try {
                                 if(count($res) > 0)
                                 {
