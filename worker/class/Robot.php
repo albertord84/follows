@@ -1647,12 +1647,15 @@ namespace follows\cls {
                             if ($curl_str != NULL) {
                                 exec($curl_str, $output, $status);
                                 try {
-                                    $json_response = json_decode($output[0]);
-                                    if (is_object($json_response) && $json_response->status == 'ok' &&
-                                            isset($json_response->data) && isset($json_response->data->user) && $json_response->data->user != NULL) {
-                                        $result->json_response->status = 'ok';
-                                        $result->json_response->authenticated = TRUE;
-                                        break;
+                                    if(count($output) > 0)
+                                    {
+                                        $json_response = json_decode($output[0]);
+                                        if (is_object($json_response) && $json_response->status == 'ok' &&
+                                                isset($json_response->data) && isset($json_response->data->user) && $json_response->data->user != NULL) {
+                                            $result->json_response->status = 'ok';
+                                            $result->json_response->authenticated = TRUE;
+                                            break;
+                                        }
                                     }
                                 } catch (\Exception $e) {
                                     
