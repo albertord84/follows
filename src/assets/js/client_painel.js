@@ -1307,7 +1307,7 @@ $(document).ready(function () {
                     modal_alert_message(response['message']);
                     
                     if (response['success']) {
-                        $(location).attr('href',base_url+'index.php/welcome/client');
+                        $(location).attr('href',base_url+'index.php/welcome/client?relogin=true');
                     }
                 },
                 error: function (xhr, status) {                  
@@ -1318,7 +1318,7 @@ $(document).ready(function () {
                     modal_alert_message(response['message']);
                     
                     if (response['success']) {
-                        $(location).attr('href',base_url+'index.php/welcome/client');
+                        $(location).attr('href',base_url+'index.php/welcome/client?relogin=true');
                     }
                 }
             });
