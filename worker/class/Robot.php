@@ -344,7 +344,7 @@ namespace follows\cls {
                     }
                 }
             } else if ($daily_work->rp_type == 1){
-                $json_response = $this->get_insta_geomedia($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
+                $json_response = $this->get_insta_geomedia_without_log($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
                 if (is_object($json_response) && $json_response->status == 'ok') {
                     if (isset($json_response->data->location->edge_location_to_media)) { // if response is ok
                        // echo "Nodes: " . count($json_response->data->location->edge_location_to_media->edges) . " <br>\n";
@@ -379,9 +379,6 @@ namespace follows\cls {
                         $page_info->has_next_page = false;
                     }
                 }
-            }
-            if ($error) {
-                $error = $this->process_follow_error($json_response);
             }
             return $Profiles;
         }
@@ -919,6 +916,41 @@ namespace follows\cls {
                 return $json;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
+            }
+        }
+        
+        public function get_insta_geomedia_without_log($login_data, $location, $N, &$cursor = NULL) {
+            try {
+                
+                $tag_query = 'ac38b90f0f3981c42092016a37c59bf7';
+                $variables = "{\"id\":\"$location\",\"first\":$N,\"after\":\"$cursor\"}";
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
+                if ($curl_str === NULL)
+                    return NULL;
+                exec($curl_str, $output, $status);
+                $json = json_decode($output[0]);
+                //var_dump($output);
+                if (isset($json->data->location->edge_location_to_media) && isset($json->data->location->edge_location_to_media->page_info)) {
+                    $cursor = $json->data->location->edge_location_to_media->page_info->end_cursor;
+                    if (count($json->data->location->edge_location_to_media->edges) == 0) {
+                        //echo '<pre>'.json_encode($json, JSON_PRETTY_PRINT).'</pre>';
+                        //var_dump($json);
+//                        var_dump($curl_str);
+                        //echo ("<br>\n No nodes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
+                        $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
+                        //echo ("<br>\n Set end cursor to NULL!!!!!!!! Deleted daily work!!!!!!!!!!!!");
+                    }
+                } else if (isset($json->data) && $json->data->location == NULL) {
+                    //var_dump($output);
+                    print_r($curl_str);
+                    $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
+                    $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
+                    //echo ("<br>\n Set end cursor to NULL!!!!!!!! Deleted daily work!!!!!!!!!!!!");
+                } 
+                return $json;
+            } catch (\Exception $exc) {
+                //echo $exc->getTraceAsString();
             }
         }
         
