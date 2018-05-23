@@ -1657,12 +1657,8 @@ namespace follows\cls {
                             try {
                                 if(count($res) > 0)
                                 {
-                                    if (is_object($json_response) && $json_response->status == 'ok' &&
-                                            isset($json_response->data) && isset($json_response->data->user) && $json_response->data->user != NULL) {
-                                        $result->json_response->status = 'ok';
-                                        $result->json_response->authenticated = TRUE;
-                                        break;
-                                    }
+                                    $result->json_response->status = 'ok';
+                                    $result->json_response->authenticated = TRUE;                                
                                 }
                             } catch (\Exception $e) {
 
