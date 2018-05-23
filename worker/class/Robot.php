@@ -1643,6 +1643,7 @@ namespace follows\cls {
                             $cnt++;
                             // Make instagram action
                             $url = "https://www.instagram.com/graphql/query/";
+                            $daily_work = new \stdClass();
                             $daily_work->rp_type = 1;
                             $daily_work->cookies = $Client->cookies; 
                             $daily_work->to_follow = 10;
@@ -1652,7 +1653,7 @@ namespace follows\cls {
                             $error = NULL;
                             $page_info = 0;
 
-                            $res = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
+                            $res = $this->get_profiles_to_follow($daily_work, $error, $page_info);
                             try {
                                 if(count($res) > 0)
                                 {
