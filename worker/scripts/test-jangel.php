@@ -35,9 +35,13 @@ $Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
 $Robot->make_checkpoint('riveauxmerino', 872305);
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
+$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 var_dump($res);
 */
+
+$Robot = new \follows\cls\Robot();
+$result = $Robot->bot_login('drrbendoraytes', 'rb280875');
+var_dump($result);
 /*
 $payment = new \Payment();
 $client = new \stdClass();
@@ -87,7 +91,7 @@ var_dump($res);*/
 //$Robot->daily_work = $daily_work;
 //$Robot->id = 1;
 //$Robot->process_follow_error($json_response);
-
+/*
 $Client = (new \follows\cls\Client())->get_client(19546);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
@@ -149,5 +153,5 @@ $cnt = count($json_response->data->hashtag->edge_hashtag_to_media->edges);
 echo "<br></br><br>Peoples: $cnt</br><br></br>";
 echo json_encode($json_response);
 
-
+*/
 echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
