@@ -240,7 +240,7 @@ class Welcome extends CI_Controller {
             
             $datas_get=$this->input->get();
 
-            if ((isset($datas_get['relogin']) && $datas_get['relogin']) && ($this->session->userdata('status_id') == user_status::VERIFY_ACCOUNT || $this->session->userdata('status_id') == user_status::BLOCKED_BY_INSTA)) {
+            if (/*(isset($datas_get['relogin']) && $datas_get['relogin']) && */($this->session->userdata('status_id') == user_status::VERIFY_ACCOUNT || $this->session->userdata('status_id') == user_status::BLOCKED_BY_INSTA)) {
                 $insta_login = $this->is_insta_user($this->session->userdata('login'), $this->session->userdata('pass'),'false');
                 if ($insta_login['status'] === 'ok') {
                     if ($insta_login['authenticated']) {
