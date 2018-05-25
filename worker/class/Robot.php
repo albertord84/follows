@@ -120,7 +120,7 @@ namespace follows\cls {
                     $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                     $error = TRUE;
                     var_dump($curl_str);
-                    var_dump("Error in do_follow_unfollow_work!!!");
+                    var_dump("Error in do_follow_unfollow_work!!! unfollow");
                 } else if (is_object($json_response) && $json_response->status == 'ok') { // if unfollowed 
                     $Profile->unfollowed = TRUE;
                     var_dump($json_response);
@@ -195,13 +195,16 @@ namespace follows\cls {
                             if (!$followed_in_db && !$following_me /*&& $valid_profile*/) { // Si no lo he seguido en BD y no me está siguiendo
                                 // Do follow request
                                 echo "FOLLOWING <br>\n";
-                                $json_response2 = $this->make_insta_friendships_command($login_data, $Profile->id, 'follow', 'web/friendships', $Client);
+                                $curl_str = "";
+                                $json_response2 = $this->make_insta_friendships_command($login_data, $Profile->id, 'follow', 'web/friendships', $Client, $curl_str);
                                 if ($json_response2 === NULL) {
                                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                                     $this->DB->set_client_cookies($daily_work->client_id);
                                     $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
                                     $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                                     $error = TRUE;
+                                    var_dump($curl_str);
+                                    var_dump("Error in do_follow_unfollow_work!!! follow");
                                 }
                                 //if ($daily_work->like_first && count($Profile_data->user->media->nodes)) {
 //                                    $json_response_like = $this->make_insta_friendships_command($login_data, $Profile_data->user->media->nodes[0]->id, 'like', 'web/likes');
