@@ -10,29 +10,14 @@ class Welcome extends CI_Controller {
     public $language =NULL;
        
     
-    public function test(){
-
-        $this->load->model('class/system_config'); 
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-//        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
-//        
-//        $this->load->library('external_services'); 
-//        $a = $this->external_services->bot_login('josergm86','josergm2',FALSE);
-        
-//        $a = $this->is_insta_user('josergm86','josergm2',FALSE);
-//        
-//        var_dump($a);
-        
-        $this->load->library('Gmail'); 
-        
-        $this->gmail->send_link_ticket_bank_and_access_link(
-                    'Jose R',
-                    'josergm86@gmail.com',
-                    'www.link.accesso.com',
-                    'www.link.boleto.com');        
-        //$this->gmail->send_mail("josergm86@gmail.com", "Jose Ramon ",'eMAIL OK DESDE LIBRARIES ','DUMBU prepare daily work done!!! ');        
+    public function login_all_blocked_by_pass(){
+        $this->load->model('class/client_model');
+        $client = $this->client_model->get_all_clients_by_status_id(3);
+        foreach($client as $client){
+            
+        }
     }
-
+    
     public function encrypt_credit_card_datas() {
         $this->load->model('class/Crypt');
         $this->load->model('class/client_model');        
