@@ -17,7 +17,7 @@ ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 8024);
 
 
-//$GLOBALS['sistem_config'] = new follows\cls\system_config();
+$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
 $InstaAPI = new follows\cls\InstaAPI();
 
@@ -25,13 +25,15 @@ $InstaAPI = new follows\cls\InstaAPI();
 //$password = "alberto";
 //$username = "riveauxmerino";
 //$password = "Notredame88";
-$username = "alberto_dreyes";
-$password = "albertord9";
+//$username = "alberto_dreyes";
+//$password = "albertord9";
+//$username = "josergm86";
+//$password = "josergm2";
 //$username = "leticiajural";
 //$password = "estrelaguia";
-$result = $InstaAPI->login($username, $password);
-var_dump($result->Cookies);
-var_dump($result);
+//$result = $InstaAPI->login($username, $password);
+//var_dump($result->Cookies);
+//var_dump($result);
 
 //DEBIT CIELO
 /* $PaymentCielo = new \follows\cls\PaymentCielo();
@@ -335,6 +337,14 @@ $Robot = new follows\cls\Robot();
 //var_dump($result);
 //$result = $Robot->bot_login("tompsonr", "sorvete6969");
 //var_dump($result);
+
+$login_data = '{"sessionid":"IGSC082d84b611421f8d4fbd0fe846d66db5558aefb869cb32357e3522e7c2a8500f%3A2o250Oalxu2CXATAZyJ0ldPhQ1ePBVhf%3A%7B%22_auth_user_id%22%3A7711227104%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%227711227104%3AWbFy6MELlVU8a0bBd3vHWw0xpNUGMg3E%3Aa96185426c3446ae1d4944944f19c81cb8006374b8251b66acf04d970fa98f41%22%2C%22last_refreshed%22%3A1526520267.3385460377%7D","csrftoken":"jm6ckkGfMXx1hAuleiucWJ2Zf5yDxVZn","ds_user_id":"7711227104","mid":"WvzZyQABAAGmv0K2qPu-ZiLnjs9Z","json_response":{"status":"ok","authenticated":true}}';
+$login_data = GuzzleHttp\json_decode($login_data);
+//$userId = "3916799608";
+$userId = "175617464";
+$result = $Robot->get_insta_followers($login_data, $userId, 10);
+var_dump($result);
+
 //----------------------------------------------------------------
 //
 // WORKER
