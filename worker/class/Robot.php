@@ -2108,7 +2108,7 @@ namespace follows\cls {
             }
         }
 
-        function get_challenge_data($challenge, $login, $Client) {
+        function get_challenge_data($challenge, $login, $Client, $choice = 1) {
             //(new \follows\cls\Client())->set_client_cookies($Client->id, NULL);
             if (!$Client)
                 $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
@@ -2139,7 +2139,7 @@ namespace follows\cls {
             $headers[] = "X-Requested-With: XMLHttpRequest";
             $headers[] = "Cookie: csrftoken=$csrftoken; mid=$mid; rur=$rur; ig_vw=$ig_vw; ig_pr=$ig_pr; ig_vh=$ig_vh; ig_or=$ig_or";
             $headers[] = "Connection: keep-alive";
-            $postinfo = "choice=1";
+            $postinfo = "choice=$choice";
             
              curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
