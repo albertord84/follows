@@ -109,15 +109,18 @@ namespace follows\cls {
                 // Next profile to unfollow, not yet unfollwed
                 $Profile = array_shift($Followeds_to_unfollow);
                 $Profile->unfollowed = FALSE;
+                $curl_str = "";
                 $json_response = $this->make_insta_friendships_command(
-                        $login_data, $Profile->followed_id, 'unfollow', 'web/friendships', $Client
+                        $login_data, $Profile->followed_id, 'unfollow', 'web/friendships', $Client, $curl_str
                 );
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                     $this->DB->set_client_cookies($daily_work->client_id);
-                    $this->DB->set_client_status($daily_work->client_id, user_status::VERIFY_ACCOUNT);
-                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompletas");
+                    $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
+                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                     $error = TRUE;
+                    var_dump($curl_str);
+                    var_dump("Error in do_follow_unfollow_work!!!");
                 } else if (is_object($json_response) && $json_response->status == 'ok') { // if unfollowed 
                     $Profile->unfollowed = TRUE;
                     var_dump($json_response);
@@ -196,8 +199,8 @@ namespace follows\cls {
                                 if ($json_response2 === NULL) {
                                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                                     $this->DB->set_client_cookies($daily_work->client_id);
-                                    $this->DB->set_client_status($daily_work->client_id, user_status::VERIFY_ACCOUNT);
-                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompletas");
+                                    $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
+                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                                     $error = TRUE;
                                 }
                                 //if ($daily_work->like_first && count($Profile_data->user->media->nodes)) {
@@ -595,7 +598,7 @@ namespace follows\cls {
          * @param type $command {follow, unfollow, ... }
          * @return type
          */
-        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL) {
+        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL, &$curl_str) {
             $ip = NULL;
             $ip_count = -1;
             $size = count($this->IPS['IPS']);
