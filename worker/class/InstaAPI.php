@@ -39,6 +39,7 @@ namespace follows\cls {
 //                $ig->setOutputInterface("191.252.110.140");
                 
 //                $ig->setProxy(['proxy'=>'tcp://70.39.250.32:23128']);
+                $ig->setProxy('http://albertreye9917:3r4rcz0b1v@207.188.155.18:21316');
 
                 $loginResponse = $ig->login($username, $password);
                 

@@ -1,6 +1,5 @@
 <?PHP
 
-
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';
@@ -18,21 +17,21 @@ ini_set('xdebug.var_display_max_children', 256);
 ini_set('xdebug.var_display_max_data', 8024);
 
 
-$GLOBALS['sistem_config'] = new follows\cls\system_config();
+//$GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$InstaAPI = new \follows\cls\InstaAPI();
+$InstaAPI = new follows\cls\InstaAPI();
 
 //$username = "alberto_test";
 //$password = "alberto";
 //$username = "riveauxmerino";
 //$password = "Notredame88";
-//$username = "alberto_dreyes";
-//$password = "albertord8";
+$username = "alberto_dreyes";
+$password = "albertord9";
 //$username = "leticiajural";
 //$password = "estrelaguia";
-//$result = $InstaAPI->login($username, $password);
-//var_dump($result->Cookies);
-//var_dump($result);
+$result = $InstaAPI->login($username, $password);
+var_dump($result->Cookies);
+var_dump($result);
 
 //DEBIT CIELO
 /* $PaymentCielo = new \follows\cls\PaymentCielo();
@@ -75,9 +74,9 @@ $RP = new \follows\cls\Reference_profile();
 
 
 $DB = new \follows\cls\DB();
-$result = $DB->Increase_Client_Last_Access(1, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS + 1);
+//$result = $DB->Increase_Client_Last_Access(1, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS + 1);
 //$result = $DB->is_profile_followed(1, '858888048');
-var_dump($result);
+//var_dump($result);
 //$DB->delete_daily_work_client(13);
 //$daily_work = $DB->get_follow_work();
 //$daily_work->login_data = json_decode($daily_work->cookies);
@@ -186,7 +185,7 @@ $Payment = new follows\cls\Payment();
 ////$resul = $Payment->create_recurrency_payment($payment_data, 0, 42);
 ////var_dump($resul);
 
-var_dump($pay_day);
+//var_dump($pay_day);
 
 //////----------------------------------------------------------------
 //$result = $Payment->check_payment(NULL);
