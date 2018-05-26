@@ -30,18 +30,18 @@ $result = new \stdClass();
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
-/*
-$Robot = new \follows\cls\Robot();
-//$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
-$Robot->make_checkpoint('riveauxmerino', 872305);
-//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-var_dump($res);
-*/
 
 $Robot = new \follows\cls\Robot();
+$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
+//$Robot->make_checkpoint('riveauxmerino', 872305);
+//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
+//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
+var_dump($res);
+
+/*
+$Robot = new \follows\cls\Robot();
 $result = $Robot->bot_login('drrbendoraytes', 'rb280875');
-var_dump($result);
+var_dump($result);*/
 /*
 $payment = new \Payment();
 $client = new \stdClass();
