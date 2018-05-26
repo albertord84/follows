@@ -962,7 +962,7 @@ namespace follows\cls {
         
         public function get_insta_tagmedia($login_data, $tag, $N, &$cursor = NULL) {
             try {
-                $tag_query = '298b92c8d7cad703f7565aa892ede943';
+                $tag_query = 'ded47faa9a1aaded10161a2ff32abb6b';
                 $variables = "{\"tag_name\":\"$tag\",\"first\":2,\"after\":\"$cursor\"}";
                 $curl_str = $this->make_curl_followers_query($tag_query, $variables);
                 if ($curl_str === NULL)
