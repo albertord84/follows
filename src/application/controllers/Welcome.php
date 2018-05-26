@@ -14,7 +14,14 @@ class Welcome extends CI_Controller {
         $this->load->model('class/client_model');
         $client = $this->client_model->get_all_clients_by_status_id(3);
         foreach($client as $client){
-            
+            $datas['user_login']= $client['login'];
+            $datas['user_pass']= $client['pass'];
+            $datas['force_login']==false;
+            $result =  $this->user_do_login($datas);
+            if($result['authenticated'])
+               echo $client['login'].'authenticated and it is in ACTIVE status<br>';
+            else
+               echo $client['login'].'NOT authenticated by '. $result['cause']. 'cause<br>';
         }
     }
     
@@ -308,7 +315,7 @@ class Welcome extends CI_Controller {
 
         $query = "SELECT * FROM users WHERE "
                   ."login= '".$datas['user_login']."' and pass = '".$datas['user_pass']."' and role_id = '".user_role::CLIENT."'";
-        $real_status = $this->get_real_status_of_user($query);
+        $real_status = $this->get_real_status_of_user($query,$user,$index);
 
         if($real_status==2 || $datas['force_login']=='true'){
             $result = $this->user_do_login_second_stage($datas,$GLOBALS['language']);                
@@ -330,7 +337,7 @@ class Welcome extends CI_Controller {
             return $result;
     }
 
-    public function get_real_status_of_user($query){         
+    public function get_real_status_of_user($query,&$user,&$index){         
         $this->is_ip_hacker();
         $this->load->model('class/user_status');
         $this->load->model('class/user_model');            
@@ -366,7 +373,7 @@ class Welcome extends CI_Controller {
         $this->load->model('class/user_model');
         $this->load->model('class/client_model');
         $this->load->model('class/user_role');
-        $this->load->model('class/user_status');        
+        $this->load->model('class/user_status');
                 
         ($datas['force_login']=='true')? $force_login=TRUE :$force_login=FALSE;
         $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $force_login);
@@ -384,23 +391,23 @@ class Welcome extends CI_Controller {
             //Is a DUMBU Client by Insta ds_user_id?
             $query = 'SELECT * FROM users,clients' .
                     ' WHERE clients.insta_id="' . $data_insta['insta_id'] . '" AND clients.user_id=users.id';
-            $user = $this->user_model->execute_sql_query($query);
-
-            $N = count($user);
-            $real_status = 0; //No existe, eliminado o inactivo
-            $index = 0;
-            for ($i = 0; $i < $N; $i++) {
-                if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                    $real_status = 1; //Beginner
-                    $index = $i;
-                    break;
-                } else
-                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                    $real_status = 2; //cualquier otro estado
-                    $index = $i;
-                    break;
-                }
-            }
+            $real_status = $this->get_real_status_of_user($query,$user,$index);
+//            $user = $this->user_model->execute_sql_query($query);
+//            $N = count($user);
+//            $real_status = 0; //No existe, eliminado o inactivo
+//            $index = 0;
+//            for ($i = 0; $i < $N; $i++) {
+//                if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                    $real_status = 1; //Beginner
+//                    $index = $i;
+//                    break;
+//                } else
+//                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                    $real_status = 2; //cualquier otro estado
+//                    $index = $i;
+//                    break;
+//                }
+//            }
             if ($real_status > 1) {
                 $st = (int) $user[$index]['status_id'];
                 if ($st == user_status::BLOCKED_BY_INSTA || $st == user_status::VERIFY_ACCOUNT) {
@@ -408,7 +415,7 @@ class Welcome extends CI_Controller {
                         'name' => $data_insta['insta_name'],
                         'login' => $datas['user_login'],
                         'pass' => $datas['user_pass'],
-                        'status_id' => user_status::ACTIVE));                                                        
+                        'status_id' => user_status::ACTIVE));                                                     
                     if ($data_insta['insta_login_response']) {
 //                                $this->client_model->update_client($user[$index]['id'], array(
 //                                    'cookies' => json_encode($data_insta['insta_login_response'])));
@@ -527,22 +534,23 @@ class Welcome extends CI_Controller {
                     ' WHERE users.login="' . $datas['user_login'] .
                     '" AND users.pass="' . $datas['user_pass'] .
                     '" AND users.role_id="' . user_role::CLIENT . '"';
-            $user = $this->user_model->execute_sql_query($query);
-            $N = count($user);
-            $real_status = 0; //No existe, eliminado o inactivo
-            $index = 0;
-            for ($i = 0; $i < $N; $i++) {
-                if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                    $real_status = 1; //Beginner
-                    $index = $i;
-                    break;
-                } else
-                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                    $real_status = 2; //cualquier otro estado
-                    $index = $i;
-                    break;
-                }
-            }
+            $real_status = $this->get_real_status_of_user($query,$user,$index);
+//            $user = $this->user_model->execute_sql_query($query);
+//            $N = count($user);
+//            $real_status = 0; //No existe, eliminado o inactivo
+//            $index = 0;
+//            for ($i = 0; $i < $N; $i++) {
+//                if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                    $real_status = 1; //Beginner
+//                    $index = $i;
+//                    break;
+//                } else
+//                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                    $real_status = 2; //cualquier otro estado
+//                    $index = $i;
+//                    break;
+//                }
+//            }
             if ($real_status > 0) {
                 if ($user[$index]['status_id'] != user_status::DELETED && $user[$index]['status_id'] != user_status::INACTIVE) {
                     /*$result['resource'] = 'index';
@@ -567,22 +575,23 @@ class Welcome extends CI_Controller {
                 if ($data_profile) {
                     $query = 'SELECT * FROM users,clients' .
                             ' WHERE clients.insta_id="' . $data_profile->pk . '" AND clients.user_id=users.id';
-                    $user = $this->user_model->execute_sql_query($query);
-                    $N = count($user);
-                    $real_status = 0; //No existe, eliminado o inactivo
-                    $index = 0;
-                    for ($i = 0; $i < $N; $i++) {
-                        if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                            $real_status = 1; //Beginner
-                            $index = $i;
-                            break;
-                        } else
-                        if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                            $real_status = 2; //cualquier otro estado
-                            $index = $i;
-                            break;
-                        }
-                    }
+                    $real_status = $this->get_real_status_of_user($query,$user,$index);
+//                    $user = $this->user_model->execute_sql_query($query);
+//                    $N = count($user);
+//                    $real_status = 0; //No existe, eliminado o inactivo
+//                    $index = 0;
+//                    for ($i = 0; $i < $N; $i++) {
+//                        if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                            $real_status = 1; //Beginner
+//                            $index = $i;
+//                            break;
+//                        } else
+//                        if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                            $real_status = 2; //cualquier otro estado
+//                            $index = $i;
+//                            break;
+//                        }
+//                    }
                     if ($real_status > 0) {
                         //perfil exite en instagram y en la base de datos, senha incorrecta           
                         /*$result['message'] = $this->T('Senha incorreta!. Entre com sua senha de Instagram.', array(), $GLOBALS['language']);
@@ -614,22 +623,23 @@ class Welcome extends CI_Controller {
             $data_profile = $this->check_insta_profile($datas['user_login']);
             $query = 'SELECT * FROM users,clients' .
                     ' WHERE clients.insta_id="' . $data_profile->pk . '" AND clients.user_id=users.id';
-            $user = $this->user_model->execute_sql_query($query);
-            $N = count($user);
-            $real_status = 0; //No existe, eliminado o inactivo
-            $index = 0;
-            for ($i = 0; $i < $N; $i++) {
-                if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                    $real_status = 1; //Beginner
-                    $index = $i;
-                    break;
-                } else
-                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                    $real_status = 2; //cualquier otro estado
-                    $index = $i;
-                    break;
-                }
-            }
+//            $user = $this->user_model->execute_sql_query($query);
+            $real_status = $this->get_real_status_of_user($query,$user,$index);
+//            $N = count($user);
+//            $real_status = 0; //No existe, eliminado o inactivo
+//            $index = 0;
+//            for ($i = 0; $i < $N; $i++) {
+//                if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                    $real_status = 1; //Beginner
+//                    $index = $i;
+//                    break;
+//                } else
+//                if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                    $real_status = 2; //cualquier otro estado
+//                    $index = $i;
+//                    break;
+//                }
+//            }
             if ($real_status == 2) {
                 $status_id = $user[$index]['status_id'];
                 if ($user[$index]['status_id'] != user_status::BLOCKED_BY_PAYMENT && $user[$index]['status_id'] != user_status::PENDING) {
@@ -671,22 +681,23 @@ class Welcome extends CI_Controller {
                 $data_profile = $this->check_insta_profile($datas['user_login']);
                 $query = 'SELECT * FROM users,clients' .
                         ' WHERE clients.insta_id="' . $data_profile->pk . '" AND clients.user_id=users.id';
-                $user = $this->user_model->execute_sql_query($query);
-                $N = count($user);
-                $real_status = 0; //No existe, eliminado o inactivo
-                $index = 0;
-                for ($i = 0; $i < $N; $i++) {
-                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                        $real_status = 1; //Beginner
-                        $index = $i;
-                        break;
-                    } else
-                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                        $real_status = 2; //cualquier otro estado
-                        $index = $i;
-                        break;
-                    }
-                }
+                $real_status = $this->get_real_status_of_user($query,$user,$index);
+//                $user = $this->user_model->execute_sql_query($query);
+//                $N = count($user);
+//                $real_status = 0; //No existe, eliminado o inactivo
+//                $index = 0;
+//                for ($i = 0; $i < $N; $i++) {
+//                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                        $real_status = 1; //Beginner
+//                        $index = $i;
+//                        break;
+//                    } else
+//                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                        $real_status = 2; //cualquier otro estado
+//                        $index = $i;
+//                        break;
+//                    }
+//                }
                 if ($real_status == 2) {
                     $status_id = $user[$index]['status_id'];
                     if ($user[$index]['status_id'] != user_status::BLOCKED_BY_PAYMENT && $user[$index]['status_id'] != user_status::PENDING) {
@@ -722,22 +733,23 @@ class Welcome extends CI_Controller {
                 $data_profile = $this->check_insta_profile($datas['user_login']);
                 $query = 'SELECT * FROM users,clients' .
                         ' WHERE clients.insta_id="' . $data_profile->pk . '" AND clients.user_id=users.id';
-                $user = $this->user_model->execute_sql_query($query);
-                $N = count($user);
-                $real_status = 0; //No existe, eliminado o inactivo
-                $index = 0;
-                for ($i = 0; $i < $N; $i++) {
-                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                        $real_status = 1; //Beginner
-                        $index = $i;
-                        break;
-                    } else
-                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                        $real_status = 2; //cualquier otro estado
-                        $index = $i;
-                        break;
-                    }
-                }
+                $real_status = $this->get_real_status_of_user($query,$user,$index);
+//                $user = $this->user_model->execute_sql_query($query);
+//                $N = count($user);
+//                $real_status = 0; //No existe, eliminado o inactivo
+//                $index = 0;
+//                for ($i = 0; $i < $N; $i++) {
+//                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                        $real_status = 1; //Beginner
+//                        $index = $i;
+//                        break;
+//                    } else
+//                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                        $real_status = 2; //cualquier otro estado
+//                        $index = $i;
+//                        break;
+//                    }
+//                }
                 if ($real_status == 2) {
                     $status_id = $user[$index]['status_id'];
                     if ($user[$index]['status_id'] != user_status::BLOCKED_BY_PAYMENT && $user[$index]['status_id'] != user_status::PENDING) {
@@ -773,22 +785,23 @@ class Welcome extends CI_Controller {
                 $data_profile = $this->check_insta_profile($datas['user_login']);
                 $query = 'SELECT * FROM users,clients' .
                         ' WHERE clients.insta_id="' . $data_profile->pk . '" AND clients.user_id=users.id';
-                $user = $this->user_model->execute_sql_query($query);
-                $N = count($user);
-                $real_status = 0; //No existe, eliminado o inactivo
-                $index = 0;
-                for ($i = 0; $i < $N; $i++) {
-                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
-                        $real_status = 1; //Beginner
-                        $index = $i;
-                        break;
-                    } else
-                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
-                        $real_status = 2; //cualquier otro estado
-                        $index = $i;
-                        break;
-                    }
-                }
+                $real_status = $this->get_real_status_of_user($query,$user,$index);
+//                $user = $this->user_model->execute_sql_query($query);
+//                $N = count($user);
+//                $real_status = 0; //No existe, eliminado o inactivo
+//                $index = 0;
+//                for ($i = 0; $i < $N; $i++) {
+//                    if ($user[$i]['status_id'] == user_status::BEGINNER) {
+//                        $real_status = 1; //Beginner
+//                        $index = $i;
+//                        break;
+//                    } else
+//                    if ($user[$i]['status_id'] != user_status::DELETED && $user[$i]['status_id'] != user_status::INACTIVE) {
+//                        $real_status = 2; //cualquier otro estado
+//                        $index = $i;
+//                        break;
+//                    }
+//                }
                 if ($real_status == 2) {
                     $status_id = $user[$index]['status_id'];
                     if ($user[$index]['status_id'] != user_status::BLOCKED_BY_PAYMENT && $user[$index]['status_id'] != user_status::PENDING) {
@@ -2564,59 +2577,37 @@ class Welcome extends CI_Controller {
     public function is_insta_user($client_login, $client_pass, $force_login) {
         $this->is_ip_hacker();
         $data_insta = NULL;
-        
-        //antes
-//        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-//        $this->Robot = new \follows\cls\Robot();
-        //ahora
         $this->load->model('class/system_config'); 
         $GLOBALS['sistem_config'] = $this->system_config->load();        
         $this->load->library('external_services'); 
-        
-        //antes
-        //$login_data = $this->Robot->bot_login($client_login, $client_pass,$force_login);
-        //ahora
         $login_data = $this->external_services->bot_login($client_login, $client_pass,$force_login);        
         
-        if (isset($login_data->json_response->status) && $login_data->json_response->status === "ok") {
+        if(isset($login_data->json_response->status) && $login_data->json_response->status === "ok") {
             $data_insta['status'] = $login_data->json_response->status;
             if($login_data->json_response->authenticated) {
                 $data_insta['authenticated'] = true;
                 $data_insta['insta_id'] = $login_data->ds_user_id;
-                
-                //antes
-                //$user_data = $this->Robot->get_insta_ref_prof_data_from_client($login_data,$client_login);
-                //ahora
                 $user_data = $login_data = $this->external_services->get_insta_ref_prof_data_from_client($login_data,$client_login);
                 if($data_insta && isset($user_data->follower_count))
                     $data_insta['insta_followers_ini'] = $user_data->follower_count;
                 else
-                    $data_insta['insta_followers_ini'] = 'Access denied';
-                
+                    $data_insta['insta_followers_ini'] = 'Access denied';                
                 if($data_insta && isset($user_data->following))
                     $data_insta['insta_following'] = $user_data->following;
                 else
-                    $data_insta['insta_following'] = 'Access denied';
-                
+                    $data_insta['insta_following'] = 'Access denied';                
                 if($data_insta && isset($user_data->full_name))
                     $data_insta['insta_name']=$user_data->full_name;
                 else
-                    $data_insta['insta_name']='Access denied';
-                
+                    $data_insta['insta_name']='Access denied';                
                 if(is_object($login_data))
                     $data_insta['insta_login_response'] = $login_data;
                 else
                     $data_insta['insta_login_response'] = NULL;
             } else {
                 $data_insta['authenticated'] = false;
-                if($login_data->message=='checkpoint_required')
-                    $data_insta['authenticated'] = true;
-                
-                if($login_data->json_response->message) {
-                    $data_insta['message'] = $login_data->json_response->message;
-                    
-                    if ($login_data->json_response->message === "checkpoint_required") {
-                    $data_insta['message'] = $login_data->json_response->message;
+                $data_insta['message'] = $login_data->json_response->message;                    
+                if ($login_data->json_response->message === "checkpoint_required") {
                     if(strpos($login_data->json_response->verify_link,'challenge'))
                         $data_insta['verify_account_url'] = 'https://www.instagram.com'.$login_data->json_response->verify_link;
                     else
@@ -2624,21 +2615,19 @@ class Welcome extends CI_Controller {
                         $data_insta['verify_account_url'] =$login_data->json_response->verify_link;
                     else
                         $data_insta['verify_account_url'] = $login_data->json_response->verify_link;
-                    
-                    } else
-                    if ($login_data->json_response->message === "") {
-                        if (isset($login_data->json_response->phone_verification_settings) && is_object($login_data->json_response->phone_verification_settings)) {
-                            $data_insta['message'] = 'phone_verification_settings';
-                            $data_insta['obfuscated_phone_number'] = $login_data->json_response->two_factor_info->obfuscated_phone_number;
-                        } else {
-                            $data_insta['message'] = 'empty_message';
-                            $data_insta['cause'] = 'empty_message';
-                        }
-                    } else 
-                    if ($login_data->json_response->message !== "incorrect_password") { 
-                        $data_insta['message'] = 'unknow_message';
-                        $data_insta['unknow_message'] = $login_data->json_response->message;
+                } else
+                if ($login_data->json_response->message === "") {
+                    if (isset($login_data->json_response->phone_verification_settings) && is_object($login_data->json_response->phone_verification_settings)) {
+                        $data_insta['message'] = 'phone_verification_settings';
+                        $data_insta['obfuscated_phone_number'] = $login_data->json_response->two_factor_info->obfuscated_phone_number;
+                    } else {
+                        $data_insta['message'] = 'empty_message';
+                        $data_insta['cause'] = 'empty_message';
                     }
+                } else 
+                if ($login_data->json_response->message !== "incorrect_password") { 
+                    $data_insta['message'] = 'unknow_message';
+                    $data_insta['unknow_message'] = $login_data->json_response->message;
                 }
             }
         } else {

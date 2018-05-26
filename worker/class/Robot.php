@@ -109,15 +109,18 @@ namespace follows\cls {
                 // Next profile to unfollow, not yet unfollwed
                 $Profile = array_shift($Followeds_to_unfollow);
                 $Profile->unfollowed = FALSE;
+                $curl_str = "";
                 $json_response = $this->make_insta_friendships_command(
-                        $login_data, $Profile->followed_id, 'unfollow', 'web/friendships', $Client
+                        $login_data, $Profile->followed_id, 'unfollow', 'web/friendships', $Client, $curl_str
                 );
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                     $this->DB->set_client_cookies($daily_work->client_id);
-                    $this->DB->set_client_status($daily_work->client_id, user_status::VERIFY_ACCOUNT);
-                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompletas");
+                    $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
+                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                     $error = TRUE;
+                    var_dump($curl_str);
+                    var_dump("Error in do_follow_unfollow_work!!! unfollow");
                 } else if (is_object($json_response) && $json_response->status == 'ok') { // if unfollowed 
                     $Profile->unfollowed = TRUE;
                     var_dump($json_response);
@@ -192,13 +195,16 @@ namespace follows\cls {
                             if (!$followed_in_db && !$following_me /*&& $valid_profile*/) { // Si no lo he seguido en BD y no me está siguiendo
                                 // Do follow request
                                 echo "FOLLOWING <br>\n";
-                                $json_response2 = $this->make_insta_friendships_command($login_data, $Profile->id, 'follow', 'web/friendships', $Client);
+                                $curl_str = "";
+                                $json_response2 = $this->make_insta_friendships_command($login_data, $Profile->id, 'follow', 'web/friendships', $Client, $curl_str);
                                 if ($json_response2 === NULL) {
                                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                                     $this->DB->set_client_cookies($daily_work->client_id);
-                                    $this->DB->set_client_status($daily_work->client_id, user_status::VERIFY_ACCOUNT);
-                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompletas");
+                                    $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
+                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
                                     $error = TRUE;
+                                    var_dump($curl_str);
+                                    var_dump("Error in do_follow_unfollow_work!!! follow");
                                 }
                                 //if ($daily_work->like_first && count($Profile_data->user->media->nodes)) {
 //                                    $json_response_like = $this->make_insta_friendships_command($login_data, $Profile_data->user->media->nodes[0]->id, 'like', 'web/likes');
@@ -595,7 +601,7 @@ namespace follows\cls {
          * @param type $command {follow, unfollow, ... }
          * @return type
          */
-        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL) {
+        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL, &$curl_str) {
             $ip = NULL;
             $ip_count = -1;
             $size = count($this->IPS['IPS']);
@@ -2108,7 +2114,7 @@ namespace follows\cls {
             }
         }
 
-        function get_challenge_data($challenge, $login, $Client) {
+        function get_challenge_data($challenge, $login, $Client, $choice = 1) {
             //(new \follows\cls\Client())->set_client_cookies($Client->id, NULL);
             if (!$Client)
                 $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
@@ -2139,7 +2145,7 @@ namespace follows\cls {
             $headers[] = "X-Requested-With: XMLHttpRequest";
             $headers[] = "Cookie: csrftoken=$csrftoken; mid=$mid; rur=$rur; ig_vw=$ig_vw; ig_pr=$ig_pr; ig_vh=$ig_vh; ig_or=$ig_or";
             $headers[] = "Connection: keep-alive";
-            $postinfo = "choice=1";
+            $postinfo = "choice=$choice";
             
              curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
