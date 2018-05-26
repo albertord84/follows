@@ -236,7 +236,7 @@ $Robot = new \follows\cls\Robot();
 //    $result = $Robot->follow_me_myself(json_decode($client->cookies));
 //    var_dump($result);
 //}
-//$client = $Client->get_client(1);
+//$client = $Client->get_client(29023);
 //$profile = $Robot->get_insta_ref_prof_data('teatro-popular-oscar-niemeyer');
 //$profile = $Robot->get_insta_ref_prof_data_from_client(json_decode($client->cookies), "caminho-niemeyer");
 //$profiles = $Robot->get_insta_followers(json_decode($client->cookies), '5445947882', 2);
@@ -338,19 +338,19 @@ $Robot = new follows\cls\Robot();
 //$result = $Robot->bot_login("tompsonr", "sorvete6969");
 //var_dump($result);
 
-$login_data = '{"sessionid":"IGSC082d84b611421f8d4fbd0fe846d66db5558aefb869cb32357e3522e7c2a8500f%3A2o250Oalxu2CXATAZyJ0ldPhQ1ePBVhf%3A%7B%22_auth_user_id%22%3A7711227104%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%227711227104%3AWbFy6MELlVU8a0bBd3vHWw0xpNUGMg3E%3Aa96185426c3446ae1d4944944f19c81cb8006374b8251b66acf04d970fa98f41%22%2C%22last_refreshed%22%3A1526520267.3385460377%7D","csrftoken":"jm6ckkGfMXx1hAuleiucWJ2Zf5yDxVZn","ds_user_id":"7711227104","mid":"WvzZyQABAAGmv0K2qPu-ZiLnjs9Z","json_response":{"status":"ok","authenticated":true}}';
-$login_data = GuzzleHttp\json_decode($login_data);
+//$login_data = '{"sessionid":"IGSC082d84b611421f8d4fbd0fe846d66db5558aefb869cb32357e3522e7c2a8500f%3A2o250Oalxu2CXATAZyJ0ldPhQ1ePBVhf%3A%7B%22_auth_user_id%22%3A7711227104%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%227711227104%3AWbFy6MELlVU8a0bBd3vHWw0xpNUGMg3E%3Aa96185426c3446ae1d4944944f19c81cb8006374b8251b66acf04d970fa98f41%22%2C%22last_refreshed%22%3A1526520267.3385460377%7D","csrftoken":"jm6ckkGfMXx1hAuleiucWJ2Zf5yDxVZn","ds_user_id":"7711227104","mid":"WvzZyQABAAGmv0K2qPu-ZiLnjs9Z","json_response":{"status":"ok","authenticated":true}}';
+//$login_data = GuzzleHttp\json_decode($login_data);
 //$userId = "3916799608";
-$userId = "175617464";
-$result = $Robot->get_insta_followers($login_data, $userId, 10);
-var_dump($result);
+//$userId = "175617464";
+//$result = $Robot->get_insta_followers($login_data, $userId, 10);
+//var_dump($result);
 
 //----------------------------------------------------------------
 //
 // WORKER
 $Worker = new follows\cls\Worker();
-//$daily_work = $Worker->get_work_by_id(2);
-////$Worker->do_follow_unfollow_work($daily_work);
+$daily_work = $Worker->get_work_by_id(44870);
+$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;
 //var_dump($daily_work->rp_insta_id);
 //$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
