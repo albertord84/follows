@@ -5,6 +5,7 @@ namespace InstagramAPI\Media\Video;
 use InstagramAPI\Media\ConstraintsInterface;
 use InstagramAPI\Media\MediaDetails;
 use InstagramAPI\Utils;
+use Winbox\Args;
 
 class VideoDetails extends MediaDetails
 {
@@ -144,11 +145,15 @@ class VideoDetails extends MediaDetails
         // The user must have FFprobe.
         $ffprobe = Utils::checkFFPROBE();
         if ($ffprobe === false) {
-            throw new \RuntimeException('You must have FFprobe to analyze video details.');
+            throw new \RuntimeException('You must have FFprobe to analyze video details. Ensure that its binary-folder exists in your PATH environment variable, or manually set its full path via "\InstagramAPI\Utils::$ffprobeBin = \'/home/exampleuser/ffmpeg/bin/ffprobe\';" at the start of your script.');
         }
 
         // Load with FFPROBE. Shows details as JSON and exits.
-        $command = escapeshellarg($ffprobe).' -v quiet -print_format json -show_format -show_streams '.escapeshellarg($filename);
+        $command = sprintf(
+            '%s -v quiet -print_format json -show_format -show_streams %s',
+            Args::escape($ffprobe),
+            Args::escape($filename)
+        );
         $jsonInfo = @shell_exec($command);
 
         // Check for processing errors.

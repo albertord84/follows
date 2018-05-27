@@ -16,9 +16,9 @@ class InstagramThumbnail extends InstagramVideo
     /**
      * Constructor.
      *
-     * @param string             $inputFile     Path to an input file.
-     * @param array              $options       An associative array of optional parameters.
-     * @param FFmpegWrapper|null $ffmpegWrapper Custom FFmpeg wrapper.
+     * @param string      $inputFile Path to an input file.
+     * @param array       $options   An associative array of optional parameters.
+     * @param FFmpeg|null $ffmpeg    Custom FFmpeg wrapper.
      *
      * @throws \InvalidArgumentException
      * @throws \RuntimeException
@@ -28,9 +28,9 @@ class InstagramThumbnail extends InstagramVideo
     public function __construct(
         $inputFile,
         array $options = [],
-        FFmpegWrapper $ffmpegWrapper = null)
+        FFmpeg $ffmpeg = null)
     {
-        parent::__construct($inputFile, $options, $ffmpegWrapper);
+        parent::__construct($inputFile, $options, $ffmpeg);
 
         // The timeline and most feeds have the thumbnail at "00:00:01.000".
         $this->_thumbnailTimestamp = 1.0; // Default.
@@ -109,7 +109,9 @@ class InstagramThumbnail extends InstagramVideo
         // the file, and thus extracting a garbage / empty / broken frame and
         // showing this error. The solution is to omit the `-ss` timestamp for
         // such files to automatically make ffmpeg extract the 1st VALID frame.
-        if ($attempt === 1) {
+        // NOTE: We'll only need to retry if timestamp is over 0.0. If it was
+        // zero, then we already executed without `-ss` and shouldn't retry.
+        if ($attempt === 1 && $this->_thumbnailTimestamp > 0.0) {
             foreach ($ffmpegOutput as $line) {
                 // Example: `[flv @ 0x7fc9cc002e00] warning: first frame is no keyframe`.
                 if (strpos($line, ': first frame is no keyframe') !== false) {
@@ -132,7 +134,9 @@ class InstagramThumbnail extends InstagramVideo
         // See: https://trac.ffmpeg.org/wiki/Seeking
         // IMPORTANT: WE ONLY APPLY THE SEEK-COMMAND ON THE *FIRST* ATTEMPT. SEE
         // COMMENTS IN `_ffmpegMustRunAgain()` FOR MORE INFORMATION ABOUT WHY.
-        return $attempt > 1
+        // AND WE'LL OMIT SEEKING COMPLETELY IF IT'S "0.0" ("EARLIEST POSSIBLE"), TO
+        // GUARANTEE SUCCESS AT GRABBING THE "EARLIEST FRAME" W/O NEEDING RETRIES.
+        return $attempt > 1 || $this->_thumbnailTimestamp === 0.0
             ? []
             : [
                 sprintf('-ss %s', $this->getTimestampString()),

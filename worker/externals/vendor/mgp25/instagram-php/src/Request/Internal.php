@@ -13,7 +13,7 @@ use InstagramAPI\Exception\NetworkException;
 use InstagramAPI\Exception\ThrottledException;
 use InstagramAPI\Exception\UploadFailedException;
 use InstagramAPI\Media\MediaDetails;
-use InstagramAPI\Media\Video\FFmpegWrapper;
+use InstagramAPI\Media\Video\FFmpeg;
 use InstagramAPI\Media\Video\InstagramThumbnail;
 use InstagramAPI\Media\Video\VideoDetails;
 use InstagramAPI\Request;
@@ -21,6 +21,7 @@ use InstagramAPI\Request\Metadata\Internal as InternalMetadata;
 use InstagramAPI\Response;
 use InstagramAPI\Signatures;
 use InstagramAPI\Utils;
+use Winbox\Args;
 use function GuzzleHttp\Psr7\stream_for;
 
 /**
@@ -1842,16 +1843,9 @@ class Internal extends RequestCollection
         $targetFeed,
         InternalMetadata $internalMetadata)
     {
-        // escapeshellarg() on Windows does some strange replacements,
-        // so it is better to disable the segmented uploader there,
-        // since we have the resumable uploader as a fallback.
-        if (defined('PHP_WINDOWS_VERSION_MAJOR')) {
-            return false;
-        }
-
         // We need to have ffmpeg to segment the video.
         try {
-            Utils::getFFmpegWrapper()->version();
+            FFmpeg::factory();
         } catch (\Exception $e) {
             return false;
         }
@@ -2023,9 +2017,9 @@ class Internal extends RequestCollection
     /**
      * Split the video file into segments.
      *
-     * @param VideoDetails       $videoDetails
-     * @param FFmpegWrapper|null $ffMpegWrapper
-     * @param string|null        $outputDirectory
+     * @param VideoDetails $videoDetails
+     * @param FFmpeg|null  $ffmpeg
+     * @param string|null  $outputDirectory
      *
      * @throws \Exception
      *
@@ -2033,11 +2027,11 @@ class Internal extends RequestCollection
      */
     protected function _splitVideoIntoSegments(
         VideoDetails $videoDetails,
-        FFmpegWrapper $ffMpegWrapper = null,
+        FFmpeg $ffmpeg = null,
         $outputDirectory = null)
     {
-        if ($ffMpegWrapper === null) {
-            $ffMpegWrapper = Utils::getFFmpegWrapper();
+        if ($ffmpeg === null) {
+            $ffmpeg = FFmpeg::factory();
         }
         if ($outputDirectory === null) {
             $outputDirectory = Utils::$defaultTmpPath === null ? sys_get_temp_dir() : Utils::$defaultTmpPath;
@@ -2057,15 +2051,15 @@ class Internal extends RequestCollection
 
         try {
             // Split the video stream into a multiple segments by time.
-            $ffMpegWrapper->run(sprintf(
+            $ffmpeg->run(sprintf(
                 '-i %s -c:v copy -an -dn -sn -f segment -segment_time %d -segment_format mp4 %s',
-                escapeshellarg($videoDetails->getFilename()),
+                Args::escape($videoDetails->getFilename()),
                 (int) $this->ig->getExperimentParam(
                     'ig_android_video_segmented_upload_universe',
                     'segment_duration_sec',
                     5
                 ),
-                escapeshellarg(sprintf(
+                Args::escape(sprintf(
                     '%s%s%s_0video.%%03d.mp4',
                     $outputDirectory,
                     DIRECTORY_SEPARATOR,
@@ -2073,17 +2067,19 @@ class Internal extends RequestCollection
                 ))
             ));
 
-            // Save the audio stream in one segment.
-            $ffMpegWrapper->run(sprintf(
-                '-i %s -c:a copy -vn -dn -sn -f mp4 %s',
-                escapeshellarg($videoDetails->getFilename()),
-                escapeshellarg(sprintf(
-                    '%s%s%s_1audio.000.mp4',
-                    $outputDirectory,
-                    DIRECTORY_SEPARATOR,
-                    $prefix
-                ))
-            ));
+            if ($videoDetails->getAudioCodec() !== null) {
+                // Save the audio stream in one segment.
+                $ffmpeg->run(sprintf(
+                    '-i %s -c:a copy -vn -dn -sn -f mp4 %s',
+                    Args::escape($videoDetails->getFilename()),
+                    Args::escape(sprintf(
+                        '%s%s%s_1audio.000.mp4',
+                        $outputDirectory,
+                        DIRECTORY_SEPARATOR,
+                        $prefix
+                    ))
+                ));
+            }
         } catch (\RuntimeException $e) {
             // Find and remove all segments (if any).
             $files = glob($pattern, GLOB_BRACE);

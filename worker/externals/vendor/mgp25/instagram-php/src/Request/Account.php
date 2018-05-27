@@ -2,6 +2,8 @@
 
 namespace InstagramAPI\Request;
 
+use InstagramAPI\Exception\InternalException;
+use InstagramAPI\Exception\SettingsException;
 use InstagramAPI\Response;
 
 /**
@@ -24,6 +26,42 @@ class Account extends RequestCollection
     {
         return $this->ig->request('accounts/current_user/')
             ->addParam('edit', true)
+            ->addPost('_uuid', $this->ig->uuid)
+            ->addPost('_uid', $this->ig->account_id)
+            ->addPost('_csrftoken', $this->ig->client->getToken())
+            ->getResponse(new Response\UserInfoResponse());
+    }
+
+    /**
+     * Edit your biography.
+     *
+     * You are able to add `@mentions` and `#hashtags` to your biography, but
+     * be aware that Instagram disallows certain web URLs and shorteners.
+     *
+     * Also keep in mind that anyone can read your biography (even if your
+     * account is private).
+     *
+     * WARNING: Remember to also call `editProfile()` *after* using this
+     * function, so that you act like the real app!
+     *
+     * @param string $biography Biography text. Use "" for nothing.
+     *
+     * @throws \InvalidArgumentException
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\UserInfoResponse
+     *
+     * @see Account::editProfile() should be called after this function!
+     */
+    public function setBiography(
+        $biography)
+    {
+        if (!is_string($biography) || strlen($biography) > 150) {
+            throw new InvalidArgumentException('Please provide a 0 to 150 character string as biography.');
+        }
+
+        return $this->ig->request('accounts/set_biography/')
+            ->addPost('raw_text', $biography)
             ->addPost('_uuid', $this->ig->uuid)
             ->addPost('_uid', $this->ig->account_id)
             ->addPost('_csrftoken', $this->ig->client->getToken())
@@ -63,14 +101,21 @@ class Account extends RequestCollection
         $newUsername = null)
     {
         // We must mark the profile for editing before doing the main request.
-        $this->ig->request('accounts/current_user/')
+        $userResponse = $this->ig->request('accounts/current_user/')
             ->addParam('edit', true)
             ->getResponse(new Response\UserInfoResponse());
+
+        // Get the current user's name from the response.
+        $currentUser = $userResponse->getUser();
+        if (!$currentUser || !is_string($currentUser->getUsername())) {
+            throw new InternalException('Unable to find current account username while preparing profile edit.');
+        }
+        $oldUsername = $currentUser->getUsername();
 
         // Determine the desired username value.
         $username = is_string($newUsername) && strlen($newUsername) > 0
                   ? $newUsername
-                  : $this->ig->username;
+                  : $oldUsername; // Keep current name.
 
         return $this->ig->request('accounts/edit_profile/')
             ->addPost('_uuid', $this->ig->uuid)
@@ -410,6 +455,51 @@ class Account extends RequestCollection
     }
 
     /**
+     * Request a new security code SMS for a Two Factor login account.
+     *
+     * NOTE: You should first attempt to `login()` which will automatically send
+     * you a two factor SMS. This function is just for asking for a new SMS if
+     * the old code has expired.
+     *
+     * NOTE: Instagram can only send you a new code every 60 seconds.
+     *
+     * @param string $username            Your Instagram username.
+     * @param string $twoFactorIdentifier Two factor identifier, obtained in
+     *                                    `login()` response.
+     *
+     * @throws \InstagramAPI\Exception\InstagramException
+     *
+     * @return \InstagramAPI\Response\TwoFactorLoginSMSResponse
+     */
+    public function sendTwoFactorLoginSMS(
+        $username,
+        $twoFactorIdentifier)
+    {
+        return $this->ig->request('accounts/send_two_factor_login_sms/')
+            ->addPost('two_factor_identifier', $twoFactorIdentifier)
+            ->addPost('username', $username)
+            ->addPost('device_id', $this->ig->device_id)
+            ->addPost('guid', $this->ig->uuid)
+            ->addPost('_csrftoken', $this->ig->client->getToken())
+            ->getResponse(new Response\TwoFactorLoginSMSResponse());
+    }
+
+    /**
+     * Save presence status to the storage.
+     *
+     * @param bool $disabled
+     */
+    protected function _savePresenceStatus(
+        $disabled)
+    {
+        try {
+            $this->ig->settings->set('presence_disabled', $disabled ? '1' : '0');
+        } catch (SettingsException $e) {
+            // Ignore storage errors.
+        }
+    }
+
+    /**
      * Get presence status.
      *
      * @throws \InstagramAPI\Exception\InstagramException
@@ -418,9 +508,14 @@ class Account extends RequestCollection
      */
     public function getPresenceStatus()
     {
-        return $this->ig->request('accounts/get_presence_disabled/')
+        /** @var Response\PresenceStatusResponse $result */
+        $result = $this->ig->request('accounts/get_presence_disabled/')
             ->setSignedGet(true)
             ->getResponse(new Response\PresenceStatusResponse());
+
+        $this->_savePresenceStatus($result->getDisabled());
+
+        return $result;
     }
 
     /**
@@ -435,12 +530,17 @@ class Account extends RequestCollection
      */
     public function enablePresence()
     {
-        return $this->ig->request('accounts/set_presence_disabled/')
+        /** @var Response\GenericResponse $result */
+        $result = $this->ig->request('accounts/set_presence_disabled/')
             ->addPost('_uuid', $this->ig->uuid)
             ->addPost('_uid', $this->ig->account_id)
             ->addPost('disabled', '0')
             ->addPost('_csrftoken', $this->ig->client->getToken())
             ->getResponse(new Response\GenericResponse());
+
+        $this->_savePresenceStatus(false);
+
+        return $result;
     }
 
     /**
@@ -450,16 +550,21 @@ class Account extends RequestCollection
      *
      * @throws \InstagramAPI\Exception\InstagramException
      *
-     * @return \InstagramAPI\Response\PresenceStatusResponse
+     * @return \InstagramAPI\Response\GenericResponse
      */
     public function disablePresence()
     {
-        return $this->ig->request('accounts/set_presence_disabled/')
+        /** @var Response\GenericResponse $result */
+        $result = $this->ig->request('accounts/set_presence_disabled/')
             ->addPost('_uuid', $this->ig->uuid)
             ->addPost('_uid', $this->ig->account_id)
             ->addPost('disabled', '1')
             ->addPost('_csrftoken', $this->ig->client->getToken())
             ->getResponse(new Response\GenericResponse());
+
+        $this->_savePresenceStatus(true);
+
+        return $result;
     }
 
     /**
