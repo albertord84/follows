@@ -175,7 +175,7 @@ class Payment extends CI_Controller {
                             //var_dump($client);
                             print "\n<br>Client in day: $clientname (id: $clientid)<br>\n";
                         } else {
-                            print "\n<br>----Client with pash /opt/lampp/htdocs/follows/worker/scripts/pro/dumbo-worker.shyment issue: $clientname (id: $clientid)<br>\n<br>\n<br>\n";
+                            print "\n<br>----Client with payment issue: $clientname (id: $clientid)<br>\n<br>\n<br>\n";
                         }
                     }
                 } else if($today <= $payday && $payday <= strtotime("+1 day", $today)){
@@ -359,7 +359,7 @@ class Payment extends CI_Controller {
                     // Send email to Client
                     // TODO: Think about send email
                     print "Diff in days bigger tham 31 days: $diff_days ";
-                    $this->load->model('class/follows_system_config');
+                    //$this->load->model('class/system_config');
                     $this->send_payment_email($client, 34 - $diff_days + 1);
                     $this->user_model->update_user($client['user_id'], array('status_id' => user_status::PENDING, 'status_date' => time()));
                 } else {
@@ -389,9 +389,10 @@ class Payment extends CI_Controller {
                     //$diff_days = 6;
                     if ($diff_days >= 0) {
 //                        print "\n<br>Email sent to " . $client['email'] . "<br>\n";
-                        $this->send_payment_email($client, dumbu_system_config::DAYS_TO_BLOCK_CLIENT - $diff_days);
+                        
+                        $this->send_payment_email($client, $GLOBALS['sistem_config']->DAYS_TO_BLOCK_CLIENT - $diff_days);
                         // TODO: limit email by days diff
-                        if ($diff_days >= dumbu_system_config::DAYS_TO_BLOCK_CLIENT) {
+                        if ($diff_days >= $GLOBALS['sistem_config']->DAYS_TO_BLOCK_CLIENT) {
                             //Block client by paiment
                             $this->user_model->update_user($client['user_id'], array('status_id' => user_status::BLOCKED_BY_PAYMENT, 'status_date' => time()));
                             $DB->InsertEventToWashdog($client['user_id'], 'BLOQUED BY PAYMENT', 0);
@@ -401,7 +402,7 @@ class Payment extends CI_Controller {
                             // TODO: Put 31 in system_config    
                         }
                     }
-                } else if ($IOK_ok === FALSE && $diff_days >= dumbu_system_config::PROMOTION_N_FREE_DAYS) { // Si está en fecha de promocion del mes pero no pagó initial order key
+                } else if ($IOK_ok === FALSE && $diff_days >= $GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS) { // Si está en fecha de promocion del mes pero no pagó initial order key
                     //Block client by paiment
                     $this->user_model->update_user($client['user_id'], array('status_id' => user_status::BLOCKED_BY_PAYMENT, 'status_date' => time()));
                     $this->send_payment_email($client, 0);
