@@ -115,9 +115,9 @@ namespace follows\cls {
                 );
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
-                    $this->DB->set_client_cookies($daily_work->client_id);
+                    //$this->DB->set_client_cookies($daily_work->client_id);
                     $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
-                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
+                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompleta: $curl_str");
                     $error = TRUE;
                     var_dump($curl_str);
                     var_dump("Error in do_follow_unfollow_work!!! unfollow");
@@ -199,9 +199,9 @@ namespace follows\cls {
                                 $json_response2 = $this->make_insta_friendships_command($login_data, $Profile->id, 'follow', 'web/friendships', $Client, $curl_str);
                                 if ($json_response2 === NULL) {
                                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
-                                    $this->DB->set_client_cookies($daily_work->client_id);
+                                    //$this->DB->set_client_cookies($daily_work->client_id);
                                     $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
-                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompletas");
+                                    $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompleta: $curl_str");
                                     $error = TRUE;
                                     var_dump($curl_str);
                                     var_dump("Error in do_follow_unfollow_work!!! follow");
