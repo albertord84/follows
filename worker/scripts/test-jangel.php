@@ -18,8 +18,7 @@ var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 
 */
 /*
 $result = new \stdClass();
- try {
-                $result = $Robot->make_login("ky2oficial", "alejandropacho32");
+ try                 $result = $Robot->make_login("ky2oficial", "alejandropacho32");
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
                 $result->json_response->authenticated = TRUE;
@@ -32,9 +31,9 @@ $result = new \stdClass();
             }*/
 
 $Robot = new \follows\cls\Robot();
-$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
+//$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
 //$Robot->make_checkpoint('riveauxmerino', 872305);
-//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
+$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 var_dump($res);
 
@@ -52,7 +51,7 @@ $client->credit_card_exp_year = "23";
 $client->credit_card_cvc = "564";
 $client->pay_day = strostamp('today');
 $payment->check_initial_payment($client);*/
-/*
+/*  
 
 $Client = (new \follows\cls\Client())->get_client(65045);
 

@@ -2272,7 +2272,7 @@ namespace follows\cls {
                     $mid = "$match[1]";
                 }
                 $sessionid = "";
-                if (preg_match('/sessionid=([^\']+)/mi', $curl, $match) == 1) {
+                if (preg_match('/sessionid=([^;"\']+)/mi', $curl, $match) == 1) {
                     $sessionid = "$match[1]";
                 }
                 $ds_user_id = "";
