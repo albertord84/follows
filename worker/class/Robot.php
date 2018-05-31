@@ -6,6 +6,7 @@ namespace follows\cls {
     require_once 'Reference_profile.php';
     require_once 'Day_client_work.php';
     require_once 'washdog_type.php';
+    require_once 'system_config.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
     require_once 'InstaAPI.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/vendor/autoload.php';
@@ -1809,7 +1810,14 @@ namespace follows\cls {
             }
             // Try new API login
             try {
-                $result = $this->make_login($login, $pass);
+                $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;
+                
+                if($Client->proxy !== NULL)
+                {                    
+                    $proxy_id = $Client->proxy;
+                }
+                $proxy = $myDB->GetProxy($proxy_id);
+                $result = $this->make_login($login, $pass, $proxy->proxy, $proxy->port, $proxy->proxy_user, $proxy->proxy_password);
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
                 $result->json_response->authenticated = TRUE;
@@ -1940,11 +1948,11 @@ namespace follows\cls {
             }
         }
 
-        public function make_login($login, $pass) {
+        public function make_login($login, $pass, $ip='207.188.155.18', $port='21316', $proxyuser='albertreye9917', $proxypass='3r4rcz0b1v') {
             $instaAPI = new \follows\cls\InstaAPI();
             //TODO: capturar excepcion e dar tratamiento cuando usuario y senha no existe en IG
             try {
-                $result = $instaAPI->login($login, $pass);
+                $result = $instaAPI->login($login, $pass,$ip,$port,$proxyuser,$proxypass);
             } catch (\Exception $exc) {
                 throw $exc;
             }

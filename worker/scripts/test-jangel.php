@@ -1,6 +1,7 @@
 <?PHP
 
 require_once '../class/Worker.php';
+require_once '../class/ProxyManager.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';
 require_once '../class/Payment.php';
@@ -29,13 +30,15 @@ $result = new \stdClass();
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
+//$manager = new \follows\cls\ProxyManager();
+//$manager->UpdateUserProxy();
 
 $Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
 //$Robot->make_checkpoint('riveauxmerino', 872305);
-$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
-//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-var_dump($res);
+//$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
+$result = $Robot->bot_login('riveauxmerino', 'Notredame88');
+//var_dump($res);
 
 /*
 $Robot = new \follows\cls\Robot();
@@ -99,8 +102,6 @@ $daily_work->to_follow = 10;
 $daily_work->insta_follower_cursor = NULL;
 $daily_work->insta_name = 'cuba';
 $daily_work->rp_insta_id = 220021938;
-
-
 
 $query_hash_tag = 'ded47faa9a1aaded10161a2ff32abb6b';
 $query_hash_loc = '951c979213d7e7a1cf1d73e2f661cbd1';
