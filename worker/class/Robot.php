@@ -103,7 +103,7 @@ namespace follows\cls {
             echo "<br>\nnRef Profil: $daily_work->insta_name<br>\n" . " Count: " . count($Followeds_to_unfollow) . " Hasnext: $has_next - ";
             echo date("Y-m-d h:i:sa");
             echo "<br>\n make_insta_friendships_command UNFOLLOW <br>\n";
-            
+
             for ($i = 0; $i < $GLOBALS['sistem_config']->REQUESTS_AT_SAME_TIME && ($has_next); $i++) {
                 $error = FALSE;
                 // Next profile to unfollow, not yet unfollwed
@@ -164,7 +164,7 @@ namespace follows\cls {
                     $page_info = NULL;
                     $Profiles = $this->get_profiles_to_follow($daily_work, $error, $page_info);
                     //var_dump($Profiles);
-                    foreach ($Profiles as $Profile) {                        
+                    foreach ($Profiles as $Profile) {
                         $Profile = $Profile->node;
                         echo "Profil name: $Profile->username ";
                         $null_picture = strpos($Profile->profile_pic_url, '11906329_960233084022564_1448528159_a');
@@ -192,7 +192,7 @@ namespace follows\cls {
                             // TODO: BUSCAR EN BD QUE NO HALLA SEGUIDO ESA PERSONA
                             $followed_in_db = $this->DB->is_profile_followed_db2($daily_work->client_id, $Profile->id);
                             //$followed_in_db = NULL;
-                            if (!$followed_in_db && !$following_me /*&& $valid_profile*/) { // Si no lo he seguido en BD y no me está siguiendo
+                            if (!$followed_in_db && !$following_me /* && $valid_profile */) { // Si no lo he seguido en BD y no me está siguiendo
                                 // Do follow request
                                 echo "FOLLOWING <br>\n";
                                 $curl_str = "";
@@ -201,6 +201,7 @@ namespace follows\cls {
                                     $result = $this->DB->delete_daily_work_client($daily_work->client_id);
                                     //$this->DB->set_client_cookies($daily_work->client_id);
                                     $this->DB->set_client_status($daily_work->client_id, user_status::BLOCKED_BY_TIME);
+                                    $curl_str = json_encode($curl_str);
                                     $this->DB->InsertEventToWashdog($daily_work->client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Respuesta incompleta: $curl_str");
                                     $error = TRUE;
                                     var_dump($curl_str);
@@ -301,7 +302,7 @@ namespace follows\cls {
           {}
          */
 
-         public function get_profiles_to_follow_without_log($daily_work, $error, &$page_info) {
+        public function get_profiles_to_follow_without_log($daily_work, $error, &$page_info) {
             $Profiles = array();
             $error = TRUE;
             $login_data = json_decode($daily_work->cookies);
@@ -321,7 +322,7 @@ namespace follows\cls {
                 //echo "<br>\nRef Profil: $daily_work->insta_name<br>\n";
                 if (is_object($json_response) && $json_response->status == 'ok') {
                     if (isset($json_response->data->user->edge_followed_by)) { // if response is ok
-                       // echo "Nodes: " . count($json_response->data->user->edge_followed_by->edges) . " <br>\n";
+                        // echo "Nodes: " . count($json_response->data->user->edge_followed_by->edges) . " <br>\n";
                         $page_info = $json_response->data->user->edge_followed_by->page_info;
                         $Profiles = $json_response->data->user->edge_followed_by->edges;
                         //$DB = new DB();
@@ -330,7 +331,7 @@ namespace follows\cls {
                             //echo ("<br>\n Updated Reference Cursor to NULL!!");
                             $result = $this->DB->delete_daily_work($daily_work->reference_id);
                             if ($result) {
-                               // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
+                                // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
                             }
                         } else if ($page_info->has_next_page === FALSE && $page_info->end_cursor === NULL) {
 //                            $Client = new Client();
@@ -340,7 +341,7 @@ namespace follows\cls {
                             //echo ("<br>\n Updated Reference Cursor to NULL!!");
                             $result = $this->DB->delete_daily_work($daily_work->reference_id);
                             if ($result) {
-                               // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
+                                // echo ("<br>\n Deleted Daily work!! Ref $daily_work->reference_id");
                             }
                         }
                         $error = FALSE;
@@ -349,11 +350,11 @@ namespace follows\cls {
                         $page_info->has_next_page = false;
                     }
                 }
-            } else if ($daily_work->rp_type == 1){
+            } else if ($daily_work->rp_type == 1) {
                 $json_response = $this->get_insta_geomedia_without_log($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
                 if (is_object($json_response) && $json_response->status == 'ok') {
                     if (isset($json_response->data->location->edge_location_to_media)) { // if response is ok
-                       // echo "Nodes: " . count($json_response->data->location->edge_location_to_media->edges) . " <br>\n";
+                        // echo "Nodes: " . count($json_response->data->location->edge_location_to_media->edges) . " <br>\n";
                         $page_info = $json_response->data->location->edge_location_to_media->page_info;
                         foreach ($json_response->data->location->edge_location_to_media->edges as $Edge) {
                             $profile = new \stdClass();
@@ -366,9 +367,7 @@ namespace follows\cls {
                         $page_info->has_next_page = false;
                     }
                 }
-            }
-            else if($daily_work->rp_type == 2)
-            {
+            } else if ($daily_work->rp_type == 2) {
                 $json_response = $this->get_insta_tagmedia($login_data, $daily_work->insta_name, $quantity, $daily_work->insta_follower_cursor);
                 if (is_object($json_response)) {
                     if (isset($json_response->data->hashtag->edge_hashtag_to_media)) { // if response is ok
@@ -376,7 +375,7 @@ namespace follows\cls {
                         $page_info = $json_response->data->hashtag->edge_hashtag_to_media->page_info;
                         foreach ($json_response->data->hashtag->edge_hashtag_to_media->edges as $Edge) {
                             $profile = new \stdClass();
-                            $profile->node = $this->get_tag_post_user_info($login_data,  $Edge->node->shortcode);
+                            $profile->node = $this->get_tag_post_user_info($login_data, $Edge->node->shortcode);
                             array_push($Profiles, $profile);
                         }
                         $error = FALSE;
@@ -388,7 +387,7 @@ namespace follows\cls {
             }
             return $Profiles;
         }
-        
+
         public function get_profiles_to_follow($daily_work, $error, &$page_info) {
             $Profiles = array();
             $error = TRUE;
@@ -437,7 +436,7 @@ namespace follows\cls {
                         $page_info->has_next_page = false;
                     }
                 }
-            } else if ($daily_work->rp_type == 1){
+            } else if ($daily_work->rp_type == 1) {
                 $json_response = $this->get_insta_geomedia($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
                 if (is_object($json_response) && $json_response->status == 'ok') {
                     if (isset($json_response->data->location->edge_location_to_media)) { // if response is ok
@@ -454,9 +453,7 @@ namespace follows\cls {
                         $page_info->has_next_page = false;
                     }
                 }
-            }
-            else if($daily_work->rp_type == 2)
-            {
+            } else if ($daily_work->rp_type == 2) {
                 $json_response = $this->get_insta_tagmedia($login_data, $daily_work->insta_name, $quantity, $daily_work->insta_follower_cursor);
                 if (is_object($json_response)) {
                     if (isset($json_response->data->hashtag->edge_hashtag_to_media)) { // if response is ok
@@ -464,7 +461,7 @@ namespace follows\cls {
                         $page_info = $json_response->data->hashtag->edge_hashtag_to_media->page_info;
                         foreach ($json_response->data->hashtag->edge_hashtag_to_media->edges as $Edge) {
                             $profile = new \stdClass();
-                            $profile->node = $this->get_tag_post_user_info($login_data,  $Edge->node->shortcode);
+                            $profile->node = $this->get_tag_post_user_info($login_data, $Edge->node->shortcode);
                             array_push($Profiles, $profile);
                         }
                         $error = FALSE;
@@ -504,9 +501,11 @@ namespace follows\cls {
                     break;
                 case 3: // "Unautorized"
                     $result = $this->DB->delete_daily_work_client($client_id);
-                       if(isset($json_response->message))
-                         $this->DB->InsertEventToWashdog($client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, $json_response->message);
-                    else{$this->DB->InsertEventToWashdog($client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id);}
+                    if (isset($json_response->message))
+                        $this->DB->InsertEventToWashdog($client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, $json_response->message);
+                    else {
+                        $this->DB->InsertEventToWashdog($client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id);
+                    }
                     //var_dump($result);
                     $this->DB->set_client_status($client_id, user_status::BLOCKED_BY_TIME);
                     //$this->DB->set_client_cookies($client_id, NULL);
@@ -548,9 +547,9 @@ namespace follows\cls {
                     // Alert when insta block by IP
                     $time = $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS;
                     $this->DB->InsertEventToWashdog($client_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "access incresed in $time");
-                   
+
                     $this->DB->Increase_Client_Last_Access($client_id, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS);
-                    
+
                     $result = $this->DB->get_clients_by_status(user_status::BLOCKED_BY_TIME);
                     /* $result = $this->DB->get_clients_by_status(user_status::BLOCKED_BY_TIME);
                       $rows_count = $result->num_rows;
@@ -601,7 +600,7 @@ namespace follows\cls {
          * @param type $command {follow, unfollow, ... }
          * @return type
          */
-        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL, &$curl_str) {
+        public function make_insta_friendships_command($login_data, $resource_id, $command = 'follow', $objetive_url = 'web/friendships', $Client = NULL, &$curl_str = "") {
             $ip = NULL;
             $ip_count = -1;
             $size = count($this->IPS['IPS']);
@@ -807,7 +806,7 @@ namespace follows\cls {
 
         public function get_insta_followers($login_data, $user, $N, $cursor = NULL) {
             try {
-                 
+
                 $tag_query = '37479f2b8209594dde7facb0d904896a';
                 $variables = "{\"id\":\"$user\",\"first\":$N,\"after\":\"$cursor\"}";
                 $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
@@ -888,7 +887,7 @@ namespace follows\cls {
 
         public function get_insta_geomedia($login_data, $location, $N, &$cursor = NULL) {
             try {
-                
+
                 $tag_query = 'ac38b90f0f3981c42092016a37c59bf7';
                 $variables = "{\"id\":\"$location\",\"first\":$N,\"after\":\"$cursor\"}";
                 $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
@@ -924,10 +923,10 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         public function get_insta_geomedia_without_log($login_data, $location, $N, &$cursor = NULL) {
             try {
-                
+
                 $tag_query = 'ac38b90f0f3981c42092016a37c59bf7';
                 $variables = "{\"id\":\"$location\",\"first\":$N,\"after\":\"$cursor\"}";
                 $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
@@ -953,13 +952,13 @@ namespace follows\cls {
                     $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
                     $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
                     //echo ("<br>\n Set end cursor to NULL!!!!!!!! Deleted daily work!!!!!!!!!!!!");
-                } 
+                }
                 return $json;
             } catch (\Exception $exc) {
                 //echo $exc->getTraceAsString();
             }
         }
-        
+
         public function get_insta_tagmedia($login_data, $tag, $N, &$cursor = NULL) {
             try {
                 $tag_query = 'ded47faa9a1aaded10161a2ff32abb6b';
@@ -970,14 +969,13 @@ namespace follows\cls {
                 exec($curl_str, $output, $status);
                 $json = json_decode($output[0]);
                 //var_dump($output);
-                if(isset($json) && $json->status == 'ok')
-                {
+                if (isset($json) && $json->status == 'ok') {
                     if (isset($json->data->hashtag->edge_hashtag_to_media) && isset($json->data->hashtag->edge_hashtag_to_media->page_info)) {
                         $cursor = $json->data->hashtag->edge_hashtag_to_media->page_info->end_cursor;
                         if (count($json->data->hashtag->edge_hashtag_to_media->edges) == 0) {
                             //echo '<pre>'.json_encode($json, JSON_PRETTY_PRINT).'</pre>';
                             //var_dump($json);
-    //                        var_dump($curl_str);
+                            //                        var_dump($curl_str);
                             echo ("<br>\n No nodes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                             $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
                             $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
@@ -985,12 +983,12 @@ namespace follows\cls {
                         }
                     }
                 }/* else if (isset($json->data) && $json->data->location == NULL) {
-                    //var_dump($output);
-                    print_r($curl_str);
-                    $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
-                    $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
-                    echo ("<br>\n Set end cursor to NULL!!!!!!!! Deleted daily work!!!!!!!!!!!!");
-                }*/ else {
+                  //var_dump($output);
+                  print_r($curl_str);
+                  $this->DB->update_reference_cursor($this->daily_work->reference_id, NULL);
+                  $result = $this->DB->delete_daily_work($this->daily_work->reference_id);
+                  echo ("<br>\n Set end cursor to NULL!!!!!!!! Deleted daily work!!!!!!!!!!!!");
+                  } */ else {
                     var_dump($output);
                     print_r($curl_str);
                     echo ("<br>\n Untrated error!!!");
@@ -1001,20 +999,19 @@ namespace follows\cls {
             }
         }
 
-        public function make_curl_followers_query($query, $variables, $login_data=NULL){
-            
+        public function make_curl_followers_query($query, $variables, $login_data = NULL) {
+
             $variables = urlencode($variables);
-            $url = "https://www.instagram.com/graphql/query/?query_hash=$query&variables=$variables";            
+            $url = "https://www.instagram.com/graphql/query/?query_hash=$query&variables=$variables";
             $curl_str = "curl '$url' ";
-            if($login_data !== NULL)
-            {
-                if($login_data->mid == NULL|| $login_data->csrftoken == NULL || $login_data->sessionid == NULL ||
+            if ($login_data !== NULL) {
+                if ($login_data->mid == NULL || $login_data->csrftoken == NULL || $login_data->sessionid == NULL ||
                         $login_data->ds_user_id == NULL)
                     return NULL;
-               $curl_str .= "-H 'Cookie: mid=$login_data->mid; sessionid=$login_data->sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$login_data->csrftoken; ds_user_id=$login_data->ds_user_id' ";            
-               $curl_str .= "-H 'X-CSRFToken: $login_data->csrftoken' ";
+                $curl_str .= "-H 'Cookie: mid=$login_data->mid; sessionid=$login_data->sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$login_data->csrftoken; ds_user_id=$login_data->ds_user_id' ";
+                $curl_str .= "-H 'X-CSRFToken: $login_data->csrftoken' ";
             }
-            
+
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
@@ -1028,7 +1025,7 @@ namespace follows\cls {
             $curl_str .= "--compressed ";
             return $curl_str;
         }
-        
+
         public function make_curl_followers_str($url, $login_data, $user, $N, $cursor = NULL) {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             $csrftoken = $login_data->csrftoken;
@@ -1090,7 +1087,7 @@ namespace follows\cls {
             return $curl_str;
 //            }
         }
-        
+
         public function make_curl_tagmedia_str($url, $login_data, $tag, $N, $cursor = NULL) {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             //$csrftoken = $login_data->csrftoken;
@@ -1098,8 +1095,8 @@ namespace follows\cls {
             //$sessionid = $login_data->sessionid;
             //$mid = $login_data->mid;
             //if (($csrftoken === NULL || $csrftoken === "") && ($ds_user_id === NULL || $ds_user_id === "") &&
-              //      ($sessionid === NULL || $sessionid === "") && ($mid === NULL || $mid === ""))
-                //return NULL;
+            //      ($sessionid === NULL || $sessionid === "") && ($mid === NULL || $mid === ""))
+            //return NULL;
             $url .= "&first=$N";
             if ($cursor) {
                 $url .= "&after=$cursor";
@@ -1118,7 +1115,7 @@ namespace follows\cls {
             $curl_str .= "-H 'Referer:  https://www.instagram.com/explore/tags/$tag/' ";
             $curl_str .= "-H 'Authority: www.instagram.com' ";
             $curl_str .= "--compressed ";
-            return $curl_str;            
+            return $curl_str;
         }
 
         public function make_curl_chaining_str($url, $login_data, $user, $N, $cursor = NULL) {
@@ -1440,7 +1437,7 @@ namespace follows\cls {
             global $cookies;
             foreach ($cookies as $index => $cookie) {
                 $pos = strpos($cookie[1], $key);
-                if ($pos !== FALSE) {                    
+                if ($pos !== FALSE) {
                     $value = explode("=", $cookie[1]);
                     $value = $value[1];
                     break;
@@ -1471,9 +1468,9 @@ namespace follows\cls {
             return $value;
         }
 
-        public function get_insta_data($ref_prof){
+        public function get_insta_data($ref_prof) {
             if ($ref_prof == "" || $ref_prof == NULL) {
-             throw new \Exception("This was and empty or null referece profile (ref_prof)");    
+                throw new \Exception("This was and empty or null referece profile (ref_prof)");
             }
             $content = @file_get_contents("https://www.instagram.com/web/search/topsearch/?context=blended&query=$ref_prof", FALSE);
             $ch = curl_init("https://www.instagram.com/");
@@ -1487,12 +1484,11 @@ namespace follows\cls {
             $content = json_decode($html);
             curl_close($ch);
             return $content;
-            
         }
-        
-        public function get_insta_data_from_client($ref_prof, $cookies){
+
+        public function get_insta_data_from_client($ref_prof, $cookies) {
             if ($ref_prof == "" || $ref_prof == NULL) {
-                throw new \Exception("This was and empty or null referece profile (ref_prof)");    
+                throw new \Exception("This was and empty or null referece profile (ref_prof)");
             }
             $csrftoken = isset($cookies->csrftoken) ? $cookies->csrftoken : 0;
             $ds_user_id = isset($cookies->ds_user_id) ? $cookies->ds_user_id : 0;
@@ -1528,12 +1524,12 @@ namespace follows\cls {
             curl_close($ch);
             return json_decode($output);
         }
-        
+
         public function get_insta_ref_prof_data($ref_prof, $ref_prof_id = NULL) {
             try {
                 $Profile = NULL;
-                    $content = $this->get_insta_data($ref_prof);
-                    $Profile = $this->process_get_insta_ref_prof_data_for_daily_report($content, $ref_prof, $ref_prof_id);                   
+                $content = $this->get_insta_data($ref_prof);
+                $Profile = $this->process_get_insta_ref_prof_data_for_daily_report($content, $ref_prof, $ref_prof_id);
                 return $Profile;
             } catch (\Exception $ex) {
                 print_r($ex->message);
@@ -1546,7 +1542,7 @@ namespace follows\cls {
                 $Profile = NULL;
                 if ($ref_prof != "") {
                     $content = $this->get_insta_data($ref_prof);
-                    $Profile = $this->process_get_insta_geolocalization_data($content, $ref_prof, $ref_prof_id);                    
+                    $Profile = $this->process_get_insta_geolocalization_data($content, $ref_prof, $ref_prof_id);
                 }
                 return $Profile;
             } catch (\Exception $ex) {
@@ -1555,7 +1551,7 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_tag_data($ref_prof, $ref_prof_id = NULL){
+        public function get_insta_tag_data($ref_prof, $ref_prof_id = NULL) {
             try {
                 $Profile = NULL;
                 if ($ref_prof != "") {
@@ -1566,13 +1562,13 @@ namespace follows\cls {
             } catch (\Exception $ex) {
                 print_r($ex->message);
                 return NULL;
-            }            
+            }
         }
-        
+
         public function get_insta_geolocalization_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL) {
             try {
                 $Profile = NULL;
-                if ($ref_prof != "") {                    
+                if ($ref_prof != "") {
                     $content = $this->get_insta_data_from_client($ref_prof, $cookies);
                     $Profile = $this->process_get_insta_geolocalization_data($content, $ref_prof, $ref_prof_id);
                     //var_dump($content);
@@ -1584,7 +1580,7 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id ) {
+        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id) {
             try {
                 $Profile = NULL;
                 if ($ref_prof != "") {
@@ -1596,7 +1592,7 @@ namespace follows\cls {
                 return NULL;
             }
         }
-        
+
         public function get_insta_tag_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL) {
             try {
                 $Profile = NULL;
@@ -1686,8 +1682,8 @@ namespace follows\cls {
             }
             return $Profile;
         }
-        
-        function process_get_insta_tag_data($content, $ref_prof, $ref_prof_id){
+
+        function process_get_insta_tag_data($content, $ref_prof, $ref_prof_id) {
             $Profile = NULL;
             if (is_object($content) && $content->status === 'ok') {
                 $tags = $content->hashtags;
@@ -1748,15 +1744,15 @@ namespace follows\cls {
             }
             return intval($substr2) ? intval($substr2) : 0;
         }
-        
-        public function bot_login($login, $pass,  $forse = FALSE) {
+
+        public function bot_login($login, $pass, $forse = FALSE) {
             $myDB = new \follows\cls\DB();
             // Is client with cookies, we try to do some instagram action to verify the coockies are allright 
             $result = new \stdClass();
             $result->json_response = new \stdClass();
             $result->json_response->authenticated = FALSE;
             $output = array();
-            $cnt = 0;            
+            $cnt = 0;
             $Client = $myDB->get_client_data_bylogin($login);
             if ($forse === FALSE || $forse == "false") {
                 if (!$this->verify_cookies($Client)) {
@@ -1774,7 +1770,7 @@ namespace follows\cls {
                             $url = "https://www.instagram.com/graphql/query/";
                             $daily_work = new \stdClass();
                             $daily_work->rp_type = 1;
-                            $daily_work->cookies = $Client->cookies; 
+                            $daily_work->cookies = $Client->cookies;
                             $daily_work->to_follow = 10;
                             $daily_work->insta_follower_cursor = NULL;
                             $daily_work->insta_name = 'cuba';
@@ -1784,14 +1780,13 @@ namespace follows\cls {
 
                             $res = $this->get_profiles_to_follow_without_log($daily_work, $error, $page_info);
                             try {
-                                if(count($res) > 0)
-                                {
+                                if (count($res) > 0) {
                                     $result->json_response->status = 'ok';
-                                    $result->json_response->authenticated = TRUE;                                
+                                    $result->json_response->authenticated = TRUE;
                                 }
                             } catch (\Exception $e) {
-
-                            }                           
+                                
+                            }
                         }
                     }
                 }
@@ -1814,7 +1809,7 @@ namespace follows\cls {
                 $result->json_response->status = 'ok';
                 $result->json_response->authenticated = TRUE;
                 $myDB->set_client_cookies($Client->id, json_encode($result));
-                
+
                 return $result;
             } catch (\Exception $e) {
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
@@ -1949,7 +1944,7 @@ namespace follows\cls {
                 throw $exc;
             }
             $cookies = $result->Cookies;
-            return $cookies; 
+            return $cookies;
         }
 
         public function like_fist_post($client_cookies, $client_insta_id) {
@@ -2018,7 +2013,7 @@ namespace follows\cls {
             }
             return NULL;
         }
-        
+
         public function get_tag_post_user_info($cookies, $post_reference) {
             //echo " -------Obtindo dados de perfil que postou na geolocalizacao------------<br>\n<br>\n";
             $csrftoken = isset($cookies->csrftoken) ? $cookies->csrftoken : 0;
@@ -2087,7 +2082,7 @@ namespace follows\cls {
             } catch (\InstagramAPI\Exception\ChallengeRequiredException $exc) {
                 $res = $exc->getResponse()->getChallenge()->getApiPath();
                 $response = $this->get_challenge_data($res, $login, $Client);
-              
+
                 return $response;
             }
         }
@@ -2118,14 +2113,14 @@ namespace follows\cls {
             $headers[] = "Accept-Language: en-US,en;q=0.5";
             $headers[] = "Referer: $url";
             $headers[] = "X-CSRFToken: $csrftoken";
-            $headers[] =  "X-Instagram-AJAX: 1";
+            $headers[] = "X-Instagram-AJAX: 1";
             $headers[] = "Content-Type: application/x-www-form-urlencoded";
             $headers[] = "X-Requested-With: XMLHttpRequest";
             $headers[] = "Cookie: csrftoken=$csrftoken; mid=$mid; rur=$rur; ig_vw=$ig_vw; ig_pr=$ig_pr; ig_vh=$ig_vh; ig_or=$ig_or";
             $headers[] = "Connection: keep-alive";
             $postinfo = "choice=$choice";
-            
-             curl_setopt($ch, CURLOPT_URL, $url);
+
+            curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             //curl_setopt($ch, CURLOPT_POST, true);
             //            curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie);
@@ -2134,13 +2129,13 @@ namespace follows\cls {
             curl_setopt($ch, CURLOPT_HEADER, 1);
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             //curl_setopt($ch, CURLOPT_HEADERFUNCTION, array($this, "curlResponseHeaderCallback"));
-            
+
             $html = curl_exec($ch);
             $info = curl_getinfo($ch);
             $start = strpos($html, "{");
             $json_str = substr($html, $start);
             //exec($curl_str, $output, $status);
-           // var_dump($output);
+            // var_dump($output);
             $resposta = json_decode($json_str);
             //var_dump($output);
             //$this->temporal_log($curl_str);
@@ -2178,7 +2173,7 @@ namespace follows\cls {
             $headers[] = "Referer: $url";
             $headers[] = "X-CSRFToken: $csrftoken";
             $headers[] = "X-Instagram-AJAX: 1";
-            
+
             //$index = rand(0, 4);
             //$cnt = 0;
             //$ip = $this->IPS["IPS"][$index];
@@ -2222,30 +2217,28 @@ namespace follows\cls {
             //
             $login_data = new \stdClass();
             $login_data->json_response = $json_response;
-           if (count($cookies) >= 2 && $start) {
-               
+            if (count($cookies) >= 2 && $start) {
+
                 $login_data->json_response = json_decode('{"authenticated":true,"user":true,"status":"ok"}');
-                
+
                 $login_data->csrftoken = $this->get_cookies_value("csrftoken");
                 // Get sessionid from cookies
-                
+
                 $login_data->sessionid = $this->get_cookies_value("sessionid");
                 // Get ds_user_id from cookies
                 $login_data->ds_user_id = $this->get_cookies_value("ds_user_id");
-                
+
                 // Get mid from cookies
                 $login_data->mid = $this->get_cookies_value("mid");
                 if ($login_data->mid == NULL || $login_data->mid == "") {
                     $login_data->mid = $mid;
                 }
                 (new \follows\cls\Client())->set_client_cookies($Client->id, json_encode($login_data));
-            }   
-            else
-            {
-               $login_data->json_response = json_decode('{"authenticated":false, "status":"fail"}'); 
+            } else {
+                $login_data->json_response = json_decode('{"authenticated":false, "status":"fail"}');
             }
 
-             curl_close($ch);
+            curl_close($ch);
 
             /* exec($curl_str, $output, $status);     
               $res = json_decode($output[0]);
@@ -2333,51 +2326,51 @@ namespace follows\cls {
                 //echo $exc->getTraceAsString();
             }
         }
-        
-        /*
-        public function clean_cursors()
-        {
-            $clients = (new \follows\cls\Client())->get_clients();
-            $DB = new \follows\cls\DB();
-            foreach ($clients as $client)
-            {                
-                if($this->verify_cookies($client) && $client->status_id == user_status::ACTIVE)
-                {
-                    $cookies = json_decode($client->cookies);
-                    $references = $DB->get_reference_profiles_with_problem($client->id);
-                    while ($reference = $references->fetch_object()) {
-                        if($reference->type == 0)
-                        {
-                            $data = $this->get_insta_ref_prof_data_from_client($cookies,$reference->insta_id);
-                            $follower =  $user_data->follower_count;
-                            if($reference->follows/ $follower < 0.25)
-                            {
-                                $DB->reset_referecne_prof($reference_id);                           
-                            }
 
-                        }
-                        else if($reference->type == 1)
-                        {
-                            $data = $this->get_insta_geolocalization_data_from_client($cookies,  $reference->insta_id);
-                            //$follower =  $user_data->follower_count;
-                            /*if($refenrence->follows/ $follower < 0.25)
-                            {
-                                $DB->reset_referecne_prof($reference_id);                           
-                            }
-                        }
-                        else if($reference->type == 2)
-                        {
-                            $data = $this->get_insta_ref_prof_data_from_client($client->cookies,$reference->insta_id);
-                            //$follower =  $user_data->follower_count;
-                            /*if($refenrence->follows/ $follower < 0.25)
-                            {
-                                $DB->reset_referecne_prof($reference_id);                           
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        /*
+          public function clean_cursors()
+          {
+          $clients = (new \follows\cls\Client())->get_clients();
+          $DB = new \follows\cls\DB();
+          foreach ($clients as $client)
+          {
+          if($this->verify_cookies($client) && $client->status_id == user_status::ACTIVE)
+          {
+          $cookies = json_decode($client->cookies);
+          $references = $DB->get_reference_profiles_with_problem($client->id);
+          while ($reference = $references->fetch_object()) {
+          if($reference->type == 0)
+          {
+          $data = $this->get_insta_ref_prof_data_from_client($cookies,$reference->insta_id);
+          $follower =  $user_data->follower_count;
+          if($reference->follows/ $follower < 0.25)
+          {
+          $DB->reset_referecne_prof($reference_id);
+          }
+
+          }
+          else if($reference->type == 1)
+          {
+          $data = $this->get_insta_geolocalization_data_from_client($cookies,  $reference->insta_id);
+          //$follower =  $user_data->follower_count;
+          /*if($refenrence->follows/ $follower < 0.25)
+          {
+          $DB->reset_referecne_prof($reference_id);
+          }
+          }
+          else if($reference->type == 2)
+          {
+          $data = $this->get_insta_ref_prof_data_from_client($client->cookies,$reference->insta_id);
+          //$follower =  $user_data->follower_count;
+          /*if($refenrence->follows/ $follower < 0.25)
+          {
+          $DB->reset_referecne_prof($reference_id);
+          }
+          }
+          }
+          }
+          }
+          }
          */
     }
 
