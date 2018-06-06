@@ -107,6 +107,23 @@ namespace follows\cls\Payment {
         }
 
         /**
+         * Delete recurrency payment status (Cancel subscription)
+         * @param type $payment_id
+         * @return Subscription or \Exception
+         */
+        public function cancel_recurrency_payment($payment_id) {
+            try {
+                // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
+                $subsService = new \Vindi\Subscription($this->api_arguments);
+                $subs = $subsService->delete($payment_id);
+            } catch (\Exception $e) {
+                return $e;
+            }
+
+            return $subs;
+        }
+
+        /**
          * Check recurrency payment status
          * @param type $payment_id
          * @return Payment or \Exception

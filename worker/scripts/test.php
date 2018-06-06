@@ -56,9 +56,15 @@ $vindi_client_id = 6529720;
 //var_dump($payment);
 
 //Check recurrency payment
-$recurrency_payment_id = 4215630;
-$payment = $Vindi->query_recurrency_payment($recurrency_payment_id);
-var_dump($payment);
+//$recurrency_payment_id = 4215630;
+//$payment = $Vindi->query_recurrency_payment($recurrency_payment_id);
+//var_dump($payment);
+
+//Cancel recurrency payment
+//$recurrency_payment_id = 4215648;
+//$payment = $Vindi->cancel_recurrency_payment($recurrency_payment_id);
+//var_dump($payment);
+
 
 
 
