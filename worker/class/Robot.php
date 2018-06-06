@@ -403,9 +403,9 @@ namespace follows\cls {
                 //var_dump($json_response);
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->users_id);
-                    $this->DB->set_client_status($daily_work->users_id, user_status::VERIFY_ACCOUNT);
-                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
-                    $this->DB->set_client_cookies($daily_work->users_id, NULL);
+                    $this->DB->set_client_status($daily_work->users_id, user_status::BLOCKED_BY_TIME);
+                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
+                    //$this->DB->set_client_cookies($daily_work->users_id, NULL);
                 }
                 echo "<br>\nRef Profil: $daily_work->insta_name<br>\n";
                 if (is_object($json_response) && $json_response->status == 'ok') {
