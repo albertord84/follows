@@ -161,15 +161,15 @@ $Worker = new follows\cls\Worker();
 $Reference_id = 44881;  // PR, Geo o Hashtag
 $daily_work = $Worker->get_work_by_id($Reference_id);
 $Worker->do_follow_unfollow_work($daily_work);
-//$error = NULL; $page_info = NULL;
-//var_dump($daily_work->rp_insta_id);
-//$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
-//var_dump($profiles);
-//
-////$Worker->check_daily_work();
-//$Worker->truncate_daily_work();
-//$Worker->prepare_daily_work();
-//$Worker->do_work();
+$error = NULL; $page_info = NULL;
+var_dump($daily_work->rp_insta_id);
+$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
+var_dump($profiles);
+
+$Worker->check_daily_work();
+$Worker->truncate_daily_work();
+$Worker->prepare_daily_work();
+$Worker->do_work();
 
 
 echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
