@@ -2089,8 +2089,8 @@ namespace follows\cls {
         public function checkpoint_requested($login, $pass, $Client = NULL) {
             try {
                 $instaAPI = new \follows\cls\InstaAPI();
-
-                $result2 = $instaAPI->login($login, $pass, true);
+                $Client = (new \follows\cls\DB())->get_client_data_bylogin($login);
+                $result2 = $instaAPI->login($login, $pass, $Client->proxy, $Client->port, $Client->proxy_user, $Client->proxy_password);
                 return $result2;
             } catch (\InstagramAPI\Exception\ChallengeRequiredException $exc) {
                 $res = $exc->getResponse()->getChallenge()->getApiPath();
