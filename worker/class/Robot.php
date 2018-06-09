@@ -403,9 +403,9 @@ namespace follows\cls {
                 //var_dump($json_response);
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->users_id);
-                    $this->DB->set_client_status($daily_work->users_id, user_status::VERIFY_ACCOUNT);
-                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
-                    $this->DB->set_client_cookies($daily_work->users_id, NULL);
+                    $this->DB->set_client_status($daily_work->users_id, user_status::BLOCKED_BY_TIME);
+                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
+                    //$this->DB->set_client_cookies($daily_work->users_id, NULL);
                 }
                 echo "<br>\nRef Profil: $daily_work->insta_name<br>\n";
                 if (is_object($json_response) && $json_response->status == 'ok') {
@@ -965,7 +965,7 @@ namespace follows\cls {
             try {
                 $tag_query = 'ded47faa9a1aaded10161a2ff32abb6b';
                 $variables = "{\"tag_name\":\"$tag\",\"first\":2,\"after\":\"$cursor\"}";
-                $curl_str = $this->make_curl_followers_query($tag_query, $variables);
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
@@ -1019,7 +1019,7 @@ namespace follows\cls {
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
-            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' ";
+            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36' ";
             $curl_str .= "-H 'X-Requested-with: XMLHttpRequest' ";
             //$curl_str .= "-H 'X-Instagram-ajax: 1' ";
             $curl_str .= "-H 'content-type: application/x-www-form-urlencoded' ";
