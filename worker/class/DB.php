@@ -202,6 +202,7 @@ namespace follows\cls {
                 $sql = ""
                 . "SELECT * FROM clients "
                 . "     INNER JOIN users ON clients.user_id = users.id "
+                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
                 . "WHERE users.login LIKE '$login' "
                 . "ORDER BY user_id DESC "
                 . "LIMIT 1; ";
