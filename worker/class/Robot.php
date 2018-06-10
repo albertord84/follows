@@ -1810,13 +1810,12 @@ namespace follows\cls {
             }
             // Try new API login
             try {
-                $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;
-                
+                $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;                
+                $proxy = $myDB->GetProxy($proxy_id);
                 if($Client->proxy !== NULL)
                 {                    
-                    $proxy_id = $Client->proxy;
+                    $proxy = $Client;
                 }
-                $proxy = $myDB->GetProxy($proxy_id);
                 $result = $this->make_login($login, $pass, $proxy->proxy, $proxy->port, $proxy->proxy_user, $proxy->proxy_password);
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
