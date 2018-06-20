@@ -31,7 +31,7 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
   } */
 
 $Robot = new \follows\cls\Robot();
-//$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
+$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
 //$Robot->make_checkpoint('riveauxmerino', 872305);
 //$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
@@ -158,15 +158,16 @@ $Robot = new \follows\cls\Robot();
 //
 // WORKER
 $Worker = new follows\cls\Worker();
-$Reference_id = 44881;  // PR, Geo o Hashtag
+$Reference_id = 45728;  // PR, Geo o Hashtag
 $daily_work = $Worker->get_work_by_id($Reference_id);
-$Worker->do_follow_unfollow_work($daily_work);
+//$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;
 //var_dump($daily_work->rp_insta_id);
-//$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
-//var_dump($profiles);
-//
-////$Worker->check_daily_work();
+$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
+$Robot->do_follow_unfollow_work($Followeds_to_unfollow, $daily_work);
+var_dump($profiles);
+
+//$Worker->check_daily_work();
 //$Worker->truncate_daily_work();
 //$Worker->prepare_daily_work();
 //$Worker->do_work();

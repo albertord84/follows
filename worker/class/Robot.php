@@ -1809,14 +1809,13 @@ namespace follows\cls {
                 }
             }
             // Try new API login
-            try {
-                $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;
-                
-                if($Client->proxy !== NULL)
-                {                    
-                    $proxy_id = $Client->proxy;
+            try {             
+                $proxy = $myDB->get_client_proxy($Client->id);
+                if($proxy === NULL)
+                {                   
+                    $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;   
+                    $proxy = $myDB->GetProxy($proxy_id);
                 }
-                $proxy = $myDB->GetProxy($proxy_id);
                 $result = $this->make_login($login, $pass, $proxy->proxy, $proxy->port, $proxy->proxy_user, $proxy->proxy_password);
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
@@ -2088,9 +2087,13 @@ namespace follows\cls {
 
         public function checkpoint_requested($login, $pass, $Client = NULL) {
             try {
+                $DB = new \follows\cls\DB();
                 $instaAPI = new \follows\cls\InstaAPI();
-
-                $result2 = $instaAPI->login($login, $pass, true);
+                $Client = $DB->get_client_data_bylogin($login);
+                $Proxy = $DB->get_client_proxy($Client->id);
+                if($Proxy == NULL)
+                    $Proxy = $DB->GetProxy(8);
+                $result2 = $instaAPI->login($login, $pass, $Proxy->proxy, $Proxy->port, $Proxy->proxy_user, $Proxy->proxy_password);
                 return $result2;
             } catch (\InstagramAPI\Exception\ChallengeRequiredException $exc) {
                 $res = $exc->getResponse()->getChallenge()->getApiPath();

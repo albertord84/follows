@@ -212,6 +212,21 @@ namespace follows\cls {
             }
         }
 
+        
+        public function get_client_proxy($client_id) {
+            try {
+                $this->connect();
+                $sql = ""
+                . "SELECT * FROM clients "
+                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                . "WHERE user_id LIKE '$client_id';";
+                $result = mysqli_query($this->connection, $sql);
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
         public function set_client_status($client_id, $status_id) {
             try {
                 $this->connect();
