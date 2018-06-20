@@ -31,7 +31,7 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
   } */
 
 $Robot = new \follows\cls\Robot();
-//$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
+$res = $Robot->checkpoint_requested('riveauxmerino','Notredame88');
 //$Robot->make_checkpoint('riveauxmerino', 872305);
 //$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
