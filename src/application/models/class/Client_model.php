@@ -206,7 +206,30 @@
             }
         }
          
-        
+        public function get_client_by_order_key($order_key){
+            try {    
+                $this->db->select('*');
+                $this->db->from('clients'); 
+                $this->db->join('users', 'users.id = clients.user_id');
+                $this->db->where('order_key', $order_key);
+                return $this->db->get()->result_array();
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+         
+        public function get_client_by_email($email){
+            try {    
+                $this->db->select('*');
+                $this->db->from('clients'); 
+                $this->db->join('users', 'users.id = clients.user_id');
+                $this->db->where('email', $email);
+                return $this->db->get()->result_array();
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+                 
         public function get_pay_values($id_value){
             $this->db->select('*');
             $this->db->from('plane');
