@@ -6,6 +6,7 @@ namespace follows\cls {
     require_once 'Reference_profile.php';
     require_once 'Day_client_work.php';
     require_once 'washdog_type.php';
+    require_once 'system_config.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
     require_once 'InstaAPI.php';
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/vendor/autoload.php';
@@ -402,9 +403,9 @@ namespace follows\cls {
                 //var_dump($json_response);
                 if ($json_response === NULL) {
                     $result = $this->DB->delete_daily_work_client($daily_work->users_id);
-                    $this->DB->set_client_status($daily_work->users_id, user_status::VERIFY_ACCOUNT);
-                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
-                    $this->DB->set_client_cookies($daily_work->users_id, NULL);
+                    $this->DB->set_client_status($daily_work->users_id, user_status::BLOCKED_BY_TIME);
+                    $this->DB->InsertEventToWashdog($daily_work->users_id, washdog_type::BLOCKED_BY_TIME, 1, $this->id, "Cookies incompleta when funtion get_profiles_to_follow");
+                    //$this->DB->set_client_cookies($daily_work->users_id, NULL);
                 }
                 echo "<br>\nRef Profil: $daily_work->insta_name<br>\n";
                 if (is_object($json_response) && $json_response->status == 'ok') {
@@ -964,7 +965,7 @@ namespace follows\cls {
             try {
                 $tag_query = 'ded47faa9a1aaded10161a2ff32abb6b';
                 $variables = "{\"tag_name\":\"$tag\",\"first\":2,\"after\":\"$cursor\"}";
-                $curl_str = $this->make_curl_followers_query($tag_query, $variables);
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
@@ -1018,7 +1019,7 @@ namespace follows\cls {
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
-            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' ";
+            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36' ";
             $curl_str .= "-H 'X-Requested-with: XMLHttpRequest' ";
             //$curl_str .= "-H 'X-Instagram-ajax: 1' ";
             $curl_str .= "-H 'content-type: application/x-www-form-urlencoded' ";
@@ -1808,8 +1809,14 @@ namespace follows\cls {
                 }
             }
             // Try new API login
-            try {
-                $result = $this->make_login($login, $pass);
+            try {             
+                $proxy = $myDB->get_client_proxy($Client->id);
+                if($proxy === NULL)
+                {                   
+                    $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;   
+                    $proxy = $myDB->GetProxy($proxy_id);
+                }
+                $result = $this->make_login($login, $pass, $proxy->proxy, $proxy->port, $proxy->proxy_user, $proxy->proxy_password);
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
                 $result->json_response->authenticated = TRUE;
@@ -1940,11 +1947,11 @@ namespace follows\cls {
             }
         }
 
-        public function make_login($login, $pass) {
+        public function make_login($login, $pass, $ip='207.188.155.18', $port='21316', $proxyuser='albertreye9917', $proxypass='3r4rcz0b1v') {
             $instaAPI = new \follows\cls\InstaAPI();
             //TODO: capturar excepcion e dar tratamiento cuando usuario y senha no existe en IG
             try {
-                $result = $instaAPI->login($login, $pass);
+                $result = $instaAPI->login($login, $pass,$ip,$port,$proxyuser,$proxypass);
             } catch (\Exception $exc) {
                 throw $exc;
             }
@@ -2080,9 +2087,13 @@ namespace follows\cls {
 
         public function checkpoint_requested($login, $pass, $Client = NULL) {
             try {
+                $DB = new \follows\cls\DB();
                 $instaAPI = new \follows\cls\InstaAPI();
-
-                $result2 = $instaAPI->login($login, $pass, true);
+                $Client = $DB->get_client_data_bylogin($login);
+                $Proxy = $DB->get_client_proxy($Client->id);
+                if($Proxy == NULL)
+                    $Proxy = $DB->GetProxy(8);
+                $result2 = $instaAPI->login($login, $pass, $Proxy->proxy, $Proxy->port, $Proxy->proxy_user, $Proxy->proxy_password);
                 return $result2;
             } catch (\InstagramAPI\Exception\ChallengeRequiredException $exc) {
                 $res = $exc->getResponse()->getChallenge()->getApiPath();
@@ -2272,7 +2283,7 @@ namespace follows\cls {
                     $mid = "$match[1]";
                 }
                 $sessionid = "";
-                if (preg_match('/sessionid=([^;"\']+)/mi', $curl, $match) == 1) {
+                if (preg_match('/sessionid=([^;"\' ]+)/mi', $curl, $match) == 1) {
                     $sessionid = "$match[1]";
                 }
                 $ds_user_id = "";

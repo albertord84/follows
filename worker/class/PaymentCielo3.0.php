@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @author Alberto Reyes <albertord84@gmail.com>
+ * @name API Integration with Cielo 3.0
+ * @version 1
+ * @date 06/06/2018 4:00AM
+ * @depends DUMBU DB
+ */
+
 namespace follows\cls {
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/APICIELO3.0/vendor/autoload.php';
     require_once 'system_config.php';
