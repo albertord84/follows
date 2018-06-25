@@ -42,8 +42,8 @@ $Robot = new \follows\cls\Robot();
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
 //var_dump($res);
 
-$res = $Robot->bot_login('alberto_dreyes', 'albertord9');
-var_dump($res);
+//$res = $Robot->bot_login('alberto_dreyes', 'albertord9');
+//var_dump($res);
 
 /*
 $Robot = new \follows\cls\Robot();
@@ -164,9 +164,11 @@ echo json_encode($json_response);
 //
 // WORKER
 $Worker = new follows\cls\Worker();
-$Reference_id = 44881;  // PR, Geo o Hashtag
-$daily_work = $Worker->get_work_by_id($Reference_id);
-$Worker->do_follow_unfollow_work($daily_work);
+$Worker->prepare_daily_work();
+//$user_id = 19546;
+//$Reference_id = 44881;  // PR, Geo o Hashtag
+//$daily_work = $Worker->get_work_by_id($Reference_id);
+//$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;
 //var_dump($daily_work->rp_insta_id);
 //$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
