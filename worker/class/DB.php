@@ -202,10 +202,24 @@ namespace follows\cls {
                 $sql = ""
                 . "SELECT * FROM clients "
                 . "     INNER JOIN users ON clients.user_id = users.id "
-                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
                 . "WHERE users.login LIKE '$login' "
                 . "ORDER BY user_id DESC "
                 . "LIMIT 1; ";
+                $result = mysqli_query($this->connection, $sql);
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        
+        public function get_client_proxy($client_id) {
+            try {
+                $this->connect();
+                $sql = ""
+                . "SELECT * FROM clients "
+                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                . "WHERE user_id LIKE '$client_id';";
                 $result = mysqli_query($this->connection, $sql);
                 return $result ? $result->fetch_object() : NULL;
             } catch (\Exception $exc) {
