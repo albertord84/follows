@@ -135,12 +135,14 @@ namespace follows\cls {
                 $Followeds_to_unfollow = array();
                 if ($daily_work->to_unfollow > 0) {
                     $unfollow_work = $this->DB->get_unfollow_work($daily_work->client_id);
- 
-                    while ($Followed = $unfollow_work->fetch_object()) {
-                        $To_Unfollow = new \follows\cls\Followed();// Update Ref Prof Data
-                        $To_Unfollow->id = $Followed->id;
-                        $To_Unfollow->followed_id = $Followed->followed_id;
-                        array_push($Followeds_to_unfollow, $To_Unfollow);
+                    if(is_object($unfollow_work) && !is_bool($unfollow_work))
+                    {
+                        while($Followed = $unfollow_work->fetch_object()) {
+                            $To_Unfollow = new \follows\cls\Followed();// Update Ref Prof Data
+                            $To_Unfollow->id = $Followed->id;
+                            $To_Unfollow->followed_id = $Followed->followed_id;
+                            array_push($Followeds_to_unfollow, $To_Unfollow);
+                        }
                     }
                 }
                 //Reuest for the black list in the data base
