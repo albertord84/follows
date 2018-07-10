@@ -279,7 +279,7 @@ namespace follows\cls {
                             print "<br> Login data NULL!!!!!!!!!!!! <br>";
                         }
                     } else {
-                        $has_work = FALSE;
+                        sleep(1200);
                     }
                     //die("Test Ended!");
                 }
