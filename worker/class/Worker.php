@@ -37,7 +37,9 @@ namespace follows\cls {
         function prepare_daily_work() {
             // Get Users Info
             $Clients = (new Client())->get_clients();
-            //$DB = new DB();
+            
+//            $Client = (new Client())->get_client(19546);  Testar, cliente JA
+            
             $Client = new Client();
             foreach ($Clients as $Client) { // for each CLient
                 if (!$Client->cookies) {
@@ -80,8 +82,9 @@ namespace follows\cls {
                             foreach ($Client->reference_profiles as $Ref_Prof) { // For each reference profile
                                 //$Ref_prof_data = $this->Robot->get_insta_ref_prof_data($Ref_Prof->insta_name);
                                 if (!$Ref_Prof->deleted && $Ref_Prof->end_date == NULL) {
-                                    $valid_geo = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
-                                    if ($Ref_Prof->type == 0 || $valid_geo) {
+                                    $valid_geo    = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                    $valid_hastag = ($Ref_Prof->type == 2 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                    if ($Ref_Prof->type == 0 || $valid_geo || $valid_hastag) { // Nivel de permisos dependendo do plano, solo para quem tem permissao para geo ou hastag
                                         $this->DB->insert_daily_work($Ref_Prof->id, $to_follow, $to_unfollow, $Client->cookies);
                                     }
                                 }
@@ -276,7 +279,7 @@ namespace follows\cls {
                             print "<br> Login data NULL!!!!!!!!!!!! <br>";
                         }
                     } else {
-                        $has_work = FALSE;
+                        sleep(1200);
                     }
                     //die("Test Ended!");
                 }
