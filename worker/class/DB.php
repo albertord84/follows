@@ -135,6 +135,7 @@ namespace follows\cls {
                 $CLIENT = user_role::CLIENT;
                 $ACTIVE = user_status::ACTIVE;
                 $PENDING = user_status::PENDING;
+                $UNFOLLOWS = user_status::UNFOLLOW;
                 //$UNFOLLOW = user_status::UNFOLLOW;
                 $sql = ""
                         . "SELECT * FROM users "
@@ -143,7 +144,8 @@ namespace follows\cls {
                         . "WHERE users.role_id = $CLIENT "
                         . "     AND clients.unfollow_total = 1 "
                         . "     AND (users.status_id = $ACTIVE OR "
-                        . "          users.status_id = $PENDING "
+                        . "          users.status_id = $PENDING OR "
+                        . "          users.status_id = $UNFOLLOWS OR "
                         . "          );";
                 $result = mysqli_query($this->connection, $sql);
                 return $result;

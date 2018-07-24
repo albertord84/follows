@@ -30,13 +30,13 @@ $result = new \stdClass();
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
-$manager = new \follows\cls\ProxyManager();
-$manager->UpdateUserProxy();
+//$manager = new \follows\cls\ProxyManager();
+//$manager->UpdateUserProxy();
 
-//$Robot = new \follows\cls\Robot();
+$Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('alberto_dreyes','albertord9');
 //$Robot->make_checkpoint('riveauxmerino', 872305);
-//$res = $Robot->bot_login('guarapuvu', 'guarapuvu123');
+$res = $Robot->bot_login('riveauxmerino', 'Notredame');
 
 
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
