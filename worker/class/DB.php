@@ -145,7 +145,7 @@ namespace follows\cls {
                         . "     AND clients.unfollow_total = 1 "
                         . "     AND (users.status_id = $ACTIVE OR "
                         . "          users.status_id = $PENDING OR "
-                        . "          users.status_id = $UNFOLLOWS OR "
+                        . "          users.status_id = $UNFOLLOWS"
                         . "          );";
                 $result = mysqli_query($this->connection, $sql);
                 return $result;
