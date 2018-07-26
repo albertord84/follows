@@ -1184,8 +1184,157 @@ class Welcome extends CI_Controller {
         echo json_encode($result);
     }
 
-    //Passo 2.2 CChequeando datos bancarios y guardando datos y estado del cliente pagamento     
+    //Passo 2.2 CChequeando datos bancarios y guardando datos y estado del cliente pagamento  
     public function check_client_data_bank($datas = NULL) {
+        $this->is_ip_hacker();
+        $this->load->model('class/system_config');
+        $this->load->model('class/client_model');
+        $this->load->model('class/Crypt');
+        $this->load->model('class/user_model');
+        $this->load->model('class/user_status');
+        $this->load->model('class/credit_card_status');
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
+        $this->Vindi = new \follows\cls\Vindi();
+        $origin_datas = $datas;
+        if($datas == NULL)
+            $datas = $this->input->post();
+        $query = $this->client_model->get_all_data_of_client($datas['pk']);
+        $datas['user_login'] = $query[0]['login']; $datas['user_pass'] = $query[0]['pass'];
+        $datas['user_email'] = $query[0]['email']; $datas['insta_id'] = $query[0]['insta_id'];
+        $datas['status_id'] = $query[0]['status_id'];
+        $purchase_counter = (int)$query[0]['purchase_counter'];
+        if($query[0]['purchase_access_token'] === $datas['purchase_access_token']) {            
+            if($datas['status_id'] === '8' || $datas['status_id'] === '4') {                
+                if ($purchase_counter > 0){
+                    if ($this->validate_post_credit_card_datas($datas)) {
+                        try {
+                            //1. salvar datos del carton de credito
+                            $this->client_model->update_client($datas['pk'], array(
+                                'credit_card_number' => $this->Crypt->codify_level1($datas['credit_card_number']),
+                                'credit_card_cvc' => $this->Crypt->codify_level1($datas['credit_card_cvc']),
+                                'credit_card_name' => $datas['credit_card_name'],
+                                'credit_card_exp_month' => $datas['credit_card_exp_month'],
+                                'credit_card_exp_year' => $datas['credit_card_exp_year']
+                            ));
+                            if (isset($datas['ticket_peixe_urbano'])) {
+                                $ticket = trim($datas['ticket_peixe_urbano']);
+                                $this->client_model->update_client($datas['pk'], array(
+                                    'ticket_peixe_urbano' => $ticket
+                                ));
+                            }
+                            //2. hacer el pagamento segun el plano
+                            $response['success'] = false;
+                            if($datas['plane_type'] >= '1' && $datas['plane_type'] <= '5') {
+                                //2.1 crear cliente en la vindi
+                                $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
+                                if($gateway_client_id){
+                                    $this->client_model->set_client_payment($datas['pk'],$gateway_client_id,$datas['plane_type']);                                    
+                                    $datas['pay_day'] = strtotime("+".$GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS." days", time());
+                                    //2.2. crear carton en la vindi
+                                    $resp = $this->Vindi->addClientPayment($gateway_client_id, $datas['pay_day']);
+                                    if($resp->success){
+                                        //2.3. crear recurrencia segun plano-producto
+                                        $resp = $this->Vindi->create_recurrency_payment($datas['pk']);
+                                        if($resp->success){
+                                            //2.4 salvar order_key  (payment_key)
+                                            $this->client_model->update_client_payment_key($datas['pk'],
+                                                array('payment_key'=>$resp['payment_key']));
+                                            $response['success'] = true;
+                                        }else
+                                            $response['message'] = $resp->message;
+                                    }else
+                                        $response['message'] = $resp->message;
+                                }
+                            }
+
+                            //3. si pagamento correcto: logar cliente, establecer sesion, actualizar status, emails, initdate
+                            if ($response['success'])   {
+                                $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
+                                $this->load->model('class/user_model');
+                                $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $datas['force_login']);
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {                                    
+                                    $datas['status_id'] = user_status::ACTIVE;
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => $datas['status_id']));                                    
+                                    $this->user_model->set_sesion($datas['pk'], $this->session, $data_insta['insta_login_response']);
+                                } else
+                                if ($data_insta['status'] === 'ok' && !$data_insta['authenticated']) {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::BLOCKED_BY_INSTA));
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else
+                                if ($data_insta['status'] === 'fail' && $data_insta['message'] == 'checkpoint_required') {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::VERIFY_ACCOUNT));
+                                    $result['resource'] = 'client';
+                                    $result['verify_link'] = $data_insta['verify_account_url'];
+                                    $result['return_link'] = 'client';
+                                    $result['message'] = 'Sua conta precisa ser verificada no Instagram';
+                                    $result['cause'] = 'checkpoint_required';
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else
+                                if ($data_insta['status'] === 'fail' && $data_insta['message'] == '') {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::VERIFY_ACCOUNT));
+                                    $result['resource'] = 'client';
+                                    $result['verify_link'] = '';
+                                    $result['return_link'] = 'client';
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::BLOCKED_BY_INSTA));
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                }
+                                //Email com compra satisfactoria a atendimento y al cliente
+                                //$this->email_success_buy_to_atendiment($datas['user_login'], $datas['user_email']);
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated'])
+                                    $this->email_success_buy_to_client($datas['user_email'], $data_insta['insta_name'], $datas['user_login'], $datas['user_pass']);
+                                else
+                                    $this->email_success_buy_to_client($datas['user_email'], $datas['user_login'], $datas['user_login'], $datas['user_pass']);
+                                $result['success'] = true;
+                                $result['message'] = $this->T('Usuário cadastrado com sucesso', array(), $GLOBALS['language']);
+                                $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
+                            } else {
+                                $value['purchase_counter'] = $purchase_counter - 1;
+                                $this->client_model->decrement_purchase_retry($datas['pk'], $value);
+                                $result['success'] = false;
+                                $result['message'] = $response['message'];
+                            }
+                        } catch (Exception $exc) {
+                            $result['success'] = false;
+                            $result['exception'] = $exc->getTraceAsString();
+                            $result['message'] = $this->T('Error actualizando en base de datos', array(), $GLOBALS['language'], $GLOBALS['language']);
+                        }
+                    } else {
+                        $result['success'] = false;
+                        $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+                    }
+                } else {
+                    $result['success'] = false;
+                    $result['message'] = $this->T('Alcançõu a quantidade máxima de retentativa de compra, por favor, entre en contato con o atendimento', array(), $GLOBALS['language']);
+                }
+            } else {
+                $result['success'] = false;
+                $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+            }
+        } else {
+            $this->client_model->update_client($datas['pk'], array('retry_payment_counter' => '0'));
+            $result['success'] = false;
+            $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+        }
+        if (!$origin_datas)
+            echo json_encode($result);
+        else
+            return $result;
+    }
+    
+    /*public function check_client_data_bank_old($datas = NULL) {
         $this->is_ip_hacker();
         $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
@@ -1232,32 +1381,7 @@ class Welcome extends CI_Controller {
                                 ));
                             }
 
-                            //1. verificar si era un cliente anterior cancelado
-                            /*$query = 'SELECT * FROM users,clients WHERE clients.insta_id="' . $datas['insta_id'] . '"' .
-                                    'AND clients.user_id=users.id';
-                            $client = $this->user_model->execute_sql_query($query);
-                            $N = count($client);
-                            $real_status = -1; //No existe
-                            $early_client_canceled = false;
-                            //$index = 0;
-                            for ($i = 0; $i < $N; $i++) {
-                                if ($client[$i]['status_id'] == user_status::DELETED || $client[$i]['status_id'] == user_status::INACTIVE) {
-                                    $real_status = 0; //cancelado o inactivo
-                                    $early_client_canceled = true;
-                                    //$index = $i;
-                                    //break;
-                                } else
-                                if ($client[$i]['status_id'] == user_status::BEGINNER) {
-                                    $real_status = 1; //Beginner
-                                    //$index = $i;
-                                    break;
-                                } else
-                                if ($client[$i]['status_id'] != user_status::DELETED && $client[$i]['status_id'] != user_status::INACTIVE) {
-                                    $real_status = 2; //cualquier otro estado
-                                    break;
-                                }
-                            }
-                            $datas['early_client_canceled'] = $early_client_canceled;*/
+                            
                             
                             //2. hacel el pagamento segun el plano
                             // TODO: Hacer clase Plane
@@ -1275,10 +1399,7 @@ class Welcome extends CI_Controller {
                                 $this->load->model('class/user_model');
                                 $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $datas['force_login']);
                                 //$this->user_model->insert_washdog($datas['pk'],'SUCCESSFUL PURCHASE');
-                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {
-                                    /* if ($datas['need_delete'] < $GLOBALS['sistem_config']->MIN_MARGIN_TO_INIT)
-                                      $datas['status_id'] = user_status::UNFOLLOW;
-                                      else */
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {                                    
                                     $datas['status_id'] = user_status::ACTIVE;
                                     $this->user_model->update_user($datas['pk'], array(
                                         'init_date' => time(),
@@ -1363,27 +1484,9 @@ class Welcome extends CI_Controller {
             echo json_encode($result);
         else
             return $result;
-    }
+    }*/
 
-    public function check_client_data_bank_vindi($datas = NULL) {
-        //1. crear cliente en la vindi
-        //$gateway_client_id = addClient($name, $email = null);
-            //$name = nombre del carton
-            //$email email del paso 1
-        //2. insertar cliente en la base de datos (datos del CC y dumbu_plane_id)
-        //3. crear carton en la vindi
-            //$status = addClientPayment($vindi_client_id, $payment_data); 
-            //$status =json{'success':true,'message':''};   
-        //4. crear recurrencia segun palno-producto
-            //create_recurrency_payment($dumbu_client_id)
-            
-        
-        
-        //outros
-        
-    }
-
-    public function do_payment_by_plane($datas, $initial_value, $recurrency_value) {
+    /*public function do_payment_by_plane($datas, $initial_value, $recurrency_value) {
         $this->is_ip_hacker();
         $this->load->model('class/client_model');
         $this->load->model('class/system_config');
@@ -1790,7 +1893,7 @@ class Welcome extends CI_Controller {
             }
         }
         return $response;
-    }
+    }*/
 
     public function detectCardType($num) {
         $this->is_ip_hacker();
@@ -1803,7 +1906,6 @@ class Welcome extends CI_Controller {
             "elo" => "/^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})$/",
             "hipercard" => "/^(606282\d{10}(\d{3})?)|(3841\d{15})$/"
         );
-
         if (preg_match($re['visa'], $num)) {
             return 'Visa';
         } else if (preg_match($re['mastercard'], $num)) {
@@ -1862,27 +1964,6 @@ class Welcome extends CI_Controller {
         $payment_data['municipality_address'] = $datas['municipality_address'];
         $payment_data['state_address'] = $datas['state_address'];
         return $this->payment->create_boleto_payment($payment_data);
-    }
-
-    public function check_mundipagg_boleto2($datas) {
-        $this->is_ip_hacker();
-        $this->load->model('class/system_config');
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-        $this->load->library('Payment');
-        $payment_data['AmountInCents'] = '12719';
-        $payment_data['DocumentNumber'] = '15125';
-        $payment_data['OrderReference'] = '15125';
-        $payment_data['id'] = '28720';
-        $payment_data['name'] = 'ALESSANDRO AMARANTE PAIXAO';
-        $payment_data['cpf'] = '26957166805';
-        $payment_data['cep'] = '13042430';
-        $payment_data['street_address'] = 'Rua Hélcio Lizzardi';
-        $payment_data['house_number'] = '864';
-        $payment_data['neighborhood_address'] = 'Parque Jambeiro';
-        $payment_data['municipality_address'] = 'Campinas';
-        $payment_data['state_address'] = 'SP';
-        $a = $this->payment->create_boleto_payment($payment_data);
-        var_dump($a);
     }
 
     public function check_recurrency_mundipagg_credit_card($datas, $cnt) {

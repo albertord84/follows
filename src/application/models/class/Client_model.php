@@ -106,7 +106,25 @@
             $data_client['utm_source']=$datas['utm_source'];                            //desde instagram navegador y servidor
             $this->db->insert('clients',$data_client);
             return $id_user_table;
-        }    
+        }
+        
+        public function set_client_payment($dumbu_client_id, $gateway_client_id, $dumbu_plane_id){
+            $datas = array(
+                    'gateway_client_id'=>$gateway_client_id,
+                    'dumbu_plane_id'=>$dumbu_plane_id);
+            $this->db->select('*');
+            $this->db->from('client_payment');
+            $this->db->where('client_payment.dumbu_client_id', $dumbu_client_id);        
+            $result = $this->db->get()->row_array();                
+            if(count($result)){
+                $this->db->where('dumbu_client_id',$dumbu_client_id);
+                return $this->db->update('client_payment',$datas);                
+            }else{
+                $datas['dumbu_client_id']=$dumbu_client_id;
+                $this->db->insert('users',$datas);
+                return $this->db->insert_id();
+            }
+        }
         
         public function insert_ticket_bank_generated($ticket_datas){
             $this->db->insert('ticket_bank',$ticket_datas);
