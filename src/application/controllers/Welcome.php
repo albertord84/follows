@@ -6,100 +6,25 @@ ini_set('xdebug.var_display_max_data', 1024);
 
 class Welcome extends CI_Controller {
 
-    private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control
+    private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control    
     public $language = NULL;
     
-    public function test($language = NULL){
-        echo  md5('Marcos*01+');
-    }
-
-    public function login_all_blocked_by_pass() {
-        $this->load->model('class/client_model');
-        $client = $this->client_model->get_all_clients_by_status_id(9);
-        foreach ($client as $client) {
-            $datas['user_login'] = $client['login'];
-            $datas['user_pass'] = $client['pass'];
-            $datas['force_login'] == false;
-            $result = $this->user_do_login($datas);
-            if ($result['authenticated'])
-                echo $client['login'] . 'authenticated and it is in ACTIVE status<br>';
-            else
-                echo $client['login'] . 'NOT authenticated by ' . $result['cause'] . 'cause<br>';
-        }
-    }
-
-    public function xxx($path = "") {
-        $this->load->model('class/Crypt');
-        $this->load->model('class/client_model');
-        //$order_keys =array('');
-        $email_list=array('djrhuivomb@gmail.com','urpia@alfamarket.com.br','Pitoaugusto@hotmail.com','nathanhartjames@gmail.com','layslamillena@hotmail.com','seramiham@gmail.com','contato@espacoluanadutra.com.br','duda@cervejacaverna.com.br','annasilvaa@gmail.com','brunapetti@hotmail.com','Felpa.lv@gmail.com','felipemarcoscantanhede@outlook.com','mmmiiillleeennnaaa77@gmail.com','powerfit@bol.com.br','lypes.phill@gmail.com','lypes.phill@gmail.com','Rafaelbalizamakeup@gmail.com','yurivb0@hotmail.com','rodolfo.engcivil@outlook.com','doidosporairsoft@outlook.com','doidosporairsoft@outlook.com','lobo.yara@gmail.com','andersonjaderdasilva@gmail.com','paulorandney2016@icloud.com','rhuan_penaforte@hotmail.com','felipevallorini@hotmail.com','felipe_rua@hotmail.com','edineteferreira2011@hotmail.com','tcas83@hotmail.com','havc_zootec@yahoo.com.br','dermatologiaum@hotmail.com','hologracia.graphic@gmail.com','tratofinoservicos@gmail.com','daniel.ferranti@hotmail.com','carlos@hardhair.com.br','triade.pa@gmail.com','bibiprado@live.com','comercial_pedro@outlook.com','hugorafael60@gmail.com','gerencia@naturalprodutos.com.br','bruna.hahn@quintavalentina.com.br','matheuschagasrodrigues@gmail.com','pbpetti@gmail.com','Brunoribeiro54@hotmail.com','marciueno@gmail.com','Rpcc@icloud.com','pedroroxer@gmail.com','julio7_ribeiro@me.com','Deyvidvf@gmail.com','contato@mundowine.com.br','raphaela@alineacomunicacao.com.br','Antonioportesdasilva@gmail.com','rosanalpc@hotmail.com','klebs.junior@gmail.com','hanihx@gmail.com','mauro@automveiculos.com.br','tclima16@gmail.com','personal@marciodp.com.br','Kkkkjkk@gmail.com','nath.hidalgo@hotmail.com','juliaoscar893@gmail.com','Carloskpulling@icloud.com','nayara_ystfanny@hotmail.com','danielle.oliveira@globo.com','Tgsfood@icloud.com','rszonasul1@spadassobrancelhas.com.br','Digolindo@gmail.com','falecom@victorhugo.art.br','prof.natale@gmail.com','z.ahro@archiss.com','lucasribaz@hotmail.com','husak.dominik@gmail.com','lukmodass@gmail.com','andrade.bruno97@gmail.com','mundodocorpo@gmail.com','Lucastoffanicouto@hotmail.com','alisson.reiler@gmail.com','florenza.store@terra.com.br','larissahailer@live.com','juanmanuelruizo@gmail.com','sadasdasda@gmail.com','esmaelt.lucas@hotmail.com','luxxusdecor@gmail.com.com','Simplesmente.andreia@bol.com.br','kauanhorvath@hotmail.com','espacojuaguiar@gmail.com','antoniapaguiar@hotmail.com','mcsgl87@gmail.com','rosegi0802@gmail.com','alemao_leste@hotmail.com','Vivianeneu@gmail.com','vitormagnuspessoal@hotmail.com','laurinhamarinho@gmail.com','daherleticia@hotmail.com','Faustoedouglas@gmail.com','Yuri.snv@gmail.com','claz92@hotmail.it','luizz2009133@hotmail.com','silmara_uliana@yahoo.com.br','equipeget2500ro@gmail.com','karolfernanda_@hotmail.com','sadasda@gmail.com','Jslslwkajab@gmail.com','Kkjkhui@gmail.com','lourencolar@gmail.com','alanlopes102@gmail.com','wanutricionista@gmail.com','fernandoferreiramoda13@gmail.com','divabriadeirosgourmet@gmail.com','leoadavlis@gmail.com','contato@mitally.com.br','ali_ny_v@hotmail.com','elaine.rochadanelon@gmail.com','vanessa_vaidadefeminina@live.com','referraz68@gmail.com','emppratajoias@gmail.com','benittaacessorios@gmail.com','marcello@lifegofitness.com.br','sdsadada@gmail.com','lojaenquadrando@gmail.com','rhayannynobrega@hotmail.com','monkeynight01@hotmail.com','evilene@fepmoda.com.br','thamiris.rezende@hugcomunicacao.com','ronaldo_farmacia@hotmail.com','brunoalvesshows@outlook.com','Alirio.ebnezer25@hotmail.com','Ncr_10@hotmail.com','makesjuvalerio@gmail.com','andersonpdiniz@gmail.com','jana_df_@hotmail.com','Shivraj34om8@gmail.com','marilane-2008@hotmail.com','investteam2017@gmail.com','fsadasd@gmail.com','marketing@crosspato.com.br','kaleumandelli@hotmail.com','eduardvilarinho@uol.com.br','juliocvribeiro@hotmail.com','victorrisso.risso@gmail.com','felipe.kososki@outlook.com','ruliodelfino@gmail.com','dermaflora@dermaflorasp.com','Stephany.19larissa@hotmail.com','emanuelaraujo2012@hotmail.com','wetonno@gmail.com','99importadossp@gmail.com','Projeto@podarq.com','evandromanoel15rj@hotmail.com','dpaulaimport@gmail.com','roadmanager.chrisplatinado@gmail.com','Familiaadoradores@hotmail.com','emersondonadon@gmail.com','guguzord@gmail.com','levaonline@gmail.com','clinicarte1@gmail.com','macarena.beach@gmail.com','douglas@mododigital.com.br','giovanazangarini@icloud.com','saraa_19_93@hotmail.com','contatogomes@gmail.com','deda.carballeda@gmail.com','vaquejadamanduri@gmail.com','lazarotecinfo@gmail.com','Gahans@gmail.com','contato@bocamaldita.com.br','nicollinicoletti@hotmail.com','lumeninamorta@hotmail.com','contato@rgarquitetura.arq.br','Emailpessoaldofelipe@gmail.com','prof.natale@gmail.com','beatriz.si.araujo@gmail.com','holivernicolas@hotmail.com','Goiano@gmail.com','binhofernandes.09@gmail.com','fdezordi@hotmail.com','francystorepmw@gmail.com','lipeoos2@gmail.com','Hshshsh@gmail.com','millena_kerolaynne@hotmail.com','gersicatiane@gmail.com','contato_filippe@hotmail.com','sarahrpe@hotmail.com','raphaela@alineacomunicacao.com.br','Deborassouzasz@gmail.com','giovanapinheiro2010@hotmail.com','pizzaiolosaogeraldo@yahoo.com','mail.rima15@gmail.com','abner.ramos@hotmail.com','polianaacessorios@gmail.com','brownielapetite@outlook.com','jonaslemes7@gmail.com','sadasdsa@gmail.com','tmonteiro_20@hotmail.com','jumunizf@hotmail.com','dvptucurui@gmail.com','contato@saurio.com.br','contato@paradisetravel.com.br','maria@studioambientes.com.br','milevaweb@gmail.com','usinadohamburguer@gmail.com','Jessikrosaoficial@gmail.com','tulip.photos@gmail.com','johannyestrella@hotmail.com','igor@casamodernamoveis.com.br','ricardocruz247@gmail.com','boo.1995@hotmail.com','Bzbdbdbdb@gmail.com','wendershowdagym@gmail.com','thamiris.rezende@hugcomunicacao.com','Lucrochekarol@gmail.com','heko.digital@gmail.com','prof.natale@gmail.com','oumbid@gmail.com','ketliinmarques@hotmail.com','priscila.matsuda.valencia@gmail.com','kskslimes@hotmail.com','jrheladestudio@gmail.com','Iloveqzisgb@gmail.com','renatab1592@gmail.com','karlayunesfun@gmail.com','adrian.navia.r@gmail.com','applepremiumimports@gmail.com','joao_bs@live.com','gadelhaproducoes@hotmail.com','viniciusfrancoff@gmail.com','natcaversan@hotmail.com','atelierjardimdeartesanatos@gmail.com','Diegoandresshalom@yahoo.com.br','reebok@gmail.com','Fatimuv@gmail.com','thiagonettoefabydias@gmail.com','pedsousa@gmail.com','danielsousa@gmail.com','marcos@soumda.com.br','lmandarinos2515@gmail.com','ppqlneto2@outlook.com','corleto.keli@gmail.com','heladiocosta@outlook.com','lucianamendes@oi.com.br','kleyton-alex@hotmail.com','ortizjohi23@hotmail.com','danielgomes@vendasrj.com','filipesrfm@outlook.com','anastaciagranja@hotmail.com','Danielle_cg55@hotmail.com','angelica.federizzi@hotmail.com','alegigio25@gmail.com','olavo@paradisepizzaria.com.br','guking@gmail.com','valleonin@hotmail.com','stefanedominguessantos@gmail.com','Fred_torres@hotmail.com','Celelopezz.91@hotmail.com','vocecristao@gmail.com','pampamlouca@gmail.com','ofertacaldas@ofertacaldas.com.br','sloower222@gmail.com','williantortelli28@gmail.com','santafarrabhz@gmail.com','sjuninho300@gmail.com','marshvps@gmail.com','lucimara22@hotmail.com','edupelotoni@gmail.com','andre_dq2@hotmail.com','kyrafernandes@outlook.com','rodolfojcp@gmail.com','jessiica.diias@yahoo.com.br','ianasalv@gmail.com','juofelipe12@hotmail.com','cipullo.bruna@gmail.com','kreactive@hotmail.com','luisantonioramos@globo.com','Darlanlf@hotmail.com','fabricioreis1750@gmail.com','Dibre@gmail.com','drahyunkim@clinicahkim.com.br','Hbaptista97@hotmail.com','tecnologshop@gmail.com','Larissa@lalevi.com.br','Larissalbergaria@hotmail.com','eduardo@fintta.com','levylopesmusic@gmail.com','contato@spetacollare.com.br','cleantech.limpeza@gmail.com','lieripierotto@gmail.com','mikael_soares@hotmail.com','Kalleby69@hotmail.com','jefferson.alerj@gmail.com','adrianonogueirafotografia@hotmail.com','thays.mattos@hotmail.com','rennegod@gmail.com','leonardobraz@leonardobraz.com.br','paulamonteiropersonal@gmail.com','andrerogeriof@hotmail.com','igorcarvalho134NOVO@gmail.com','perllon@hotmail.com','raphaelladorville@gmail.com','Ianasav@gmail.com','arnaldoboltazar@gmail.com','valeria.rsilveira@gmail.com','Ianasalv@gmail.com','oficial_juniorbrites@hotmail.com','alyneaguiarizidio@gmail.com','inabalaveis@gmail.com','biielnh.noviinho@hotmail.com','geovanevoros7@gmail.com','contatoluh@gmail.com','coachrafaellima@gmail.com','patricia.cobianchi@yahoo.com.br','marcosgianoni@gmail.com','allineduran@hotmail.com','contato.ayranlima@outlook.com','afacopsrs@gmail.com','kaiokelvin2025@gmail.com','pousadavidasolemar@gmail.com','Valeria.rsilveira@gmail.com','luishenriquefudido@gmail.com','bernardocaranperpetuo@gmail.com','roseira.mari@gmail.com','ferreira.am@live.com','rgr-rs@hotmail.com','trans4menss@gmail.com','Goulart@gmail.com','grigri_1997@hotmail.com','Manuelle@gmail.com','Thalita.storch@hotmail.com','danielmolo@gmail.com','turbokator@mail.ru','zivasjr@gmail.com','Tynyurl@gmail.com','Luiza.valedoparaiso@gmail.com','oficial.nicollas@icloud.com','mamsozzo@hotmail.com','contato@rafaelsalles.com.br','arq.poliany@gmail.com','laisolvra@gmail.com','contato@rafaelsalles.com.br','diegodebarros87@yahoo.com.br','lmarisd@gmail.com','leila_rodrigues29@live.com','helodoandi.cbs@gmail.com','luistobias@outlook.com','mancuso1972@hotmail.com','lucas_bezerra2@hotmail.com','abijaudi1974@hotmail.com','ammarfr0@gmail.com','nayaraleaogui@gmail.com','bribeiro23@hotmail.com','hookaholik@outlook.com','contato@marcojean.com','vanessachiarini293@gmail.com','joaovitor475@hotmail.com','marllonmendes26@gmail.com','leonardo.couter@gmail.com','celinhoninho2002@gmail.com','fernandahadassah@hotmail.com','emanuelaraujo2012@hotmail.com','stephaniesluna@hotmail.com','raniasbg@hotmail.com','paulocry007@gmail.com','thammy.ddias@gmail.com','juliianappontes96@gmail.com','Raimundo416nnato@gmail.com','corepride488@hotmail.com','marcelo-timao.lol@hotmail.com','zsnowy5@gmail.com','guilherme_tricolor8@hotmail.com','matheusaluguebrasil@outlook.com','mattoliveirabsb@gmail.com','navemae@gmail.com','marcellemr@yahoo.com.br','lusouar@gmail.com','Carlosfsilva@hotmail.com','sadrack_alves@hotmail.com','carlinho_gu@hotmail.com','socrates.mizerski@gmail.com','metodoskur@gmail.com','guilhermecugler@hotmail.com','Creddie@gmail.com','Creddiehh@gmail.com','Creddiehhb@gmail.com','modasjanete@hotmail.com','matheustdelazari@gmail.com','jonatastavares12@outlook.com','emaculadamanu@gmail.com','ravenro82@gmail.com','PHEJAO1@GMAIL.COM','linajebendito1995@gmail.com','portalbafonico@gmail.com','lechefflinhares@gmail.com','danielfelipicluboutlet@hotmail.com','mitico@gmail.com','arthurlacustre@icloud.com','Mfflima@hotmail.com','rventurara@gmail.com','Jottamoreno@yahoo.com','sabadodomarinhus@gmail.com','gudman@gmail.com','iza79silva@gmail.com','fernandosodreamarante@gmail.com','aroldodahora@hotmail.com','allanrosa1@yahoo.com.br','bilal@emailo.pro','rafinhajr013@gmail.com','fretinhas@gmail.com','priscillamoraisn@gmail.com','zedebone11@gmail.com','Mfucker334@gmail.com','contato@espacoculturalcasadamusica.com.br','reidasbateriasjf@yahoo.com','carlosmirin7@hotmail.com','henriquevirtual1@hotmail.com','carlafpolvora@gmail.com','lucasgcosta331@gmail.com','Wandersonwp@gmail.com','pabloaragao20@gmail.com','drafabianabersch@gmail.com','jerosiqueira@gmail.com','rafahairstyle@icloud.com','Contato@credmixconsorcios.com','jp.pirs@gmail.com','kiinhos2@hotmail.com','jefersonmathues997643711@hotmail.com','asfhabsfhkjasbf@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','raissa.fet@hotmail.com','elkanaselassie@gmail.com','modoragon@hotmail.com','ruygress@hotmail.com','windeerblazeer2@gmail.com','protta@7it.com.br','truva@gmail.com','silvacosta.vitor@gmail.com','henriqueljytene99@gmail.com','Zegotinha@gmail.com','windeerblazeer6@gmail.com','selocomano@gmail.com','joseeduardosf18@gmail.com','selocomano@gmail.com','vipcartao@hotmail.com','sol.larissa@gmail.com','fabiolimacc@outlook.pt','hola@homeblizz.com','contato@brewforge.com.br','Hddhdbdh@gmail.ckm','camillabasttos.css@gmail.com','jottgod1302@gmail.com','said_ziul@msn.com','fasdas3@hotmail.com','gabrielarossidias@gmail.com','kk3jj@gmail.com','DSAK3@GMAIL.COM','camila.santos.luz.cl@gmail.com','DSK22@gmail.com','xM0nk@gmail.com','mael.dazareia@gmail.com','adriano.maiax16@gmail.com','fabianonicaretta@gmail.com','flavioigoralmeida@gmail.com','helga_daniela@hotmail.com','mwstore8@gmail.com','rayfranemeneses9@gmail.com','contato@agenciaenvolve.com.br','gabrielgss@live.com','produccion@artdigital.com.pa','alvimc10@gmail.com','nando_m87@hotmail.com','Gabrielacordeiroc@hotmail.com','mayani-sb@hotmail.com','nfssofc@gmail.com','marcelo.toreti@santaedwiges.com','Casalavnturax@gmail.com','Barretococ1@gmail.com','doguinho126@gmail.com','oficialpharma2@gmail.com','contato@bombeefsantos.com.br','heladiocosta@outlook.com','investimentos.brz@gmail.com','Lmoxse175@gmail.com','roger.sousa.16568@gmail.com','drdesognergrafico10@gmail.com','sofiabodin18@gmail.com','josyodonto21@gmail.com','Karlacristina_nutri@outlook.com','mistereletronicos@hotmail.com','pedrobcruz@gmail.com','wall027street@gmail.com','kiimericson@gmail.com','empresapericles@hotmail.com','marianalimafotografias@hotmail.com','polidtm@gmail.com','cicada33330101@gmail.com','dg.luiz159@gmail.com','rei.entretenimento@gmail.com','dannielwallker1@gmail.com','rafael_criciuma@email.com','jefferson.augusto@hotmail.com','newcellclara@gmail.com','graffprint61@gmail.com','Canyesilyrt96@gmail.com','Canyesilyrt96@gmail.com','patrick.sf15@live.com','rayannemartins31@gmail.com','bailedosamigosbhz@gmail.com','emmeacessoriosfinos@hotmail.com','barros1911@hotmail.com','wonderbloggers@gmail.com','tha-stronda@hotmail.com','melangelimm@gmail.com','washington_lufresa@hotmail.com','carlaalvesn@hotmail.com','sfrs40@hotmail.com','filipeafmaciel@icloud.com','eurused@hotmail.com','diogov.santos@outlook.com','sadasdas@gmail.com','allysonhbaraujo@gmail.com','jonathanaugusto4@gmail.com','tiago.frogere@hotmail.com','rafaelriobistro@gmail.com','fabio.informachado@gmail.com','Kelly.ribeiro201789@gmail.com','juniortrivio@hotmail.com','rnld2tr@gmail.com','arqeduardogarcia@hotmail.com','arthurteixeira.cm@gmail.com','farhatricardo@icloud.com','henriquet.upgrad@gmail.com','garcia.marlon@uou.com.br','andrelizcarvalho@hotmail.com','paulojuniorrp@hotmail.com','juliacamelo06@hotmail.com','lobosmiler@hotmail.com','pedidos.printshopbrasil@gmail.com','acctanese@hotmail.com','vidalvieira@gmail.com','juliano.piaia@icloud.com','m.crt@hotmail.com','diogog6@hotmail.com','aristonoi189@gmail.com','nik.jornalismo@gmail.com','gilvangis@live.com','higorg12@hotmail.com','thiagopacha@hotmail.com','samyrwendel@gmail.com','saimon@gmx.com','leonardogrv31@gmail.com','Beiruth1717@gmail.com','edmarmotalima@gmail.com','contato@pactomilionario.com','gestaorogerio@gmail.com','carol370304@gmail.com','novellnat@gmail.com','sthefane.s@hotmail.com','abnerdeandrade@gmail.com','Eu.danilosantos@hotmail.com','w2a@outlook.com','marciohenr@outlook.com','fabricio@mfoods.com.br','murillo.sales@hotmail.com','masierosantos@hotmail.com','jadilsoneventos@hotmail.com','mauriciocunha_mc@hotmail.com','anahluz@live.com','carolinadiaspaim@hotmail.com','tatyanagarcia@hotmail.com','paulo.fotografia@email.com','rafael.alexandre92@hotmail.com','rafaelgorayeb@uol.com.br','tictac_6666@hotmail.com','zandy.fofinho@hotmail.com','denyvir@gmail.com','bruno.aguiar@mariademaria.com.br','patycrysty@hotmail.com','lilipimentel79@hotmail.com','abeatrizcorrea@yahoo.com.br','naipemoda@gmail.com','diasewerson@gmail.com','publicidade@institutorenovame.com.br','leogouveia@live.com','marinacpolli@hotmail.com','rstorecontato@gmail.com','breno_15gothic@hotmail.com','cesarcamylo@hotmail.com','bruna_bah@hotmail.com','smartlanguagespetrolina@gmail.com','gm11barros@gmail.com','maiconoliveira151286@gmail.com','brunaruaropersonal@gmail.com','zerziljunior@msn.com','netinhobx@hotmail.com','contatomarcolorenzo@gmail.com','ggsoares@gmail.com','wagnerdavilla@gmail.com','contato@andrekovalski.com','f.arturpereira@gmail.com','leosatolomusic@gmail.com','herbangu@gmail.com','li_delrio@yahoo.com.br','bruxafamonteiro@gmail.com','Clubedenegocioorg@gmail.com','juliananunes1515@hotmail.com','alexanderkruger@hotmail.com','david_machad@hotmail.com','ricolima.com@gmail.com','laerciolt@hotmail.com','pachabueno007@gmail.com','janinha_vip@hotmail.com','Eduretro@gmail.com','591561@gmail.com','marciomind@gmail.com','ronypadilha@gmail.com','willian_magalhaes@yahoo.com.br','bahia-hinode@bol.com.br','thata.uol25@hotmail.com','bianca_ohana@hotmail.com','joiaszelia@gmail.com','benilson@i9bd.com.br','Cirion12@gmail.com','contato@reggieoliveira.com','viniborto@hotmail.com','contato@guiarj.info','rodrigohinode@gmail.com','fr0312@hotmail.com','lorenahadade@gmail.com','thiagoguara@hotmail.com','wilson@origskateshop.com','michaelisboa@bol.com.br','dblack@folha.com.br','gdepaulapintomendes@gmail.com','ingridint04@gmail.com','phinasericasacessorios@gmail.com','bftardioli@me.com','marcabeblock@gmail.com','sayuro@gmail.com','iagosopragatunhas@hotmail.com','matecdedetizadora@hotmail.com','negocius@negocius.com.br','marianunesalves1@gmail.com','luana_739@yahoo.com.br','nichmmic@gmail.com','eeb_arteemfestas@yahoo.com.br','eder_sempreboy@hotmail.com','wallacemcd@hotmail.com','marco.sem.essi@gmail.com','miguel@fineartbrasil.com.br','tihsouza22@gmail.com','claroluiz@gmail.com','italo_john@r7.com','flordcanela_rj@hotmail.com','lucasmartineli7@gmail.com','matheus.onc@gmail.com','thellesemusic@hotmail.com','bianquine_s@hotmail.com','aleandrozq12@gmail.com','sandrapaulapaiva@gmail.com','Wilson_brandao@hotmail.com','alexandre907@gmail.com','rpires354@gmail.com','diegofoncalvesar@hotmail.com','anderson.alsouza21@gmail.com','jhonny_fn@hotmail.com','brunnalopes.producao@gmail.com','adyel.freire@gmail.com','simoni_26@hotmail.com','globalmidia@yahoo.com.br','elotrodo@hotmail.com','adyel.freire@gmail.com','joao09092002@gmail.com','noticias975@gmail.com','matheuslemos2001@hotmail.com','patricia.centrotecnico@gmail.com','foodbike.sonhos@gmail.com','rodrigods2@icloud.com','faculdadegilgal@gmail.com','realhanat@me.com','embarbosa10@gmail.com','henrivalle@gmail.com','Zuza.nacif16@gmail.com','lormanferreira19@gmail.com','contato@allsafework.com.br','Paulofilhoeng@gmail.com','castroceloo@gmail.com','nd@gmail.com','reginaprosap2@hotmail.com','fafariarj@icloud.com','lete.daia@bol.com.br','luciano@daluz.tv','william@gdaf.com.br','deb.paula@hotmail.com','marvimmarketing@gmail.com','samuelmaciel@outlook.com','cicerotreinador@gmail.com','hello@dudabueno.com','S7produtora@gmail.com','emersonbarbosa@me.com','juliana@julianaaloise.com.br','l.segala@leandrosegala.com.br','i9df.com@gmail.com','laurianaandrade@hotmail.com','joanafelippe@hotmail.com','contato@esplendidacerimonial.com.br','leonados763@gmail.com','blogdajuly@gmail.com','falbertiini@gmail.com','diariodabarbara@hotmail.com','viladamoda2011@hotmail.com','leozinhocds1234@gmail.com','megaitalinea@gmail.com','rochatay1@gmail.com','amocinema@outlook.com.br','dyogo.gomes@hotmail.com','agenciaplsarma@gmail.com','6forceteam@gmail.com','mariosantos_gato@hotmail.com','Eventospa@uol.com.br','carinapereirabh@gmail.com','Patricia.pfreire@bol.com.br','cauli85@hotmail.com','Patricksidrao@hotmail.com','diegomarcsales@gmail.com','matheussenacesar@yahoo.com.br','Tmancio.loreal.rs@hotmail.com','garotodebatom@gmail.com','dannessabrandao96@gmail.com','Rafinhak2204@hotmail.com','Ataisaresende@yahoo.com.br','Drpedroferrari@pedroferrari.com.br','Contato@luanabarbosa.com','Vitorcunhainterprete@gmail.com','evesoar@gmail.com','Albertmsnascimento@gmail.com','Ricardoaugusto22@uol.com.br','cvprates52@gmail.com','alexandre_araujo2012@hotmail.com','rmendespp7@gmail.com','nayaramirelle@hotmail.com','max_radar@hotmail.com','diogenesaguiarsouza@gmail.com','dias@spd.adv.br','Luquinhasveloso@gmail.com','bfppereira@gmail.com','Michelnapolitano.almeida@gmail.com','keker281@gmail.com','anatereza@procosmetics.com.br','afffonso@gmail.com','cah.decampos@gmail.com','Pablo.decorhouse@gmail.com','contatofluor@gmail.com','camila.rades@gmail.com','Diogocarvalho.sport@gmail.com','enaile@poolbeer.com.br','carlospicchi2@gmail.com','Cerimonialcasarosa@Gmail.com','aryvieira2016@hotmail.com','enrico@excited.com.br','Kamilasilva1810@hotmail.com','nicholasholanda@outlook.com','Gustavocastro.pi.menta@gmail.com','kennedy.bonvivant10@gmail.com','rogeriojohnwayne@gmail.com','wannegleyci@gmail.com','davisonadm@gmail.com','arlekinaoficial@gmail.com','arkjc35@gmail.com','gabrielcvc44@gmail.com','kevinclash667@gmail.com','dunashookah@hotmail.com','gamesfakeram@gmail.com','agenciaftime@gmail.com','gamesfakeramm@gmail.com','miguelmaximo14@yahoo.com','pranchanaa@hotmail.com','tafnesmaia123@outlook.com','caiohenrique84@live.com','rickdaodd@odd.com','matheusmacedoassessoria@gmail.com','mastershosupply@gmail.com','sandrarvsa@gmail.com','ytalontc.co@gmail.com','junioorhilley@hotmail.com','jalecosdahlu@gmail.com','lucianasantanaodonto@gmail.com','redesocial@leoeraphael.com.br','smsgratisbr30@vps30.com','rodrigo_tech06@hotmail.com','Evelynwerdine@gmai.com','Marcosbol@yahoo.com.br','vilmaroliver@outlook.com','gabrieleningerr@gmail.com','temhiado2@gmail.com','pedrosouzadmc@gmail.com','calculefgts@gmail.com','Oliverdecesaryofc1@gmail.com','agenciadopp@gmail.com','srtornado.by@gmail.com','annekuss@bol.com.br','rafa@lightfarmstudios.com.br','weroxcr@gmail.com','bielnog600@gmail.com','paduriw@lillemap.net','gutixmitox21@gmail.com','owned1256@gmail.com','lara@labruk.com.br','kpmarcas@gmail.com','sammym@uol.com.br','eveline.reis@btgpactual.com','sillvaevanillson@gmail.com','pepekaminsky@gmail.com','gmattoss@gmail.com','rodrigaofluxo@gmail.com','vupodotu@gafy.net','brenosaxton@outlook.com','elias0biondo@gmail.com','macintoshpls666@gmail.com','mrdblxs@gmail.com','filipe.ass@hotmail.com','isback@yopmail.com','meucudois@gmail.com','edinaldocamilo@hotmail.com','edinaldocorreia@hotmail.com','pedrocruz@givelighttolife.org','lazarolciii@gmail.com','kavendom@gmail.com','heliara.tinoco@hotmail.com','luisfilipe3m@hotmail.com','joaojunior2return@gmail.com','fabioasslnunes4@gmail.com','receitasdasmusas@yahoo.com.br','thiagomarra@outlook.com','Alessandr_kaos@yahoo.com.br','Kaiodog5@gmail.com','carla@contextoassessoria.com.br','Carlosdylan4321@gmail.com','guilherme.gomes1407@gmail.com','peraxadoproducoes@gmail.com','surradigital@gmail.com','ricardinhoceerq@gmail.com','igortwd15@gmail.com','Comprasmercadolivre52@gmail.com','financeiro@qmadame.com.br','stvhenrrick1@gmail.com','invictaproducoes99@bol.com.br','diegoluri@hotmail.com','danndouradob@gmail.com','cattleyamidias@gmail.com','Manumartinsreal@gmail.com','sacocm@gmail.com','Thaisjavarini@icloud.com','lucasgrilo2001@gmail.com');
-        print 'email,status_day,order_key,credit_card_name,credit_card_exp_month,credit_card_exp_year,credit_card_number,credit_card_cvc,value'.'<br>';
-        //foreach ($order_keys as $order_key) {
-        foreach ($email_list as $email) {
-                //$client2 = $this->client_model->get_client_by_order_key($order_key);
-                $client2 = $this->client_model->get_client_by_email($email);
-                if (count($client2)) {
-                    
-                        $client2=$client2[0];
-                        $email = $client2['email'];
-                        $status_day = date('d-m-Y',$client2['status_date']);
-                        $credit_card_name = $client2['credit_card_name'];
-                        $credit_card_exp_month = $client2['credit_card_exp_month'];
-                        $credit_card_exp_year = $client2['credit_card_exp_year'];
-                        $credit_card_number = $this->Crypt->decodify_level1($client2['credit_card_number']);
-                        $credit_card_cvc = $this->Crypt->decodify_level1($client2['credit_card_cvc']);
-                        if($client2['plane_id']==1)
-                            $value = 4988;
-                        else
-                        if($client2['plane_id']==2)
-                            $value = 4988;
-                        else
-                        if($client2['plane_id']==3)
-                            $value = 7990;
-                        else
-                        if($client2['plane_id']==4)
-                            $value = 14990;
-                        else
-                        if($client2['plane_id']==5)
-                            $value = 28990;
-
-                        print "$email,$status_day,$order_key,$credit_card_name,$credit_card_exp_month,$credit_card_exp_year,$credit_card_number,$credit_card_cvc,$value".'<br>';
-                    
-                }
-            }
-    }
-    
-    public function encrypt_credit_card_datas() {
-        $this->load->model('class/Crypt');
-        $this->load->model('class/client_model');
-        for ($i = 101; $i <= 28000; $i++) {
-            $client = $this->client_model->get_client_by_id($i);
-            if (count($client)) {
-                $client = $client[0];
-                /*
-                  //1. Encriptando y salvando
-                  $old_card_number = $client['credit_card_number'];
-                  $old_card_cvc = $client['credit_card_cvc'];
-                  echo 'Client: '.$client['user_id'].
-                  'Carton antes de cifrar----> '.$old_card_number.
-                  ' CVC antes------> '.$old_card_cvc;
-                  $codified_old_card_number = $this->Crypt->codify_level1($old_card_number);
-                  $codified_old_card_cvc = $this->Crypt->codify_level1($old_card_cvc);
-                  $this->client_model->update_client($client['user_id'], array(
-                  'credit_card_number' => $codified_old_card_number,
-                  'credit_card_cvc' => $codified_old_card_cvc ));
-
-                  //2. Recuperando y mostrando
-                  $client2 = $this->client_model->get_client_by_id($i)[0];
-                  $number_encripted = $client2['credit_card_number'];
-                  $number_decripted = $this->Crypt->decodify_level1($number_encripted);
-                  $cvc_encripted = $client2['credit_card_cvc'];
-                  $cvc_decripted = $this->Crypt->decodify_level1($cvc_encripted);
-                  echo 'Carton descifrado----> '.$number_decripted.
-                  ' cvc  ------> '.$cvc_decripted.'<br><br>';
-                 */
-            }
-        }
+    public function test(){
+        $datas=array(
+            'user_login'=>'josergm86',
+            'user_pass'=>'josergm2',
+            'user_email'=>'josergm86@gmail.com',
+            'credit_card_number'=>'4415241617292371',
+            'credit_card_cvc'=>'676',
+            'credit_card_name'=>'JOSE R G MONTERO',
+            'credit_card_exp_month'=>'05',
+            'credit_card_exp_year'=>'2026',            
+            'plane_type'=>'2',
+            'pk'=>'15644',
+            'purchase_access_token'=>'123'
+        );
+        $a = $this->check_client_data_bank($datas);
+        var_dump($a);
     }
 
     public function index() {
@@ -196,52 +121,36 @@ class Welcome extends CI_Controller {
             $datas1['WHATSAPP_PHONE'] = $GLOBALS['sistem_config']->WHATSAPP_PHONE;
             $datas1['SCRIPT_VERSION'] = $GLOBALS['sistem_config']->SCRIPT_VERSION;
             $datas1['MAX_NUM_PROFILES'] = $GLOBALS['sistem_config']->REFERENCE_PROFILE_AMOUNT;
-
-            //antes
-            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            //$this->Robot = new \follows\cls\Robot();            
-            //antes
-            //$my_profile_datas = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
-            //ahora
             $my_profile_datas = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $this->session->userdata('login'));
-
             if (isset($my_profile_datas->profile_pic_url))
                 $datas1['my_img_profile'] = $my_profile_datas->profile_pic_url;
             else
                 $datas1['my_img_profile'] = "Blocked";
-            //$datas1['dumbu_id'] = $this->session->userdata('id');
-
-
+            
             $sql = "SELECT * FROM clients WHERE clients.user_id='" . $this->session->userdata('id') . "'";
-            $init_client_datas = $this->user_model->execute_sql_query($sql);
-
+            $init_client_datas = $this->user_model->execute_sql_query($sql);            
             $sql = "SELECT * FROM reference_profile WHERE client_id='" . $this->session->userdata('id') . "' AND type='0'";
             $reference_profile_used = $this->user_model->execute_sql_query($sql);
             $datas1['reference_profile_used'] = count($reference_profile_used);
-
-            $sql = "SELECT * FROM reference_profile WHERE client_id='" . $this->session->userdata('id') . "' AND type='1'";
-            $geolocalization_used = $this->user_model->execute_sql_query($sql);
-            $datas1['geolocalization_used'] = count($geolocalization_used);
-
-            $sql = "SELECT * FROM reference_profile WHERE client_id='" . $this->session->userdata('id') . "' AND type='2'";
-            $hashtag_used = $this->user_model->execute_sql_query($sql);
-            $datas1['hashtag_used'] = count($hashtag_used);
-
             $sql = "SELECT SUM(follows) as followeds FROM reference_profile WHERE client_id = " . $this->session->userdata('id') . " AND type='0'";
             $amount_followers_by_reference_profiles = $this->user_model->execute_sql_query($sql);
             $amount_followers_by_reference_profiles = (string) $amount_followers_by_reference_profiles[0]["followeds"];
-            $datas1['amount_followers_by_reference_profiles'] = $amount_followers_by_reference_profiles;
-
+            $datas1['amount_followers_by_reference_profiles'] = $amount_followers_by_reference_profiles;            
+            $sql = "SELECT * FROM reference_profile WHERE client_id='" . $this->session->userdata('id') . "' AND type='1'";
+            $geolocalization_used = $this->user_model->execute_sql_query($sql);
+            $datas1['geolocalization_used'] = count($geolocalization_used);
             $sql = "SELECT SUM(follows) as followeds FROM reference_profile WHERE client_id = " . $this->session->userdata('id') . " AND type='1'";
             $amount_followers_by_geolocalization = $this->user_model->execute_sql_query($sql);
             $amount_followers_by_geolocalization = (string) $amount_followers_by_geolocalization[0]["followeds"];
-            $datas1['amount_followers_by_geolocalization'] = $amount_followers_by_geolocalization;
-
+            $datas1['amount_followers_by_geolocalization'] = $amount_followers_by_geolocalization;            
+            $sql = "SELECT * FROM reference_profile WHERE client_id='" . $this->session->userdata('id') . "' AND type='2'";
+            $hashtag_used = $this->user_model->execute_sql_query($sql);
+            $datas1['hashtag_used'] = count($hashtag_used);
             $sql = "SELECT SUM(follows) as followeds FROM reference_profile WHERE client_id = " . $this->session->userdata('id') . " AND type='2'";
             $amount_followers_by_hashtag = $this->user_model->execute_sql_query($sql);
             $amount_followers_by_hashtag = (string) $amount_followers_by_hashtag[0]["followeds"];
             $datas1['amount_followers_by_hashtag'] = $amount_followers_by_hashtag;
-
+            
             if (isset($my_profile_datas->follower_count))
                 $datas1['my_actual_followers'] = $my_profile_datas->follower_count;
             else
@@ -273,17 +182,14 @@ class Welcome extends CI_Controller {
 
             $datas_get = $this->input->get();
 
-            if (/* (isset($datas_get['relogin']) && $datas_get['relogin']) && */($this->session->userdata('status_id') == user_status::VERIFY_ACCOUNT || $this->session->userdata('status_id') == user_status::BLOCKED_BY_INSTA)) {
+            if (($this->session->userdata('status_id') == user_status::VERIFY_ACCOUNT || $this->session->userdata('status_id') == user_status::BLOCKED_BY_INSTA)) {
                 $insta_login = $this->is_insta_user($this->session->userdata('login'), $this->session->userdata('pass'), 'false');
                 if ($insta_login['status'] === 'ok') {
                     if ($insta_login['authenticated']) {
                         //1. actualizar estado a ACTIVO
                         $this->user_model->update_user($this->session->userdata('id'), array(
                             'status_id' => user_status::ACTIVE));
-                        //2. actualizar la cookies
                         if ($insta_login['insta_login_response']) {
-//                            $this->client_model->update_client($this->session->userdata('id'), array(
-//                                'cookies' => json_encode($insta_login['insta_login_response'])));
                             //3. crearle trabajo si ya tenia perfiles de referencia y si todavia no tenia trabajo insertado
                             $active_profiles = $this->client_model->get_client_workable_profiles($this->session->userdata('id'));
                             $N = count($active_profiles);
@@ -344,7 +250,6 @@ class Welcome extends CI_Controller {
             $language = $this->input->get();
             $login_by_client = true;
         }
-
         $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
         if (isset($language['language']))
@@ -1187,29 +1092,176 @@ class Welcome extends CI_Controller {
         echo json_encode($result);
     }
 
-    //Passo 2.2 CChequeando datos bancarios y guardando datos y estado del cliente pagamento     
+    //Passo 2.2 Chequeando datos bancarios y guardando datos y estado del cliente pagamento  
     public function check_client_data_bank($datas = NULL) {
         $this->is_ip_hacker();
-        //$this->load->model('class/Crypt');
         $this->load->model('class/system_config');
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-        $origin_datas = $datas;
-        if ($datas == NULL)
-            $datas = $this->input->post();
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
-        //$datas['pk'] = $this->Crypt->decodify_level1(urldecode($datas['pk']));
+        $this->load->model('class/user_model');
+        $this->load->model('class/user_status');
+        $this->load->model('class/credit_card_status');
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
+        $this->Vindi = new \follows\cls\Payment\Vindi();
+        $origin_datas = $datas;
+        if($datas == NULL)
+            $datas = $this->input->post();
+        $query = $this->client_model->get_all_data_of_client($datas['pk']);
+        $datas['user_login'] = $query[0]['login']; $datas['user_pass'] = $query[0]['pass'];
+        $datas['user_email'] = $query[0]['email']; $datas['insta_id'] = $query[0]['insta_id'];
+        $datas['status_id'] = $query[0]['status_id'];
+        $purchase_counter = (int)$query[0]['purchase_counter'];
+        $kk=$query[0]['purchase_access_token'];
+        if($query[0]['purchase_access_token'] === $datas['purchase_access_token']) {            
+            if($datas['status_id'] === '8' || $datas['status_id'] === '4') {                
+                if ($purchase_counter > 0){
+                    if ($this->validate_post_credit_card_datas($datas)) {
+                        try {
+                            //1. salvar datos del carton de credito
+                            $this->client_model->update_client($datas['pk'], array(
+                                'credit_card_number' => $this->Crypt->codify_level1($datas['credit_card_number']),
+                                'credit_card_cvc' => $this->Crypt->codify_level1($datas['credit_card_cvc']),
+                                'credit_card_name' => $datas['credit_card_name'],
+                                'credit_card_exp_month' => $datas['credit_card_exp_month'],
+                                'credit_card_exp_year' => $datas['credit_card_exp_year']
+                            ));
+                            if (isset($datas['ticket_peixe_urbano'])) {
+                                $ticket = trim($datas['ticket_peixe_urbano']);
+                                $this->client_model->update_client($datas['pk'], array(
+                                    'ticket_peixe_urbano' => $ticket
+                                ));
+                            }
+                            //2. hacer el pagamento segun el plano
+                            $response['success'] = false;
+                            if($datas['plane_type'] >= '1' && $datas['plane_type'] <= '5') {
+                                //2.1 crear cliente en la vindi
+                                $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
+                                if($gateway_client_id){
+                                    $this->client_model->set_client_payment($datas['pk'],$gateway_client_id,$datas['plane_type']);                                    
+                                    $datas['pay_day'] = strtotime("+".$GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS." days", time());
+                                    $this->client_model->update_client($datas['pk'], array('pay_day'=>$datas['pay_day']));
+                                    //2.2. crear carton en la vindi
+                                    $resp = $this->Vindi->addClientPayment($gateway_client_id, $datas);
+                                    if($resp->success){
+                                        //2.3. crear recurrencia segun plano-producto
+                                        $resp = $this->Vindi->create_recurrency_payment($datas['pk']);
+                                        if($resp->success){
+                                            //2.4 salvar order_key (payment_key)
+                                            $this->client_model->update_client_payment_key($datas['pk'],
+                                                array('payment_key'=>$resp['payment_key']));
+                                            $response['success'] = true;
+                                        }else
+                                            $response['message'] = $resp->message;
+                                    }else
+                                        $response['message'] = $resp->message;
+                                }
+                            }
+                            //3. si pagamento correcto: logar cliente, establecer sesion, actualizar status, emails, initdate
+                            if ($response['success'])   {
+                                $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
+                                $this->load->model('class/user_model');
+                                $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $datas['force_login']);
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {                                    
+                                    $datas['status_id'] = user_status::ACTIVE;
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => $datas['status_id']));                                    
+                                    $this->user_model->set_sesion($datas['pk'], $this->session, $data_insta['insta_login_response']);
+                                } else
+                                if ($data_insta['status'] === 'ok' && !$data_insta['authenticated']) {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::BLOCKED_BY_INSTA));
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else
+                                if ($data_insta['status'] === 'fail' && $data_insta['message'] == 'checkpoint_required') {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::VERIFY_ACCOUNT));
+                                    $result['resource'] = 'client';
+                                    $result['verify_link'] = $data_insta['verify_account_url'];
+                                    $result['return_link'] = 'client';
+                                    $result['message'] = 'Sua conta precisa ser verificada no Instagram';
+                                    $result['cause'] = 'checkpoint_required';
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else
+                                if ($data_insta['status'] === 'fail' && $data_insta['message'] == '') {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::VERIFY_ACCOUNT));
+                                    $result['resource'] = 'client';
+                                    $result['verify_link'] = '';
+                                    $result['return_link'] = 'client';
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                } else {
+                                    $this->user_model->update_user($datas['pk'], array(
+                                        'init_date' => time(),
+                                        'status_id' => user_status::BLOCKED_BY_INSTA));
+                                    $this->user_model->set_sesion($datas['pk'], $this->session);
+                                }
+                                //Email com compra satisfactoria a atendimento y al cliente
+                                //$this->email_success_buy_to_atendiment($datas['user_login'], $datas['user_email']);
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated'])
+                                    $this->email_success_buy_to_client($datas['user_email'], $data_insta['insta_name'], $datas['user_login'], $datas['user_pass']);
+                                else
+                                    $this->email_success_buy_to_client($datas['user_email'], $datas['user_login'], $datas['user_login'], $datas['user_pass']);
+                                $result['success'] = true;
+                                $result['message'] = $this->T('Usuário cadastrado com sucesso', array(), $GLOBALS['language']);
+                                $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
+                            } else {
+                                $value['purchase_counter'] = $purchase_counter - 1;
+                                $this->client_model->decrement_purchase_retry($datas['pk'], $value);
+                                $result['success'] = false;
+                                $result['message'] = $response['message'];
+                            }
+                        } catch (Exception $exc) {
+                            $result['success'] = false;
+                            $result['exception'] = $exc->getTraceAsString();
+                            $result['message'] = $this->T('Error actualizando en base de datos', array(), $GLOBALS['language'], $GLOBALS['language']);
+                        }
+                    } else {
+                        $result['success'] = false;
+                        $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+                    }
+                } else {
+                    $result['success'] = false;
+                    $result['message'] = $this->T('Alcançõu a quantidade máxima de retentativa de compra, por favor, entre en contato con o atendimento', array(), $GLOBALS['language']);
+                }
+            } else {
+                $result['success'] = false;
+                $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+            }
+        } else {
+            $this->client_model->update_client($datas['pk'], array('retry_payment_counter' => '0'));
+            $result['success'] = false;
+            $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+        }
+        if (!$origin_datas)
+            echo json_encode($result);
+        else
+            return $result;
+    }
+    
+    /*public function check_client_data_bank_old($datas = NULL) {
+        $this->is_ip_hacker();
+        $this->load->model('class/system_config');
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->model('class/client_model');
+        $this->load->model('class/Crypt');
+        $origin_datas = $datas;
+        if($datas == NULL)
+            $datas = $this->input->post();
         $query = $this->client_model->get_all_data_of_client($datas['pk']);
         $datas['user_login'] = $query[0]['login'];
         $datas['user_pass'] = $query[0]['pass'];
         $datas['user_email'] = $query[0]['email'];
         $datas['insta_id'] = $query[0]['insta_id'];
-
-        if ($query[0]['purchase_access_token'] === $datas['purchase_access_token']) {
+        if($query[0]['purchase_access_token'] === $datas['purchase_access_token']) {
             $query = 'SELECT status_id FROM users WHERE id=' . $datas['pk'];
             $aaa = $this->client_model->execute_sql_query($query);
             $aaa = $aaa[0]['status_id'];
-            if ($aaa === '8' || $aaa === '4') {
+            if($aaa === '8' || $aaa === '4') {
                 $query = 'SELECT purchase_counter FROM clients WHERE user_id=' . $datas['pk'];
                 $purchase_counter = ($this->client_model->execute_sql_query($query));
                 $purchase_counter = (int) $purchase_counter[0]['purchase_counter'];
@@ -1238,32 +1290,8 @@ class Welcome extends CI_Controller {
                                 ));
                             }
 
-                            //1. verificar si era un cliente anterior cancelado
-//                            $query = 'SELECT * FROM users,clients WHERE clients.insta_id="' . $datas['insta_id'] . '"' .
-//                                    'AND clients.user_id=users.id';
-//                            $client = $this->user_model->execute_sql_query($query);
-//                            $N = count($client);
-//                            $real_status = -1; //No existe
-//                            $early_client_canceled = false;
-//                            //$index = 0;
-//                            for ($i = 0; $i < $N; $i++) {
-//                                if ($client[$i]['status_id'] == user_status::DELETED || $client[$i]['status_id'] == user_status::INACTIVE) {
-//                                    $real_status = 0; //cancelado o inactivo
-//                                    $early_client_canceled = true;
-//                                    //$index = $i;
-//                                    //break;
-//                                } else
-//                                if ($client[$i]['status_id'] == user_status::BEGINNER) {
-//                                    $real_status = 1; //Beginner
-//                                    //$index = $i;
-//                                    break;
-//                                } else
-//                                if ($client[$i]['status_id'] != user_status::DELETED && $client[$i]['status_id'] != user_status::INACTIVE) {
-//                                    $real_status = 2; //cualquier otro estado
-//                                    break;
-//                                }
-//                            }
-//                            $datas['early_client_canceled'] = $early_client_canceled;
+                            
+                            
                             //2. hacel el pagamento segun el plano
                             // TODO: Hacer clase Plane
                             if ($datas['plane_type'] === '2' || $datas['plane_type'] === '3' || $datas['plane_type'] === '4' || $datas['plane_type'] === '5' || $datas['plane_type'] === '1') {
@@ -1280,10 +1308,7 @@ class Welcome extends CI_Controller {
                                 $this->load->model('class/user_model');
                                 $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $datas['force_login']);
                                 //$this->user_model->insert_washdog($datas['pk'],'SUCCESSFUL PURCHASE');
-                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {
-                                    /* if ($datas['need_delete'] < $GLOBALS['sistem_config']->MIN_MARGIN_TO_INIT)
-                                      $datas['status_id'] = user_status::UNFOLLOW;
-                                      else */
+                                if ($data_insta['status'] === 'ok' && $data_insta['authenticated']) {                                    
                                     $datas['status_id'] = user_status::ACTIVE;
                                     $this->user_model->update_user($datas['pk'], array(
                                         'init_date' => time(),
@@ -1368,9 +1393,9 @@ class Welcome extends CI_Controller {
             echo json_encode($result);
         else
             return $result;
-    }
+    }*/
 
-    public function do_payment_by_plane($datas, $initial_value, $recurrency_value) {
+    /*public function do_payment_by_plane($datas, $initial_value, $recurrency_value) {
         $this->is_ip_hacker();
         $this->load->model('class/client_model');
         $this->load->model('class/system_config');
@@ -1777,40 +1802,9 @@ class Welcome extends CI_Controller {
             }
         }
         return $response;
-    }
+    }*/
 
-    public function detectCardType($num) {
-        $this->is_ip_hacker();
-        $re = array(
-            "visa" => "/^4[0-9]{12}(?:[0-9]{3})?$/",
-            "mastercard" => "/^5[1-5][0-9]{14}$/",
-            "amex" => "/^3[47][0-9]{13}$/",
-            "discover" => "/^6(?:011|5[0-9]{2})[0-9]{12}$/",
-            "diners" => "/^3[068]\d{12}$/",
-            "elo" => "/^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})$/",
-            "hipercard" => "/^(606282\d{10}(\d{3})?)|(3841\d{15})$/"
-        );
-
-        if (preg_match($re['visa'], $num)) {
-            return 'Visa';
-        } else if (preg_match($re['mastercard'], $num)) {
-            return 'Mastercard';
-        } else if (preg_match($re['amex'], $num)) {
-            return 'Amex';
-        } else if (preg_match($re['discover'], $num)) {
-            return 'Discover';
-        } else if (preg_match($re['diners'], $num)) {
-            return 'Diners';
-        } else if (preg_match($re['elo'], $num)) {
-            return 'Elo';
-        } else if (preg_match($re['hipercard'], $num)) {
-            return 'Hipercard';
-        } else {
-            return false;
-        }
-    }
-
-    public function check_mundipagg_credit_card($datas) {
+    /*public function check_mundipagg_credit_card($datas) {
         $this->is_ip_hacker();
         $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
@@ -1830,48 +1824,7 @@ class Welcome extends CI_Controller {
 
         return $response;
     }
-
-    public function check_mundipagg_boleto($datas) {
-        $this->is_ip_hacker();
-        $this->load->model('class/system_config');
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-        $this->load->library('Payment');
-        $payment_data['AmountInCents'] = $datas['AmountInCents'];
-        $payment_data['DocumentNumber'] = $datas['DocumentNumber'];
-        $payment_data['OrderReference'] = $datas['OrderReference'];
-        $payment_data['id'] = $datas['pk'];
-        $payment_data['name'] = $datas['name'];
-        $payment_data['cpf'] = $datas['cpf'];
-        $payment_data['cep'] = $datas['cep'];
-        $payment_data['street_address'] = $datas['street_address'];
-        $payment_data['house_number'] = $datas['house_number'];
-        $payment_data['neighborhood_address'] = $datas['neighborhood_address'];
-        $payment_data['municipality_address'] = $datas['municipality_address'];
-        $payment_data['state_address'] = $datas['state_address'];
-        return $this->payment->create_boleto_payment($payment_data);
-    }
-
-    public function check_mundipagg_boleto2($datas) {
-        $this->is_ip_hacker();
-        $this->load->model('class/system_config');
-        $GLOBALS['sistem_config'] = $this->system_config->load();
-        $this->load->library('Payment');
-        $payment_data['AmountInCents'] = '12719';
-        $payment_data['DocumentNumber'] = '15125';
-        $payment_data['OrderReference'] = '15125';
-        $payment_data['id'] = '28720';
-        $payment_data['name'] = 'ALESSANDRO AMARANTE PAIXAO';
-        $payment_data['cpf'] = '26957166805';
-        $payment_data['cep'] = '13042430';
-        $payment_data['street_address'] = 'Rua Hélcio Lizzardi';
-        $payment_data['house_number'] = '864';
-        $payment_data['neighborhood_address'] = 'Parque Jambeiro';
-        $payment_data['municipality_address'] = 'Campinas';
-        $payment_data['state_address'] = 'SP';
-        $a = $this->payment->create_boleto_payment($payment_data);
-        var_dump($a);
-    }
-
+     
     public function check_recurrency_mundipagg_credit_card($datas, $cnt) {
         $this->is_ip_hacker();
         $this->load->model('class/system_config');
@@ -1906,6 +1859,57 @@ class Welcome extends CI_Controller {
         }
 
         return $response;
+    }    
+    */
+    
+    public function detectCardType($num) {
+        $this->is_ip_hacker();
+        $re = array(
+            "visa" => "/^4[0-9]{12}(?:[0-9]{3})?$/",
+            "mastercard" => "/^5[1-5][0-9]{14}$/",
+            "amex" => "/^3[47][0-9]{13}$/",
+            "discover" => "/^6(?:011|5[0-9]{2})[0-9]{12}$/",
+            "diners" => "/^3[068]\d{12}$/",
+            "elo" => "/^((((636368)|(438935)|(504175)|(451416)|(636297))\d{0,10})|((5067)|(4576)|(4011))\d{0,12})$/",
+            "hipercard" => "/^(606282\d{10}(\d{3})?)|(3841\d{15})$/"
+        );
+        if (preg_match($re['visa'], $num)) {
+            return 'Visa';
+        } else if (preg_match($re['mastercard'], $num)) {
+            return 'Mastercard';
+        } else if (preg_match($re['amex'], $num)) {
+            return 'Amex';
+        } else if (preg_match($re['discover'], $num)) {
+            return 'Discover';
+        } else if (preg_match($re['diners'], $num)) {
+            return 'Diners';
+        } else if (preg_match($re['elo'], $num)) {
+            return 'Elo';
+        } else if (preg_match($re['hipercard'], $num)) {
+            return 'Hipercard';
+        } else {
+            return false;
+        }
+    }
+
+    public function check_mundipagg_boleto($datas) {
+        $this->is_ip_hacker();
+        $this->load->model('class/system_config');
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        $this->load->library('Payment');
+        $payment_data['AmountInCents'] = $datas['AmountInCents'];
+        $payment_data['DocumentNumber'] = $datas['DocumentNumber'];
+        $payment_data['OrderReference'] = $datas['OrderReference'];
+        $payment_data['id'] = $datas['pk'];
+        $payment_data['name'] = $datas['name'];
+        $payment_data['cpf'] = $datas['cpf'];
+        $payment_data['cep'] = $datas['cep'];
+        $payment_data['street_address'] = $datas['street_address'];
+        $payment_data['house_number'] = $datas['house_number'];
+        $payment_data['neighborhood_address'] = $datas['neighborhood_address'];
+        $payment_data['municipality_address'] = $datas['municipality_address'];
+        $payment_data['state_address'] = $datas['state_address'];
+        return $this->payment->create_boleto_payment($payment_data);
     }
 
     public function delete_recurrency_payment($order_key) {
@@ -1924,17 +1928,9 @@ class Welcome extends CI_Controller {
         if ($this->session->userdata('role_id') == user_role::CLIENT) {
             $datas = $this->input->post();
             $datas['unfollow_total'] = (int) $datas['unfollow_total'];
-            //if($this->session->userdata('unfollow_total')==!$datas['unfollow_total']){
-            if ($datas['unfollow_total'] == 1) {
-                
-            } elseif ($datas['unfollow_total'] == 0) {
-                
-            }
-
             ($datas['unfollow_total'] == 0) ? $ut = 'DISABLED' : $ut = 'ACTIVATED';
             $this->load->model('class/user_model');
             $this->user_model->insert_washdog($this->session->userdata('id'), 'TOTAL UNFOLLOW ' . $ut);
-
             $this->client_model->update_client($this->session->userdata('id'), array(
                 'unfollow_total' => $datas['unfollow_total']
             ));
@@ -4007,6 +4003,95 @@ class Welcome extends CI_Controller {
         }
         $response['datas'] = json_decode($datas);
         echo json_encode($response);
+    }
+    
+    public function login_all_blocked_by_pass() {
+        $this->load->model('class/client_model');
+        $client = $this->client_model->get_all_clients_by_status_id(3);
+        foreach ($client as $client) {
+            $datas['user_login'] = $client['login'];
+            $datas['user_pass'] = $client['pass'];
+            $datas['force_login'] == false;
+            $result = $this->user_do_login($datas);
+            if ($result['authenticated'])
+                echo $client['login'] . 'authenticated and it is in ACTIVE status<br>';
+            else
+                echo $client['login'] . 'NOT authenticated by ' . $result['cause'] . 'cause<br>';
+        }
+    }
+
+    public function xxx($path = "") {
+        $this->load->model('class/Crypt');
+        $this->load->model('class/client_model');
+        //$order_keys =array('');
+        $email_list=array('djrhuivomb@gmail.com','urpia@alfamarket.com.br','Pitoaugusto@hotmail.com','nathanhartjames@gmail.com','layslamillena@hotmail.com','seramiham@gmail.com','contato@espacoluanadutra.com.br','duda@cervejacaverna.com.br','annasilvaa@gmail.com','brunapetti@hotmail.com','Felpa.lv@gmail.com','felipemarcoscantanhede@outlook.com','mmmiiillleeennnaaa77@gmail.com','powerfit@bol.com.br','lypes.phill@gmail.com','lypes.phill@gmail.com','Rafaelbalizamakeup@gmail.com','yurivb0@hotmail.com','rodolfo.engcivil@outlook.com','doidosporairsoft@outlook.com','doidosporairsoft@outlook.com','lobo.yara@gmail.com','andersonjaderdasilva@gmail.com','paulorandney2016@icloud.com','rhuan_penaforte@hotmail.com','felipevallorini@hotmail.com','felipe_rua@hotmail.com','edineteferreira2011@hotmail.com','tcas83@hotmail.com','havc_zootec@yahoo.com.br','dermatologiaum@hotmail.com','hologracia.graphic@gmail.com','tratofinoservicos@gmail.com','daniel.ferranti@hotmail.com','carlos@hardhair.com.br','triade.pa@gmail.com','bibiprado@live.com','comercial_pedro@outlook.com','hugorafael60@gmail.com','gerencia@naturalprodutos.com.br','bruna.hahn@quintavalentina.com.br','matheuschagasrodrigues@gmail.com','pbpetti@gmail.com','Brunoribeiro54@hotmail.com','marciueno@gmail.com','Rpcc@icloud.com','pedroroxer@gmail.com','julio7_ribeiro@me.com','Deyvidvf@gmail.com','contato@mundowine.com.br','raphaela@alineacomunicacao.com.br','Antonioportesdasilva@gmail.com','rosanalpc@hotmail.com','klebs.junior@gmail.com','hanihx@gmail.com','mauro@automveiculos.com.br','tclima16@gmail.com','personal@marciodp.com.br','Kkkkjkk@gmail.com','nath.hidalgo@hotmail.com','juliaoscar893@gmail.com','Carloskpulling@icloud.com','nayara_ystfanny@hotmail.com','danielle.oliveira@globo.com','Tgsfood@icloud.com','rszonasul1@spadassobrancelhas.com.br','Digolindo@gmail.com','falecom@victorhugo.art.br','prof.natale@gmail.com','z.ahro@archiss.com','lucasribaz@hotmail.com','husak.dominik@gmail.com','lukmodass@gmail.com','andrade.bruno97@gmail.com','mundodocorpo@gmail.com','Lucastoffanicouto@hotmail.com','alisson.reiler@gmail.com','florenza.store@terra.com.br','larissahailer@live.com','juanmanuelruizo@gmail.com','sadasdasda@gmail.com','esmaelt.lucas@hotmail.com','luxxusdecor@gmail.com.com','Simplesmente.andreia@bol.com.br','kauanhorvath@hotmail.com','espacojuaguiar@gmail.com','antoniapaguiar@hotmail.com','mcsgl87@gmail.com','rosegi0802@gmail.com','alemao_leste@hotmail.com','Vivianeneu@gmail.com','vitormagnuspessoal@hotmail.com','laurinhamarinho@gmail.com','daherleticia@hotmail.com','Faustoedouglas@gmail.com','Yuri.snv@gmail.com','claz92@hotmail.it','luizz2009133@hotmail.com','silmara_uliana@yahoo.com.br','equipeget2500ro@gmail.com','karolfernanda_@hotmail.com','sadasda@gmail.com','Jslslwkajab@gmail.com','Kkjkhui@gmail.com','lourencolar@gmail.com','alanlopes102@gmail.com','wanutricionista@gmail.com','fernandoferreiramoda13@gmail.com','divabriadeirosgourmet@gmail.com','leoadavlis@gmail.com','contato@mitally.com.br','ali_ny_v@hotmail.com','elaine.rochadanelon@gmail.com','vanessa_vaidadefeminina@live.com','referraz68@gmail.com','emppratajoias@gmail.com','benittaacessorios@gmail.com','marcello@lifegofitness.com.br','sdsadada@gmail.com','lojaenquadrando@gmail.com','rhayannynobrega@hotmail.com','monkeynight01@hotmail.com','evilene@fepmoda.com.br','thamiris.rezende@hugcomunicacao.com','ronaldo_farmacia@hotmail.com','brunoalvesshows@outlook.com','Alirio.ebnezer25@hotmail.com','Ncr_10@hotmail.com','makesjuvalerio@gmail.com','andersonpdiniz@gmail.com','jana_df_@hotmail.com','Shivraj34om8@gmail.com','marilane-2008@hotmail.com','investteam2017@gmail.com','fsadasd@gmail.com','marketing@crosspato.com.br','kaleumandelli@hotmail.com','eduardvilarinho@uol.com.br','juliocvribeiro@hotmail.com','victorrisso.risso@gmail.com','felipe.kososki@outlook.com','ruliodelfino@gmail.com','dermaflora@dermaflorasp.com','Stephany.19larissa@hotmail.com','emanuelaraujo2012@hotmail.com','wetonno@gmail.com','99importadossp@gmail.com','Projeto@podarq.com','evandromanoel15rj@hotmail.com','dpaulaimport@gmail.com','roadmanager.chrisplatinado@gmail.com','Familiaadoradores@hotmail.com','emersondonadon@gmail.com','guguzord@gmail.com','levaonline@gmail.com','clinicarte1@gmail.com','macarena.beach@gmail.com','douglas@mododigital.com.br','giovanazangarini@icloud.com','saraa_19_93@hotmail.com','contatogomes@gmail.com','deda.carballeda@gmail.com','vaquejadamanduri@gmail.com','lazarotecinfo@gmail.com','Gahans@gmail.com','contato@bocamaldita.com.br','nicollinicoletti@hotmail.com','lumeninamorta@hotmail.com','contato@rgarquitetura.arq.br','Emailpessoaldofelipe@gmail.com','prof.natale@gmail.com','beatriz.si.araujo@gmail.com','holivernicolas@hotmail.com','Goiano@gmail.com','binhofernandes.09@gmail.com','fdezordi@hotmail.com','francystorepmw@gmail.com','lipeoos2@gmail.com','Hshshsh@gmail.com','millena_kerolaynne@hotmail.com','gersicatiane@gmail.com','contato_filippe@hotmail.com','sarahrpe@hotmail.com','raphaela@alineacomunicacao.com.br','Deborassouzasz@gmail.com','giovanapinheiro2010@hotmail.com','pizzaiolosaogeraldo@yahoo.com','mail.rima15@gmail.com','abner.ramos@hotmail.com','polianaacessorios@gmail.com','brownielapetite@outlook.com','jonaslemes7@gmail.com','sadasdsa@gmail.com','tmonteiro_20@hotmail.com','jumunizf@hotmail.com','dvptucurui@gmail.com','contato@saurio.com.br','contato@paradisetravel.com.br','maria@studioambientes.com.br','milevaweb@gmail.com','usinadohamburguer@gmail.com','Jessikrosaoficial@gmail.com','tulip.photos@gmail.com','johannyestrella@hotmail.com','igor@casamodernamoveis.com.br','ricardocruz247@gmail.com','boo.1995@hotmail.com','Bzbdbdbdb@gmail.com','wendershowdagym@gmail.com','thamiris.rezende@hugcomunicacao.com','Lucrochekarol@gmail.com','heko.digital@gmail.com','prof.natale@gmail.com','oumbid@gmail.com','ketliinmarques@hotmail.com','priscila.matsuda.valencia@gmail.com','kskslimes@hotmail.com','jrheladestudio@gmail.com','Iloveqzisgb@gmail.com','renatab1592@gmail.com','karlayunesfun@gmail.com','adrian.navia.r@gmail.com','applepremiumimports@gmail.com','joao_bs@live.com','gadelhaproducoes@hotmail.com','viniciusfrancoff@gmail.com','natcaversan@hotmail.com','atelierjardimdeartesanatos@gmail.com','Diegoandresshalom@yahoo.com.br','reebok@gmail.com','Fatimuv@gmail.com','thiagonettoefabydias@gmail.com','pedsousa@gmail.com','danielsousa@gmail.com','marcos@soumda.com.br','lmandarinos2515@gmail.com','ppqlneto2@outlook.com','corleto.keli@gmail.com','heladiocosta@outlook.com','lucianamendes@oi.com.br','kleyton-alex@hotmail.com','ortizjohi23@hotmail.com','danielgomes@vendasrj.com','filipesrfm@outlook.com','anastaciagranja@hotmail.com','Danielle_cg55@hotmail.com','angelica.federizzi@hotmail.com','alegigio25@gmail.com','olavo@paradisepizzaria.com.br','guking@gmail.com','valleonin@hotmail.com','stefanedominguessantos@gmail.com','Fred_torres@hotmail.com','Celelopezz.91@hotmail.com','vocecristao@gmail.com','pampamlouca@gmail.com','ofertacaldas@ofertacaldas.com.br','sloower222@gmail.com','williantortelli28@gmail.com','santafarrabhz@gmail.com','sjuninho300@gmail.com','marshvps@gmail.com','lucimara22@hotmail.com','edupelotoni@gmail.com','andre_dq2@hotmail.com','kyrafernandes@outlook.com','rodolfojcp@gmail.com','jessiica.diias@yahoo.com.br','ianasalv@gmail.com','juofelipe12@hotmail.com','cipullo.bruna@gmail.com','kreactive@hotmail.com','luisantonioramos@globo.com','Darlanlf@hotmail.com','fabricioreis1750@gmail.com','Dibre@gmail.com','drahyunkim@clinicahkim.com.br','Hbaptista97@hotmail.com','tecnologshop@gmail.com','Larissa@lalevi.com.br','Larissalbergaria@hotmail.com','eduardo@fintta.com','levylopesmusic@gmail.com','contato@spetacollare.com.br','cleantech.limpeza@gmail.com','lieripierotto@gmail.com','mikael_soares@hotmail.com','Kalleby69@hotmail.com','jefferson.alerj@gmail.com','adrianonogueirafotografia@hotmail.com','thays.mattos@hotmail.com','rennegod@gmail.com','leonardobraz@leonardobraz.com.br','paulamonteiropersonal@gmail.com','andrerogeriof@hotmail.com','igorcarvalho134NOVO@gmail.com','perllon@hotmail.com','raphaelladorville@gmail.com','Ianasav@gmail.com','arnaldoboltazar@gmail.com','valeria.rsilveira@gmail.com','Ianasalv@gmail.com','oficial_juniorbrites@hotmail.com','alyneaguiarizidio@gmail.com','inabalaveis@gmail.com','biielnh.noviinho@hotmail.com','geovanevoros7@gmail.com','contatoluh@gmail.com','coachrafaellima@gmail.com','patricia.cobianchi@yahoo.com.br','marcosgianoni@gmail.com','allineduran@hotmail.com','contato.ayranlima@outlook.com','afacopsrs@gmail.com','kaiokelvin2025@gmail.com','pousadavidasolemar@gmail.com','Valeria.rsilveira@gmail.com','luishenriquefudido@gmail.com','bernardocaranperpetuo@gmail.com','roseira.mari@gmail.com','ferreira.am@live.com','rgr-rs@hotmail.com','trans4menss@gmail.com','Goulart@gmail.com','grigri_1997@hotmail.com','Manuelle@gmail.com','Thalita.storch@hotmail.com','danielmolo@gmail.com','turbokator@mail.ru','zivasjr@gmail.com','Tynyurl@gmail.com','Luiza.valedoparaiso@gmail.com','oficial.nicollas@icloud.com','mamsozzo@hotmail.com','contato@rafaelsalles.com.br','arq.poliany@gmail.com','laisolvra@gmail.com','contato@rafaelsalles.com.br','diegodebarros87@yahoo.com.br','lmarisd@gmail.com','leila_rodrigues29@live.com','helodoandi.cbs@gmail.com','luistobias@outlook.com','mancuso1972@hotmail.com','lucas_bezerra2@hotmail.com','abijaudi1974@hotmail.com','ammarfr0@gmail.com','nayaraleaogui@gmail.com','bribeiro23@hotmail.com','hookaholik@outlook.com','contato@marcojean.com','vanessachiarini293@gmail.com','joaovitor475@hotmail.com','marllonmendes26@gmail.com','leonardo.couter@gmail.com','celinhoninho2002@gmail.com','fernandahadassah@hotmail.com','emanuelaraujo2012@hotmail.com','stephaniesluna@hotmail.com','raniasbg@hotmail.com','paulocry007@gmail.com','thammy.ddias@gmail.com','juliianappontes96@gmail.com','Raimundo416nnato@gmail.com','corepride488@hotmail.com','marcelo-timao.lol@hotmail.com','zsnowy5@gmail.com','guilherme_tricolor8@hotmail.com','matheusaluguebrasil@outlook.com','mattoliveirabsb@gmail.com','navemae@gmail.com','marcellemr@yahoo.com.br','lusouar@gmail.com','Carlosfsilva@hotmail.com','sadrack_alves@hotmail.com','carlinho_gu@hotmail.com','socrates.mizerski@gmail.com','metodoskur@gmail.com','guilhermecugler@hotmail.com','Creddie@gmail.com','Creddiehh@gmail.com','Creddiehhb@gmail.com','modasjanete@hotmail.com','matheustdelazari@gmail.com','jonatastavares12@outlook.com','emaculadamanu@gmail.com','ravenro82@gmail.com','PHEJAO1@GMAIL.COM','linajebendito1995@gmail.com','portalbafonico@gmail.com','lechefflinhares@gmail.com','danielfelipicluboutlet@hotmail.com','mitico@gmail.com','arthurlacustre@icloud.com','Mfflima@hotmail.com','rventurara@gmail.com','Jottamoreno@yahoo.com','sabadodomarinhus@gmail.com','gudman@gmail.com','iza79silva@gmail.com','fernandosodreamarante@gmail.com','aroldodahora@hotmail.com','allanrosa1@yahoo.com.br','bilal@emailo.pro','rafinhajr013@gmail.com','fretinhas@gmail.com','priscillamoraisn@gmail.com','zedebone11@gmail.com','Mfucker334@gmail.com','contato@espacoculturalcasadamusica.com.br','reidasbateriasjf@yahoo.com','carlosmirin7@hotmail.com','henriquevirtual1@hotmail.com','carlafpolvora@gmail.com','lucasgcosta331@gmail.com','Wandersonwp@gmail.com','pabloaragao20@gmail.com','drafabianabersch@gmail.com','jerosiqueira@gmail.com','rafahairstyle@icloud.com','Contato@credmixconsorcios.com','jp.pirs@gmail.com','kiinhos2@hotmail.com','jefersonmathues997643711@hotmail.com','asfhabsfhkjasbf@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','juliumbo@gmail.com','raissa.fet@hotmail.com','elkanaselassie@gmail.com','modoragon@hotmail.com','ruygress@hotmail.com','windeerblazeer2@gmail.com','protta@7it.com.br','truva@gmail.com','silvacosta.vitor@gmail.com','henriqueljytene99@gmail.com','Zegotinha@gmail.com','windeerblazeer6@gmail.com','selocomano@gmail.com','joseeduardosf18@gmail.com','selocomano@gmail.com','vipcartao@hotmail.com','sol.larissa@gmail.com','fabiolimacc@outlook.pt','hola@homeblizz.com','contato@brewforge.com.br','Hddhdbdh@gmail.ckm','camillabasttos.css@gmail.com','jottgod1302@gmail.com','said_ziul@msn.com','fasdas3@hotmail.com','gabrielarossidias@gmail.com','kk3jj@gmail.com','DSAK3@GMAIL.COM','camila.santos.luz.cl@gmail.com','DSK22@gmail.com','xM0nk@gmail.com','mael.dazareia@gmail.com','adriano.maiax16@gmail.com','fabianonicaretta@gmail.com','flavioigoralmeida@gmail.com','helga_daniela@hotmail.com','mwstore8@gmail.com','rayfranemeneses9@gmail.com','contato@agenciaenvolve.com.br','gabrielgss@live.com','produccion@artdigital.com.pa','alvimc10@gmail.com','nando_m87@hotmail.com','Gabrielacordeiroc@hotmail.com','mayani-sb@hotmail.com','nfssofc@gmail.com','marcelo.toreti@santaedwiges.com','Casalavnturax@gmail.com','Barretococ1@gmail.com','doguinho126@gmail.com','oficialpharma2@gmail.com','contato@bombeefsantos.com.br','heladiocosta@outlook.com','investimentos.brz@gmail.com','Lmoxse175@gmail.com','roger.sousa.16568@gmail.com','drdesognergrafico10@gmail.com','sofiabodin18@gmail.com','josyodonto21@gmail.com','Karlacristina_nutri@outlook.com','mistereletronicos@hotmail.com','pedrobcruz@gmail.com','wall027street@gmail.com','kiimericson@gmail.com','empresapericles@hotmail.com','marianalimafotografias@hotmail.com','polidtm@gmail.com','cicada33330101@gmail.com','dg.luiz159@gmail.com','rei.entretenimento@gmail.com','dannielwallker1@gmail.com','rafael_criciuma@email.com','jefferson.augusto@hotmail.com','newcellclara@gmail.com','graffprint61@gmail.com','Canyesilyrt96@gmail.com','Canyesilyrt96@gmail.com','patrick.sf15@live.com','rayannemartins31@gmail.com','bailedosamigosbhz@gmail.com','emmeacessoriosfinos@hotmail.com','barros1911@hotmail.com','wonderbloggers@gmail.com','tha-stronda@hotmail.com','melangelimm@gmail.com','washington_lufresa@hotmail.com','carlaalvesn@hotmail.com','sfrs40@hotmail.com','filipeafmaciel@icloud.com','eurused@hotmail.com','diogov.santos@outlook.com','sadasdas@gmail.com','allysonhbaraujo@gmail.com','jonathanaugusto4@gmail.com','tiago.frogere@hotmail.com','rafaelriobistro@gmail.com','fabio.informachado@gmail.com','Kelly.ribeiro201789@gmail.com','juniortrivio@hotmail.com','rnld2tr@gmail.com','arqeduardogarcia@hotmail.com','arthurteixeira.cm@gmail.com','farhatricardo@icloud.com','henriquet.upgrad@gmail.com','garcia.marlon@uou.com.br','andrelizcarvalho@hotmail.com','paulojuniorrp@hotmail.com','juliacamelo06@hotmail.com','lobosmiler@hotmail.com','pedidos.printshopbrasil@gmail.com','acctanese@hotmail.com','vidalvieira@gmail.com','juliano.piaia@icloud.com','m.crt@hotmail.com','diogog6@hotmail.com','aristonoi189@gmail.com','nik.jornalismo@gmail.com','gilvangis@live.com','higorg12@hotmail.com','thiagopacha@hotmail.com','samyrwendel@gmail.com','saimon@gmx.com','leonardogrv31@gmail.com','Beiruth1717@gmail.com','edmarmotalima@gmail.com','contato@pactomilionario.com','gestaorogerio@gmail.com','carol370304@gmail.com','novellnat@gmail.com','sthefane.s@hotmail.com','abnerdeandrade@gmail.com','Eu.danilosantos@hotmail.com','w2a@outlook.com','marciohenr@outlook.com','fabricio@mfoods.com.br','murillo.sales@hotmail.com','masierosantos@hotmail.com','jadilsoneventos@hotmail.com','mauriciocunha_mc@hotmail.com','anahluz@live.com','carolinadiaspaim@hotmail.com','tatyanagarcia@hotmail.com','paulo.fotografia@email.com','rafael.alexandre92@hotmail.com','rafaelgorayeb@uol.com.br','tictac_6666@hotmail.com','zandy.fofinho@hotmail.com','denyvir@gmail.com','bruno.aguiar@mariademaria.com.br','patycrysty@hotmail.com','lilipimentel79@hotmail.com','abeatrizcorrea@yahoo.com.br','naipemoda@gmail.com','diasewerson@gmail.com','publicidade@institutorenovame.com.br','leogouveia@live.com','marinacpolli@hotmail.com','rstorecontato@gmail.com','breno_15gothic@hotmail.com','cesarcamylo@hotmail.com','bruna_bah@hotmail.com','smartlanguagespetrolina@gmail.com','gm11barros@gmail.com','maiconoliveira151286@gmail.com','brunaruaropersonal@gmail.com','zerziljunior@msn.com','netinhobx@hotmail.com','contatomarcolorenzo@gmail.com','ggsoares@gmail.com','wagnerdavilla@gmail.com','contato@andrekovalski.com','f.arturpereira@gmail.com','leosatolomusic@gmail.com','herbangu@gmail.com','li_delrio@yahoo.com.br','bruxafamonteiro@gmail.com','Clubedenegocioorg@gmail.com','juliananunes1515@hotmail.com','alexanderkruger@hotmail.com','david_machad@hotmail.com','ricolima.com@gmail.com','laerciolt@hotmail.com','pachabueno007@gmail.com','janinha_vip@hotmail.com','Eduretro@gmail.com','591561@gmail.com','marciomind@gmail.com','ronypadilha@gmail.com','willian_magalhaes@yahoo.com.br','bahia-hinode@bol.com.br','thata.uol25@hotmail.com','bianca_ohana@hotmail.com','joiaszelia@gmail.com','benilson@i9bd.com.br','Cirion12@gmail.com','contato@reggieoliveira.com','viniborto@hotmail.com','contato@guiarj.info','rodrigohinode@gmail.com','fr0312@hotmail.com','lorenahadade@gmail.com','thiagoguara@hotmail.com','wilson@origskateshop.com','michaelisboa@bol.com.br','dblack@folha.com.br','gdepaulapintomendes@gmail.com','ingridint04@gmail.com','phinasericasacessorios@gmail.com','bftardioli@me.com','marcabeblock@gmail.com','sayuro@gmail.com','iagosopragatunhas@hotmail.com','matecdedetizadora@hotmail.com','negocius@negocius.com.br','marianunesalves1@gmail.com','luana_739@yahoo.com.br','nichmmic@gmail.com','eeb_arteemfestas@yahoo.com.br','eder_sempreboy@hotmail.com','wallacemcd@hotmail.com','marco.sem.essi@gmail.com','miguel@fineartbrasil.com.br','tihsouza22@gmail.com','claroluiz@gmail.com','italo_john@r7.com','flordcanela_rj@hotmail.com','lucasmartineli7@gmail.com','matheus.onc@gmail.com','thellesemusic@hotmail.com','bianquine_s@hotmail.com','aleandrozq12@gmail.com','sandrapaulapaiva@gmail.com','Wilson_brandao@hotmail.com','alexandre907@gmail.com','rpires354@gmail.com','diegofoncalvesar@hotmail.com','anderson.alsouza21@gmail.com','jhonny_fn@hotmail.com','brunnalopes.producao@gmail.com','adyel.freire@gmail.com','simoni_26@hotmail.com','globalmidia@yahoo.com.br','elotrodo@hotmail.com','adyel.freire@gmail.com','joao09092002@gmail.com','noticias975@gmail.com','matheuslemos2001@hotmail.com','patricia.centrotecnico@gmail.com','foodbike.sonhos@gmail.com','rodrigods2@icloud.com','faculdadegilgal@gmail.com','realhanat@me.com','embarbosa10@gmail.com','henrivalle@gmail.com','Zuza.nacif16@gmail.com','lormanferreira19@gmail.com','contato@allsafework.com.br','Paulofilhoeng@gmail.com','castroceloo@gmail.com','nd@gmail.com','reginaprosap2@hotmail.com','fafariarj@icloud.com','lete.daia@bol.com.br','luciano@daluz.tv','william@gdaf.com.br','deb.paula@hotmail.com','marvimmarketing@gmail.com','samuelmaciel@outlook.com','cicerotreinador@gmail.com','hello@dudabueno.com','S7produtora@gmail.com','emersonbarbosa@me.com','juliana@julianaaloise.com.br','l.segala@leandrosegala.com.br','i9df.com@gmail.com','laurianaandrade@hotmail.com','joanafelippe@hotmail.com','contato@esplendidacerimonial.com.br','leonados763@gmail.com','blogdajuly@gmail.com','falbertiini@gmail.com','diariodabarbara@hotmail.com','viladamoda2011@hotmail.com','leozinhocds1234@gmail.com','megaitalinea@gmail.com','rochatay1@gmail.com','amocinema@outlook.com.br','dyogo.gomes@hotmail.com','agenciaplsarma@gmail.com','6forceteam@gmail.com','mariosantos_gato@hotmail.com','Eventospa@uol.com.br','carinapereirabh@gmail.com','Patricia.pfreire@bol.com.br','cauli85@hotmail.com','Patricksidrao@hotmail.com','diegomarcsales@gmail.com','matheussenacesar@yahoo.com.br','Tmancio.loreal.rs@hotmail.com','garotodebatom@gmail.com','dannessabrandao96@gmail.com','Rafinhak2204@hotmail.com','Ataisaresende@yahoo.com.br','Drpedroferrari@pedroferrari.com.br','Contato@luanabarbosa.com','Vitorcunhainterprete@gmail.com','evesoar@gmail.com','Albertmsnascimento@gmail.com','Ricardoaugusto22@uol.com.br','cvprates52@gmail.com','alexandre_araujo2012@hotmail.com','rmendespp7@gmail.com','nayaramirelle@hotmail.com','max_radar@hotmail.com','diogenesaguiarsouza@gmail.com','dias@spd.adv.br','Luquinhasveloso@gmail.com','bfppereira@gmail.com','Michelnapolitano.almeida@gmail.com','keker281@gmail.com','anatereza@procosmetics.com.br','afffonso@gmail.com','cah.decampos@gmail.com','Pablo.decorhouse@gmail.com','contatofluor@gmail.com','camila.rades@gmail.com','Diogocarvalho.sport@gmail.com','enaile@poolbeer.com.br','carlospicchi2@gmail.com','Cerimonialcasarosa@Gmail.com','aryvieira2016@hotmail.com','enrico@excited.com.br','Kamilasilva1810@hotmail.com','nicholasholanda@outlook.com','Gustavocastro.pi.menta@gmail.com','kennedy.bonvivant10@gmail.com','rogeriojohnwayne@gmail.com','wannegleyci@gmail.com','davisonadm@gmail.com','arlekinaoficial@gmail.com','arkjc35@gmail.com','gabrielcvc44@gmail.com','kevinclash667@gmail.com','dunashookah@hotmail.com','gamesfakeram@gmail.com','agenciaftime@gmail.com','gamesfakeramm@gmail.com','miguelmaximo14@yahoo.com','pranchanaa@hotmail.com','tafnesmaia123@outlook.com','caiohenrique84@live.com','rickdaodd@odd.com','matheusmacedoassessoria@gmail.com','mastershosupply@gmail.com','sandrarvsa@gmail.com','ytalontc.co@gmail.com','junioorhilley@hotmail.com','jalecosdahlu@gmail.com','lucianasantanaodonto@gmail.com','redesocial@leoeraphael.com.br','smsgratisbr30@vps30.com','rodrigo_tech06@hotmail.com','Evelynwerdine@gmai.com','Marcosbol@yahoo.com.br','vilmaroliver@outlook.com','gabrieleningerr@gmail.com','temhiado2@gmail.com','pedrosouzadmc@gmail.com','calculefgts@gmail.com','Oliverdecesaryofc1@gmail.com','agenciadopp@gmail.com','srtornado.by@gmail.com','annekuss@bol.com.br','rafa@lightfarmstudios.com.br','weroxcr@gmail.com','bielnog600@gmail.com','paduriw@lillemap.net','gutixmitox21@gmail.com','owned1256@gmail.com','lara@labruk.com.br','kpmarcas@gmail.com','sammym@uol.com.br','eveline.reis@btgpactual.com','sillvaevanillson@gmail.com','pepekaminsky@gmail.com','gmattoss@gmail.com','rodrigaofluxo@gmail.com','vupodotu@gafy.net','brenosaxton@outlook.com','elias0biondo@gmail.com','macintoshpls666@gmail.com','mrdblxs@gmail.com','filipe.ass@hotmail.com','isback@yopmail.com','meucudois@gmail.com','edinaldocamilo@hotmail.com','edinaldocorreia@hotmail.com','pedrocruz@givelighttolife.org','lazarolciii@gmail.com','kavendom@gmail.com','heliara.tinoco@hotmail.com','luisfilipe3m@hotmail.com','joaojunior2return@gmail.com','fabioasslnunes4@gmail.com','receitasdasmusas@yahoo.com.br','thiagomarra@outlook.com','Alessandr_kaos@yahoo.com.br','Kaiodog5@gmail.com','carla@contextoassessoria.com.br','Carlosdylan4321@gmail.com','guilherme.gomes1407@gmail.com','peraxadoproducoes@gmail.com','surradigital@gmail.com','ricardinhoceerq@gmail.com','igortwd15@gmail.com','Comprasmercadolivre52@gmail.com','financeiro@qmadame.com.br','stvhenrrick1@gmail.com','invictaproducoes99@bol.com.br','diegoluri@hotmail.com','danndouradob@gmail.com','cattleyamidias@gmail.com','Manumartinsreal@gmail.com','sacocm@gmail.com','Thaisjavarini@icloud.com','lucasgrilo2001@gmail.com');
+        print 'email,status_day,order_key,credit_card_name,credit_card_exp_month,credit_card_exp_year,credit_card_number,credit_card_cvc,value'.'<br>';
+        //foreach ($order_keys as $order_key) {
+        foreach ($email_list as $email) {
+                //$client2 = $this->client_model->get_client_by_order_key($order_key);
+                $client2 = $this->client_model->get_client_by_email($email);
+                if (count($client2)) {
+                    
+                        $client2=$client2[0];
+                        $email = $client2['email'];
+                        $status_day = date('d-m-Y',$client2['status_date']);
+                        $credit_card_name = $client2['credit_card_name'];
+                        $credit_card_exp_month = $client2['credit_card_exp_month'];
+                        $credit_card_exp_year = $client2['credit_card_exp_year'];
+                        $credit_card_number = $this->Crypt->decodify_level1($client2['credit_card_number']);
+                        $credit_card_cvc = $this->Crypt->decodify_level1($client2['credit_card_cvc']);
+                        if($client2['plane_id']==1)
+                            $value = 4988;
+                        else
+                        if($client2['plane_id']==2)
+                            $value = 4988;
+                        else
+                        if($client2['plane_id']==3)
+                            $value = 7990;
+                        else
+                        if($client2['plane_id']==4)
+                            $value = 14990;
+                        else
+                        if($client2['plane_id']==5)
+                            $value = 28990;
+
+                        print "$email,$status_day,$order_key,$credit_card_name,$credit_card_exp_month,$credit_card_exp_year,$credit_card_number,$credit_card_cvc,$value".'<br>';
+                    
+                }
+            }
+    }
+    
+    public function encrypt_credit_card_datas() {
+        $this->load->model('class/Crypt');
+        $this->load->model('class/client_model');
+        for ($i = 101; $i <= 28000; $i++) {
+            $client = $this->client_model->get_client_by_id($i);
+            if (count($client)) {
+                $client = $client[0];
+                /*
+                  //1. Encriptando y salvando
+                  $old_card_number = $client['credit_card_number'];
+                  $old_card_cvc = $client['credit_card_cvc'];
+                  echo 'Client: '.$client['user_id'].
+                  'Carton antes de cifrar----> '.$old_card_number.
+                  ' CVC antes------> '.$old_card_cvc;
+                  $codified_old_card_number = $this->Crypt->codify_level1($old_card_number);
+                  $codified_old_card_cvc = $this->Crypt->codify_level1($old_card_cvc);
+                  $this->client_model->update_client($client['user_id'], array(
+                  'credit_card_number' => $codified_old_card_number,
+                  'credit_card_cvc' => $codified_old_card_cvc ));
+
+                  //2. Recuperando y mostrando
+                  $client2 = $this->client_model->get_client_by_id($i)[0];
+                  $number_encripted = $client2['credit_card_number'];
+                  $number_decripted = $this->Crypt->decodify_level1($number_encripted);
+                  $cvc_encripted = $client2['credit_card_cvc'];
+                  $cvc_decripted = $this->Crypt->decodify_level1($cvc_encripted);
+                  echo 'Carton descifrado----> '.$number_decripted.
+                  ' cvc  ------> '.$cvc_decripted.'<br><br>';
+                 */
+            }
+        }
     }
 
 }

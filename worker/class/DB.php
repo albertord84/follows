@@ -135,6 +135,7 @@ namespace follows\cls {
                 $CLIENT = user_role::CLIENT;
                 $ACTIVE = user_status::ACTIVE;
                 $PENDING = user_status::PENDING;
+                $UNFOLLOWS = user_status::UNFOLLOW;
                 //$UNFOLLOW = user_status::UNFOLLOW;
                 $sql = ""
                         . "SELECT * FROM users "
@@ -143,7 +144,8 @@ namespace follows\cls {
                         . "WHERE users.role_id = $CLIENT "
                         . "     AND clients.unfollow_total = 1 "
                         . "     AND (users.status_id = $ACTIVE OR "
-                        . "          users.status_id = $PENDING "
+                        . "          users.status_id = $PENDING OR "
+                        . "          users.status_id = $UNFOLLOWS"
                         . "          );";
                 $result = mysqli_query($this->connection, $sql);
                 return $result;
@@ -159,6 +161,22 @@ namespace follows\cls {
                         . "SELECT * FROM users "
                         . "     INNER JOIN clients ON clients.user_id = users.id "
                         . "     INNER JOIN plane ON plane.id = clients.plane_id "
+                        . "WHERE users.id = $client_id; "
+                );
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        public function get_client_payment_data($client_id) {
+            try {
+                $this->connect();
+                $result = mysqli_query($this->connection, ""
+                        . "SELECT * FROM users "
+                        . "     INNER JOIN clients ON clients.user_id = users.id "
+                        . "     INNER JOIN client_payment ON client_payment.dumbu_clinet_id = clients.user_id "
+                        . "     INNER JOIN plane ON plane.id = client_payment.dumbu_plane_id "
                         . "WHERE users.id = $client_id; "
                 );
                 return $result ? $result->fetch_object() : NULL;
