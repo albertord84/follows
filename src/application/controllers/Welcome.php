@@ -1121,13 +1121,14 @@ class Welcome extends CI_Controller {
                                 if($gateway_client_id){
                                     $this->client_model->set_client_payment($datas['pk'],$gateway_client_id,$datas['plane_type']);                                    
                                     $datas['pay_day'] = strtotime("+".$GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS." days", time());
+                                    $this->client_model->update_client($datas['pk'], array('pay_day'=>$datas['pay_day']));
                                     //2.2. crear carton en la vindi
                                     $resp = $this->Vindi->addClientPayment($gateway_client_id, $datas['pay_day']);
                                     if($resp->success){
                                         //2.3. crear recurrencia segun plano-producto
                                         $resp = $this->Vindi->create_recurrency_payment($datas['pk']);
                                         if($resp->success){
-                                            //2.4 salvar order_key  (payment_key)
+                                            //2.4 salvar order_key (payment_key)
                                             $this->client_model->update_client_payment_key($datas['pk'],
                                                 array('payment_key'=>$resp['payment_key']));
                                             $response['success'] = true;
@@ -1840,10 +1841,7 @@ class Welcome extends CI_Controller {
         }
 
         return $response;
-    }
-    
-     
-    
+    }    
     */
     
     public function detectCardType($num) {
@@ -1912,17 +1910,9 @@ class Welcome extends CI_Controller {
         if ($this->session->userdata('role_id') == user_role::CLIENT) {
             $datas = $this->input->post();
             $datas['unfollow_total'] = (int) $datas['unfollow_total'];
-            //if($this->session->userdata('unfollow_total')==!$datas['unfollow_total']){
-            if ($datas['unfollow_total'] == 1) {
-                
-            } elseif ($datas['unfollow_total'] == 0) {
-                
-            }
-
             ($datas['unfollow_total'] == 0) ? $ut = 'DISABLED' : $ut = 'ACTIVATED';
             $this->load->model('class/user_model');
             $this->user_model->insert_washdog($this->session->userdata('id'), 'TOTAL UNFOLLOW ' . $ut);
-
             $this->client_model->update_client($this->session->userdata('id'), array(
                 'unfollow_total' => $datas['unfollow_total']
             ));
