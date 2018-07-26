@@ -121,7 +121,7 @@
                 return $this->db->update('client_payment',$datas);                
             }else{
                 $datas['dumbu_client_id']=$dumbu_client_id;
-                $this->db->insert('users',$datas);
+                $this->db->insert('client_payment',$datas);
                 return $this->db->insert_id();
             }
         }

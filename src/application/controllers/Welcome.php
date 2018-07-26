@@ -8,6 +8,24 @@ class Welcome extends CI_Controller {
 
     private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control    
     public $language = NULL;
+    
+    public function test(){
+        $datas=array(
+            'user_login'=>'josergm86',
+            'user_pass'=>'josergm2',
+            'user_email'=>'josergm86@gmail.com',
+            'credit_card_number'=>'4415241617292371',
+            'credit_card_cvc'=>'676',
+            'credit_card_name'=>'JOSE R G MONTERO',
+            'credit_card_exp_month'=>'05',
+            'credit_card_exp_year'=>'2026',            
+            'plane_type'=>'2',
+            'pk'=>'15644',
+            'purchase_access_token'=>'123'
+        );
+        $a = $this->check_client_data_bank($datas);
+        var_dump($a);
+    }
 
     public function index() {
         //die('Estamos realizando trabalhos de manuntenção no site. <br><br>A tarefa pode demorar algumas horas. Sempre estamos pensando em melhorar a sua experiência de usuário. <br><br> Qualquer dúvida pode nos contatar em atendimento@dumbu.pro .  <br><br> Obrigado!!');
@@ -1085,7 +1103,7 @@ class Welcome extends CI_Controller {
         $this->load->model('class/credit_card_status');
         $GLOBALS['sistem_config'] = $this->system_config->load();
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
-        $this->Vindi = new \follows\cls\Vindi();
+        $this->Vindi = new \follows\cls\Payment\Vindi();
         $origin_datas = $datas;
         if($datas == NULL)
             $datas = $this->input->post();
@@ -1094,6 +1112,7 @@ class Welcome extends CI_Controller {
         $datas['user_email'] = $query[0]['email']; $datas['insta_id'] = $query[0]['insta_id'];
         $datas['status_id'] = $query[0]['status_id'];
         $purchase_counter = (int)$query[0]['purchase_counter'];
+        $kk=$query[0]['purchase_access_token'];
         if($query[0]['purchase_access_token'] === $datas['purchase_access_token']) {            
             if($datas['status_id'] === '8' || $datas['status_id'] === '4') {                
                 if ($purchase_counter > 0){
@@ -1123,7 +1142,7 @@ class Welcome extends CI_Controller {
                                     $datas['pay_day'] = strtotime("+".$GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS." days", time());
                                     $this->client_model->update_client($datas['pk'], array('pay_day'=>$datas['pay_day']));
                                     //2.2. crear carton en la vindi
-                                    $resp = $this->Vindi->addClientPayment($gateway_client_id, $datas['pay_day']);
+                                    $resp = $this->Vindi->addClientPayment($gateway_client_id, $datas);
                                     if($resp->success){
                                         //2.3. crear recurrencia segun plano-producto
                                         $resp = $this->Vindi->create_recurrency_payment($datas['pk']);
@@ -1138,7 +1157,6 @@ class Welcome extends CI_Controller {
                                         $response['message'] = $resp->message;
                                 }
                             }
-
                             //3. si pagamento correcto: logar cliente, establecer sesion, actualizar status, emails, initdate
                             if ($response['success'])   {
                                 $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
