@@ -15,7 +15,7 @@ class Welcome extends CI_Controller {
 
     public function login_all_blocked_by_pass() {
         $this->load->model('class/client_model');
-        $client = $this->client_model->get_all_clients_by_status_id(3);
+        $client = $this->client_model->get_all_clients_by_status_id(9);
         foreach ($client as $client) {
             $datas['user_login'] = $client['login'];
             $datas['user_pass'] = $client['pass'];
