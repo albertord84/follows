@@ -56,7 +56,8 @@ namespace follows\cls\Payment {
                     'email' => $email,
                 ]);
             } catch (\Exception $e) {
-                return $e;
+//                return $e;
+                return NULL;
             }
 
             return $customer->id;
@@ -70,6 +71,8 @@ namespace follows\cls\Payment {
          */
         public function addClientPayment($vindi_client_id, $payment_data) {
             $payment = null;
+            $return = new \stdClass();
+            $return->success = false;
             try {
                 $payment_profilesService = new \Vindi\PaymentProfile($this->api_arguments);
                 $payment = $payment_profilesService->create([
@@ -81,9 +84,11 @@ namespace follows\cls\Payment {
                     "customer_id" => $vindi_client_id
                 ]);
             } catch (Exception $e) {
-                return $e;
+                $return->message = $e->message;
+                return $return;
             }
-            return $payment;
+            $return->success = $payment->status == 'active';
+            return $return;
         }
 
         /**
@@ -94,22 +99,27 @@ namespace follows\cls\Payment {
          */
         public function create_recurrency_payment($client_id) {
             // Cria nova assignatura:
+            $return = new \stdClass();
+            $return->success = false;
             try {
                 // Load cient data from DB
                 $DB = new \follows\cls\DB();
-                $client_data = $DB->get_client_data($client_id);
+                $client_data = $DB->get_client_payment_data($client_id);
 
                 // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
                 $subscriptionService = new \Vindi\Subscription($this->api_arguments);
                 $subscription = $subscriptionService->create([
-                    "plan_id" => $client_data->vindi_plane_id,
-                    "customer_id" => $client_data->vindi_client_id,
+                    "plan_id" => $client_data->gateway_plane_id,
+                    "customer_id" => $client_data->gateway_client_id,
                     "payment_method_code" => "credit_card"
                 ]);
             } catch (\Exception $e) {
-                return $e;
+                $return->message = $e->message;
+                return $return;
             }
-            return $subscription;
+            $return->success = $subscription->status == 'active' || $subscription->status == 'future';
+            $return->payment_key = isset($subscription) && isset($subscription->subscription)? $subscription->subscription->id : NULL;
+            return $return;
         }
 
         /**
@@ -118,15 +128,18 @@ namespace follows\cls\Payment {
          * @return Subscription or \Exception
          */
         public function cancel_recurrency_payment($payment_id) {
+            $return = new \stdClass();
+            $return->success = false;
             try {
                 // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
                 $subsService = new \Vindi\Subscription($this->api_arguments);
                 $subs = $subsService->delete($payment_id);
             } catch (\Exception $e) {
-                return $e;
+                $return->message = $e->message;
+                return $return;
             }
-
-            return $subs;
+            $return->success = $subs->status == 'canceled' || $subs->status == 'expired';
+            return $return;
         }
 
         /**
@@ -155,29 +168,33 @@ namespace follows\cls\Payment {
          */
         public function create_payment($client_id, $prod_id = this::prod_1real_id, $amount = 0) {
             // Cria pagamento abulso:
+            $return = new \stdClass();
+            $return->success = false;
             try {
                 // Load cient data from DB
                 $DB = new \follows\cls\DB();
-                $client_data = $DB->get_client_data($client_id);
+                $client_data = $DB->get_client_payment_data($client_id);
                 //var_dump($client_data);
                 // Instancia o serviço de Bill (Fatura) com o array contendo VINDI_API_KEY e VINDI_API_URI
                 $billService = new \Vindi\Bill($this->api_arguments);
                 $bill = $billService->create([
-                    "plan_id" => $client_data->vindi_plane_id,
-                    "customer_id" => $client_data->vindi_client_id,
+                    "plan_id" => $client_data->gateway_plane_id,
+                    "customer_id" => $client_data->gateway_client_id,
                     "payment_method_code" => "credit_card",
                     "bill_items" => [
-                            [
+                        [
                             "product_id" => $prod_id,
                             "amount" => $amount
                         ]
                     ]
                 ]);
             } catch (\Exception $e) {
-                return $e;
+                $return->message = $e->message;
+                return $return;
             }
-
-            return $bill;
+            $return->success = true;
+            $return->status  = $bill->status;
+            return $return;
         }
 
         /**

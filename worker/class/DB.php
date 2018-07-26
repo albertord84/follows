@@ -168,6 +168,22 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
+
+        public function get_client_payment_data($client_id) {
+            try {
+                $this->connect();
+                $result = mysqli_query($this->connection, ""
+                        . "SELECT * FROM users "
+                        . "     INNER JOIN clients ON clients.user_id = users.id "
+                        . "     INNER JOIN client_payment ON client_payment.dumbu_clinet_id = clients.user_id "
+                        . "     INNER JOIN plane ON plane.id = client_payment.dumbu_plane_id "
+                        . "WHERE users.id = $client_id; "
+                );
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
         
         public function get_client_login_data($client_id)
         {
