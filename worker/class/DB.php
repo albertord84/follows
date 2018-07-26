@@ -135,6 +135,7 @@ namespace follows\cls {
                 $CLIENT = user_role::CLIENT;
                 $ACTIVE = user_status::ACTIVE;
                 $PENDING = user_status::PENDING;
+                $UNFOLLOWS = user_status::UNFOLLOW;
                 //$UNFOLLOW = user_status::UNFOLLOW;
                 $sql = ""
                         . "SELECT * FROM users "
@@ -143,7 +144,8 @@ namespace follows\cls {
                         . "WHERE users.role_id = $CLIENT "
                         . "     AND clients.unfollow_total = 1 "
                         . "     AND (users.status_id = $ACTIVE OR "
-                        . "          users.status_id = $PENDING "
+                        . "          users.status_id = $PENDING OR "
+                        . "          users.status_id = $UNFOLLOWS"
                         . "          );";
                 $result = mysqli_query($this->connection, $sql);
                 return $result;
@@ -200,11 +202,26 @@ namespace follows\cls {
             try {
                 $this->connect();
                 $sql = ""
-                . "SELECT * FROM users "
-                . "     INNER JOIN clients ON clients.user_id = users.id "
+                . "SELECT * FROM clients "
+                . "     INNER JOIN users ON clients.user_id = users.id "
                 . "WHERE users.login LIKE '$login' "
                 . "ORDER BY user_id DESC "
                 . "LIMIT 1; ";
+                $result = mysqli_query($this->connection, $sql);
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        
+        public function get_client_proxy($client_id) {
+            try {
+                $this->connect();
+                $sql = ""
+                . "SELECT * FROM clients "
+                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                . "WHERE user_id LIKE '$client_id';";
                 $result = mysqli_query($this->connection, $sql);
                 return $result ? $result->fetch_object() : NULL;
             } catch (\Exception $exc) {
@@ -1008,6 +1025,77 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
             
+        }
+        
+        
+        public function GetNotResrevedProxyList()
+        {
+            try{
+            $str = "SELECT * FROM Proxy WHERE isReserved = FALSE;";
+            $result = mysqli_query($this->connection,$str);
+            return $result;
+            }
+            catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }            
+        }
+        
+        public function GetProxy($idProxy)
+        {
+            try{
+            $str = "SELECT * FROM Proxy WHERE idProxy = $idProxy;";
+            $result = mysqli_query($this->connection,$str);
+            return $result->fetch_object();
+            }
+            catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }            
+        }
+    
+        public function GetProxyClientCounts($proxy)
+        {
+            try{
+                
+                $BEGINNER = user_status::BEGINNER;
+                $DELETED = user_status::DELETED;
+            $str = "SELECT COUNT(clients.user_id) as cnt FROM dumbudb.clients "
+                    ."INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                    ."INNER JOIN users ON user_id = users.id "
+                    . "WHERE dumbudb.Proxy.proxy = '$proxy' AND users.status_id NOT IN ($BEGINNER, $DELETED);";
+            $result = mysqli_query($this->connection,$str);
+            return $result;
+            }
+            catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }            
+        }
+        
+        public function GetClientWithouProxy()
+        {
+            try{
+                $BEGINNER = user_status::BEGINNER;
+                $DELETED = user_status::DELETED;
+            $str = "SELECT user_id FROM  clients "    
+                    ."INNER JOIN users ON user_id = users.id "
+                    ."WHERE proxy IS NULL AND users.status_id NOT IN ($BEGINNER, $DELETED);";
+            $result = mysqli_query($this->connection,$str);
+            return $result;
+            }
+            catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }            
+        }
+        
+        public function SetProxyToClient($client_id, $proxy_id)
+        {
+            try{
+                $str = "UPDATE clients SET clients.proxy = $proxy_id WHERE clients.user_id = $client_id;";
+                $result = mysqli_query($this->connection,$str);
+                return $result;
+            }
+            catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
         }
     }
 

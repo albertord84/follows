@@ -24,7 +24,7 @@ namespace follows\cls {
         public $Cookies = null;
         
 
-        public function login($username, $password) {
+        public function login($username, $password, $ip='207.188.155.18', $port='21316', $proxyuser='albertreye9917', $proxypass='3r4rcz0b1v') {
             /////// CONFIG ///////
             $debug = false;
             $truncatedDebug = true;
@@ -39,6 +39,7 @@ namespace follows\cls {
 //                $ig->setOutputInterface("191.252.110.140");
                 
 //                $ig->setProxy(['proxy'=>'tcp://70.39.250.32:23128']);
+                //$ig->setProxy("http://$proxyuser:$proxypass@$ip:$port");
 
                 $loginResponse = $ig->login($username, $password);
                 

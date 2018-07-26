@@ -4,18 +4,30 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f
+class ComposerStaticInit8ef68034262616505993793688105280
 {
     public static $files = array (
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '6b06ce8ccf69c43a60a1e48495a034c9' => __DIR__ . '/..' . '/react/promise-timer/src/functions.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
-        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'ebf8799635f67b5d7248946fe2154f4a' => __DIR__ . '/..' . '/ringcentral/psr7/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'W' => 
+        array (
+            'Winbox\\' => 7,
+        ),
+        'V' => 
+        array (
+            'Vindi\\' => 6,
+        ),
+        'S' => 
+        array (
+            'Symfony\\Component\\Process\\' => 26,
+        ),
         'R' => 
         array (
             'RingCentral\\Psr7\\' => 17,
@@ -64,6 +76,18 @@ class ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f
     );
 
     public static $prefixDirsPsr4 = array (
+        'Winbox\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/winbox/args/src',
+        ),
+        'Vindi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/vindi/vindi-php/src',
+        ),
+        'Symfony\\Component\\Process\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/process',
+        ),
         'RingCentral\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/ringcentral/psr7/src',
@@ -163,9 +187,9 @@ class ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf0ab76f5b5f777c92ccc2a8625285b3f::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8ef68034262616505993793688105280::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8ef68034262616505993793688105280::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8ef68034262616505993793688105280::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

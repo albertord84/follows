@@ -1,6 +1,5 @@
 <?PHP
 
-
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';
@@ -9,6 +8,7 @@ require_once '../class/Client.php';
 require_once '../class/Reference_profile.php';
 require_once '../class/PaymentCielo3.0.php';
 require_once '../class/InstaAPI.php';
+require_once '../class/PaymentVindi.php';
 
 //echo "Worker Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
@@ -20,20 +20,69 @@ ini_set('xdebug.var_display_max_data', 8024);
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$InstaAPI = new \follows\cls\InstaAPI();
 
+//API Vindi
+$Vindi = new follows\cls\Payment\Vindi();
+
+//Add client
+//$client = $Vindi->addClient("Alberto Test1", 'albertord84@gmail.com');
+//var_dump($client);
+
+//Add payment to client
+    //CARTAO EMPRESSA
+    $payment_data['credit_card_flag'] = 'Amex';
+    $payment_data['credit_card_number'] = '3771 697428 53003';
+    $payment_data['credit_card_name'] = 'PEDRO PETTI';
+    $payment_data['credit_card_exp_month'] = '04';
+    $payment_data['credit_card_exp_year'] = '2022';
+    $payment_data['credit_card_cvc'] = '5529';
+$vindi_client_id = 6529720;
+//$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
+//var_dump($payment);
+
+//Create instantan payment
+//$client_id = 1;
+//$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
+//var_dump($payment);
+
+//Create recurrent payment
+//$client_id = 1;
+//$payment = $Vindi->create_recurrency_payment($client_id);
+//var_dump($payment);
+
+//Check payment
+//$payment_id = 23054444;
+//$payment = $Vindi->query_payment($payment_id);
+//var_dump($payment);
+
+//Check recurrency payment
+//$recurrency_payment_id = 4215630;
+//$payment = $Vindi->query_recurrency_payment($recurrency_payment_id);
+//var_dump($payment);
+
+//Cancel recurrency payment
+//$recurrency_payment_id = 4215648;
+//$payment = $Vindi->cancel_recurrency_payment($recurrency_payment_id);
+//var_dump($payment);
+
+
+
+
+//Insta API
+$InstaAPI = new follows\cls\InstaAPI();
 //$username = "alberto_test";
 //$password = "alberto";
 //$username = "riveauxmerino";
 //$password = "Notredame88";
 //$username = "alberto_dreyes";
-//$password = "albertord8";
+//$password = "albertord9";
+//$username = "josergm86";
+//$password = "josergm2";
 //$username = "leticiajural";
 //$password = "estrelaguia";
 //$result = $InstaAPI->login($username, $password);
 //var_dump($result->Cookies);
 //var_dump($result);
-
 //DEBIT CIELO
 /* $PaymentCielo = new \follows\cls\PaymentCielo();
 
@@ -75,9 +124,9 @@ $RP = new \follows\cls\Reference_profile();
 
 
 $DB = new \follows\cls\DB();
-$result = $DB->Increase_Client_Last_Access(1, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS + 1);
+//$result = $DB->Increase_Client_Last_Access(1, $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS + 1);
 //$result = $DB->is_profile_followed(1, '858888048');
-var_dump($result);
+//var_dump($result);
 //$DB->delete_daily_work_client(13);
 //$daily_work = $DB->get_follow_work();
 //$daily_work->login_data = json_decode($daily_work->cookies);
@@ -163,14 +212,11 @@ $Payment = new follows\cls\Payment();
 //var_dump($data);
 //var_dump(date('d-m-Y h:i:sa', $data));
 //
-
 //$pay_day = strtotime('05/18/2018 00:18:37');
 //$pay_day = strtotime("+30 days", $pay_day);
-
 //$pay_day = time();
 //$strdate = date("d-m-Y", $pay_day);
 //$pay_day = strtotime("+2 months", time());
-
 //$payment_data['credit_card_number'] = '5162205148963901';
 //$payment_data['credit_card_name'] = 'RIDYE M RINALDI';
 //$payment_data['credit_card_exp_month'] = '09';
@@ -178,16 +224,13 @@ $Payment = new follows\cls\Payment();
 //$payment_data['credit_card_cvc'] = '839';
 //$payment_data['amount_in_cents'] = 14990;
 //$payment_data['pay_day'] = $pay_day;
-
 ////$resul = $Payment->create_payment($payment_data);
 ////var_dump($resul);
 //$resul = $Payment->create_recurrency_payment($payment_data, 0, 20);
 //var_dump($resul);
 ////$resul = $Payment->create_recurrency_payment($payment_data, 0, 42);
 ////var_dump($resul);
-
-var_dump($pay_day);
-
+//var_dump($pay_day);
 //////----------------------------------------------------------------
 //$result = $Payment->check_payment(NULL);
 //$result = $Payment->delete_payment('e15cb727-0e3d-4699-a129-acbc1004fce7');
@@ -235,7 +278,7 @@ $Robot = new \follows\cls\Robot();
 //    $result = $Robot->follow_me_myself(json_decode($client->cookies));
 //    var_dump($result);
 //}
-//$client = $Client->get_client(1);
+//$client = $Client->get_client(29023);
 //$profile = $Robot->get_insta_ref_prof_data('teatro-popular-oscar-niemeyer');
 //$profile = $Robot->get_insta_ref_prof_data_from_client(json_decode($client->cookies), "caminho-niemeyer");
 //$profiles = $Robot->get_insta_followers(json_decode($client->cookies), '5445947882', 2);
@@ -293,23 +336,18 @@ $Robot = new \follows\cls\Robot();
 $Robot = new follows\cls\Robot();
 //$response = $Robot->get_insta_ref_prof_following('alberto_dreyes');
 //var_dump($response);
-
 //$result = $Robot->bot_login("riveauxmerino", "Notredame88");
 //var_dump($result);
-
 //$result = $Robot->bot_login("ruslan.guerra88", "*R5sl@n#");
 //var_dump($result);
-
 //
 //$mid = "WdJCIgAEAAH8jG4L-TEtJUTVmQpu";
 //$csrftoken = "lT29VKGJfD2vbglPsLLKNfW22qDH1Pp5";
 //
 //$result = $Robot->str_login($mid, $csrftoken, "ruslan.guerra88", "*R5sl@n#");
 //var_dump($result);
-
 //$url = "https://www.instagram.com/";
 //$ch = curl_init($url);
-
 //$Client = NULL;
 //$login = "leticiajural";
 //$pass  = "estrelaguia";
@@ -319,9 +357,6 @@ $Robot = new follows\cls\Robot();
 //
 //var_dump($result);
 //var_dump(json_encode($result));
-
-
-
 //print_r(json_encode($result));
 //$result = $Robot->bot_login('amourzinah','reda1997');  //'julianabaraldi83','tininha1712'   'guilfontes','persian'
 //print_r(json_encode($result));
@@ -336,12 +371,18 @@ $Robot = new follows\cls\Robot();
 //var_dump($result);
 //$result = $Robot->bot_login("tompsonr", "sorvete6969");
 //var_dump($result);
+//$login_data = '{"sessionid":"IGSC082d84b611421f8d4fbd0fe846d66db5558aefb869cb32357e3522e7c2a8500f%3A2o250Oalxu2CXATAZyJ0ldPhQ1ePBVhf%3A%7B%22_auth_user_id%22%3A7711227104%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%227711227104%3AWbFy6MELlVU8a0bBd3vHWw0xpNUGMg3E%3Aa96185426c3446ae1d4944944f19c81cb8006374b8251b66acf04d970fa98f41%22%2C%22last_refreshed%22%3A1526520267.3385460377%7D","csrftoken":"jm6ckkGfMXx1hAuleiucWJ2Zf5yDxVZn","ds_user_id":"7711227104","mid":"WvzZyQABAAGmv0K2qPu-ZiLnjs9Z","json_response":{"status":"ok","authenticated":true}}';
+//$login_data = GuzzleHttp\json_decode($login_data);
+//$userId = "3916799608";
+//$userId = "175617464";
+//$result = $Robot->get_insta_followers($login_data, $userId, 10);
+//var_dump($result);
 //----------------------------------------------------------------
 //
 // WORKER
-$Worker = new follows\cls\Worker();
-//$daily_work = $Worker->get_work_by_id(2);
-////$Worker->do_follow_unfollow_work($daily_work);
+//$Worker = new follows\cls\Worker();
+//$daily_work = $Worker->get_work_by_id(44870);
+//$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;
 //var_dump($daily_work->rp_insta_id);
 //$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);

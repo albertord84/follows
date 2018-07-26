@@ -333,12 +333,19 @@
                     <button type="button" class="btn btn-drop fleft100 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <b><?php echo $CI->T("AVISOS IMPORTANTES", array(), $language); ?></b> <img src="<?php echo base_url() . 'assets/images/seta.png'; ?>" alt="" class="wauto fright">
                     </button>
+<!--                    <ul class="dropdown-menu drop-lista bk-cinza fleft100">
+                        <li><?php //echo $CI->T("O Instagram só permite que você siga 7.500 perfis no total. Se você segue entre 6.000 e 7.500, precisarémos desseguir perfis para iniciar a ferramenta;", array(), $language); ?></li>
+                        <li><?php //echo $CI->T("Nossa ferramenta é integrada ao instagram, por isso, pode sofrer variações no desempenho a cada atualização feita pelo instagram;", array(), $language); ?></li>
+                        <li><?php //echo $CI->T("Caso altere sua senha ou usuário, não se preocupe, basta você efetuar login em nosso site e pronto! Sua conta será atualizada automatcamente;", array(), $language); ?></li>
+                        <li><?php //echo $CI->T("Nunca deixe sua conta privada, você conseguirá captar mais seguidores se eles puderem ver seu conteúdo e se identificarem com seu perfil;", array(), $language); ?></li>
+                        <li><?php //echo $CI->T("Nunca escolha perfis privados ou com poucos seguidores.", array(), $language); ?></li>
+                    </ul>-->
                     <ul class="dropdown-menu drop-lista bk-cinza fleft100">
-                        <li><?php echo $CI->T("O Instagram só permite que você siga 7.500 perfis no total. Se você segue entre 6.000 e 7.500, precisarémos desseguir perfis para iniciar a ferramenta;", array(), $language); ?></li>
-                        <li><?php echo $CI->T("Nossa ferramenta é integrada ao instagram, por isso, pode sofrer variações no desempenho a cada atualização feita pelo instagram;", array(), $language); ?></li>
-                        <li><?php echo $CI->T("Caso altere sua senha ou usuário, não se preocupe, basta você efetuar login em nosso site e pronto! Sua conta será atualizada automatcamente;", array(), $language); ?></li>
-                        <li><?php echo $CI->T("Nunca deixe sua conta privada, você conseguirá captar mais seguidores se eles puderem ver seu conteúdo e se identificarem com seu perfil;", array(), $language); ?></li>
-                        <li><?php echo $CI->T("Nunca escolha perfis privados ou com poucos seguidores.", array(), $language); ?></li>
+                        <div class="col-md-3 col-sm-3 col-xs-12 "><p class="text-justify"><?php echo $CI->T("O Instagram só permite que você siga 7.500 perfis no total. Se você segue entre 6.000 e 7.500, precisarémos desseguir perfis para iniciar a ferramenta;", array(), $language); ?><p></div>
+                        <div class="col-md-2 col-sm-2 col-xs-12"><p class="text-justify"><?php echo $CI->T("Nossa ferramenta é integrada ao instagram, por isso, pode sofrer variações no desempenho a cada atualização feita pelo instagram;", array(), $language); ?><p></div>
+                        <div class="col-md-2 col-sm-2 col-xs-12"><p class="text-justify"><?php echo $CI->T("Nunca escolha perfis privados ou com poucos seguidores.", array(), $language); ?><p></div>
+                        <div class="col-md-2 col-sm-2 col-xs-12"><p class="text-justify"><?php echo $CI->T("Caso altere sua senha ou usuário, não se preocupe, basta você efetuar login em nosso site e pronto! Sua conta será atualizada automatcamente;", array(), $language); ?><p></div>
+                        <div class="col-md-3 col-sm-3 col-xs-12"><p class="text-justify"><?php echo $CI->T("Nunca deixe sua conta privada, você conseguirá captar mais seguidores se eles puderem ver seu conteúdo e se identificarem com seu perfil;", array(), $language); ?><p></div>
                     </ul>
                 </div>
                 

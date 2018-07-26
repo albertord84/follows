@@ -6,6 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Winbox\\' => array($vendorDir . '/winbox/args/src'),
+    'Vindi\\' => array($vendorDir . '/vindi/vindi-php/src'),
+    'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
     'RingCentral\\Psr7\\' => array($vendorDir . '/ringcentral/psr7/src'),
     'React\\Stream\\' => array($vendorDir . '/react/stream/src'),
     'React\\Socket\\' => array($vendorDir . '/react/socket/src'),

@@ -1,6 +1,12 @@
 <?php
 
-
+/**
+ * @author Alberto Reyes <albertord84@gmail.com>
+ * @name API Integration with Mundipagg
+ * @version 1
+ * @date 06/06/2018 4:00AM
+ * @depends DUMBU DB
+ */
 
 namespace follows\cls {
     
