@@ -11,7 +11,6 @@ class Welcome extends CI_Controller {
        
     
     public function test(){
-
         $this->load->model('class/system_config'); 
         $GLOBALS['sistem_config'] = $this->system_config->load();
 //        $param['language'] = $GLOBALS['sistem_config']->LANGUAGE;
@@ -21,10 +20,8 @@ class Welcome extends CI_Controller {
         
 //        $a = $this->is_insta_user('josergm86','josergm2',FALSE);
 //        
-//        var_dump($a);
-        
-        $this->load->library('Gmail'); 
-        
+//        var_dump($a);        
+        $this->load->library('Gmail');         
         $this->gmail->send_link_ticket_bank_and_access_link(
                     'Jose R',
                     'josergm86@gmail.com',
