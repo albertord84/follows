@@ -84,7 +84,7 @@ namespace follows\cls\Payment {
                     "customer_id" => $vindi_client_id
                 ]);
             } catch (Exception $e) {
-                $return->message = $e->message;
+                $return->message = $e->getMessage();
                 return $return;
             }
             $return->success = $payment->status == 'active';
@@ -94,11 +94,12 @@ namespace follows\cls\Payment {
         /**
          * Add new Assigment for client 
          * @param type $client_id Follows client id
-         * @param type $recurrence
+         * @param time $date
          * @return \Exception recurrency payment or exception
          */
-        public function create_recurrency_payment($client_id) {
+        public function create_recurrency_payment($client_id, $date = NULL) {
             // Cria nova assignatura:
+            if (!$date) $date = time();
             $return = new \stdClass();
             $return->success = false;
             try {
@@ -109,16 +110,49 @@ namespace follows\cls\Payment {
                 // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
                 $subscriptionService = new \Vindi\Subscription($this->api_arguments);
                 $subscription = $subscriptionService->create([
+                    "start_at" => $date,
                     "plan_id" => $client_data->gateway_plane_id,
                     "customer_id" => $client_data->gateway_client_id,
                     "payment_method_code" => "credit_card"
                 ]);
             } catch (\Exception $e) {
-                $return->message = $e->message;
+                $return->message = $e->getMessage();
                 return $return;
             }
             $return->success = $subscription->status == 'active' || $subscription->status == 'future';
-            $return->payment_key = isset($subscription) && isset($subscription->subscription)? $subscription->subscription->id : NULL;
+            $return->payment_key = isset($subscription) && isset($subscription->id)? $subscription->id : NULL;
+            $return->subscription = $subscription;
+            return $return;
+        }
+
+        /**
+         * Reschedule Assigment for client 
+         * @param type $client_id Follows client id
+         * @param timestamp $date
+         * @return \Exception reschedule recurrency payment or exception
+         */
+        public function reschedule_recurrency_payment($client_id, $date) {
+            // Cria nova assignatura:
+            $return = new \stdClass();
+            $return->success = false;
+            try {
+                // Load cient data from DB
+                $DB = new \follows\cls\DB();
+                $client_data = $DB->get_client_payment_data($client_id);
+                if (!$client_data) throw new Exception ("Client payment data not found");
+
+                // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
+                $subscriptionService = new \Vindi\Subscription($this->api_arguments);
+                $subscription = $subscriptionService->update($client_data->payment_key, [
+                    "billing_trigger_day" => $date
+                ]);
+            } catch (\Exception $e) {
+                $return->message = $e->getMessage();
+                return $return;
+            }
+            $return->success = $subscription->status == 'active' || $subscription->status == 'future';
+            $return->payment_key = isset($subscription) && isset($subscription->id)? $subscription->id : NULL;
+            $return->subscription = $subscription;
             return $return;
         }
 
@@ -135,7 +169,7 @@ namespace follows\cls\Payment {
                 $subsService = new \Vindi\Subscription($this->api_arguments);
                 $subs = $subsService->delete($payment_id);
             } catch (\Exception $e) {
-                $return->message = $e->message;
+                $return->message = $e->getMessage();
                 return $return;
             }
             $return->success = $subs->status == 'canceled' || $subs->status == 'expired';
@@ -189,7 +223,7 @@ namespace follows\cls\Payment {
                     ]
                 ]);
             } catch (\Exception $e) {
-                $return->message = $e->message;
+                $return->message = $e->getMessage();
                 return $return;
             }
             $return->success = true;
