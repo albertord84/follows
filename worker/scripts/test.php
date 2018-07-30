@@ -37,8 +37,8 @@ $Vindi = new follows\cls\Payment\Vindi();
     $payment_data['credit_card_exp_year'] = '2022';
     $payment_data['credit_card_cvc'] = '5529';
 $vindi_client_id = 6529720;
-//$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
-//var_dump($payment);
+$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
+var_dump($payment);
 
 //Create instantan payment
 //$client_id = 1;
@@ -47,7 +47,14 @@ $vindi_client_id = 6529720;
 
 //Create recurrent payment
 //$client_id = 1;
-//$payment = $Vindi->create_recurrency_payment($client_id);
+//$date = "28/08/2018"; //strtotime("+" .'30'. " days");
+//$payment = $Vindi->create_recurrency_payment($client_id, $date);
+//var_dump($payment);
+
+//Reschedule recurrent payment
+//$client_id = 1;
+//$date = "28/08/2018"; //"2018-08-20T00:00:00.000-03:00"; //strtotime("+" .'30'. " days"); //1534734000; //"20/08/2018"; //
+//$payment = $Vindi->reschedule_recurrency_payment($client_id, $date);
 //var_dump($payment);
 
 //Check payment
@@ -80,6 +87,8 @@ $InstaAPI = new follows\cls\InstaAPI();
 //$password = "josergm2";
 //$username = "leticiajural";
 //$password = "estrelaguia";
+//$username = "tropical.insurance";
+//$password = "Tropical$18";
 //$result = $InstaAPI->login($username, $password);
 //var_dump($result->Cookies);
 //var_dump($result);
@@ -380,7 +389,7 @@ $Robot = new follows\cls\Robot();
 //----------------------------------------------------------------
 //
 // WORKER
-//$Worker = new follows\cls\Worker();
+$Worker = new follows\cls\Worker();
 //$daily_work = $Worker->get_work_by_id(44870);
 //$Worker->do_follow_unfollow_work($daily_work);
 //$error = NULL; $page_info = NULL;

@@ -6,7 +6,7 @@ class Payment extends CI_Controller {
 
     public function vindi_notif_post() {
         // Write the contents back to the file
-        $path = __dir__ . '/../../logs/';
+        $path = __dir__ . '/../../logs/vidi/';
         $file = $path . "vindi_notif_post-" . date("d-m-Y") . ".log";
         //$result = file_put_contents($file, "Albert Test... I trust God!\n", FILE_APPEND);
         $post = file_get_contents('php://input');
@@ -23,7 +23,7 @@ class Payment extends CI_Controller {
     
     public function mundi_notif_post() {
         // Write the contents back to the file
-        $path = __dir__ . '/../../logs/';
+        $path = __dir__ . '/../../logs/mundi';
         $file = $path . "mundi_notif_post-" . date("d-m-Y") . ".log";
         //$result = file_put_contents($file, "Albert Test... I trust God!\n", FILE_APPEND);
         $post = file_get_contents('php://input');
