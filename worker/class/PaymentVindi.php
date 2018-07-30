@@ -65,15 +65,16 @@ namespace follows\cls\Payment {
 
         /**
          * Add payment data to Client
-         * @param type $vindi_client_id
+         * @param type $client_id Follows client id
          * @param type $payment_data 
          * @return payment data or \Exception whether error
          */
-        public function addClientPayment($vindi_client_id, $payment_data) {
+        public function addClientPayment($client_id, $payment_data) {
             $payment = null;
             $return = new \stdClass();
             $return->success = false;
             try {
+                $client_data = $DB->get_client_payment_data($client_id);
                 $payment_profilesService = new \Vindi\PaymentProfile($this->api_arguments);
                 $payment = $payment_profilesService->create([
                     "holder_name" => $payment_data['credit_card_name'],
@@ -81,7 +82,7 @@ namespace follows\cls\Payment {
                     "card_number" => $payment_data['credit_card_number'],
                     "card_cvv" => $payment_data['credit_card_cvc'],
                     "payment_method_code" => "credit_card",
-                    "customer_id" => $vindi_client_id
+                    "customer_id" => $client_data->gateway_client_id
                 ]);
             } catch (Exception $e) {
                 $return->message = $e->getMessage();
