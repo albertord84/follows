@@ -1138,7 +1138,7 @@ class Welcome extends CI_Controller {
                                 //2.1 crear cliente en la vindi
                                 $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
                                 if($gateway_client_id){
-                                    $this->client_model->set_client_payment($datas['pk'],$gateway_client_id,$datas['plane_type']);                                    
+                                    $this->client_model->set_client_payment($datas['pk'],$gateway_client_id,$datas['plane_type']);
                                     $datas['pay_day'] = strtotime("+".$GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS." days", time());
                                     $this->client_model->update_client($datas['pk'], array('pay_day'=>$datas['pay_day']));
                                     //2.2. crear carton en la vindi
@@ -2000,6 +2000,170 @@ class Welcome extends CI_Controller {
     public function update_client_datas() {
         $this->is_ip_hacker();
         $this->load->model('class/Crypt');
+        $this->load->model('class/client_model');
+        $this->load->model('class/user_model');
+        $this->load->model('class/user_status');
+        $this->load->model('class/credit_card_status');
+        $this->load->model('class/system_config');
+        $GLOBALS['sistem_config'] = $this->system_config->load();
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
+        $this->Vindi = new \follows\cls\Payment\Vindi();
+        $language = $this->input->get();
+        $datas = $this->input->post();
+        if($this->session->userdata('id')){
+            if ($this->validate_post_credit_card_datas($datas)) {
+                $client_data = $this->client_model->get_client_by_id($this->session->userdata('id'))[0];
+                $client_vindi_payment = $this->client_model->get_vindi_payment($this->session->userdata('id'));
+                $now = time();                
+                if($this->session->userdata('status_id') == user_status::BLOCKED_BY_PAYMENT) {
+                    if($now < $client_data['pay_day']) {
+                        $payments_days['pay_day'] = strtotime("+30 days", $now);
+                        $payments_days['pay_now'] = true;
+                    }else {
+                        $payments_days['pay_day'] = time();
+                        $payments_days['pay_now'] = false;
+                    }
+                }else {
+                    $payments_days = $this->get_pay_day($client_data['pay_day']);
+                }
+                $datas['pay_day'] = $payments_days['pay_day'];
+                
+                if ($payments_days['pay_day'] != null) { //dia de actualizacion diferente de dia de pagamento
+                    $this->user_model->update_user($this->session->userdata('id'), array(
+                        'email' => $datas['client_email']));
+                    $this->client_model->update_client($this->session->userdata('id'), array(
+                        'credit_card_number' => $this->Crypt->codify_level1($datas['credit_card_number']),
+                        'credit_card_cvc' => $this->Crypt->codify_level1($datas['credit_card_cvc']),
+                        'credit_card_name' => $datas['credit_card_name'],
+                        'credit_card_exp_month' => $datas['credit_card_exp_month'],
+                        'credit_card_exp_year' => $datas['credit_card_exp_year'],
+                        'pay_day' => $datas['pay_day']
+                    ));
+                    $flag_pay_now = false;
+                    $flag_pay_day = false;
+                    $payments_days['pay_now'] = false;
+                    //Determinar valor inicial del pagamento
+                    if ($datas['client_update_plane'] == 1)
+                        $datas['client_update_plane'] = 4;
+                    if($now < $client_data['pay_day']){
+                        if (($datas['client_update_plane'] <= $this->session->userdata('plane_id'))) {
+                            $pay_values['normal_value'] = $this->client_model->get_normal_pay_value($datas['client_update_plane']);
+                        } else
+                        if (($datas['client_update_plane'] > $this->session->userdata('plane_id'))) {
+                            $pay_values['normal_value'] = $this->client_model->get_normal_pay_value($datas['client_update_plane']);
+                        }                        
+                    }else{
+                        if($datas['client_update_plane'] > $this->session->userdata('plane_id')) {                            
+                            $pay_values['initial_value'] = $this->client_model->get_normal_pay_value($datas['client_update_plane']) - $this->client_model->get_normal_pay_value($this->session->userdata('plane_id'));                           
+                            $pay_values['normal_value'] = $this->client_model->get_normal_pay_value($datas['client_update_plane']);
+                            $payments_days['pay_now'] = true;
+                        }else
+                            $pay_values['normal_value'] = $this->client_model->get_normal_pay_value($datas['client_update_plane']);
+                    }
+                    
+                    //crear el nuevo carton en la vindi                    
+                    $resp = $this->Vindi->addClientPayment($client_data['gateway_client_id'], $datas);   
+                    
+                    //si necesitara hacer un pagamento ahora
+                    if($payments_days['pay_now']) {
+                        $datas['pay_day'] = time();
+                        $this->client_model->update_client($this->session->userdata('id'), array('pay_day'=>$datas['pay_day']));
+                        $amount = (int)($pay_values['initial_value']/100);
+                        $resp = $this->Vindi->create_payment($this->session->userdata('id'), $this->Vindi->prod_1real_id, $amount);
+                        if($resp->success && $resp->status =='active')
+                            $flag_pay_now = true;                        
+                    }
+                    
+                    if (($payments_days['pay_now'] && $flag_pay_now) || !$payments_days['pay_now']) {
+                        $response_delete_early_payment = '';
+                        $datas['pay_day'] = $payments_days['pay_day'];
+                        $datas['amount_in_cents'] = $pay_values['normal_value'];
+                        $resp_pay_day = $this->Vindi->create_recurrency_payment($this->session->userdata('id'));
+                        if($resp->success){
+                            $this->Vindi->set_client_payment($this->session->userdata('id'), $client_vindi_payment['gateway_client_id'], $datas['client_update_plane']);
+                        }
+//                                            //2.4 salvar order_key (payment_key)
+//                                            $this->client_model->update_client_payment_key($datas['pk'],
+//                                                array('payment_key'=>$resp['payment_key']));
+//                                            $response['success'] = true;
+                        
+                        
+                        
+                        if (is_object($resp_pay_day) && $resp_pay_day->isSuccess()) {
+                            $flag_pay_day = true;
+                            $this->client_model->update_client($this->session->userdata('id'), array(
+                                'plane_id' => $datas['client_update_plane'],
+                                'pay_day' => $datas['pay_day'],
+                                'order_key' => $resp_pay_day->getData()->OrderResult->OrderKey));
+                            
+                            if ($client_data['order_key'])
+                                $response_delete_early_payment = $this->delete_recurrency_payment($client_data['order_key']);
+                            if ($this->session->userdata('status_id') == user_status::BLOCKED_BY_PAYMENT || $this->session->userdata('status_id') == user_status::PENDING) {
+                                $datas['status_id'] = user_status::ACTIVE;
+                            } else
+                                $datas['status_id'] = $this->session->userdata('status_id');                            
+                            $this->user_model->update_user($this->session->userdata('id'), array(
+                                'status_id' => $datas['status_id']));
+                            
+                            $this->session->set_userdata('plane_id', $datas['client_update_plane']);
+                            $result['success'] = true;
+                            $result['resource'] = 'client';
+                            $result['message'] = $this->T('Dados bancários atualizados corretamente', array(), $GLOBALS['language']);
+                            $result['response_delete_early_payment'] = $response_delete_early_payment;
+                        }
+                    }
+                    
+                    
+                        if (($payments_days['pay_now'] && !$flag_pay_now) || (!$payments_days['pay_now'] && !$flag_pay_day)) {
+                            //restablecer en la base de datos los datos anteriores
+                            $this->client_model->update_client($this->session->userdata('id'), array(
+                                'credit_card_number' => $this->Crypt->codify_level1($client_data['credit_card_number']),
+                                'credit_card_cvc' => $this->Crypt->codify_level1($client_data['credit_card_cvc']),
+                                'credit_card_name' => $client_data['credit_card_name'],
+                                'credit_card_exp_month' => $client_data['credit_card_exp_month'],
+                                'credit_card_exp_year' => $client_data['credit_card_exp_year'],
+                                'pay_day' => $client_data['pay_day'],
+                                'order_key' => $client_data['order_key']
+                            ));
+                            $result['success'] = false;
+                            $result['resource'] = 'client';
+                            if ($payments_days['pay_now'] && !$flag_pay_now)
+                                $result['message'] = is_array($resp_pay_now) ? $resp_pay_now["message"] : $this->T("Erro inesperado! Provávelmente Cartão inválido, entre em contato com o atendimento.", array(), $GLOBALS['language']);
+                            else
+                                $result['message'] = is_array($resp_pay_day) ? $resp_pay_day["message"] : $this->T("Erro inesperado! Provávelmente Cartão inválido, entre em contato com o atendimento.", array(), $GLOBALS['language']);
+                        } else
+                        if (($payments_days['pay_now'] && $flag_pay_now && !$flag_pay_day)) {
+                            //se hiso el primer pagamento bien, pero la recurrencia mal
+                            $result['success'] = true;
+                            $result['resource'] = 'client';
+                            $result['message'] = $this->T('Actualização bem sucedida, mas deve atualizar novamente até a data de pagamento ( @1 )', array(0 => $payments_days['pay_now']));
+                        }
+                    
+                } else {
+                    $result['success'] = false;
+                    $result['message'] = $this->T('Você não pode atualizar seu cartão no dia do pagamento', array(), $GLOBALS['language']);
+                }
+                
+            } else {
+                $result['success'] = false;
+                $result['message'] = $this->T('Acesso não permitido', array(), $GLOBALS['language']);
+            }
+            if ($this->session->userdata('id') && $result['success'] == true) {
+                $this->load->model('class/user_model');
+                $this->user_model->insert_washdog($this->session->userdata('id'), 'CORRECT CARD UPDATE');
+            } else {
+                if ($this->session->userdata('id')) {
+                    $this->load->model('class/user_model');
+                    $this->user_model->insert_washdog($this->session->userdata('id'), 'INCORRECT CARD UPDATE');
+                }
+            }
+            echo json_encode($result);
+        }
+    }
+    
+    /*public function update_client_datas() {
+        $this->is_ip_hacker();
+        $this->load->model('class/Crypt');
         $this->load->model('class/system_config');
         $GLOBALS['sistem_config'] = $this->system_config->load();
         $language = $this->input->get();
@@ -2108,7 +2272,7 @@ class Welcome extends CI_Controller {
                                   $datas['amount_in_cents'] = $pay_values['normal_value'];
                                   $datas['amount_in_cents'] = $pay_values['initial_value'];
                                   else */
-                                $datas['amount_in_cents'] = $pay_values['normal_value'];
+                                /*$datas['amount_in_cents'] = $pay_values['normal_value'];
                                 $resp_pay_now = $this->check_mundipagg_credit_card($datas);
                                 if (is_object($resp_pay_now) && $resp_pay_now->isSuccess() && $resp_pay_now->getData()->CreditCardTransactionResultCollection[0]->CapturedAmountInCents > 0) {
                                     $this->client_model->update_client($this->session->userdata('id'), array(
@@ -2217,46 +2381,35 @@ class Welcome extends CI_Controller {
 
             echo json_encode($result);
         }
-    }
+    }*/
 
     public function get_pay_day($pay_day) {
         $this->is_ip_hacker();
         $this->load->model('class/user_status');
         $now = time();
         $datas['pay_now'] = false;
-
         $d_today = date("j", $now);
         $m_today = date("n", $now);
         $y_today = date("Y", $now);
         $d_pay_day = date("j", $pay_day);
         $m_pay_day = date("n", $pay_day);
         $y_pay_day = date("Y", $pay_day);
-
         if ($now < $pay_day) {
             $datas['pay_day'] = $pay_day;
         } else
         if ($d_today < $d_pay_day) {
             if ($this->session->userdata('status_id') == (string) user_status::PENDING)
                 $datas['pay_now'] = true;
-            //1. mes anterior respecto a hoy
-            $previous_month = strtotime("-30 days", $now);
-            //var_dump(date('d-m-Y',$previous_month));
-            //2. dia de pagamento en el mes anterior al actual
-            $previous_payment_date = strtotime($d_pay_day . '-' . date("n", $previous_month) . '-' . date("Y", $previous_month));
-            //var_dump(date('d-m-Y',$previous_payment_date));
-            //3. nuevo dia de pagamento para el mes actual
-            $datas['pay_day'] = strtotime("+30 days", $previous_payment_date);
-            //var_dump(date('d-m-Y',$datas['pay_day']));
+            $previous_month = strtotime("-30 days", $now); //1. mes anterior respecto a hoy            
+            $previous_payment_date = strtotime($d_pay_day . '-' . date("n", $previous_month) . '-' . date("Y", $previous_month));//2. dia de pagamento en el mes anterior al actual            
+            $datas['pay_day'] = strtotime("+30 days", $previous_payment_date);//3. nuevo dia de pagamento para el mes actual
         } else
         if ($d_today > $d_pay_day) {
             //0. si pendiente por pagamento, inidcar que se debe hacer pagamento
-            //if($this->session->userdata('status_id') == user_status::PENDING)                
             if ($this->session->userdata('status_id') == (string) user_status::PENDING)
                 $datas['pay_now'] = true;
             $recorrency_date = strtotime($d_pay_day . '-' . $m_today . '-' . $y_today); //mes actual com el dia de pagamento
-            //var_dump(date('d-m-Y',$recorrency_date));
             $datas['pay_day'] = strtotime("+30 days", $recorrency_date); //proximo mes
-            //var_dump(date('d-m-Y',$datas['pay_day']));
         } else
             $datas['pay_day'] = false;
         return $datas;

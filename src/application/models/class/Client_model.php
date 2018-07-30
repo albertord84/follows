@@ -112,10 +112,8 @@
             $datas = array(
                     'gateway_client_id'=>$gateway_client_id,
                     'dumbu_plane_id'=>$dumbu_plane_id);
-            $this->db->select('*');
-            $this->db->from('client_payment');
-            $this->db->where('client_payment.dumbu_client_id', $dumbu_client_id);        
-            $result = $this->db->get()->row_array();                
+                 
+            $result = $this->get_vindi_payment($dumbu_client_id);                
             if(count($result)){
                 $this->db->where('dumbu_client_id',$dumbu_client_id);
                 return $this->db->update('client_payment',$datas);                
@@ -124,6 +122,14 @@
                 $this->db->insert('client_payment',$datas);
                 return $this->db->insert_id();
             }
+        }
+        
+        public function get_vindi_payment($dumbu_client_id){
+            $this->db->select('*');
+            $this->db->from('client_payment');
+            $this->db->where('client_payment.dumbu_client_id', $dumbu_client_id);        
+            $result = $this->db->get()->row_array();                
+            return $result;
         }
         
         public function insert_ticket_bank_generated($ticket_datas){
