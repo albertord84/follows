@@ -124,6 +124,12 @@
             }
         }
         
+        public function update_client_payment($dumbu_client_id, $datas){
+            $this->db->where('dumbu_client_id',$dumbu_client_id);
+            return $this->db->update('client_payment',$datas);
+        }
+        
+        
         public function get_vindi_payment($dumbu_client_id){
             $this->db->select('*');
             $this->db->from('client_payment');
