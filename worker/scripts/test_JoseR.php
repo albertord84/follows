@@ -1,5 +1,4 @@
 <?PHP
-die('hola jose R');
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';
@@ -8,6 +7,7 @@ require_once '../class/Client.php';
 require_once '../class/Reference_profile.php';
 require_once '../class/PaymentCielo3.0.php';
 require_once '../class/InstaAPI.php';
+require_once '../class/Robot.php';
 
 //echo "Worker Inited...!<br>\n";
 echo date("Y-m-d h:i:sa") . "<br>\n";
@@ -44,7 +44,7 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
 //--------------------------------------------------------------------------------
 // MUNDIPAGG
-$Payment = new follows\cls\Payment();
+//$Payment = new follows\cls\Payment();
 
 //$pay_day = strtotime('05/18/2018 00:18:37');
 //$pay_day = strtotime("+30 days", $pay_day);
@@ -52,7 +52,7 @@ $Payment = new follows\cls\Payment();
 //$pay_day = time();
 //$strdate = date("d-m-Y", $pay_day);
 
-$pay_day = strtotime("+1 months", time());
+//$pay_day = strtotime("+1 months", time());
 
 //$payment_data['credit_card_number'] = 'PEDRO BASTOS PETTI';
 //$payment_data['credit_card_name'] = '5162202091174685';
@@ -62,14 +62,14 @@ $pay_day = strtotime("+1 months", time());
 //$payment_data['amount_in_cents'] = 4990;
 //$payment_data['pay_day'] = $pay_day;
 
-$resul = $Payment->create_payment($payment_data);
-var_dump($resul);
+//$resul = $Payment->create_payment($payment_data);
+//var_dump($resul);
 //$resul = $Payment->create_recurrency_payment($payment_data, 0, 20);
 //var_dump($resul);
 ////$resul = $Payment->create_recurrency_payment($payment_data, 0, 42);
 ////var_dump($resul);
 
-var_dump($pay_day);
+//var_dump($pay_day);
 
 ////--------------------------------------------------------------------------------
 
@@ -102,8 +102,9 @@ echo 'hola Jose';
 // GMAIL
 //$Gmail = new \follows\cls\Gmail();
 //
-//$Robot = new \follows\cls\Robot();
-//
+$Robot = new \follows\cls\Robot();
+$resp = $Robot->bot_login('companyate', 'vivi0405', FALSE);
+var_dump($resp);
 //
 //
 //$Robot = new follows\cls\Robot();
