@@ -9,28 +9,6 @@ class Welcome extends CI_Controller {
     private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control    
     public $language = NULL;
     
-    public function test(){
-        echo date('m/d/Y',$this->get_next_pay_day(1517618794));
-        
-//        $datas=array(
-//            'user_login'=>'josergm86',
-//            'user_pass'=>'josergm2',
-//            'user_email'=>'josergm86@gmail.com',
-//            
-//            'credit_card_number'=>'5162208060967447',
-//            'credit_card_cvc'=>'616',
-//            'credit_card_name'=>'PEDRO BASTOS PETTII',
-//            'credit_card_exp_month'=>'03',
-//            'credit_card_exp_year'=>'2019',  
-//            
-//            'plane_type'=>'2',
-//            'pk'=>'15644',
-//            'purchase_access_token'=>'123'
-//        );
-//        $a = $this->check_client_data_bank($datas);
-//        var_dump($a);
-    }
-
     public function mundi_to_vindi(){
         $this->load->model('class/client_model');
         $this->load->model('class/Crypt');
