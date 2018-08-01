@@ -47,8 +47,7 @@ class Welcome extends CI_Controller {
             $datas['credit_card_exp_month']=$client['credit_card_exp_month'];
             $datas['credit_card_exp_year']=$client['credit_card_exp_year'];
             $datas['pay_day'] = $this->get_next_pay_day($client['pay_day']);
-            
-            if(   $datas['credit_card_name']!=='PAYMENT_BY_TICKET_BANK' 
+            if($datas['credit_card_name']!=='PAYMENT_BY_TICKET_BANK' 
                && $datas['credit_card_name'] !='' && $datas['credit_card_number'] !=''
                && $datas['credit_card_cvc'] !='' && $datas['credit_card_exp_month'] !='' && $datas['credit_card_exp_year'] !=''){
                 //1. crear cliente en la vindi
@@ -79,21 +78,16 @@ class Welcome extends CI_Controller {
                             if(date('d/m/Y',$datas['pay_day']) == date('d/m/Y',time()))
                                 echo "analisar si fue cobrado en la mundi y en la Vindi hoje <BR><BR>";
                             $this->delete_recurrency_payment($client['order_key']);
+                            //6. actualizar mundi_to_vindi en la base de datos
+                            $this->client_model->update_client(
+                                $client['user_id'], 
+                                array('mundi_to_vindi' => 1));
                         }
                     }
                 }                
             }else
-                echo "Cliente ".$client['user_id']."com cartão inválido: <BR><BR>";
-            
-            
-            
-            
-            
-            
-                                
-                           
-        }
-        
+                echo "Cliente ".$client['user_id']."com cartão inválido: <BR><BR>";                      
+        }        
     }
     
     public function index() {

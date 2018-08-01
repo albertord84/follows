@@ -29,7 +29,20 @@ class Payment extends CI_Controller {
                 if (isset($post->event->data) && isset($post->event->data->bill) && $post->event->data->bill->status = "paid") {
                     // Activate User
                     $gateway_client_id = $post->event->data->bill->customer->id;
-                    die("Activate client -> Payment done!! -> Dia da cobrança um mês para frente");
+                    //1. activar cliente
+                    $this->load->model('class/user_model');
+                    $this->load->model('class/user_status');
+                    $this->load->model('class/client_model');
+                    $client_id = $this->client_model->get_client_id_by_gateway_client_id($gateway_client_id);
+                    if($client_id){
+                        $this->user_model->update_user($client_id, array(
+                            'status_id' => user_status::ACTIVE));
+                        //2. pay_day un mes para el frente
+                        $this->client_model->update_client(
+                                $client_id, 
+                                array('pay_day' => strtotime("+30 days", time()) ));                        
+                    }
+                    //die("Activate client -> Payment done!! -> Dia da cobrança um mês para frente");
                 }
             }
         } catch (\Exception $exc) {
@@ -44,6 +57,15 @@ class Payment extends CI_Controller {
         //var_dump($file);
         print 'OK';
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     public function mundi_notif_post() {
         // Write the contents back to the file
