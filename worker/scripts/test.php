@@ -30,15 +30,15 @@ $Vindi = new follows\cls\Payment\Vindi();
 
 //Add payment to client
     //CARTAO EMPRESSA
-    $payment_data['credit_card_flag'] = 'Amex';
-    $payment_data['credit_card_number'] = '3771 697428 53003';
-    $payment_data['credit_card_name'] = 'PEDRO PETTI';
-    $payment_data['credit_card_exp_month'] = '04';
-    $payment_data['credit_card_exp_year'] = '2022';
-    $payment_data['credit_card_cvc'] = '5529';
-$vindi_client_id = 6529720;
-$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
-var_dump($payment);
+//    $payment_data['credit_card_flag'] = 'Amex';
+//    $payment_data['credit_card_number'] = '3771 697428 53003';
+//    $payment_data['credit_card_name'] = 'PEDRO PETTI';
+//    $payment_data['credit_card_exp_month'] = '04';
+//    $payment_data['credit_card_exp_year'] = '2022';
+//    $payment_data['credit_card_cvc'] = '5529';
+//$vindi_client_id = 6529720;
+//$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
+//var_dump($payment);
 
 //Create instantan payment
 //$client_id = 1;
