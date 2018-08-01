@@ -1166,7 +1166,7 @@ class Welcome extends CI_Controller {
                                     $datas['status_id'] = user_status::ACTIVE;
                                     $this->user_model->update_user($datas['pk'], array(
                                         'init_date' => time(),
-                                        'status_id' => $datas['status_id']));                                    
+                                        'status_id' => $datas['status_id']));
                                     $this->user_model->set_sesion($datas['pk'], $this->session, $data_insta['insta_login_response']);
                                 } else
                                 if ($data_insta['status'] === 'ok' && !$data_insta['authenticated']) {
