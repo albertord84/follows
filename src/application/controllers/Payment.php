@@ -153,6 +153,7 @@ class Payment extends CI_Controller {
     }
 
     public function check_payment() {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
         $GLOBALS['sistem_config'] = new follows\cls\system_config();
         echo "Check Payment Inited...!<br>\n";
@@ -168,7 +169,7 @@ class Payment extends CI_Controller {
         $this->db->join('users', 'clients.user_id = users.id');
         //$this->db->join('client_payment', 'clients.user_id = client_payment.dumbu_client_id');
         // TODO: COMENT
-//        $this->db->where('id', "1");
+        //$this->db->where('id', "1");
         $this->db->where('role_id', user_role::CLIENT);
         $this->db->where('status_id <>', user_status::DELETED);
         $this->db->where('status_id <>', user_status::BEGINNER);
@@ -185,17 +186,19 @@ class Payment extends CI_Controller {
 //        $this->db->or_where('status_id', user_status::INACTIVE);
 //        $this->db->or_where('status_id', user_status::PENDING);
         $clients = $this->db->get()->result_array();
+        //var_dump($clients);
+        //die();
         // Check payment for each user
         foreach ($clients as $client) {
-            if (!is_client_vindi($client['user_id'])) {
-                $clientname = $client['name'];
-                $clientid = $client['user_id'];
+            $clientname = $client['name'];
+            $clientid = $client['user_id'];
+            //die($clientid . ": " . $clientname);
+            if (!$this->is_client_vindi($client['user_id'])) {
                 $now = new DateTime("now");
                 $payday = strtotime($client['pay_day']);
                 $payday = new DateTime();
                 $payday->setTimestamp($client['pay_day']);
                 $today = strtotime("today");
-//            var_dump($payday);
                 if (new DateTime("now") > $payday) {
                     $promotional_days = $GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS;
                     $init_date_2d = new DateTime();
@@ -242,8 +245,8 @@ class Payment extends CI_Controller {
         }
         try {
             $Gmail = new follows\cls\Gmail();
-            $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ", 'DUMBU payment checked!!! ', 'DUMBU payment checked!!! ');
-            $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ", 'DUMBU payment checked!!! ', 'DUMBU payment checked!!! ');
+            $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ", 'DUMBU MUNDI payment checked!!! ', 'DUMBU MUNDI payment checked!!! ');
+            $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ", 'DUMBU MUNDI payment checked!!! ', 'DUMBU MUNDI payment checked!!! ');
         } catch (Exception $ex) {
             echo 'Emails was not send';
         }
@@ -251,6 +254,7 @@ class Payment extends CI_Controller {
     }
 
     public function is_client_vindi($client_id) {
+        $client = NULL;
         try {
             $this->db->select('*');
             $this->db->from('client_payment');
@@ -260,6 +264,69 @@ class Payment extends CI_Controller {
             return $exc;
         }
         return is_array($client) && $client["gateway_id"] == 2;
+    }
+
+    public function check_payment_vindi() {
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Gmail.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/system_config.php';
+        $GLOBALS['sistem_config'] = new follows\cls\system_config();
+        echo "Check Payment Inited...!<br>\n";
+        echo date("Y-m-d h:i:sa");
+
+        $this->load->model('class/user_model');
+        $this->load->model('class/client_model');
+        $this->load->model('class/user_role');
+        $this->load->model('class/user_status');
+        // Get all users
+        $this->db->select('*');
+        $this->db->from('clients');
+        $this->db->join('users', 'clients.user_id = users.id');
+        $this->db->join('client_payment', 'clients.user_id = client_payment.dumbu_client_id');
+        // TODO: COMENT
+        //$this->db->where('id', "1");
+        $this->db->where('role_id', user_role::CLIENT);
+        $this->db->where('status_id <>', user_status::DELETED);
+        $this->db->where('status_id <>', user_status::BEGINNER);
+        $this->db->where('status_id <>', user_status::DONT_DISTURB);
+        //$this->db->where('gateway_id', 1); // 1 -> Id da mundipagg
+//        $this->db->where('status_id <>', user_status::BLOCKED_BY_PAYMENT);
+        // TODO: COMMENT MAYBE
+//        $this->db->or_where('status_id', user_status::BLOCKED_BY_PAYMENT);  // This status change when the client update his pay data
+//        $this->db->or_where('status_id', user_status::ACTIVE);
+//        $this->db->or_where('status_id', user_status::BLOCKED_BY_INSTA);
+//        $this->db->or_where('status_id', user_status::VERIFY_ACCOUNT);
+//        $this->db->or_where('status_id', user_status::UNFOLLOW);
+//        $this->db->or_where('status_id', user_status::BLOCKED_BY_TIME);
+//        $this->db->or_where('status_id', user_status::INACTIVE);
+//        $this->db->or_where('status_id', user_status::PENDING);
+        $clients = $this->db->get()->result_array();
+        // Check payment for each user
+        foreach ($clients as $client) {
+            if ($this->is_client_vindi($client['user_id'])) { // Si é cliente da VINDI
+                $clientname = $client['name'];
+                $clientid = $client['user_id'];
+                var_dump($clientid . ": " . $clientname);
+                $now = new DateTime("now");
+                //$payday = strtotime($client['pay_day']);
+                $payday = new DateTime();
+                $payday->setTimestamp($client['pay_day']);
+                $today = strtotime("today");
+                if ($now > $payday && $client['status_id'] != user_status::BLOCKED_BY_PAYMENT) { // wheter not have order key
+                    print "\n<br>Client pay data data expired!!!: $clientname (id: $clientid)<br>\n";
+                    $this->send_payment_email($client, $GLOBALS['sistem_config']->DAYS_TO_BLOCK_CLIENT - $diff_days);
+                    $this->load->model('class/user_status');
+                    $this->user_model->update_user($clientid, array('status_id' => user_status::BLOCKED_BY_PAYMENT, 'status_date' => time()));
+                }
+            }
+        }
+        try {
+            $Gmail = new follows\cls\Gmail();
+            $Gmail->send_mail("josergm86@gmail.com", "Jose Ramon ", 'DUMBU VINVI payment checked!!! ', 'DUMBU VINVI payment checked!!! ');
+            $Gmail->send_mail("jangel.riveaux@gmail.com", "Jose Angel Riveaux ", 'DUMBU VINVI payment checked!!! ', 'DUMBU VINVI payment checked!!! ');
+        } catch (Exception $ex) {
+            echo 'Emails was not send';
+        }
+        echo "\n\n<br>Job Done!" . date("Y-m-d h:i:sa") . "\n\n";
     }
 
     public function test_check_payment() {
