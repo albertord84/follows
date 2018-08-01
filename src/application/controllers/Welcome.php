@@ -1215,7 +1215,7 @@ class Welcome extends CI_Controller {
                                         //2.3. crear recurrencia segun plano-producto
                                         $resp2 = $this->Vindi->create_recurrency_payment($datas['pk'],$datas['pay_day']);
                                         if($resp2->success){
-                                            //2.4 salvar order_key (payment_key)
+                                            //2.4 salvar payment_key (order_key)
                                             $this->client_model->update_client_payment($datas['pk'],
                                                 array('payment_key'=>$resp2->payment_key));
                                             $response['success'] = true;
@@ -1226,7 +1226,7 @@ class Welcome extends CI_Controller {
                                 }
                             }
                             //3. si pagamento correcto: logar cliente, establecer sesion, actualizar status, emails, initdate
-                            if ($response['success'])   {
+                            if ($response['success']){
                                 $this->client_model->update_client($datas['pk'], array('purchase_access_token' => '0'));
                                 $this->load->model('class/user_model');
                                 $data_insta = $this->is_insta_user($datas['user_login'], $datas['user_pass'], $datas['force_login']);
