@@ -387,13 +387,12 @@
         }
         
         
-        public function get_all_clients_by_status_id($status_id) {
+    public function get_all_clients_by_status_id($status_id) {
         $this->db->select('*');        
         $this->db->from('clients');
         $this->db->join('users', 'users.id = clients.user_id');   
-        if($status_id!=20){
+        if($status_id!=4){
             $this->db->where('status_id', $status_id);
-            echo 'Retentando los de estatus 2';
         }
         else{
             $this->db->where('status_id', 4);
@@ -427,7 +426,8 @@
             $this->db->where_not_in('credit_card_number', $cc_numbers);
             echo 'Retentando los de estatus 20';
         }
-        $this->db->where('order_key is NOT NULL', NULL, FALSE);
+        //$this->db->where('order_key is NOT NULL', NULL, FALSE);
+        $this->db->where('mundi_to_vindi',0);
         $this->db->order_by("user_id","asc");
         $a = $this->db->get()->result_array();
         return $a;
