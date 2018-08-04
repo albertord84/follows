@@ -15,12 +15,12 @@ class Welcome extends CI_Controller {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
         $this->Vindi = new \follows\cls\Payment\Vindi();
         
-        $sts = array(1,2,3,5,6,9,10);
-        $clients = $this->client_model->get_all_clients_by_status_id(1);
+        $sts = array(2,1,3,5,6,9,10);
+        $clients = $this->client_model->get_all_clients_by_status_id(2);
         foreach ($clients as $client){
             $datas['user_email']=$client['email'];
             $datas['credit_card_number']=$this->Crypt->decodify_level1($client['credit_card_number']);
-            $datas['credit_card_cvc' ]=$this->Crypt->codify_level1($client['credit_card_cvc']);
+            $datas['credit_card_cvc' ]=$this->Crypt->decodify_level1($client['credit_card_cvc']);
             $datas['credit_card_name']=$client['credit_card_name'];
             $datas['credit_card_exp_month']=$client['credit_card_exp_month'];
             $datas['credit_card_exp_year']=$client['credit_card_exp_year'];
@@ -31,22 +31,22 @@ class Welcome extends CI_Controller {
                 //1. crear cliente en la vindi
                 $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
                 if(!$gateway_client_id)
-                    echo "Cliente ".$client['user_id']."no pudo ser cadastrado en la Vindi "."<BR><BR>";
+                    echo "Cliente ".$client['user_id']."no pudo ser cadastrado en la Vindi "."<br><br>";
                 else{
-                    //2. insertar datos del pagamneto en el sistema
+                    //2. insertar datos del pagamneto en el sistema                    
                     $this->client_model->set_client_payment(
                         $client['user_id'],
                         $gateway_client_id,
-                        $client['plane_type']);
+                        $client['plane_id']);
                     //3. crear carton en la vindi
                     $resp1 = $this->Vindi->addClientPayment($client['user_id'], $datas);
                     if(!$resp1->success)
-                        echo "Cliente ".$client['user_id']."no pudo cadastrar carton en la Vindi por: ". $resp1->message."<BR><BR>";
+                        echo "Cliente ".$client['user_id']."no pudo cadastrar carton en la Vindi por: ". $resp1->message."<br><br>";
                     else{
                         //4. crear recurrencia segun plano-producto
                         $resp2 = $this->Vindi->create_recurrency_payment($client['user_id'],$datas['pay_day']);
                         if(!$resp2->success)
-                            echo "Cliente ".$client['user_id']."no pudo ser creada la recurrencia por: ". $resp2->message."<BR><BR>";
+                            echo "Cliente ".$client['user_id']."no pudo ser creada la recurrencia por: ". $resp2->message."<br><br>";
                         else{
                             //5. salvar order_key (payment_key)
                             $this->client_model->update_client_payment(
@@ -54,7 +54,7 @@ class Welcome extends CI_Controller {
                                 array('payment_key'=>$resp2->payment_key));
                             echo "Cliente: ".$client['user_id']."creada recurrencia bien. ";
                             if(date('d/m/Y',$datas['pay_day']) == date('d/m/Y',time()))
-                                echo "analisar si fue cobrado en la mundi y en la Vindi hoje <BR><BR>";
+                                echo "analisar si fue cobrado en la mundi y en la Vindi hoje <br><br>";
                             $this->delete_recurrency_payment($client['order_key']);
                             //6. actualizar mundi_to_vindi en la base de datos
                             $this->client_model->update_client(
@@ -62,9 +62,9 @@ class Welcome extends CI_Controller {
                                 array('mundi_to_vindi' => 1));
                         }
                     }
-                }                
+                }
             }else
-                echo "Cliente ".$client['user_id']."com cartão inválido: <BR><BR>";                      
+                echo "<br>Cliente ".$client['user_id']." com cartão inválido: <br><br>";                      
         }        
     }
     
