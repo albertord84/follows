@@ -41,9 +41,9 @@ $Vindi = new follows\cls\Payment\Vindi();
 //var_dump($payment);
 
 //Create instantan payment
-//$client_id = 1;
-//$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
-//var_dump($payment);
+$client_id = 1;
+$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
+var_dump($payment);
 
 //Create recurrent payment
 //$client_id = 1;
@@ -81,16 +81,16 @@ $InstaAPI = new follows\cls\InstaAPI();
 //$password = "alberto";
 //$username = "riveauxmerino";
 //$password = "Notredame88";
-$username = "alberto_dreyes";
-$password = "albertord9";
+//$username = "alberto_dreyes";
+//$password = "albertord9";
 //$username = "josergm86";
 //$password = "josergm2";
 //$username = "leticiajural";
 //$password = "estrelaguia";
 //$username = "tropical.insurance";
 //$password = "Tropical$18";
-$result = $InstaAPI->login($username, $password);
-var_dump($result->Cookies);
+//$result = $InstaAPI->login($username, $password);
+//var_dump($result->Cookies);
 //var_dump($result);
 //DEBIT CIELO
 /* $PaymentCielo = new \follows\cls\PaymentCielo();
