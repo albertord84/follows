@@ -25,7 +25,7 @@ class Payment extends CI_Controller {
             if (isset($post->event) && isset($post->event->type) && $post->event->type == "charge_created") {
                 $gateway_client_id = $post->event->data->charge->customer->id;
                 // Activate User
-                die("Activate client -> Recorrence created -> Set client pending by payment si o dia da cobrança é menor que o atual. Customer: $post->event->data->charge->customer->id");
+                //die("Activate client -> Recorrence created -> Set client pending by payment si o dia da cobrança é menor que o atual. Customer: $post->event->data->charge->customer->id");
             }
             // Bill paid succefully
             if (isset($post->event) && isset($post->event->type) && $post->event->type == "bill_paid") {
@@ -55,7 +55,7 @@ class Payment extends CI_Controller {
         // END COMMENT
         //        $result = file_put_contents($file, serialize($_POST['OrderStatus']), FILE_APPEND);
         if ($result === FALSE) {
-            var_dump($file);
+            //var_dump($file);
         }
         //var_dump($file);
         print 'OK';
