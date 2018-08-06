@@ -12,8 +12,7 @@ namespace follows\cls {
     
     ini_set('xdebug.var_display_max_depth', 256);
     ini_set('xdebug.var_display_max_children', 256);
-    ini_set('xdebug.var_display_max_data', 1024);
-    
+    ini_set('xdebug.var_display_max_data', 1024);    
     
     require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/mundipagg/init.php';
     require_once 'system_config.php';

@@ -74,6 +74,7 @@ namespace follows\cls\Payment {
             $return = new \stdClass();
             $return->success = false;
             try {
+                $DB = new \follows\cls\DB();
                 $client_data = $DB->get_client_payment_data($client_id);
                 $payment_profilesService = new \Vindi\PaymentProfile($this->api_arguments);
                 $payment = $payment_profilesService->create([
@@ -100,7 +101,9 @@ namespace follows\cls\Payment {
          */
         public function create_recurrency_payment($client_id, $date = NULL) {
             // Cria nova assignatura:
-            if (!$date) $date = time();
+            if(!$date) $date=  time ();                
+            $date = date("d/m/Y",$date);
+            
             $return = new \stdClass();
             $return->success = false;
             try {
