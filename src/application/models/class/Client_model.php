@@ -106,7 +106,37 @@
             $data_client['utm_source']=$datas['utm_source'];                            //desde instagram navegador y servidor
             $this->db->insert('clients',$data_client);
             return $id_user_table;
-        }    
+        }
+        
+        public function set_client_payment($dumbu_client_id, $gateway_client_id, $dumbu_plane_id){
+            $datas = array(
+                    'gateway_client_id'=>$gateway_client_id,
+                    'dumbu_plane_id'=>$dumbu_plane_id);
+                 
+            $result = $this->get_vindi_payment($dumbu_client_id);                
+            if(count($result)){
+                $this->db->where('dumbu_client_id',$dumbu_client_id);
+                return $this->db->update('client_payment',$datas);                
+            }else{
+                $datas['dumbu_client_id']=$dumbu_client_id;
+                $this->db->insert('client_payment',$datas);
+                return $this->db->insert_id();
+            }
+        }
+        
+        public function update_client_payment($dumbu_client_id, $datas){
+            $this->db->where('dumbu_client_id',$dumbu_client_id);
+            return $this->db->update('client_payment',$datas);
+        }
+        
+        
+        public function get_vindi_payment($dumbu_client_id){
+            $this->db->select('*');
+            $this->db->from('client_payment');
+            $this->db->where('client_payment.dumbu_client_id', $dumbu_client_id);        
+            $result = $this->db->get()->row_array();                
+            return $result;
+        }
         
         public function insert_ticket_bank_generated($ticket_datas){
             $this->db->insert('ticket_bank',$ticket_datas);
@@ -138,29 +168,28 @@
         }
         
         
-    public function Create_Followed($client_id)
-       {
-          try {
+    public function Create_Followed($client_id){
+        try {
                 $sql = "CREATE TABLE IF NOT EXISTS `dumbudb.followed`.`$client_id` (
-                                `id` INT NOT NULL AUTO_INCREMENT,
-                                `followed_id` VARCHAR(20) NULL,
-                                `reference_id` INT(1) NOT NULL,
-                                `date` VARCHAR(20) NULL,
-                                `unfollowed` TINYINT(1) NULL,
-                                `followed_login` VARCHAR(100) NULL DEFAULT NULL,
-                                PRIMARY KEY (`id`, `reference_id`),
-                                INDEX `fk__1_idx` (`reference_id` ASC),
-                                CONSTRAINT `fk__$client_id`
-                                  FOREIGN KEY (`reference_id`)
-                                  REFERENCES `dumbudb`.`reference_profile` (`id`)
-                                  ON DELETE NO ACTION
-                                  ON UPDATE NO ACTION);";
+                            `id` INT NOT NULL AUTO_INCREMENT,
+                            `followed_id` VARCHAR(20) NULL,
+                            `reference_id` INT(1) NOT NULL,
+                            `date` VARCHAR(20) NULL,
+                            `unfollowed` TINYINT(1) NULL,
+                            `followed_login` VARCHAR(100) NULL DEFAULT NULL,
+                            PRIMARY KEY (`id`, `reference_id`),
+                            INDEX `fk__1_idx` (`reference_id` ASC),
+                            CONSTRAINT `fk__$client_id`
+                              FOREIGN KEY (`reference_id`)
+                              REFERENCES `dumbudb`.`reference_profile` (`id`)
+                              ON DELETE NO ACTION
+                              ON UPDATE NO ACTION);";
                 $result =  $this->db->query($sql);
                 return $result;     
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
             } 
-       }
+        }
 
         public function insert_client_in_strict_instagram_login($datas,$data_insta){
             //insert respectivity datas in the user table
@@ -206,7 +235,44 @@
             }
         }
          
+        public function get_client_by_order_key($order_key){
+            try {    
+                $this->db->select('*');
+                $this->db->from('clients'); 
+                $this->db->join('users', 'users.id = clients.user_id');
+                $this->db->where('order_key', $order_key);
+                return $this->db->get()->result_array();
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+         
+        public function get_client_by_email($email){
+            try {    
+                $this->db->select('*');
+                $this->db->from('clients'); 
+                $this->db->join('users', 'users.id = clients.user_id');
+                $this->db->where('email', $email);
+                return $this->db->get()->result_array();
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
         
+        public function get_client_id_by_gateway_client_id($gateway_client_id){
+            try {    
+                $this->db->select('*');
+                $this->db->from('client_payment'); 
+                $this->db->where('gateway_client_id', $gateway_client_id);
+                $a = $this->db->get()->row_array();
+                if(isset($a['gateway_client_id']))
+                    return $a['dumbu_client_id'];
+                return null;
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+                 
         public function get_pay_values($id_value){
             $this->db->select('*');
             $this->db->from('plane');
@@ -321,13 +387,12 @@
         }
         
         
-        public function get_all_clients_by_status_id($status_id) {
+    public function get_all_clients_by_status_id($status_id) {
         $this->db->select('*');        
         $this->db->from('clients');
         $this->db->join('users', 'users.id = clients.user_id');   
-        if($status_id!=20){
+        if($status_id!=4){
             $this->db->where('status_id', $status_id);
-            echo 'Retentando los de estatus 2';
         }
         else{
             $this->db->where('status_id', 4);
@@ -361,7 +426,8 @@
             $this->db->where_not_in('credit_card_number', $cc_numbers);
             echo 'Retentando los de estatus 20';
         }
-        $this->db->where('order_key is NOT NULL', NULL, FALSE);
+        //$this->db->where('order_key is NOT NULL', NULL, FALSE);
+//        $this->db->where('mundi_to_vindi',1);
         $this->db->order_by("user_id","asc");
         $a = $this->db->get()->result_array();
         return $a;

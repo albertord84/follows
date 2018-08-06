@@ -37,7 +37,9 @@ namespace follows\cls {
         function prepare_daily_work() {
             // Get Users Info
             $Clients = (new Client())->get_clients();
-            //$DB = new DB();
+            
+//            $Client = (new Client())->get_client(19546);  Testar, cliente JA
+            
             $Client = new Client();
             foreach ($Clients as $Client) { // for each CLient
                 if (!$Client->cookies) {
@@ -80,8 +82,9 @@ namespace follows\cls {
                             foreach ($Client->reference_profiles as $Ref_Prof) { // For each reference profile
                                 //$Ref_prof_data = $this->Robot->get_insta_ref_prof_data($Ref_Prof->insta_name);
                                 if (!$Ref_Prof->deleted && $Ref_Prof->end_date == NULL) {
-                                    $valid_geo = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
-                                    if ($Ref_Prof->type == 0 || $valid_geo) {
+                                    $valid_geo    = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                    $valid_hastag = ($Ref_Prof->type == 2 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                    if ($Ref_Prof->type == 0 || $valid_geo || $valid_hastag) { // Nivel de permisos dependendo do plano, solo para quem tem permissao para geo ou hastag
                                         $this->DB->insert_daily_work($Ref_Prof->id, $to_follow, $to_unfollow, $Client->cookies);
                                     }
                                 }
@@ -132,12 +135,14 @@ namespace follows\cls {
                 $Followeds_to_unfollow = array();
                 if ($daily_work->to_unfollow > 0) {
                     $unfollow_work = $this->DB->get_unfollow_work($daily_work->client_id);
- 
-                    while ($Followed = $unfollow_work->fetch_object()) {
-                        $To_Unfollow = new \follows\cls\Followed();// Update Ref Prof Data
-                        $To_Unfollow->id = $Followed->id;
-                        $To_Unfollow->followed_id = $Followed->followed_id;
-                        array_push($Followeds_to_unfollow, $To_Unfollow);
+                    if(is_object($unfollow_work) && !is_bool($unfollow_work))
+                    {
+                        while($Followed = $unfollow_work->fetch_object()) {
+                            $To_Unfollow = new \follows\cls\Followed();// Update Ref Prof Data
+                            $To_Unfollow->id = $Followed->id;
+                            $To_Unfollow->followed_id = $Followed->followed_id;
+                            array_push($Followeds_to_unfollow, $To_Unfollow);
+                        }
                     }
                 }
                 //Reuest for the black list in the data base
@@ -197,6 +202,7 @@ namespace follows\cls {
 
         function get_work() {
             //$DB = new \follows\cls\DB();
+            
             $daily_work = $this->DB->get_follow_work();
             $daily_work->login_data = json_decode($daily_work->cookies);
             $Followeds_to_unfollow = array();
@@ -239,7 +245,9 @@ namespace follows\cls {
                 while ($has_work) {
                     //$DB = new \follows\cls\DB();
                     //daily work: cookies reference_id to_follow last_access id insta_name insta_id client_id 	insta_follower_cursor 	user_id 	credit_card_number 	credit_card_status_id 	credit_card_cvc 	credit_card_name 	pay_day 	insta_id 	insta_followers_ini 	insta_following id name	login pass email telf role_id status_id	languaje 
+                    echo 'get follow work';
                     $daily_work = $this->DB->get_follow_work();
+                    echo 'get follow work done';
                     if ($daily_work) {                       
                         $daily_work->login_data = json_decode($daily_work->cookies);
                         if ($daily_work->login_data != NULL) {
@@ -276,7 +284,7 @@ namespace follows\cls {
                             print "<br> Login data NULL!!!!!!!!!!!! <br>";
                         }
                     } else {
-                        $has_work = FALSE;
+                        sleep(60*20);
                     }
                     //die("Test Ended!");
                 }

@@ -1,6 +1,7 @@
 <?PHP
 
 require_once '../class/Worker.php';
+require_once '../class/ProxyManager.php';
 require_once '../class/system_config.php';
 require_once '../class/Gmail.php';
 require_once '../class/Payment.php';
@@ -18,8 +19,7 @@ var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 
 */
 /*
 $result = new \stdClass();
- try {
-                $result = $Robot->make_login("ky2oficial", "alejandropacho32");
+ try                 $result = $Robot->make_login("ky2oficial", "alejandropacho32");
                 $result->json_response = new \stdClass();
                 $result->json_response->status = 'ok';
                 $result->json_response->authenticated = TRUE;
@@ -30,13 +30,20 @@ $result = new \stdClass();
                 // did by Jose R (si el cliente pone mal la senha por motivo X, el login va a dar una excepcion, y no le devemos cambiar las cookies, imagina que fue uno que e copio el curl a mano)
                 //$myDB->set_cookies_to_null($Client->id);
             }*/
+//$manager = new \follows\cls\ProxyManager();
+//$manager->UpdateUserProxy();
 
 $Robot = new \follows\cls\Robot();
-$res = $Robot->checkpoint_requested('marcosp.medina','Marcos*01+123');
-//$Robot->make_checkpoint('riveauxmerino', 872305);
+//$res = $Robot->checkpoint_requested('riveauxmerino','Notredame');
+$Robot->make_checkpoint('riveauxmerino', '096731');
+///$res = $Robot->bot_login('riveauxmerino', 'Notredame');
+
+
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-//$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
-var_dump($res);
+//var_dump($res);
+
+//$res = $Robot->bot_login('alberto_dreyes', 'albertord9');
+//var_dump($res);
 
 /*
 $Robot = new \follows\cls\Robot();
@@ -52,7 +59,7 @@ $client->credit_card_exp_year = "23";
 $client->credit_card_cvc = "564";
 $client->pay_day = strostamp('today');
 $payment->check_initial_payment($client);*/
-/*
+/*  
 
 $Client = (new \follows\cls\Client())->get_client(65045);
 
@@ -92,16 +99,14 @@ var_dump($res);*/
 //$Robot->id = 1;
 //$Robot->process_follow_error($json_response);
 /*
-$Client = (new \follows\cls\Client())->get_client(19546);
+$Client = (new \follows\cls\Client())->get_client(20565);
 $daily_work = new \stdClass();
 $daily_work->rp_type = 1;
 $daily_work->cookies = $Client->cookies; 
 $daily_work->to_follow = 10;
 $daily_work->insta_follower_cursor = NULL;
-$daily_work->insta_name = 'cuba';
+$daily_work->insta_name = 'lovecats';
 $daily_work->rp_insta_id = 220021938;
-
-
 
 $query_hash_tag = 'ded47faa9a1aaded10161a2ff32abb6b';
 $query_hash_loc = '951c979213d7e7a1cf1d73e2f661cbd1';
@@ -134,7 +139,7 @@ echo json_encode($res);
 var_dump($res);
 echo "<br></br><br>Peoples: $cnt</br><br></br>";
 
-
+/*
 $result_people =  $Robot->make_curl_followers_query($query_hash_people, $variables_people, json_decode($daily_work->cookies));
 $json_response = json_decode(exec($result_people));
 $cnt = count($json_response->data->user->edge_followed_by->edges);
@@ -152,6 +157,27 @@ $json_response = json_decode(exec($result_tag));
 $cnt = count($json_response->data->hashtag->edge_hashtag_to_media->edges);
 echo "<br></br><br>Peoples: $cnt</br><br></br>";
 echo json_encode($json_response);
-
 */
+
+
+//----------------------------------------------------------------
+//
+// WORKER
+//$Worker = new follows\cls\Worker();
+//$Worker->prepare_daily_work();
+//$user_id = 19546;
+//$Reference_id = 44881;  // PR, Geo o Hashtag
+//$daily_work = $Worker->get_work_by_id($Reference_id);
+//$Worker->do_follow_unfollow_work($daily_work);
+//$error = NULL; $page_info = NULL;
+//var_dump($daily_work->rp_insta_id);
+//$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
+//var_dump($profiles);
+//
+////$Worker->check_daily_work();
+//$Worker->truncate_daily_work();
+//$Worker->prepare_daily_work();
+//$Worker->do_work();
+
+
 echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";

@@ -15,6 +15,8 @@ $Robot->id = -2;
 $DB = new \follows\cls\DB();
 $Gmail = new \follows\cls\Gmail();
 $Client = new follows\cls\Client();
+
+while (true){
 $clients_data_db = $DB->get_unfollow_clients_data();
 //$clients_data_db = $Client->get_client(1);
 //
@@ -106,7 +108,12 @@ if(isset($clients_data_db))
         // Wait 20 minutes
         sleep(20 * 60);
     }      
+  }
+ // Wait 20 minutes
+sleep(20 * 60);
 }
+        
+        
 //var_dump($clients_data);
 // AFTER
 print 'AFTER:<br>\n';
