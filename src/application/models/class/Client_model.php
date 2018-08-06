@@ -264,7 +264,7 @@
                 $this->db->select('*');
                 $this->db->from('client_payment'); 
                 $this->db->where('gateway_client_id', $gateway_client_id);
-                $a = $this->db->get()->result_array();
+                $a = $this->db->get()->row_array();
                 if(isset($a['gateway_client_id']))
                     return $a['dumbu_client_id'];
                 return null;
@@ -427,7 +427,7 @@
             echo 'Retentando los de estatus 20';
         }
         //$this->db->where('order_key is NOT NULL', NULL, FALSE);
-        $this->db->where('mundi_to_vindi',0);
+        $this->db->where('mundi_to_vindi',1);
         $this->db->order_by("user_id","asc");
         $a = $this->db->get()->result_array();
         return $a;

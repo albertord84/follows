@@ -34,9 +34,9 @@ $result = new \stdClass();
 //$manager->UpdateUserProxy();
 
 $Robot = new \follows\cls\Robot();
-//$res = $Robot->checkpoint_requested('alberto_dreyes','albertord9');
-//$Robot->make_checkpoint('riveauxmerino', 872305);
-$res = $Robot->bot_login('riveauxmerino', 'Notredame');
+//$res = $Robot->checkpoint_requested('riveauxmerino','Notredame');
+$Robot->make_checkpoint('riveauxmerino', '096731');
+///$res = $Robot->bot_login('riveauxmerino', 'Notredame');
 
 
 //$result = $Robot->bot_login('casazunzun', 'angelpadron1991');
