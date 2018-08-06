@@ -1,4 +1,8 @@
 <?PHP
+require_once '../externals/vendor/autoload.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Vindi.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Resource.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Bill.php';
 
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
@@ -30,20 +34,20 @@ $Vindi = new follows\cls\Payment\Vindi();
 
 //Add payment to client
     //CARTAO EMPRESSA
-    $payment_data['credit_card_flag'] = 'Amex';
-    $payment_data['credit_card_number'] = '3771 697428 53003';
-    $payment_data['credit_card_name'] = 'PEDRO PETTI';
-    $payment_data['credit_card_exp_month'] = '04';
-    $payment_data['credit_card_exp_year'] = '2022';
-    $payment_data['credit_card_cvc'] = '5529';
-$vindi_client_id = 6529720;
-$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
-var_dump($payment);
+//    $payment_data['credit_card_flag'] = 'Amex';
+//    $payment_data['credit_card_number'] = '3771 697428 53003';
+//    $payment_data['credit_card_name'] = 'PEDRO PETTI';
+//    $payment_data['credit_card_exp_month'] = '04';
+//    $payment_data['credit_card_exp_year'] = '2022';
+//    $payment_data['credit_card_cvc'] = '5529';
+//$vindi_client_id = 6529720;
+//$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
+//var_dump($payment);
 
 //Create instantan payment
-//$client_id = 1;
-//$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
-//var_dump($payment);
+$client_id = 1;
+$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
+var_dump($payment);
 
 //Create recurrent payment
 //$client_id = 1;

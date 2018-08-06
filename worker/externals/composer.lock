@@ -1,9 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+    "hash": "9ebdae186df9c23d66617d18ea2c5432",
     "content-hash": "81a2be3470a15ed7972dc5467caf6514",
     "packages": [
         {
@@ -56,7 +57,7 @@
                 "mqtt",
                 "net"
             ],
-            "time": "2017-04-03T20:17:02+00:00"
+            "time": "2017-04-03 20:17:02"
         },
         {
             "name": "binsoul/net-mqtt-client-react",
@@ -112,7 +113,7 @@
                 "mqtt",
                 "net"
             ],
-            "time": "2017-08-20T08:06:53+00:00"
+            "time": "2017-08-20 08:06:53"
         },
         {
             "name": "clue/http-proxy-react",
@@ -164,7 +165,7 @@
                 "proxy",
                 "reactphp"
             ],
-            "time": "2018-02-13T16:31:32+00:00"
+            "time": "2018-02-13 16:31:32"
         },
         {
             "name": "clue/socks-react",
@@ -219,7 +220,7 @@
                 "socks server",
                 "tcp tunnel"
             ],
-            "time": "2017-12-17T14:47:58+00:00"
+            "time": "2017-12-17 14:47:58"
         },
         {
             "name": "corneltek/getoptionkit",
@@ -261,7 +262,7 @@
             ],
             "description": "Powerful command-line option toolkit",
             "homepage": "http://github.com/c9s/GetOptionKit",
-            "time": "2017-06-30T14:54:48+00:00"
+            "time": "2017-06-30 14:54:48"
         },
         {
             "name": "evenement/evenement",
@@ -304,7 +305,7 @@
                 "event-dispatcher",
                 "event-emitter"
             ],
-            "time": "2017-07-23T21:35:13+00:00"
+            "time": "2017-07-23 21:35:13"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -369,7 +370,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2018-04-22T15:46:56+00:00"
+            "time": "2018-04-22 15:46:56"
         },
         {
             "name": "guzzlehttp/promises",
@@ -420,7 +421,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-12-20T10:07:11+00:00"
+            "time": "2016-12-20 10:07:11"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -485,7 +486,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-03-20T17:10:46+00:00"
+            "time": "2017-03-20 17:10:46"
         },
         {
             "name": "lazyjsonmapper/lazyjsonmapper",
@@ -535,7 +536,7 @@
                 "development",
                 "json"
             ],
-            "time": "2018-05-02T16:57:09+00:00"
+            "time": "2018-05-02 16:57:09"
         },
         {
             "name": "mgp25/instagram-php",
@@ -610,7 +611,7 @@
                 "php",
                 "private"
             ],
-            "time": "2018-04-20T11:59:43+00:00"
+            "time": "2018-04-20 11:59:43"
         },
         {
             "name": "psr/http-message",
@@ -660,7 +661,7 @@
                 "request",
                 "response"
             ],
-            "time": "2016-08-06T14:39:51+00:00"
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -707,7 +708,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2016-10-10 12:19:37"
         },
         {
             "name": "react/cache",
@@ -747,7 +748,7 @@
                 "promise",
                 "reactphp"
             ],
-            "time": "2017-12-20T16:47:13+00:00"
+            "time": "2017-12-20 16:47:13"
         },
         {
             "name": "react/dns",
@@ -792,7 +793,7 @@
                 "dns-resolver",
                 "reactphp"
             ],
-            "time": "2018-02-27T12:51:22+00:00"
+            "time": "2018-02-27 12:51:22"
         },
         {
             "name": "react/event-loop",
@@ -834,7 +835,7 @@
                 "asynchronous",
                 "event-loop"
             ],
-            "time": "2017-04-27T10:56:23+00:00"
+            "time": "2017-04-27 10:56:23"
         },
         {
             "name": "react/promise",
@@ -880,7 +881,7 @@
                 "promise",
                 "promises"
             ],
-            "time": "2017-03-25T12:08:31+00:00"
+            "time": "2017-03-25 12:08:31"
         },
         {
             "name": "react/promise-timer",
@@ -933,7 +934,7 @@
                 "timeout",
                 "timer"
             ],
-            "time": "2018-04-24T14:19:26+00:00"
+            "time": "2018-04-24 14:19:26"
         },
         {
             "name": "react/socket",
@@ -980,7 +981,7 @@
                 "reactphp",
                 "stream"
             ],
-            "time": "2018-04-24T14:07:53+00:00"
+            "time": "2018-04-24 14:07:53"
         },
         {
             "name": "react/stream",
@@ -1026,7 +1027,7 @@
                 "stream",
                 "writable"
             ],
-            "time": "2018-01-19T15:04:38+00:00"
+            "time": "2018-01-19 15:04:38"
         },
         {
             "name": "ringcentral/psr7",
@@ -1084,7 +1085,7 @@
                 "stream",
                 "uri"
             ],
-            "time": "2018-01-15T21:00:49+00:00"
+            "time": "2018-01-15 21:00:49"
         },
         {
             "name": "symfony/process",
@@ -1133,7 +1134,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-05-16T08:49:21+00:00"
+            "time": "2018-05-16 08:49:21"
         },
         {
             "name": "valga/fbns-react",
@@ -1190,7 +1191,7 @@
                 "client",
                 "php"
             ],
-            "time": "2017-10-09T07:54:13+00:00"
+            "time": "2017-10-09 07:54:13"
         },
         {
             "name": "vindi/vindi-php",
@@ -1244,7 +1245,7 @@
                 "vindi-php",
                 "vindi-php-sdk"
             ],
-            "time": "2018-05-28T19:56:04+00:00"
+            "time": "2018-05-28 19:56:04"
         },
         {
             "name": "winbox/args",
@@ -1286,7 +1287,7 @@
                 "command",
                 "windows"
             ],
-            "time": "2016-08-04T14:30:27+00:00"
+            "time": "2016-08-04 14:30:27"
         }
     ],
     "packages-dev": [],
