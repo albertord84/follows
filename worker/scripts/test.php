@@ -81,16 +81,16 @@ $InstaAPI = new follows\cls\InstaAPI();
 //$password = "alberto";
 //$username = "riveauxmerino";
 //$password = "Notredame88";
-//$username = "alberto_dreyes";
-//$password = "albertord9";
+$username = "alberto_dreyes";
+$password = "albertord9";
 //$username = "josergm86";
 //$password = "josergm2";
 //$username = "leticiajural";
 //$password = "estrelaguia";
 //$username = "tropical.insurance";
 //$password = "Tropical$18";
-//$result = $InstaAPI->login($username, $password);
-//var_dump($result->Cookies);
+$result = $InstaAPI->login($username, $password);
+var_dump($result->Cookies);
 //var_dump($result);
 //DEBIT CIELO
 /* $PaymentCielo = new \follows\cls\PaymentCielo();
@@ -343,6 +343,11 @@ $Robot = new \follows\cls\Robot();
 
 
 $Robot = new follows\cls\Robot();
+//$client_uname = "alberto_dreyes";
+//$cookies = '{"sessionid":"IGSC757c8d2c952f06550409f83d1ab929963838c7ac224755b20a774bf0cb066a81%3AV2Zgtf4v556LaFsHmwePdC9VwfhFfHiY%3A%7B%22_auth_user_id%22%3A3916799608%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223916799608%3Arz8It8diH9nADRovUIvQtWqJdE7uDILs%3Ae20c514358626db64f5637b945f10416bed32f056c14e97bf7d8277179f5f89a%22%2C%22last_refreshed%22%3A1531367358.5392169952%7D","csrftoken":"JyKbOgltMDypVfLhyd8YO2P8fwFSH4VA","ds_user_id":"3916799608","mid":"WuCyJwABAAG01caY9gau_c1x_cFc","json_response":{"status":"ok","authenticated":true}}';
+//$cookies = json_decode($cookies);
+//$response = $Robot->get_insta_account_edit_data_from_client($client_uname, $cookies);
+//var_dump($response);
 //$response = $Robot->get_insta_ref_prof_following('alberto_dreyes');
 //var_dump($response);
 //$result = $Robot->bot_login("riveauxmerino", "Notredame88");
