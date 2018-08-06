@@ -23,10 +23,8 @@ class Welcome extends CI_Controller {
         require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/PaymentVindi.php';
         $this->Vindi = new \follows\cls\Payment\Vindi();
         
-        var_dump(\follows\cls\Payment\Vindi::prod_1real_id);
-        die();
-        
         $clients = $this->client_model->get_all_clients_by_status_id(2);
+        
         foreach ($clients as $client){
             if($client['plane_id']==1)$client['plane_id']='4';
             //1. cobrar en la hora
@@ -49,6 +47,7 @@ class Welcome extends CI_Controller {
             else
                 echo 'Cliente '.$client['user_id'].' não foi cobrado na hora <br><br>';
             //activar cliente
+            die();
         }   
     }
     
