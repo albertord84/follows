@@ -214,8 +214,8 @@ namespace follows\cls\Payment {
                 $client_data = $DB->get_client_payment_data($client_id);
                 //var_dump($client_data);
                 // Instancia o serviço de Bill (Fatura) com o array contendo VINDI_API_KEY e VINDI_API_URI
+//                $billService = new \Vindi\Bill($this->api_arguments);
                 $billService = new \Vindi\Bill($this->api_arguments);
-                //$billService = new \Vindi\BillItem($this->api_arguments);
                 $bill = $billService->create([
                     "plan_id" => $client_data->gateway_plane_id,
                     "customer_id" => $client_data->gateway_client_id,
