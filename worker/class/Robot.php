@@ -1443,8 +1443,11 @@ namespace follows\cls {
                 $pos = strpos($cookie[1], $key);
                 if ($pos !== FALSE) {                    
                     $value = explode("=", $cookie[1]);
-                    $value = $value[1];
-                    break;
+                    if($value[1] != "\"\"" && $value[1] != "" && $value[1] != NULL)
+                    {
+                        $value = $value[1];
+                        break;
+                    }
                 }
             }
 //            array(5) (
@@ -2098,7 +2101,6 @@ namespace follows\cls {
             } catch (\InstagramAPI\Exception\ChallengeRequiredException $exc) {
                 $res = $exc->getResponse()->getChallenge()->getApiPath();
                 $response = $this->get_challenge_data($res, $login, $Client);
-              
                 return $response;
             }
         }
