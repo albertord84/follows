@@ -1236,11 +1236,15 @@ class Welcome extends CI_Controller {
                                 //2.1 crear cliente en la vindi
                                 $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
                                 if ($gateway_client_id) {
+                                    if($datas['plane_type']=='1')
+                                        $datas['plane_type'] = 4;
                                     $this->client_model->set_client_payment(
                                             $datas['pk'], $gateway_client_id, $datas['plane_type']);
                                     $datas['pay_day'] = strtotime("+" . $GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS . " days", time());
                                     $this->client_model->update_client(
-                                            $datas['pk'], array('pay_day' => $datas['pay_day']));
+                                            $datas['pk'], 
+                                            array('pay_day' => $datas['pay_day'], 'plane_id'=>$datas['plane_type']
+                                        ));
                                     //2.2. crear carton en la vindi
                                     $resp1 = $this->Vindi->addClientPayment($datas['pk'], $datas);
                                     if ($resp1->success) {
