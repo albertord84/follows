@@ -62,15 +62,6 @@ class Payment extends CI_Controller {
         //var_dump($file);
         print 'OK';
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
     public function mundi_notif_post() {
         // Write the contents back to the file
@@ -589,7 +580,7 @@ class Payment extends CI_Controller {
         $result = $this->Gmail->send_client_payment_error($client['email'], $client['name'], $client['login'], $client['pass'], $diff_days);
         if ($result['success']) {
             $clientname = $client['name'];
-            print "<br>Email send to client: $clientname<br>";
+            print "<br>Email send to client: $clientname<br>\n\r";
         } else {
             print "<br>Email NOT sent to: " . json_encode($client, JSON_PRETTY_PRINT);
 //            throw new Exception("Email not sent to: " . json_encode($client));
