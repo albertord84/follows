@@ -13,11 +13,11 @@
   <p>Dear user <strong><?php echo $_GET["username"]; ?></strong>,</p>
   <p>We have been problems login you at instagram. Did you changed your instagram password? Please verify your login credentials at 
       <a href="https://www.instagram.com/accounts/login/">instagram</a> and 
-      our <a href="https://www.dumbu.one/follows/src/">system</a> to continue winning followers quickly! :)</p>
+      our <a href="https://dumbu.one/follows/src/">system</a> to continue winning followers quickly! :)</p>
   <p>Your instagram user name in our system is: <strong><?php echo $_GET["instaname"]; ?></strong></p>
   <p>Use your instagram password to login in our system.</p>
   <br>
-  <p>Remember: you must have same username and password for both, instagram and our <a href="https://www.dumbu.one/follows/src/">system</a>! 
+  <p>Remember: you must have same username and password for both, instagram and our <a href="https://dumbu.one/follows/src/">system</a>! 
   You just need do login in DUMBU with a valid instagram username and password.!</p>
   <br>
   <p>Thanks for using our services,</p>

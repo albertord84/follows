@@ -26,7 +26,7 @@
             <p>Sua senha é a mesma usada para você entrar no seu instagram.</p>
 
             <br>
-            <p>Se tiver dúvidas, escreva para o e-mail atendimento@follows.pro</p>
+            <p>Se tiver dúvidas, escreva para o e-mail atendimento@dumbu.pro</p>
 
             <br>
             <p>Obrigado por utilizar nossos serviços,</p>

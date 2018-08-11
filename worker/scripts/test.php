@@ -45,9 +45,9 @@ $Vindi = new follows\cls\Payment\Vindi();
 //var_dump($payment);
 
 //Create instantan payment
-$client_id = 1;
-$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
-var_dump($payment);
+//$client_id = 1;
+//$payment = $Vindi->create_payment($client_id, $Vindi::prod_lead_id, 10);
+//var_dump($payment);
 
 //Create recurrent payment
 //$client_id = 1;
@@ -278,9 +278,10 @@ $Gmail = new \follows\cls\Gmail();
 //        ("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
 //$Gmail = new follows\cls\Gmail();
 //$result = $Gmail->send_client_contact_form("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
-//$result = $Gmail->send_client_login_error("albertord85@gmail.com", "albertord", "alberto", "Alberto Reyes");
+//$result = $Gmail->send_client_login_error("albertord84@gmail.com", "Teste", "Teste...", "Alberto Reyes teste");
+$result = $Gmail->send_client_login_error("pedro@seiva.pro", "Teste", "Teste...", "Alberto Reyes teste");
 //$Gmail->send_new_client_payment_done("Alberto Reyes", "albertord84@gmail.com", 4);
-//var_dump($result);
+var_dump($result);
 
 $Robot = new \follows\cls\Robot();
 //var_dump($Robot->IPS);
