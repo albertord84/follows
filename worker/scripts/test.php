@@ -279,7 +279,7 @@ $Gmail = new \follows\cls\Gmail();
 //$Gmail = new follows\cls\Gmail();
 //$result = $Gmail->send_client_contact_form("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
 //$result = $Gmail->send_client_login_error("albertord84@gmail.com", "Teste", "Teste...", "Alberto Reyes teste");
-$result = $Gmail->send_client_login_error("pedro@seiva.pro", "Teste", "Teste...", "Alberto Reyes teste");
+//$result = $Gmail->send_client_login_error("pedro@seiva.pro", "Teste", "Teste...", "Alberto Reyes teste");
 //$Gmail->send_new_client_payment_done("Alberto Reyes", "albertord84@gmail.com", 4);
 var_dump($result);
 
