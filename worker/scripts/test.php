@@ -1,4 +1,8 @@
 <?PHP
+require_once '../externals/vendor/autoload.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Vindi.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Resource.php';
+require_once '../externals/vendor/vindi/vindi-php/src/Bill.php';
 
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
@@ -30,15 +34,15 @@ $Vindi = new follows\cls\Payment\Vindi();
 
 //Add payment to client
     //CARTAO EMPRESSA
-    $payment_data['credit_card_flag'] = 'Amex';
-    $payment_data['credit_card_number'] = '3771 697428 53003';
-    $payment_data['credit_card_name'] = 'PEDRO PETTI';
-    $payment_data['credit_card_exp_month'] = '04';
-    $payment_data['credit_card_exp_year'] = '2022';
-    $payment_data['credit_card_cvc'] = '5529';
-$vindi_client_id = 6529720;
-$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
-var_dump($payment);
+//    $payment_data['credit_card_flag'] = 'Amex';
+//    $payment_data['credit_card_number'] = '3771 697428 53003';
+//    $payment_data['credit_card_name'] = 'PEDRO PETTI';
+//    $payment_data['credit_card_exp_month'] = '04';
+//    $payment_data['credit_card_exp_year'] = '2022';
+//    $payment_data['credit_card_cvc'] = '5529';
+//$vindi_client_id = 6529720;
+//$payment = $Vindi->addClientPayment($vindi_client_id, $payment_data);
+//var_dump($payment);
 
 //Create instantan payment
 //$client_id = 1;
@@ -274,9 +278,10 @@ $Gmail = new \follows\cls\Gmail();
 //        ("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
 //$Gmail = new follows\cls\Gmail();
 //$result = $Gmail->send_client_contact_form("Alberto Reyes", "albertord84@gmail.com", "Test contact formm msg NEW2!", "DUMBU", "555-777-777");
-//$result = $Gmail->send_client_login_error("albertord85@gmail.com", "albertord", "alberto", "Alberto Reyes");
+//$result = $Gmail->send_client_login_error("albertord84@gmail.com", "Teste", "Teste...", "Alberto Reyes teste");
+//$result = $Gmail->send_client_login_error("pedro@seiva.pro", "Teste", "Teste...", "Alberto Reyes teste");
 //$Gmail->send_new_client_payment_done("Alberto Reyes", "albertord84@gmail.com", 4);
-//var_dump($result);
+var_dump($result);
 
 $Robot = new \follows\cls\Robot();
 //var_dump($Robot->IPS);
@@ -343,6 +348,11 @@ $Robot = new \follows\cls\Robot();
 
 
 $Robot = new follows\cls\Robot();
+//$client_uname = "alberto_dreyes";
+//$cookies = '{"sessionid":"IGSC757c8d2c952f06550409f83d1ab929963838c7ac224755b20a774bf0cb066a81%3AV2Zgtf4v556LaFsHmwePdC9VwfhFfHiY%3A%7B%22_auth_user_id%22%3A3916799608%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A1%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223916799608%3Arz8It8diH9nADRovUIvQtWqJdE7uDILs%3Ae20c514358626db64f5637b945f10416bed32f056c14e97bf7d8277179f5f89a%22%2C%22last_refreshed%22%3A1531367358.5392169952%7D","csrftoken":"JyKbOgltMDypVfLhyd8YO2P8fwFSH4VA","ds_user_id":"3916799608","mid":"WuCyJwABAAG01caY9gau_c1x_cFc","json_response":{"status":"ok","authenticated":true}}';
+//$cookies = json_decode($cookies);
+//$response = $Robot->get_insta_account_edit_data_from_client($client_uname, $cookies);
+//var_dump($response);
 //$response = $Robot->get_insta_ref_prof_following('alberto_dreyes');
 //var_dump($response);
 //$result = $Robot->bot_login("riveauxmerino", "Notredame88");
