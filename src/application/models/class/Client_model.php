@@ -427,7 +427,7 @@
             echo 'Retentando los de estatus 20';
         }
         //$this->db->where('order_key is NOT NULL', NULL, FALSE);
-        $this->db->where('mundi_to_vindi',1);
+//        $this->db->where('mundi_to_vindi',1);
         $this->db->order_by("user_id","asc");
         $a = $this->db->get()->result_array();
         return $a;

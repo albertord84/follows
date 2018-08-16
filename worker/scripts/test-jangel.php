@@ -12,11 +12,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //print('Hola Mundo');
-/*$Robot = new \follows\cls\Robot();
-$Client = (new \follows\cls\Client())->get_client(27345);
-$cursor = NULL;
-var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
-*/
+$Robot = new \follows\cls\Robot();
+$Client = (new \follows\cls\Client())->get_client(29037);
+$res = $Robot->get_insta_follows(json_decode($Client->cookies),$Client->insta_id,15);
+var_dump($res);
+//$cursor = NULL;
+//var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
+
 /*
 $result = new \stdClass();
  try                 $result = $Robot->make_login("ky2oficial", "alejandropacho32");
@@ -33,9 +35,9 @@ $result = new \stdClass();
 //$manager = new \follows\cls\ProxyManager();
 //$manager->UpdateUserProxy();
 
-$Robot = new \follows\cls\Robot();
+//$Robot = new \follows\cls\Robot();
 //$res = $Robot->checkpoint_requested('riveauxmerino','Notredame');
-$Robot->make_checkpoint('riveauxmerino', '096731');
+//$Robot->make_checkpoint('riveauxmerino', '096731');
 ///$res = $Robot->bot_login('riveauxmerino', 'Notredame');
 
 
