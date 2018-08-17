@@ -814,7 +814,7 @@ namespace follows\cls {
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
-                echo "<br>output $output[0] \n\n</br>";
+                //echo "<br>output $output[0] \n\n</br>";
                 //print_r($output);
                 //print("-> $status<br><br>");                
                 $json = json_decode($output[0]);
