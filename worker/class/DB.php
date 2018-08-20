@@ -12,8 +12,7 @@ namespace follows\cls {
         protected $pass = '';
         private $connection = NULL;
         private $fConnection = NULL;
-        
-        
+
         public function __construct($conf_file = "/../../../FOLLOWS.INI") {
             $this->connect($conf_file);
         }
@@ -33,8 +32,7 @@ namespace follows\cls {
                 $this->pass = $config["database"]["pass"];
                 $this->connection = mysqli_connect($this->host, $this->user, $this->pass, $this->db) or die("Cannot connect to database.");
             }
-            if(!$this->fConnection)
-            {
+            if (!$this->fConnection) {
                 $this->db_followed = $config["database"]["follow"];
                 $this->fConnection = mysqli_connect($this->host, $this->user, $this->pass, $this->db_followed) or die("Cannot connect to database.");
             }
@@ -64,7 +62,7 @@ namespace follows\cls {
                 $PENDING = user_status::PENDING;
                 $VERIFY_ACCOUNT = user_status::VERIFY_ACCOUNT;
                 $BLOCKED_BY_INSTA = user_status::BLOCKED_BY_INSTA;
-                $BLOCKED_BY_TIME = user_status::BLOCKED_BY_TIME;                
+                $BLOCKED_BY_TIME = user_status::BLOCKED_BY_TIME;
                 $BEGINNER = user_status::BEGINNER;
                 //$UNFOLLOW = user_status::UNFOLLOW;
                 $sql = ""
@@ -85,7 +83,7 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         public function get_biginner_data() {
             try {
                 $this->connect();
@@ -169,6 +167,20 @@ namespace follows\cls {
             }
         }
 
+        public function get_gateway_plane_id($dumbu_plane_id) {
+            try {
+                $this->connect();
+                $result = mysqli_query($this->connection, ""
+                        . "SELECT gateway_plane_id FROM plane "
+                        . "WHERE plane.id = $dumbu_plane_id; "
+                );
+                $object = $result ? $result->fetch_object() : NULL;
+                return isset($object->gateway_plane_id) ? $object->gateway_plane_id : 0;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
         public function get_client_payment_data($client_id) {
             try {
                 $this->connect();
@@ -184,45 +196,43 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        public function get_client_login_data($client_id)
-        {
+
+        public function get_client_login_data($client_id) {
             try {
-                    $this->connect();
-                    $result = mysqli_query($this->connection, ""
-                            . "SELECT id, login, pass, insta_id FROM users "
-                            . "     INNER JOIN clients ON clients.user_id = users.id "
-                            . "WHERE users.id = $client_id; "
-                    );
-                    return $result ? $result->fetch_object() : NULL;
-                } catch (\Exception $exc) {
-                    echo $exc->getTraceAsString();
-                }            
+                $this->connect();
+                $result = mysqli_query($this->connection, ""
+                        . "SELECT id, login, pass, insta_id FROM users "
+                        . "     INNER JOIN clients ON clients.user_id = users.id "
+                        . "WHERE users.id = $client_id; "
+                );
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
         }
-        
-        public function get_client_instaid_data($client_id)
-        {
+
+        public function get_client_instaid_data($client_id) {
             try {
-                    $this->connect();
-                    $result = mysqli_query($this->connection, ""
-                            . "SELECT insta_id FROM clients "
-                            . "WHERE user_id = $client_id; "
-                    );
-                    return $result ? $result->fetch_object() : NULL;
-                } catch (\Exception $exc) {
-                    echo $exc->getTraceAsString();
-                }            
+                $this->connect();
+                $result = mysqli_query($this->connection, ""
+                        . "SELECT insta_id FROM clients "
+                        . "WHERE user_id = $client_id; "
+                );
+                return $result ? $result->fetch_object() : NULL;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
         }
 
         public function get_client_data_bylogin($login) {
             try {
                 $this->connect();
                 $sql = ""
-                . "SELECT * FROM clients "
-                . "     INNER JOIN users ON clients.user_id = users.id "
-                . "WHERE users.login LIKE '$login' "
-                . "ORDER BY user_id DESC "
-                . "LIMIT 1; ";
+                        . "SELECT * FROM clients "
+                        . "     INNER JOIN users ON clients.user_id = users.id "
+                        . "WHERE users.login LIKE '$login' "
+                        . "ORDER BY user_id DESC "
+                        . "LIMIT 1; ";
                 $result = mysqli_query($this->connection, $sql);
                 return $result ? $result->fetch_object() : NULL;
             } catch (\Exception $exc) {
@@ -230,14 +240,13 @@ namespace follows\cls {
             }
         }
 
-        
         public function get_client_proxy($client_id) {
             try {
                 $this->connect();
                 $sql = ""
-                . "SELECT * FROM clients "
-                . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
-                . "WHERE user_id LIKE '$client_id';";
+                        . "SELECT * FROM clients "
+                        . "     INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                        . "WHERE user_id LIKE '$client_id';";
                 $result = mysqli_query($this->connection, $sql);
                 return $result ? $result->fetch_object() : NULL;
             } catch (\Exception $exc) {
@@ -309,11 +318,9 @@ namespace follows\cls {
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
-        }        
-        
-        
-        public function save_curl($client_id, $curl, $robot_id=NULL)
-        {
+        }
+
+        public function save_curl($client_id, $curl, $robot_id = NULL) {
             $this->InsertEventToWashdog($client_id, "CURL_ERROR", 1, $robot_id, $curl);
         }
 
@@ -322,14 +329,14 @@ namespace follows\cls {
                 $this->connect();
                 $sql = "UPDATE clients "
                         . "SET ";
-                    $sql .= $cookies ? " clients.cookies   = '$cookies' " : " clients.cookies   = NULL ";
+                $sql .= $cookies ? " clients.cookies   = '$cookies' " : " clients.cookies   = NULL ";
                 $sql .= "WHERE clients.user_id = '$client_id'; ";
 
                 $result = mysqli_query($this->connection, $sql);
                 //if ($result)
-                   // print "<br>Update client_cookies! <br>";
+                // print "<br>Update client_cookies! <br>";
                 //else
-                   // print "<br>NOT UPDATED client_cookies!!!<br> $sql <br>";
+                // print "<br>NOT UPDATED client_cookies!!!<br> $sql <br>";
                 return $result;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
@@ -355,12 +362,12 @@ namespace follows\cls {
         public function get_client_id_from_reference_profile_id($ref_prof_id) {
             try {
                 $this->connect();
-                $query="SELECT client_id FROM dumbudb.reference_profile WHERE  id =".$ref_prof_id.";";
+                $query = "SELECT client_id FROM dumbudb.reference_profile WHERE  id =" . $ref_prof_id . ";";
                 $result = mysqli_query($this->connection, $query);
                 $data = $result->fetch_object();
-                if(isset($data->client_id))
+                if (isset($data->client_id))
                     return $data->client_id;
-                else 
+                else
                     return 0;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
@@ -373,17 +380,16 @@ namespace follows\cls {
                 //$client_id = $_SESSION['id'];
                 $client_id = $this->get_client_id_from_reference_profile_id($ref_prof_id);
                 //echo '<br>---->>>Perfil id = '.$ref_prof_id.' Client id = '.$client_id.'<br>';
-                
-                if($client_id!='0' && $client_id!=0 && $ref_prof_id){
+
+                if ($client_id != '0' && $client_id != 0 && $ref_prof_id) {
                     $result = mysqli_query($this->fConnection, ""
                             . "SELECT COUNT(*) FROM `dumbudb.followed`.`$client_id` "
                             . "WHERE  reference_id = $ref_prof_id; "
                     );
                     $data = $result->fetch_row();
                     return $data[0];
-                } else 
+                } else
                     return 0;
-                
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
@@ -568,7 +574,7 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         /**
          * True is it was followed by this client
          * @param type $client_id
@@ -612,7 +618,7 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         public function save_unfollow_work_db2($Followeds_to_unfollow, $client_id) {
             try {
                 foreach ($Followeds_to_unfollow as $unfollowed) {
@@ -645,11 +651,11 @@ namespace follows\cls {
                     $this->connect();
                     $time = time();
                     $requested = ($follow->requested_by_viewer == 'requested') ? 'TRUE' : 'FALSE';
-                    /*$sql = ""
-                            . "INSERT INTO followed "
-                            . "(followed_id, client_id, reference_id, requested, date, unfollowed) "
-                            . "VALUES "
-                            . "($follow->id, $daily_work->client_id, $daily_work->reference_id, $requested, $time, FALSE);";*/
+                    /* $sql = ""
+                      . "INSERT INTO followed "
+                      . "(followed_id, client_id, reference_id, requested, date, unfollowed) "
+                      . "VALUES "
+                      . "($follow->id, $daily_work->client_id, $daily_work->reference_id, $requested, $time, FALSE);"; */
 
                     $sql2 = ""
                             . "INSERT INTO `dumbudb.followed`.`$daily_work->client_id`"
@@ -657,7 +663,7 @@ namespace follows\cls {
                             . "VALUES "
                             . "($follow->id, $daily_work->reference_id, $time, FALSE, '$follow->username');";
                     //$result = mysqli_query($this->connection, $sql);
-                    $result2 =  mysqli_query($this->fConnection, $sql2);
+                    $result2 = mysqli_query($this->fConnection, $sql2);
                 }
 
                 $f_count = count($Ref_profile_follows);
@@ -730,12 +736,9 @@ namespace follows\cls {
 
                 $result = mysqli_query($this->connection, $sql);
                 // Record Client last access and foults
-                if(!$error)
-                {
-                    $time = time();                    
-                }
-                else
-                {
+                if (!$error) {
+                    $time = time();
+                } else {
                     $hours = $GLOBALS['sistem_config']->INCREASE_CLIENT_LAST_ACCESS;
                     $time = strtotime("+$hours hours", time());
                 }
@@ -837,11 +840,11 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        /*get the white list for the user with id = $id_user as an array
+
+        /* get the white list for the user with id = $id_user as an array
          */
-        public function  get_white_list_paged($id_user, $index)
-        {
+
+        public function get_white_list_paged($id_user, $index) {
             try {
                 $sql = ""
                         . "SELECT insta_id "
@@ -850,7 +853,7 @@ namespace follows\cls {
                         . "LIMIT $index, 10;";
                 $result = mysqli_query($this->connection, $sql);
                 $new_array = NULL;
-                while( $obj= $result->fetch_object()){
+                while ($obj = $result->fetch_object()) {
                     $new_array[] = $obj->insta_id; // Inside while loop
                 }
                 return $new_array;
@@ -858,9 +861,10 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        /*get the black list for the user with id = $id_user as an array
+
+        /* get the black list for the user with id = $id_user as an array
          */
+
         public function get_black_list($id_user) {
             try {
                 $sql = ""
@@ -878,106 +882,95 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        public function get_client_with_white_list()
-        {
+
+        public function get_client_with_white_list() {
             try {
-                $sql = "SELECT DISTINCT client_id FROM dumbudb.black_and_white_list WHERE  black_or_white = 1;" ;
+                $sql = "SELECT DISTINCT client_id FROM dumbudb.black_and_white_list WHERE  black_or_white = 1;";
                 $result = mysqli_query($this->connection, $sql);
                 $new_array = NULL;
-                while( $obj= $result->fetch_object()){
+                while ($obj = $result->fetch_object()) {
                     $new_array[] = $obj->client_id; // Inside while loop
                 }
                 return $new_array;
-            }
-            catch(Exception $exc)
-            {
+            } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        public function InsertEventToWashdog($user_id, $action, $source = 0, $robot_id = NULL, $metadata = NULL)
-        {
+
+        public function InsertEventToWashdog($user_id, $action, $source = 0, $robot_id = NULL, $metadata = NULL) {
             try {
                 //mysqli_real_escape_string($escapestr)
-                $action = mysqli_real_escape_string($this->connection,$action);
-                 $sql = "SELECT * FROM dumbudb.washdog_type WHERE action = '$action' AND source = '$source';";
-                 $time = time();
-                 $result = mysqli_query($this->connection, $sql);
-                 if($result->num_rows == 0)
-                 {
-                     $sql = "INSERT INTO dumbudb.washdog_type (action, source) VALUE ('$action', '$source');";
-                     $result =  mysqli_query($this->connection, $sql);
-                     //var_dump($result);
-                     $sql = "SELECT * FROM dumbudb.washdog_type WHERE action = '$action' AND source = '$source';";
-                     $time = time();
-                     $result = mysqli_query($this->connection, $sql);
-                 }
-                 
-                  $obj = $result->fetch_object();
-                  if(isset($robot_id) == true)
-                  { $sql = "INSERT INTO dumbudb.washdog1 (user_id, type, date, robot, metadata) VALUE ('$user_id','$obj->id', '$time', $robot_id, '$metadata');";}
-                  else {$sql = "INSERT INTO dumbudb.washdog1 (user_id, type, date, robot, metatdata) VALUE ('$user_id','$obj->id', '$time', NULL, '$metadata');"; }            
-                  $result =  mysqli_query($this->connection, $sql);
-                  return $result;
-                 
+                $action = mysqli_real_escape_string($this->connection, $action);
+                $sql = "SELECT * FROM dumbudb.washdog_type WHERE action = '$action' AND source = '$source';";
+                $time = time();
+                $result = mysqli_query($this->connection, $sql);
+                if ($result->num_rows == 0) {
+                    $sql = "INSERT INTO dumbudb.washdog_type (action, source) VALUE ('$action', '$source');";
+                    $result = mysqli_query($this->connection, $sql);
+                    //var_dump($result);
+                    $sql = "SELECT * FROM dumbudb.washdog_type WHERE action = '$action' AND source = '$source';";
+                    $time = time();
+                    $result = mysqli_query($this->connection, $sql);
+                }
+
+                $obj = $result->fetch_object();
+                if (isset($robot_id) == true) {
+                    $sql = "INSERT INTO dumbudb.washdog1 (user_id, type, date, robot, metadata) VALUE ('$user_id','$obj->id', '$time', $robot_id, '$metadata');";
+                } else {
+                    $sql = "INSERT INTO dumbudb.washdog1 (user_id, type, date, robot, metatdata) VALUE ('$user_id','$obj->id', '$time', NULL, '$metadata');";
+                }
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
             }
-              
         }
-        
-        public function get_client_with_orderkey($orderkey)
-        {
+
+        public function get_client_with_orderkey($orderkey) {
 
             try {
-                $sql = "SELECT * FROM  clients " 
-                        ."WHERE  clients.order_key = '$orderkey';";
-                $result =  mysqli_query($this->connection, $sql);
-            return $result;     
+                $sql = "SELECT * FROM  clients "
+                        . "WHERE  clients.order_key = '$orderkey';";
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
             }
         }
-        
-       public function set_cookies_to_null($client_id)
-       {
-           try {
+
+        public function set_cookies_to_null($client_id) {
+            try {
                 $sql = "UPDATE dumbudb.clients SET cookies=NULL WHERE user_id=$client_id";
-                $result =  mysqli_query($this->connection, $sql);
-            return $result;     
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
             }
-           
-       }
-       
-       public function Add_Observation($client_id, $observation)
-       {
+        }
+
+        public function Add_Observation($client_id, $observation) {
             try {
-                $observation = mysqli_real_escape_string($this->connection,$observation);
+                $observation = mysqli_real_escape_string($this->connection, $observation);
                 $sql = "UPDATE dumbudb.clients SET observation='$observation' WHERE user_id=$client_id";
-                $result =  mysqli_query($this->connection, $sql);
-            return $result;     
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
-            }           
-       }
-       
-       public function SetPasword($client_id, $password)
-       {
+            }
+        }
+
+        public function SetPasword($client_id, $password) {
             try {
                 $sql = "UPDATE dumbudb.users SET pass='$password' WHERE id=$client_id";
-                $result =  mysqli_query($this->connection, $sql);
-            return $result;     
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
-            }           
-       }
-       
-       public function Create_Followed($client_id)
-       {
-          try {
+            }
+        }
+
+        public function Create_Followed($client_id) {
+            try {
                 $sql = "CREATE TABLE IF NOT EXISTS `dumbudb.followed`.`$client_id` (
                                 `id` INT NOT NULL AUTO_INCREMENT,
                                 `followed_id` VARCHAR(20) NULL,
@@ -992,68 +985,67 @@ namespace follows\cls {
                                   REFERENCES `dumbudb`.`reference_profile` (`id`)
                                   ON DELETE NO ACTION
                                   ON UPDATE NO ACTION);";
-                $result =  mysqli_query($this->fConnection, $sql);
-                return $result;     
+                $result = mysqli_query($this->fConnection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
-            } 
-       }
-       
-       public function SaveHttpServerVars($client_id, $HTTP_SERVER_VARS)               
-       {
-           try {
+            }
+        }
+
+        public function SaveHttpServerVars($client_id, $HTTP_SERVER_VARS) {
+            try {
                 $sql = "UPDATE dumbudb.clients SET HTTP_SERVER_VARS='$HTTP_SERVER_VARS' WHERE user_id=$client_id";
-                $result =  mysqli_query($this->connection, $sql);
-            return $result;     
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
-            }  
-       }
-       
-       /**
-        * Increase_Client_Last_Access
-        * @param type $client_id
-        * @param type $hours to add to client
-        */
-       public function Increase_Client_Last_Access($client_id, $hours = 2) {
+            }
+        }
+
+        /**
+         * Increase_Client_Last_Access
+         * @param type $client_id
+         * @param type $hours to add to client
+         */
+        public function Increase_Client_Last_Access($client_id, $hours = 2) {
             try {
                 $timestamp = strtotime("+$hours hours", time());
                 $sql = "UPDATE dumbudb.clients SET last_access='$timestamp' WHERE user_id=$client_id";
-                $result =  mysqli_query($this->connection, $sql);
-                return $result;     
+                $result = mysqli_query($this->connection, $sql);
+                return $result;
             } catch (Exception $exc) {
                 echo $exc->getTraceAsString();
-            }           
+            }
         }
-        
+
         public function get_number_followed_today($client_id) {
             try {
                 $this->connect();
 
                 if ($client_id != '0' && $client_id != 0) {
                     $limit = strtotime('today 02:00:00');
-                    
+
                     if (time() > strtotime('today') && time() < strtotime('today 03:00:00'))
                         $limit = strtotime('yesterday 02:00:00');
-                    
+
                     $result = mysqli_query($this->fConnection, ""
                             . "SELECT COUNT(*) FROM `dumbudb.followed`.`$client_id` "
-                            . "WHERE unfollowed = 0 AND date > ".$limit.";"
+                            . "WHERE unfollowed = 0 AND date > " . $limit . ";"
                     );
-                    
+
                     if ($result) {
                         $data = $result->fetch_row();
                         return $data[0];
                     } else {
                         return "???";
                     }
-                } else 
+                } else
                     return 0;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         public function get_reference_profiles_with_problem($client_id) {
             try {
                 $this->connect();
@@ -1061,7 +1053,7 @@ namespace follows\cls {
                         . "SELECT * FROM reference_profile "
                         . "WHERE "
                         . "  (reference_profile.client_id = $client_id) "
-                        . "  AND (reference_profile.deleted <> TRUE)"               
+                        . "  AND (reference_profile.deleted <> TRUE)"
                         . "  AND end_date IS NOT NULL AND end_date <> '';"
                 );
                 return $result;
@@ -1069,101 +1061,89 @@ namespace follows\cls {
                 echo $exc->getTraceAsString();
             }
         }
-        
+
         public function reset_referecne_prof($reference_id) {
             try {
                 $this->connect();
                 $result = mysqli_query($this->connection, "UPDATE `dumbudb`.`reference_profile` "
                         . "SET `insta_follower_cursor`=NULL, `end_date`=NULL "
-                        . "WHERE `id`=$referece_id;");                
+                        . "WHERE `id`=$referece_id;");
                 return $result;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
         }
-        
-        public function SetClientOrderKey($client_id, $order_key, $pay_day)
-        {
-            try{
+
+        public function SetClientOrderKey($client_id, $order_key, $pay_day) {
+            try {
                 $str = "UPDATE `dumbudb`.`clients` SET `pay_day`='$pay_day', `order_key`='$order_key' WHERE `user_id`=$client_id;";
-                $result = mysqli_query($this->connection,$str);
+                $result = mysqli_query($this->connection, $str);
                 return $result;
             } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
-            
         }
-        
-        
-        public function GetNotResrevedProxyList()
-        {
-            try{
-            $str = "SELECT * FROM Proxy WHERE isReserved = FALSE;";
-            $result = mysqli_query($this->connection,$str);
-            return $result;
-            }
-            catch (\Exception $exc) {
-                echo $exc->getTraceAsString();
-            }            
-        }
-        
-        public function GetProxy($idProxy)
-        {
-            try{
-            $str = "SELECT * FROM Proxy WHERE idProxy = $idProxy;";
-            $result = mysqli_query($this->connection,$str);
-            return $result->fetch_object();
-            }
-            catch (\Exception $exc) {
-                echo $exc->getTraceAsString();
-            }            
-        }
-    
-        public function GetProxyClientCounts($proxy)
-        {
-            try{
-                
-                $BEGINNER = user_status::BEGINNER;
-                $DELETED = user_status::DELETED;
-            $str = "SELECT COUNT(clients.user_id) as cnt FROM dumbudb.clients "
-                    ."INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
-                    ."INNER JOIN users ON user_id = users.id "
-                    . "WHERE dumbudb.Proxy.proxy = '$proxy' AND users.status_id NOT IN ($BEGINNER, $DELETED);";
-            $result = mysqli_query($this->connection,$str);
-            return $result;
-            }
-            catch (\Exception $exc) {
-                echo $exc->getTraceAsString();
-            }            
-        }
-        
-        public function GetClientWithouProxy()
-        {
-            try{
-                $BEGINNER = user_status::BEGINNER;
-                $DELETED = user_status::DELETED;
-            $str = "SELECT user_id FROM  clients "    
-                    ."INNER JOIN users ON user_id = users.id "
-                    ."WHERE proxy IS NULL AND users.status_id NOT IN ($BEGINNER, $DELETED);";
-            $result = mysqli_query($this->connection,$str);
-            return $result;
-            }
-            catch (\Exception $exc) {
-                echo $exc->getTraceAsString();
-            }            
-        }
-        
-        public function SetProxyToClient($client_id, $proxy_id)
-        {
-            try{
-                $str = "UPDATE clients SET clients.proxy = $proxy_id WHERE clients.user_id = $client_id;";
-                $result = mysqli_query($this->connection,$str);
+
+        public function GetNotResrevedProxyList() {
+            try {
+                $str = "SELECT * FROM Proxy WHERE isReserved = FALSE;";
+                $result = mysqli_query($this->connection, $str);
                 return $result;
-            }
-            catch (\Exception $exc) {
+            } catch (\Exception $exc) {
                 echo $exc->getTraceAsString();
             }
         }
+
+        public function GetProxy($idProxy) {
+            try {
+                $str = "SELECT * FROM Proxy WHERE idProxy = $idProxy;";
+                $result = mysqli_query($this->connection, $str);
+                return $result->fetch_object();
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        public function GetProxyClientCounts($proxy) {
+            try {
+
+                $BEGINNER = user_status::BEGINNER;
+                $DELETED = user_status::DELETED;
+                $str = "SELECT COUNT(clients.user_id) as cnt FROM dumbudb.clients "
+                        . "INNER JOIN Proxy ON clients.proxy = Proxy.idProxy "
+                        . "INNER JOIN users ON user_id = users.id "
+                        . "WHERE dumbudb.Proxy.proxy = '$proxy' AND users.status_id NOT IN ($BEGINNER, $DELETED);";
+                $result = mysqli_query($this->connection, $str);
+                return $result;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        public function GetClientWithouProxy() {
+            try {
+                $BEGINNER = user_status::BEGINNER;
+                $DELETED = user_status::DELETED;
+                $str = "SELECT user_id FROM  clients "
+                        . "INNER JOIN users ON user_id = users.id "
+                        . "WHERE proxy IS NULL AND users.status_id NOT IN ($BEGINNER, $DELETED);";
+                $result = mysqli_query($this->connection, $str);
+                return $result;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
+        public function SetProxyToClient($client_id, $proxy_id) {
+            try {
+                $str = "UPDATE clients SET clients.proxy = $proxy_id WHERE clients.user_id = $client_id;";
+                $result = mysqli_query($this->connection, $str);
+                return $result;
+            } catch (\Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
+
     }
 
 }
