@@ -42,8 +42,8 @@ namespace follows\cls {
             
             $Client = new Client();
             foreach ($Clients as $Client) { // for each CLient
-                if($Client->id == 1)
-                {
+                /*if($Client->id == 1)
+                {*/
                     if (!$Client->cookies) {
                         // Log user with curl in istagram to get needed session data
                         $login_data = $Client->sign_in($Client);
@@ -121,7 +121,7 @@ namespace follows\cls {
                         //}Jose 
                     }
                     //die("Alberto");
-                }
+               // }
             //die("Loged all Clients");
             //
             //$this->DB->reset_preference_profile_cursors()
