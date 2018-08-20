@@ -725,13 +725,13 @@ namespace follows\cls {
             $curl_str .= "-X POST ";
             $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid;  csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             //"s_network=; ig_pr=1; ig_vw=1855;;
-            $curl_str .= "-H 'Host: www.instagram.com' ";
+            $curl_str .= "-H 'origin: www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
             $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' ";
             $curl_str .= "-H 'X-Requested-with: XMLHttpRequest' ";
             $curl_str .= "-H 'X-CSRFToken: $csrftoken' ";
-            $curl_str .= "-H 'X-Instagram-Ajax: 1' ";
+            $curl_str .= "-H 'X-Instagram-Ajax: dad8d866382b' ";
             $curl_str .= "-H 'Content-Type: application/x-www-form-urlencoded' ";
             $curl_str .= "-H 'Accept: */*' ";
             $curl_str .= "-H 'Referer: https://www.instagram.com/' ";
@@ -814,7 +814,7 @@ namespace follows\cls {
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
-                echo "<br>output $output[0] \n\n</br>";
+                //echo "<br>output $output[0] \n\n</br>";
                 //print_r($output);
                 //print("-> $status<br><br>");                
                 $json = json_decode($output[0]);
@@ -1128,23 +1128,34 @@ namespace follows\cls {
             if (($csrftoken === NULL || $csrftoken === "") && ($ds_user_id === NULL || $ds_user_id === "") &&
                     ($sessionid === NULL || $sessionid === "") && ($mid === NULL || $mid === ""))
                 return NULL;
-            $url .= "?query_id=17880160963012870&id=$ds_user_id&first=$N";
+            //$url .= "?query_id=17880160963012870&id=$ds_user_id&first=$N";
+            
+            
+            $url = "bd0d6d184eefd4d0ce7036c11ae58ed9";
+            $variables = "{\"id\":\"$user\",\"first\":$N";
             if ($cursor) {
-                $url .= "&after=$cursor";
+                $variables .= ",\"after\"=\"$cursor\"";
             }
-            $curl_str = "curl '$url' ";
-            $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
-            $curl_str .= "-H 'Origin: https://www.instagram.com' ";
-            $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
-            $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
-            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' ";
-            $curl_str .= "-H 'X-Requested-with: XMLHttpRequest' ";
-            $curl_str .= "-H 'X-CSRFToken: $csrftoken' ";
-            $curl_str .= "-H 'X-Instagram-ajax: 1' ";
-            $curl_str .= "-H 'content-type: application/x-www-form-urlencoded' ";
-            $curl_str .= "-H 'Accept: */*' ";
-            $curl_str .= "-H 'Referer: https://www.instagram.com' ";
-            $curl_str .= "-H 'Authority: www.instagram.com' ";
+            $variables .= "}";
+            
+             
+             $curl_str = $this->make_curl_followers_query($url, $variables, $login_data);
+                     
+//            $curl_str = "curl '$url' ";
+//            //$curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
+//            $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
+//            //$curl_str .= "-H 'Origin: https://www.instagram.com' ";
+//            $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
+//           $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
+//            $curl_str .= "-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0' ";
+//            $curl_str .= "-H 'X-Requested-with: XMLHttpRequest' ";
+//            //$curl_str .= "-H 'X-CSRFToken: $csrftoken' ";
+//            $curl_str .= "-H 'X-Instagram-ajax: 1' ";
+//            //$curl_str .= "-H 'content-type: application/x-www-form-urlencoded' ";
+//            $curl_str .= "-H 'Accept: */*' ";
+//            $curl_str .= "-H 'Referer: https://www.instagram.com' ";
+//            $curl_str .= "-H 'Authority: www.instagram.com' ";
+            
 //            if ($cursor === NULL || $cursor === '') {
 //                $curl_str .= "--data "
 //                        . "'q=ig_user($user)+%7B+media.first($N)+%7B%0A++count%2C%0A++nodes+%7B%0A++++__typename%2C%0A++++caption%2C%0A++++code%2C%0A++++comments+%7B%0A++++++count%0A++++%7D%2C%0A++++comments_disabled%2C%0A++++date%2C%0A++++dimensions+%7B%0A++++++height%2C%0A++++++width%0A++++%7D%2C%0A++++display_src%2C%0A++++id%2C%0A++++is_video%2C%0A++++likes+%7B%0A++++++count%0A++++%7D%2C%0A++++owner+%7B%0A++++++id%0A++++%7D%2C%0A++++thumbnail_src%2C%0A++++video_views%0A++%7D%2C%0A++page_info%0A%7D%0A+%7D' ";
@@ -1156,13 +1167,14 @@ namespace follows\cls {
 //                        . "'q=ig_user($user)+%7B%0A++followed_by.after($cursor, $N)+%7B%0A++++count%2C%0A++++page_info+%7B%0A++++++end_cursor%2C%0A++++++has_next_page%0A++++%7D%2C%0A++++nodes+%7B%0A++++++id%2C%0A++++++is_verified%2C%0A++++++followed_by_viewer%2C%0A+requested_by_viewer%2C%0A++++++full_name%2C%0A+++profile_pic_url%2C%0A++++++username%0A++++%7D%0A++%7D%0A%7D%0A&ref=relationships%3A%3Afollow_list' ";
 ////                "page_info": {"has_previous_page": true, "start_cursor": "AQCofdJPzGRljplmFndRzUK17kcV3cD2clwRHYSHInAWcmxn5fhtZVGZyHs1pLUafOMOw8SYZnM4UB-4WO8vM9oTjdAuvL14DmH87kZDJE2kmaW_sA-K6_yqP6pzsyC-6RE", "end_cursor": "AQDsGU9PY7SKUFVzb4g-9hUAqmN3AVn7WKa38BTEayApyPavBw6RqRriVD46_LamE1GllxTSdsFsbD3IQ7C5aEx2n7rRIaIegPoTWxPZg34SWMwLxJfI5I6ivcZ0wOZg7a4", "has_next_page": true}
 //            }
-            $curl_str .= "--compressed ";
+//            $curl_str .= "--compressed ";
             return $curl_str;
 //            }
         }
 
         public function make_curl_follows_str($url, $login_data, $user, $N, $cursor = NULL) {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
+            //curl 'https://www.instagram.com/graphql/query/?query_hash=c56ee0ae1f89cdbd1c89e2bc6b8f3d18&variables=%7B%22id%22%3A%223445996566%22%2C%22include_reel%22%3Afalse%2C%22first%22%3A24%7D' -H 'cookie: mid=W1ZcJgAEAAFqS5yqkDU8yMWgOgsB; mcd=3; fbm_124024574287414=base_domain=.instagram.com; csrftoken=SD9oi7sneeUpCNDWh8x6BaKyAlHjo8My; shbid=5316; ds_user_id=3445996566; sessionid=IGSC51b8d21d9492734bada23625bc750ed5bea646cf27323c3aa8094eae6ffd9cd3%3A4Qk1hcBmMMSIvYBPGp0tFxY9mKNKbVE6%3A%7B%22_auth_user_id%22%3A3445996566%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223445996566%3AeLTe7DBRuhFW8cZV4sT83lermXh2YfEQ%3Ac48ded9b663f77d54b82783759eaf94d85863e58726f16f70bb718766eb2f736%22%2C%22last_refreshed%22%3A1534176134.0764064789%7D; rur=FRC; fbsr_124024574287414=r7jOj5xse5OwRR2-cCWJzU2mv3GPHVMurlwCib4bWto.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURQNjNtdFJBVkZxSlViRUR0RERyY3VncGtMZHdzbXhVOVQ5S0FxekxLcWNaSWp5eXVHZUYtbTBZbVRDWUxfZ1ZmUzEyb0tINVBGY25LVEo5cnpIVDNkUzFRS3ByRmJrb3NxS0xVZDlEb0JrdW90Sk5nUjk3eWFWby1Fd25PbVlKeGNYeTh5clJTTjFRbzVYQkprZkY1dDAtVWtHenJpMGk4RmdSbVMzdENlV2ZiOWJiS3BIcHU0Mkkzdjl6eG9TT3NSbHNDR1owVm9qclc4S1dNcDJXZG5sZF9ZQ1BMTUNNYzhRQzhnNEpfaWJOYVNiaV8wLW1fOVdaM1NQY3dEZ3F2UDIwdDVFdWNlRUxwQUQ5T3g0VUczbW9IRmRiOUtNOU5jZ2tTMm56WmtleW5wNi1Wd2lFQUcyTkhCMDJzZXhMTDdvOHFVY3NkdkJYNGhHLW13RUdPbXZ2N0lOMzVlYm96V3hta1VHUm52d2xRYkFNY2FJX0NtUTFBRzBWWlF6ajAiLCJpc3N1ZWRfYXQiOjE1MzQxNzYxMzUsInVzZXJfaWQiOiIxMDAwMDA3MTc3NjY5MDUifQ; shbts=1534176145.3237412; urlgen="{\"time\": 1534172077}:1fpFIz:aTMWQjLq8-TN9-XxDNWznhhCpJg"' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: es-ES,es;q=0.9,en;q=0.8' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36' -H 'accept: */*' -H 'referer: https://www.instagram.com/riveauxmerino/following/' -H 'authority: www.instagram.com' -H 'x-requested-with: XMLHttpRequest' -H 'x-instagram-gis: 3388316f4c604e999b98d6a094c2623e' --compressed
             $csrftoken = $login_data->csrftoken;
             $ds_user_id = $login_data->ds_user_id;
             $sessionid = $login_data->sessionid;
@@ -1170,12 +1182,15 @@ namespace follows\cls {
             if (($csrftoken === NULL || $csrftoken === "") && ($ds_user_id === NULL || $ds_user_id === "") &&
                     ($sessionid === NULL || $sessionid === "") && ($mid === NULL || $mid === ""))
                 return NULL;
-            $url .= "?query_id=17874545323001329&id=$ds_user_id&first=$N";
+            $url .= "?query_hash=c56ee0ae1f89cdbd1c89e2bc6b8f3d18&variables=";
+            $variables = "{\"id\":\"$ds_user_id\",\"include_reel\":false,\"first\":$N";
             if ($cursor) {
-                $url .= "&after=$cursor";
+                $variables .= ",\"after\":\"$cursor\"";
             }
+            $variables .= "}";
+            $url .=  urlencode($variables);
             $curl_str = "curl '$url' ";
-            $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
+            $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
