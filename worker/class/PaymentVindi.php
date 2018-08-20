@@ -97,9 +97,10 @@ namespace follows\cls\Payment {
          * Add new Assigment for client 
          * @param type $client_id Follows client id
          * @param time $date
+         * @param plane_id In update plane situation
          * @return \Exception recurrency payment or exception
          */
-        public function create_recurrency_payment($client_id, $date = NULL) {
+        public function create_recurrency_payment($client_id, $date = NULL, $dumbu_plane_id = NULL) {
             // Cria nova assignatura:
             if(!$date) $date=  time ();                
             $date = date("d/m/Y",$date);
@@ -110,12 +111,13 @@ namespace follows\cls\Payment {
                 // Load cient data from DB
                 $DB = new \follows\cls\DB();
                 $client_data = $DB->get_client_payment_data($client_id);
-
+                $gateway_plane_id = $DB->get_gateway_plane_id($dumbu_plane_id);
+                        
                 // Instancia o serviço de Subscription (Assinaturas) com o array contendo VINDI_API_KEY e VINDI_API_URI
                 $subscriptionService = new \Vindi\Subscription($this->api_arguments);
                 $subscription = $subscriptionService->create([
                     "start_at" => $date,
-                    "plan_id" => $client_data->gateway_plane_id,
+                    "plan_id" => $gateway_plane_id, //$client_data->gateway_plane_id,
                     "customer_id" => $client_data->gateway_client_id,
                     "payment_method_code" => "credit_card"
                 ]);

@@ -2162,13 +2162,15 @@ class Welcome extends CI_Controller {
                 //4. hacer un pagamento ahora si necesitara 
                 if ($pay_now_value) {
                     $this->client_model->update_client($this->session->userdata('id'), array('pay_day' => $recurrency_date));
-                    $amount = (int) ($pay_values['initial_value'] / 100);
+                    // JODA UMA OLHADA NESSE $pay_values['initial_value'] que nem existe, criar linha nova para resolver por enquanto
+                    //$amount = (int) ($pay_values['initial_value'] / 100);
+                    $amount = (int) ($pay_now_value / 100);
                     $resp = $this->Vindi->create_payment($this->session->userdata('id'), \follows\cls\Payment\Vindi::prod_1real_id, $amount);
                     if ($resp->success && $resp->status == 'active')
                         $flag_pay_now = true;
                 }
                 //5. recurrencia
-                $resp_recurrency = $this->Vindi->create_recurrency_payment($this->session->userdata('id'), $recurrency_date);
+                $resp_recurrency = $this->Vindi->create_recurrency_payment($this->session->userdata('id'), $recurrency_date, $datas['client_update_plane']);
                 if ($resp_recurrency->success) {
                     $flag_pay_day = true;
                     //5.1 cancelar recurrencia antigua 
