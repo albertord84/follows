@@ -1249,7 +1249,7 @@ class Welcome extends CI_Controller {
                                     $resp1 = $this->Vindi->addClientPayment($datas['pk'], $datas);
                                     if ($resp1->success) {
                                         //2.3. crear recurrencia segun plano-producto
-                                        $resp2 = $this->Vindi->create_recurrency_payment($datas['pk'], $datas['pay_day']);
+                                        $resp2 = $this->Vindi->create_recurrency_payment($datas['pk'], $datas['pay_day'], $datas["plane_type"]);
                                         if ($resp2->success) {
                                             //2.4 salvar payment_key (order_key)
                                             $this->client_model->update_client_payment($datas['pk'], array('payment_key' => $resp2->payment_key));
