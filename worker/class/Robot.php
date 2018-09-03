@@ -208,19 +208,19 @@ namespace follows\cls {
                                     var_dump($curl_str);
                                     var_dump("Error in do_follow_unfollow_work!!! follow");
                                 }
-                                //if ($daily_work->like_first && count($Profile_data->user->media->nodes)) {
-//                                    $json_response_like = $this->make_insta_friendships_command($login_data, $Profile_data->user->media->nodes[0]->id, 'like', 'web/likes');
-//                                    $this->like_fist_post($login_data, $Profile->id);
-//                                    if (!is_object($json_response_like) || !isset($json_response_like->status) || $json_response_like->status != 'ok') {
-//                                        $error = $this->process_follow_error($json_response_like);
-//                                        var_dump($json_response_like);
-//                                        $error = TRUE;
-//                                        if ($error == 10) {
-//                                            (new Gmail())->sendAuthenticationErrorMail($Client->name, $Client->email);
-//                                        }
-//                                        break;
-//                                    }
-                                //}
+                                if ($daily_work->like_first /*&& count($Profile_data->graphql->user->media->nodes)*/) {
+                                    //$json_response_like = $this->make_insta_friendships_command($login_data, $Profile_data->user->media->nodes[0]->id, 'like', 'web/likes');
+                                  $json_response_like =   $this->like_fist_post($login_data, $Profile->id);
+                                    if (!is_object($json_response_like) || !isset($json_response_like->status) || $json_response_like->status != 'ok') {
+                                        $error = $this->process_follow_error($json_response_like);
+                                        var_dump($json_response_like);
+                                        $error = TRUE;
+                                        if ($error == 10) {
+                                            (new Gmail())->sendAuthenticationErrorMail($Client->name, $Client->email);
+                                       }
+                                        break;
+                                    }
+                                }
                                 if (is_object($json_response2) && $json_response2->status == 'ok') { // if response is ok
                                     array_push($Ref_profile_follows, $Profile);
                                     $follows++;
@@ -2020,8 +2020,8 @@ namespace follows\cls {
             //print_r($result);
             if ($result) {
                 $result = $this->make_insta_friendships_command($client_cookies, $result[0]->node->id, 'like', 'web/likes');
-
-//              print_r($result);
+                return $result;
+//              re
             }
         }
 
