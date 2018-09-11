@@ -9,6 +9,25 @@ class Welcome extends CI_Controller {
     private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control    
     public $language = NULL;
 
+    public function client_credit_card() {
+        $email = 'Victor.vianna@globo.com';
+        $this->load->model('class/client_model');
+        $this->load->model('class/user_model');
+        $this->load->model('class/user_status');
+        $this->load->model('class/Crypt');
+
+        $client = $this->client_model->get_client_by_email($email)[0];
+        $datas['user_email'] = $client['email'];
+        $datas['credit_card_number'] = $this->Crypt->decodify_level1($client['credit_card_number']);
+        $datas['credit_card_cvc'] = $this->Crypt->decodify_level1($client['credit_card_cvc']);
+        $datas['credit_card_name'] = $client['credit_card_name'];
+        $datas['credit_card_exp_month'] = $client['credit_card_exp_month'];
+        $datas['credit_card_exp_year'] = $client['credit_card_exp_year'];
+        $datas['pay_day'] = $this->get_pay_day($client['pay_day']);
+        
+        var_dump($datas);
+    }
+    
     public function test() {
         $pay_day = '1531428692';
         echo date("d-m-Y", $this->get_next_pay_day($pay_day));
