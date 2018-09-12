@@ -9,6 +9,10 @@ class Welcome extends CI_Controller {
     private $security_purchase_code; //random number in [100000;999999] interval and coded by md5 crypted to antihacker control    
     public $language = NULL;
 
+    public function aaa() {
+        
+    }
+    
     public function client_credit_card() {
         $emails = array('cheapslime2018@gmail.com', 'tiendavirtual.angora@gmail.com', 'nsoto@123lavado.cl', 'green_boy221@yahoo.com', 'zakblack00@gmail.com', 'ronal.pollero.lopez@gmail.com', 'rohit4rayat@gmail.com', 'brown7brown@gmail.com', 'redzoneluxury@gmail.com', 'info@drjeanpaul.com', 'abdallah.ashraf5501@gmail.com', 'latsypanam@gmail.com', 'like.to.andrey@gmail.com', 'nature.magazin11@gmail.com', 'cherrygelortiz@yahoo.com', 'dasomindumentaria@hotmail.com', 'gardenscreators@gmail.com', 'splex1@inbox.lv', 'gipssysuhail@hotmail.com', 'TWOCHERRIESONTOP.GT@gmail.com', 'masterfoodsng@gmail.com', 'eyichukwuchizaram@gmail.com', 'penaivan92@gmail.com', 'highbrean@hotmail.com', 'faten.samara@outlook.sa', 'onishenkojeka@gmail.com', 'mor440@hotmail.com', 'andreafdezsan@gmail.com', 'ashleyyfiola@gmail.com', 'styles.richard@yahoo.com', 'shikhss@gmail.com', 'oladavid148@gmail.com', 'fuad.4awad@gmail.com', '59d1e748e7@nicemail.pro', 'h.f.alsharqawi@gmail.com', 'leslypanini2000@hotmail.com', 'elmonacoltd@gmail.com', 'ibrahemrashid97@gmail.com', 'anassanasszakaria@outlook.fr', 'Shahar20052005@gmail.com', 'kr3eedz@aol.com', 'naomiabraham007@gmail.com', 'service@winebox.jp', 'colourkind01@gmail.com', 'nosviste@gmail.com', 'hamzamoha2002@gmail.com', 'asksprinkle@gmail.com', 'gerencia@sombrerosyponchosdecolombia.com', 'containerfoodplacepereira@gmail.com', 'josergm86@gmail.com');
 
