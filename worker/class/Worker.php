@@ -42,86 +42,91 @@ namespace follows\cls {
             
             $Client = new Client();
             foreach ($Clients as $Client) { // for each CLient
-                if (!$Client->cookies) {
-                    // Log user with curl in istagram to get needed session data
-                    $login_data = $Client->sign_in($Client);
-                    if ($login_data !== NULL) {
-                        $Client->cookies = json_encode($login_data);
+                /*if($Client->id == 1)
+                {*/
+                    if (!$Client->cookies) {
+                        // Log user with curl in istagram to get needed session data
+                        $login_data = $Client->sign_in($Client);
+                        if ($login_data !== NULL) {
+                            $Client->cookies = json_encode($login_data);
+                        }
                     }
-                }
-                if ($Client->cookies && !$Client->paused) {
-                    //var_dump($Client->login);
-                    $cookies = json_decode($Client->cookies);
-                     if(isset($cookies->csrftoken) && $cookies->csrftoken !=  NULL && $cookies->csrftoken != "" &&
-                        isset($cookies->ds_user_id) && $cookies->ds_user_id != NULL && $cookies->ds_user_id != "" &&
-                        isset($cookies->sessionid) && $cookies->sessionid != NULL && $cookies->sessionid != "" &&
-                        isset($cookies->mid) &&  $cookies->mid != NULL && $cookies->mid != "")
-                    {//enejkefnjknl o
-                        
-                        //Jose R: si tiene los 4 parametros de las cookies, devemos intentar hacer una operacion (coger 10 seguidores de qq RP)
-                        //para chekear que esas cookies estan correctas, si no, bloquear por ssenha errada  status_id=3
-                         
-                        $this->DB->Create_Followed($Client->id);
-                        print("<br>\nAutenticated Client: $Client->login <br>\n<br>\n");
-                        $Client->set_client_status($Client->id, user_status::ACTIVE);
-                        // Distribute work between clients
-                        $RPWC = $Client->rp_workable_count();
-                        if(strtotime("today") - $Client->init_date < 40*24*60*60 )
-                        {
-                            $DIALY_REQUESTS_BY_CLIENT = 480;
-                        }
-                        else {
-                             $DIALY_REQUESTS_BY_CLIENT = $Client->to_follow;
-                        }
-                        if ($RPWC > 0) {
-                            $to_follow_unfollow = $DIALY_REQUESTS_BY_CLIENT / $RPWC;
-                            //$to_follow_unfollow = $GLOBALS['sistem_config']->DIALY_REQUESTS_BY_CLIENT / $RPWC;
-                            // If User status = UNFOLLOW he do 0 follows
-                            $to_follow = $Client->status_id != user_status::DUMBU_UNFOLLOW ? $to_follow_unfollow : 0;
-                            $to_unfollow = $to_follow_unfollow;
-                            foreach ($Client->reference_profiles as $Ref_Prof) { // For each reference profile
-                                //$Ref_prof_data = $this->Robot->get_insta_ref_prof_data($Ref_Prof->insta_name);
-                                if (!$Ref_Prof->deleted && $Ref_Prof->end_date == NULL) {
-                                    $valid_geo    = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
-                                    $valid_hastag = ($Ref_Prof->type == 2 && ($Client->plane_id == 1 || $Client->plane_id > 3));
-                                    if ($Ref_Prof->type == 0 || $valid_geo || $valid_hastag) { // Nivel de permisos dependendo do plano, solo para quem tem permissao para geo ou hastag
-                                        $this->DB->insert_daily_work($Ref_Prof->id, $to_follow, $to_unfollow, $Client->cookies);
+                    if ($Client->cookies && !$Client->paused) {
+                        //var_dump($Client->login);
+                        $cookies = json_decode($Client->cookies);
+                         if(isset($cookies->csrftoken) && $cookies->csrftoken !=  NULL && $cookies->csrftoken != "" &&
+                            isset($cookies->ds_user_id) && $cookies->ds_user_id != NULL && $cookies->ds_user_id != "" &&
+                            isset($cookies->sessionid) && $cookies->sessionid != NULL && $cookies->sessionid != "" &&
+                            isset($cookies->mid) &&  $cookies->mid != NULL && $cookies->mid != "")
+                        {//enejkefnjknl o
+
+                            //Jose R: si tiene los 4 parametros de las cookies, devemos intentar hacer una operacion (coger 10 seguidores de qq RP)
+                            //para chekear que esas cookies estan correctas, si no, bloquear por ssenha errada  status_id=3
+
+                            $this->DB->Create_Followed($Client->id);
+                            print("<br>\nAutenticated Client: $Client->login <br>\n<br>\n");
+                            $Client->set_client_status($Client->id, user_status::ACTIVE);
+                            // Distribute work between clients
+                            $RPWC = $Client->rp_workable_count();
+                            if(strtotime("today") - $Client->init_date < 40*24*60*60 )
+                            {
+                                $DIALY_REQUESTS_BY_CLIENT = 480;
+                            }
+                            else {
+                                 $DIALY_REQUESTS_BY_CLIENT = $Client->to_follow;
+                            }
+                            if ($RPWC > 0) {
+                                $to_follow_unfollow = $DIALY_REQUESTS_BY_CLIENT / $RPWC;
+                                //$to_follow_unfollow = $GLOBALS['sistem_config']->DIALY_REQUESTS_BY_CLIENT / $RPWC;
+                                // If User status = UNFOLLOW he do 0 follows
+                                $to_follow = $Client->status_id != user_status::DUMBU_UNFOLLOW ? $to_follow_unfollow : 0;
+                                $to_unfollow = $to_follow_unfollow;
+                                foreach ($Client->reference_profiles as $Ref_Prof) { // For each reference profile
+                                    //$Ref_prof_data = $this->Robot->get_insta_ref_prof_data($Ref_Prof->insta_name);
+                                    if (!$Ref_Prof->deleted && $Ref_Prof->end_date == NULL) {
+                                        $valid_geo    = ($Ref_Prof->type == 1 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                        $valid_hastag = ($Ref_Prof->type == 2 && ($Client->plane_id == 1 || $Client->plane_id > 3));
+                                        if ($Ref_Prof->type == 0 || $valid_geo || $valid_hastag) { // Nivel de permisos dependendo do plano, solo para quem tem permissao para geo ou hastag
+                                            $this->DB->insert_daily_work($Ref_Prof->id, $to_follow, $to_unfollow, $Client->cookies);
+                                        }
                                     }
                                 }
+                            } else {
+                                echo "Not reference profiles: $Client->login <br>\n<br>\n";
+                                if (count($Client->reference_profiles)) { // To keep unfollow
+                                    $this->DB->insert_daily_work($Client->reference_profiles[0]->id, 0, $DIALY_REQUESTS_BY_CLIENT, $Client->cookies);
+                                }
+                                $this->Gmail->send_client_not_rps($Client->email, $Client->name, $Client->login, $Client->pass);
                             }
-                        } else {
-                            echo "Not reference profiles: $Client->login <br>\n<br>\n";
-                            if (count($Client->reference_profiles)) { // To keep unfollow
-                                $this->DB->insert_daily_work($Client->reference_profiles[0]->id, 0, $DIALY_REQUESTS_BY_CLIENT, $Client->cookies);
-                            }
-                            $this->Gmail->send_client_not_rps($Client->email, $Client->name, $Client->login, $Client->pass);
                         }
+                        else if($Client->status_id === user_status::ACTIVE)
+                        {
+                            $this->DB->set_client_cookies($Client->id);
+                            $this->DB->set_client_status($Client->id, user_status::VERIFY_ACCOUNT);                    
+                            $this->DB->InsertEventToWashdog($Client->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, 0, "Cookies incompletas when prepare_daily_work");
+
+                        }
+                    } 
+                    elseif(!$Client->paused){
+                        // TODO: do something in Client autentication error
+                        // Send email to client
+                        $now = new \DateTime("now");
+                        $status_date = new \DateTime();
+                        $status_date->setTimestamp($Client->status_date ? $Client->status_date : 0);
+                        $diff_info = $status_date->diff($now);
+                        var_dump($diff_info->days);
+                        //if ($diff_info->days <= 3) {
+                            // TODO, UNCOMMENT
+                            $this->Gmail->send_client_login_error($Client->email, $Client->name, $Client->login, $Client->pass);
+                        //}Jose 
                     }
-                    else if($Client->status_id === user_status::ACTIVE)
-                    {
-                        $this->DB->set_client_cookies($Client->id);
-                        $this->DB->set_client_status($Client->id, user_status::VERIFY_ACCOUNT);                    
-                        $this->DB->InsertEventToWashdog($Client->client_id, washdog_type::ROBOT_VERIFY_ACCOUNT, 1, 0, "Cookies incompletas when prepare_daily_work");
-                                    
-                    }
-                } elseif(!$Client->paused){
-                    // TODO: do something in Client autentication error
-                    // Send email to client
-                    $now = new \DateTime("now");
-                    $status_date = new \DateTime();
-                    $status_date->setTimestamp($Client->status_date ? $Client->status_date : 0);
-                    $diff_info = $status_date->diff($now);
-                    var_dump($diff_info->days);
-                    //if ($diff_info->days <= 3) {
-                        // TODO, UNCOMMENT
-                        $this->Gmail->send_client_login_error($Client->email, $Client->name, $Client->login, $Client->pass);
-                    //}Jose 
-                }
-                //die("Alberto");
-            }
+                    //die("Alberto");
+               // }
             //die("Loged all Clients");
             //
-            //$this->DB->reset_preference_profile_cursors();
+            //$this->DB->reset_preference_profile_cursors()
+            //;
+            }
         }
 
         public function request_follow_unfollow_work() {
