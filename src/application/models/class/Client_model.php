@@ -386,52 +386,63 @@
             }
         }
         
+        public function is_vindi_client($user_id) {
+            try {    
+                $this->db->select('*');
+                $this->db->from('client_payment');
+                $this->db->where('client_payment.dumbu_client_id', $user_id);
+                return count($this->db->get()->result_array());
+            } catch (Exception $exc) {
+                echo $exc->getTraceAsString();
+            }
+        }
         
-    public function get_all_clients_by_status_id($status_id) {
-        $this->db->select('*');        
-        $this->db->from('clients');
-        $this->db->join('users', 'users.id = clients.user_id');   
-        if($status_id!=4){
-            $this->db->where('status_id', $status_id);
+        
+        public function get_all_clients_by_status_id($status_id) {
+            $this->db->select('*');        
+            $this->db->from('clients');
+            $this->db->join('users', 'users.id = clients.user_id');   
+            if($status_id!=4){
+                $this->db->where('status_id', $status_id);
+            }
+            else{
+                $this->db->where('status_id', 4);
+                $this->db->where('observation', 'Cancelado automaticamente por mais de 10 retentativas de pagamento sem sucessso');
+                $cc_names = array("VISA", "MASTERCARD",
+                                "JUNIOR SUMA",
+                                "JUNIOR LIMA",
+                                "JUNIOR SANTOS",
+                                "JUNIOR S SILVA",
+                                "LUCAS BORSATTO22",
+                                "LUCAS BORSATTO",
+                                "GABRIEL CASTELLI",
+                                "ANA SURIA",
+                                "HENDRYO SOUZA",
+                                "JOAO ANAKIM",
+                                "JUNIOR FRANCO",
+                                "FENANDO SOUZA",
+                                "CARLOS SANTOS",
+                                "DANIEL SOUZA",
+                                "SKYLE JUNIOR",
+                                "EDEDMUEDEDMUNDOEDEDMUEDEDMUNDO",
+                                "EDEMUNDO LOPPES",
+                                "JUNIOR KARLOS",
+                                "ZULMIRA FERNANDES",
+                                "JUNIOR FREITAS");
+                $cc_numbers = array("5178057308185854",
+                                    "5178057258138580",
+                                    "4500040041538532",
+                                    "4984537159084527");
+                $this->db->where_not_in('credit_card_name', $cc_names);
+                $this->db->where_not_in('credit_card_number', $cc_numbers);
+                echo 'Retentando los de estatus 20';
+            }
+            //$this->db->where('order_key is NOT NULL', NULL, FALSE);
+    //        $this->db->where('mundi_to_vindi',1);
+            $this->db->order_by("user_id","asc");
+            $a = $this->db->get()->result_array();
+            return $a;
         }
-        else{
-            $this->db->where('status_id', 4);
-            $this->db->where('observation', 'Cancelado automaticamente por mais de 10 retentativas de pagamento sem sucessso');
-            $cc_names = array("VISA", "MASTERCARD",
-                            "JUNIOR SUMA",
-                            "JUNIOR LIMA",
-                            "JUNIOR SANTOS",
-                            "JUNIOR S SILVA",
-                            "LUCAS BORSATTO22",
-                            "LUCAS BORSATTO",
-                            "GABRIEL CASTELLI",
-                            "ANA SURIA",
-                            "HENDRYO SOUZA",
-                            "JOAO ANAKIM",
-                            "JUNIOR FRANCO",
-                            "FENANDO SOUZA",
-                            "CARLOS SANTOS",
-                            "DANIEL SOUZA",
-                            "SKYLE JUNIOR",
-                            "EDEDMUEDEDMUNDOEDEDMUEDEDMUNDO",
-                            "EDEMUNDO LOPPES",
-                            "JUNIOR KARLOS",
-                            "ZULMIRA FERNANDES",
-                            "JUNIOR FREITAS");
-            $cc_numbers = array("5178057308185854",
-                                "5178057258138580",
-                                "4500040041538532",
-                                "4984537159084527");
-            $this->db->where_not_in('credit_card_name', $cc_names);
-            $this->db->where_not_in('credit_card_number', $cc_numbers);
-            echo 'Retentando los de estatus 20';
-        }
-        //$this->db->where('order_key is NOT NULL', NULL, FALSE);
-//        $this->db->where('mundi_to_vindi',1);
-        $this->db->order_by("user_id","asc");
-        $a = $this->db->get()->result_array();
-        return $a;
-    }
         
         
         
