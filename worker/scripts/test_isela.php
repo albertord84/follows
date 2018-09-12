@@ -11,11 +11,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //print('Hola Mundo');
-/* $Robot = new \follows\cls\Robot();
-  $Client = (new \follows\cls\Client())->get_client(27345);
-  $cursor = NULL;
-  var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
- */
+//$Robot = new \follows\cls\Robot();
+ // $Client = (new \follows\cls\Client())->get_client(27345);
+ //  $cursor = NULL;
+ //var_dump($Robot->get_insta_geomedia(json_decode($Client->cookies), '213163910', 10, $cursor));
 /*
   $result = new \stdClass();
   try                 $result = $Robot->make_login("ky2oficial", "alejandropacho32");
@@ -38,9 +37,9 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //var_dump($res);
 
 
-  $Robot = new \follows\cls\Robot();
-  $result = $Robot->bot_login('iselamendozadec', 'anna2018');
-  var_dump($result); 
+ //$Robot = new \follows\cls\Robot();
+ //$result = $Robot->bot_login('iselamendozadec', 'iselita87');
+ //var_dump($result); 
   
 /*
   $payment = new \Payment();
@@ -158,7 +157,8 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
 //----------------------------------------------------------------
 //
 // WORKER
-$Worker = new follows\cls\Worker();
+//$Worker = new follows\cls\Worker();
+
 //$Worker->prepare_daily_work();
 //$Reference_id = 44013;  // PR, Geo o Hashtag
 //$daily_work = $Worker->get_work_by_id($Reference_id);
@@ -167,7 +167,8 @@ $Worker = new follows\cls\Worker();
 //var_dump($daily_work->rp_insta_id);
 //$profiles = $Robot->get_profiles_to_follow($daily_work, $error, $page_info);
 //$Robot->do_follow_unfollow_work($Followeds_to_unfollow, $daily_work);
-var_dump($profiles);
+
+//var_dump($profiles);
 
 //$Worker->check_daily_work();
 //$Worker->truncate_daily_work();
@@ -175,7 +176,7 @@ var_dump($profiles);
 //$Worker->do_work();
 
 
-echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
+//echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
 
 //-H 'Origin: https://www.instagram.com'
 //-H 'content-type: application/x-www-form-urlencoded'
@@ -193,3 +194,11 @@ echo "\n<br>" . date("Y-m-d h:i:sa") . "\n\n";
 //-H 'x-instagram-gis: 0c8348d67d9a89c22baa342bad9f0467'
 //--compressed
 //
+
+
+//TEST FIRST LIKE
+/*$client = new follows\cls\Client();
+$isela = $client->get_client("20565"); //id de cliente de dumbu
+$istaid = 3916799608; //id de insta del perfil al que le daras like a su primer post
+$Robot = new follows\cls\Robot();
+$Robot->like_fist_post(json_decode($isela->cookies), $istaid);*/
