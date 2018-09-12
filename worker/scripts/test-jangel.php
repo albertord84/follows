@@ -13,10 +13,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$tester = new follows\cls\Tester(29037);
-$tester->Test_get_profile_followers();
-$tester->Test_get_geo_followers();
-$tester->Test_get_hashtag_followers();
+$Client = (new \follows\cls\Client())->get_client(29037);
+$Robot = new \follows\cls\Robot();
+$Robot->bot_login("marcosp.medina", "Marcos*01+123");
+//$curl = "";
+//$json_response = $Robot->make_insta_friendships_command(
+  //                  json_decode($Client->cookies), 2023444583, 'unfollow', 'web/friendships', $Client, $curl
+    //            );
+
+//$tester = new follows\cls\Tester(29037);
+//$tester->Test_get_profile_followers();
+//$tester->Test_get_geo_followers();
+//$tester->Test_get_hashtag_followers();
 //print('Hola Mundo');
 //$DB = new follows\cls\DB();
 //var_dump($DB->get_follow_work());
