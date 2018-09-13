@@ -12,7 +12,6 @@ require_once '../class/Tester.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
-<<<<<<< HEAD
 
 $Client = (new \follows\cls\Client())->get_client(29037);
 $Robot = new \follows\cls\Robot();
@@ -25,8 +24,7 @@ $Robot->bot_login("marcosp.medina", "Marcos*01+123");
 //$tester = new follows\cls\Tester(29037);
 //$tester->Test_get_profile_followers();
 //$tester->Test_get_geo_followers();
-//$tester->Test_get_hashtag_followers();
-=======
+//$tester->Test_get_hashtag_followers
 /*
 $tester = new follows\cls\Tester(29037);
 $tester->Test_get_profile_followers();
