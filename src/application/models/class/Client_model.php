@@ -252,6 +252,7 @@
                 $this->db->select('*');
                 $this->db->from('clients'); 
                 $this->db->join('users', 'users.id = clients.user_id');
+                $this->db->join('client_payment', 'users.id = client_payment.dumbu_client_id');
                 $this->db->where('email', $email);
                 return $this->db->get()->result_array();
             } catch (Exception $exc) {
@@ -438,7 +439,7 @@
                 echo 'Retentando los de estatus 20';
             }
             //$this->db->where('order_key is NOT NULL', NULL, FALSE);
-    //        $this->db->where('mundi_to_vindi',1);
+            $this->db->where('mundi_to_vindi',1);
             $this->db->order_by("user_id","asc");
             $a = $this->db->get()->result_array();
             return $a;
