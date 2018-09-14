@@ -345,7 +345,7 @@
 						<!--<spam class="cl-fff fleft100"><?php //echo $CI->T("Sem multa de rescisão.", array(),$language);?></spam>-->
 						<hr>
 						<spam class="fleft100 cl-fff no-mg"><?php echo $CI->T("A partir de", array(),$language);?></spam>
-						<p class="fleft100 cl-fff no-mg"><?php echo $CI->T("R$", array(),$language);?><b><?php echo ' '.$CI->T("29,90", array(),$language);?></b></p>
+						<p class="fleft100 cl-fff no-mg"><?php echo $CI->T("R$", array(),$language);?><b><?php echo ' '.$CI->T("79,90", array(),$language);?></b></p>
 						<!--<spam class="fleft100 cl-fff no-mg">--><?php //echo $CI->T("no 1º mês", array(),$language);?><!--</spam>-->
                                                 <a href="#lnk_sign_in_now">
                                                     <div class="text-center"><button class="btn-primary btn-green m-t20"><?php echo $CI->T("ASSINAR", array(),$language);?></button></div>
