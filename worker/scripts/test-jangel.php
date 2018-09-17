@@ -20,6 +20,15 @@ $tester->Test_get_hashtag_followers();
 //print('Hola Mundo');
 //var_dump($DB->get_follow_work());*/
 
+
+/*
+ * curl_setopt($ch, CURLOPT_PROXY, $proxy);
+curl_setopt($ch, CURLOPT_PROXYPORT, $proxyPort);
+curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
+curl_setopt($ch, CURLOPT_PROXYTYPE, 'HTTP');
+curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+ */
+
 $DB = new follows\cls\DB();
 $Robot = new \follows\cls\Robot();
 $Client = (new \follows\cls\Client())->get_client(20565);

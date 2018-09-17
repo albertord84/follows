@@ -345,7 +345,7 @@
 						<!--<spam class="cl-fff fleft100"><?php //echo $CI->T("Sem multa de rescisão.", array(),$language);?></spam>-->
 						<hr>
 						<spam class="fleft100 cl-fff no-mg"><?php echo $CI->T("A partir de", array(),$language);?></spam>
-						<p class="fleft100 cl-fff no-mg"><?php echo $CI->T("R$", array(),$language);?><b><?php echo ' '.$CI->T("29,90", array(),$language);?></b></p>
+						<p class="fleft100 cl-fff no-mg"><?php echo $CI->T("R$", array(),$language);?><b><?php echo ' '.$CI->T("79,90", array(),$language);?></b></p>
 						<!--<spam class="fleft100 cl-fff no-mg">--><?php //echo $CI->T("no 1º mês", array(),$language);?><!--</spam>-->
                                                 <a href="#lnk_sign_in_now">
                                                     <div class="text-center"><button class="btn-primary btn-green m-t20"><?php echo $CI->T("ASSINAR", array(),$language);?></button></div>
@@ -585,36 +585,27 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-md-3 col-sm-3 col-xs-12">
+<!--                                <div class="col-md-3 col-sm-3 col-xs-12">
 					<div id="container_plane_4_90" class="plano text-center fleft100">
                                             <img style="width:60%" src="<?php echo base_url().'assets/images/velocimetro01.png'?>" alt="velocimetro-1"/>
                                                 <p style="font-size:0.7em"><?php echo $CI->T("VELOCIDADE", array(),$language);?></p>
                                                 <b style="font-size:1.5em"><?php echo $CI->T("BAIXA", array(),$language);?></b>
                                                 <div class="rc"><?php echo $CI->T("MÍNIMO DE 3 MESES", array(),$language);?></div>
-                                                <br>
-                                                <!--<hr>-->
-                                                <!--<spam style="font-size:1.7em; color:#26a4e0">
-                                                    <?php //echo $CI->T("R$", array(),$language);?>
-                                                    <b><?php //echo $CI->T("4,90", array(),$language);?></b>
-                                                    <small>/<?php //echo $CI->T("1º mês", array(),$language);?></small>
-                                                </spam><br>-->
+                                                <br>                                                
 						<spam style="font-size:1.7em; color:#26a4e0">
                                                     <?php //echo $CI->T("Depois R$", array(),$language);?>
                                                     <?php echo $CI->T("R$", array(),$language);?>
                                                     <b><?php echo $CI->T("29,90", array(),$language);?></b>
                                                 </spam>
-                                                <br>
-                                                <!--<input id="radio_plane_4_90" type="radio" name="plano">-->
-                                                <!--<a href="#lnk_register_now">-->
+                                                <br>                                                
                                                     <div class="text-center">
                                                         <button id="btn_select_plane_slow" type="button" class="btn-primary btn-green m-t20 ladda-button btn-lg" data-style="expand-left" data-spinner-color="#ffffff">
                                                             <span class="ladda-label"><div style="color:white; font-weight:bold"><?php echo $CI->T("SELECIONAR", array(),$language);?></div></span>
                                                         </button>                                            
                                                     </div>
-                                                <!--</a>-->
 					</div>
-				</div>
-				<div class="col-md-3 col-sm-3 col-xs-12">
+				</div>-->
+				<div class="col-md-4 col-sm-4 col-xs-12">
 					<div id="container_plane_9_90" class="plano text-center fleft100">
                                             <img style="width:60%" src="<?php echo base_url().'assets/images/velocimetro02.png'?>" alt="velocimetro-4"/>
                                                 <p style="font-size:0.7em"><?php echo $CI->T("VELOCIDADE", array(),$language);?></p>
@@ -641,7 +632,7 @@
                                                 <!--</a>-->
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3 col-xs-12">
+				<div class="col-md-4 col-sm-4 col-xs-12">
 					<div id="container_plane_29_90" class="plano active text-center fleft100">
                                             <img style="width:60%" src="<?php echo base_url().'assets/images/velocimetro03.png'?>" alt="velocimetro-3"/>
                                                 <p style="font-size:0.7em"><?php echo $CI->T("VELOCIDADE", array(),$language);?></p>
@@ -690,7 +681,7 @@
                                                 <!--</a>-->
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3 col-xs-12">
+				<div class="col-md-4 col-sm-4 col-xs-12">
                                         <div id="container_plane_99_90" class="plano text-center fleft100">
                                             <img style="width:60%" src="<?php echo base_url().'assets/images/velocimetro04.png'?>" alt="velocimetro-2"/>
                                                 <p style="font-size:0.7em"><?php echo $CI->T("VELOCIDADE", array(),$language);?></p>

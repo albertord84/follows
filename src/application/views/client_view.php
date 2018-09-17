@@ -1346,13 +1346,13 @@
                                     <select name="local" id="client_update_plane" class="btn-primeiro sel"> 
                                         <?php
                                         $name_plane=array(
-                                            1=> $CI->T("VEL -", array(), $language).' '.$CI->T("RÁPIDA", array(), $language),
-                                            2=> $CI->T("VEL -", array(), $language).' '.$CI->T("BAIXA", array(), $language),
+                                            //1=> $CI->T("VEL -", array(), $language).' '.$CI->T("RÁPIDA", array(), $language),
+                                            //2=> $CI->T("VEL -", array(), $language).' '.$CI->T("BAIXA", array(), $language),
                                             3=> $CI->T("VEL -", array(), $language).' '.$CI->T("MODERADA", array(), $language),
                                             4=> $CI->T("VEL -", array(), $language).' '.$CI->T("RÁPIDA", array(), $language),
                                             5=> $CI->T("VEL -", array(), $language).' '.$CI->T("TURBO!", array(), $language)
                                             );
-                                        for ($i = 0; $i < count($all_planes); $i++) {
+                                        for ($i = 1; $i < count($all_planes); $i++) {
                                             if ($i + 2 == $plane_id){
                                                 $float = ($all_planes[$i]['normal_val']) / 100;
                                                 $string = sprintf("%.2f", $float);
