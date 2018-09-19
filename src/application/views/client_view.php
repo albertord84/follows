@@ -838,7 +838,7 @@
                                             <a id="lnk_hashtag1" target="_blank" href="#">
                                                 <small id="name_hashtag1" title="<?php echo $CI->T("Ver no Instagram", array(), $language); ?>" style="color:black" class="fleft100 m-t10"></small>
                                             </a>
-                                            <b id="cnt_follows_prof1" title='<?php echo $CI->T("Seguidos por mim para esse hashtag", array(), $language); ?>' class="cl-green fleft100 red_number">0</b>
+                                            <b id="cnt_follows_hashtag1" title='<?php echo $CI->T("Seguidos por mim para esse hashtag", array(), $language); ?>' class="cl-green fleft100 red_number">0</b>
                                         </div>
                                     </li>
 
