@@ -210,7 +210,7 @@ namespace follows\cls {
                                 }
                                 if ($daily_work->like_first /*&& count($Profile_data->graphql->user->media->nodes)*/) {
                                     //$json_response_like = $this->make_insta_friendships_command($login_data, $Profile_data->user->media->nodes[0]->id, 'like', 'web/likes');
-                                  $json_response_like =   $this->like_fist_post($login_data, $Profile->id);
+                                  $json_response_like =   $this->like_fist_post($login_data, $Profile->id, $Client);
                                     if (!is_object($json_response_like) || !isset($json_response_like->status) || $json_response_like->status != 'ok') {
                                         $error = $this->process_follow_error($json_response_like);
                                         var_dump($json_response_like);
@@ -394,10 +394,13 @@ namespace follows\cls {
             $error = TRUE;
             $login_data = json_decode($daily_work->cookies);
             $quantity = min(array($daily_work->to_follow, $GLOBALS['sistem_config']->REQUESTS_AT_SAME_TIME));
-            $page_info = new \stdClass();
+            $page_info = new \stdClass();            
+            $Client = (new \follows\cls\Client())->get_client($daily_work->client_id);
+            $proxy = $this->get_proxy_str($Client);
             if ($daily_work->rp_type == 0) {
                 $json_response = $this->get_insta_followers(
-                        $login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor
+                        $login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor,
+                        $proxy
                 );
                 //var_dump($json_response);
                 if ($json_response === NULL) {
@@ -438,14 +441,14 @@ namespace follows\cls {
                     }
                 }
             } else if ($daily_work->rp_type == 1) {
-                $json_response = $this->get_insta_geomedia($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor);
+                $json_response = $this->get_insta_geomedia($login_data, $daily_work->rp_insta_id, $quantity, $daily_work->insta_follower_cursor, $proxy);
                 if (is_object($json_response) && $json_response->status == 'ok') {
                     if (isset($json_response->data->location->edge_location_to_media)) { // if response is ok
                         echo "Nodes: " . count($json_response->data->location->edge_location_to_media->edges) . " <br>\n";
                         $page_info = $json_response->data->location->edge_location_to_media->page_info;
                         foreach ($json_response->data->location->edge_location_to_media->edges as $Edge) {
                             $profile = new \stdClass();
-                            $profile->node = $this->get_geo_post_user_info($login_data, $daily_work->rp_insta_id, $Edge->node->shortcode);
+                            $profile->node = $this->get_geo_post_user_info($login_data, $daily_work->rp_insta_id, $Edge->node->shortcode, $proxy);
                             array_push($Profiles, $profile);
                         }
                         $error = FALSE;
@@ -455,14 +458,14 @@ namespace follows\cls {
                     }
                 }
             } else if ($daily_work->rp_type == 2) {
-                $json_response = $this->get_insta_tagmedia($login_data, $daily_work->insta_name, $quantity, $daily_work->insta_follower_cursor);
+                $json_response = $this->get_insta_tagmedia($login_data, $daily_work->insta_name, $quantity, $daily_work->insta_follower_cursor, $proxy);
                 if (is_object($json_response)) {
                     if (isset($json_response->data->hashtag->edge_hashtag_to_media)) { // if response is ok
                         echo "Nodes: " . count($json_response->data->hashtag->edge_hashtag_to_media->edges) . " <br>\n";
                         $page_info = $json_response->data->hashtag->edge_hashtag_to_media->page_info;
                         foreach ($json_response->data->hashtag->edge_hashtag_to_media->edges as $Edge) {
                             $profile = new \stdClass();
-                            $profile->node = $this->get_tag_post_user_info($login_data, $Edge->node->shortcode);
+                            $profile->node = $this->get_tag_post_user_info($login_data, $Edge->node->shortcode,$proxy);
                             array_push($Profiles, $profile);
                         }
                         $error = FALSE;
@@ -609,7 +612,8 @@ namespace follows\cls {
 
             while ($ip_count < 0) {
                 $ip_count++;
-                $curl_str = $this->make_curl_friendships_command_str("'https://www.instagram.com/$objetive_url/$resource_id/$command/'", $login_data, $Client, $ip);
+                $proxy = $this->get_proxy_str($Client);                
+                $curl_str = $this->make_curl_friendships_command_str("'https://www.instagram.com/$objetive_url/$resource_id/$command/'", $login_data, $proxy,$Client, $ip);
                 //print("<br><br>$curl_str<br><br>");
                 //echo "<br><br><br>O seguidor ".$user." foi requisitado. Resultado: ";
                 if ($curl_str === NULL) {
@@ -673,8 +677,11 @@ namespace follows\cls {
         }
 
         public function make_insta_friendships_command_client($Client, $resource_id, $command = 'follow', $objetive_url = 'web/friendships') {
-            $login_data = json_decode($Client->login_data);
-            $curl_str = $this->make_curl_friendships_command_str("'https://www.instagram.com/$objetive_url/$resource_id/$command/'", $login_data);
+            $login_data = json_decode($Client->login_data);            
+            
+            $proxy = $this->get_proxy_str($Client);
+            
+            $curl_str = $this->make_curl_friendships_command_str("'https://www.instagram.com/$objetive_url/$resource_id/$command/'", $login_data, $proxy);
             if ($curl_str === NULL)
                 return NULL;
             //print("<br><br>$curl_str<br><brx>");
@@ -713,7 +720,7 @@ namespace follows\cls {
 //            return $json_response;
         }
 
-        public function make_curl_friendships_command_str($url, $login_data, $Client = NULL, $ip = NULL) {
+        public function make_curl_friendships_command_str($url, $login_data, $proxy = NULL, $Client = NULL, $ip = NULL) {
             $csrftoken = $login_data->csrftoken;
             $ds_user_id = $login_data->ds_user_id;
             $sessionid = $login_data->sessionid;
@@ -721,7 +728,8 @@ namespace follows\cls {
             if (($csrftoken === NULL || $csrftoken === "") && ($ds_user_id === NULL || $ds_user_id === "") &&
                     ($sessionid === NULL || sessionid === "") && ($mid === NULL || $mid === ""))
                 return NULL;
-            $curl_str = "curl $url ";
+     
+            $curl_str = "curl $proxy $url ";
             $curl_str .= "-X POST ";
             $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid;  csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             //"s_network=; ig_pr=1; ig_vw=1855;;
@@ -805,12 +813,12 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_followers($login_data, $user, $N, $cursor = NULL) {
+        public function get_insta_followers($login_data, $user, $N, $cursor = NULL, $proxy = "") {
             try {
 
                 $tag_query = '37479f2b8209594dde7facb0d904896a';
                 $variables = "{\"id\":\"$user\",\"first\":$N,\"after\":\"$cursor\"}";
-                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data, $proxy);
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
@@ -886,12 +894,12 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_geomedia($login_data, $location, $N, &$cursor = NULL) {
+        public function get_insta_geomedia($login_data, $location, $N, &$cursor = NULL, $proxy = "") {
             try {
 
                 $tag_query = 'ac38b90f0f3981c42092016a37c59bf7';
                 $variables = "{\"id\":\"$location\",\"first\":$N,\"after\":\"$cursor\"}";
-                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data, $proxy);
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
@@ -960,11 +968,11 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_tagmedia($login_data, $tag, $N, &$cursor = NULL) {
+        public function get_insta_tagmedia($login_data, $tag, $N, &$cursor = NULL, $proxy = "") {
             try {
                 $tag_query = 'ded47faa9a1aaded10161a2ff32abb6b';
                 $variables = "{\"tag_name\":\"$tag\",\"first\":2,\"after\":\"$cursor\"}";
-                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data);
+                $curl_str = $this->make_curl_followers_query($tag_query, $variables, $login_data, $proxy);
                 if ($curl_str === NULL)
                     return NULL;
                 exec($curl_str, $output, $status);
@@ -1000,11 +1008,11 @@ namespace follows\cls {
             }
         }
 
-        public function make_curl_followers_query($query, $variables, $login_data = NULL) {
+        public function make_curl_followers_query($query, $variables, $login_data = NULL, $proxy = "") {
 
             $variables = urlencode($variables);
             $url = "https://www.instagram.com/graphql/query/?query_hash=$query&variables=$variables";
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             if ($login_data !== NULL) {
                 if ($login_data->mid == NULL || $login_data->csrftoken == NULL || $login_data->sessionid == NULL ||
                         $login_data->ds_user_id == NULL)
@@ -1027,7 +1035,7 @@ namespace follows\cls {
             return $curl_str;
         }
 
-        public function make_curl_followers_str($url, $login_data, $user, $N, $cursor = NULL) {
+        public function make_curl_followers_str($url, $login_data, $user, $N, $cursor = NULL, $proxy="") {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             $csrftoken = $login_data->csrftoken;
             $ds_user_id = $login_data->ds_user_id;
@@ -1040,7 +1048,7 @@ namespace follows\cls {
             if ($cursor) {
                 $url .= "&after=$cursor";
             }
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
@@ -1058,7 +1066,7 @@ namespace follows\cls {
 //            }
         }
 
-        public function make_curl_geomedia_str($url, $login_data, $location, $N, $cursor = NULL) {
+        public function make_curl_geomedia_str($url, $login_data, $location, $N, $cursor = NULL, $proxy = "") {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             $csrftoken = $login_data->csrftoken;
             $ds_user_id = $login_data->ds_user_id;
@@ -1071,7 +1079,7 @@ namespace follows\cls {
             if ($cursor) {
                 $url .= "&after=$cursor";
             }
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
@@ -1089,7 +1097,7 @@ namespace follows\cls {
 //            }
         }
 
-        public function make_curl_tagmedia_str($url, $login_data, $tag, $N, $cursor = NULL) {
+        public function make_curl_tagmedia_str($url, $login_data, $tag, $N, $cursor = NULL, $proxy = "") {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             //$csrftoken = $login_data->csrftoken;
             //$ds_user_id = $login_data->ds_user_id;
@@ -1102,7 +1110,7 @@ namespace follows\cls {
             if ($cursor) {
                 $url .= "&after=$cursor";
             }
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             //$curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
@@ -1119,7 +1127,7 @@ namespace follows\cls {
             return $curl_str;
         }
 
-        public function make_curl_chaining_str($url, $login_data, $user, $N, $cursor = NULL) {
+        public function make_curl_chaining_str($url, $login_data, $user, $N, $cursor = NULL, $proxy = "") {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             $csrftoken = $login_data->csrftoken;
             $ds_user_id = $login_data->ds_user_id;
@@ -1139,7 +1147,7 @@ namespace follows\cls {
             $variables .= "}";
             
              
-             $curl_str = $this->make_curl_followers_query($url, $variables, $login_data);
+             $curl_str = $this->make_curl_followers_query($url, $variables, $login_data, $proxy);
                      
 //            $curl_str = "curl '$url' ";
 //            //$curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
@@ -1172,7 +1180,7 @@ namespace follows\cls {
 //            }
         }
 
-        public function make_curl_follows_str($url, $login_data, $user, $N, $cursor = NULL) {
+        public function make_curl_follows_str($url, $login_data, $user, $N, $cursor = NULL, $proxy = "") {
 //            if (isset($login_data->csrftoken) && isset($login_data->ds_user_id) && isset($login_data->ds_user_id) && isset($login_data->sessionid)) {
             //curl 'https://www.instagram.com/graphql/query/?query_hash=c56ee0ae1f89cdbd1c89e2bc6b8f3d18&variables=%7B%22id%22%3A%223445996566%22%2C%22include_reel%22%3Afalse%2C%22first%22%3A24%7D' -H 'cookie: mid=W1ZcJgAEAAFqS5yqkDU8yMWgOgsB; mcd=3; fbm_124024574287414=base_domain=.instagram.com; csrftoken=SD9oi7sneeUpCNDWh8x6BaKyAlHjo8My; shbid=5316; ds_user_id=3445996566; sessionid=IGSC51b8d21d9492734bada23625bc750ed5bea646cf27323c3aa8094eae6ffd9cd3%3A4Qk1hcBmMMSIvYBPGp0tFxY9mKNKbVE6%3A%7B%22_auth_user_id%22%3A3445996566%2C%22_auth_user_backend%22%3A%22accounts.backends.CaseInsensitiveModelBackend%22%2C%22_auth_user_hash%22%3A%22%22%2C%22_platform%22%3A4%2C%22_token_ver%22%3A2%2C%22_token%22%3A%223445996566%3AeLTe7DBRuhFW8cZV4sT83lermXh2YfEQ%3Ac48ded9b663f77d54b82783759eaf94d85863e58726f16f70bb718766eb2f736%22%2C%22last_refreshed%22%3A1534176134.0764064789%7D; rur=FRC; fbsr_124024574287414=r7jOj5xse5OwRR2-cCWJzU2mv3GPHVMurlwCib4bWto.eyJhbGdvcml0aG0iOiJITUFDLVNIQTI1NiIsImNvZGUiOiJBUURQNjNtdFJBVkZxSlViRUR0RERyY3VncGtMZHdzbXhVOVQ5S0FxekxLcWNaSWp5eXVHZUYtbTBZbVRDWUxfZ1ZmUzEyb0tINVBGY25LVEo5cnpIVDNkUzFRS3ByRmJrb3NxS0xVZDlEb0JrdW90Sk5nUjk3eWFWby1Fd25PbVlKeGNYeTh5clJTTjFRbzVYQkprZkY1dDAtVWtHenJpMGk4RmdSbVMzdENlV2ZiOWJiS3BIcHU0Mkkzdjl6eG9TT3NSbHNDR1owVm9qclc4S1dNcDJXZG5sZF9ZQ1BMTUNNYzhRQzhnNEpfaWJOYVNiaV8wLW1fOVdaM1NQY3dEZ3F2UDIwdDVFdWNlRUxwQUQ5T3g0VUczbW9IRmRiOUtNOU5jZ2tTMm56WmtleW5wNi1Wd2lFQUcyTkhCMDJzZXhMTDdvOHFVY3NkdkJYNGhHLW13RUdPbXZ2N0lOMzVlYm96V3hta1VHUm52d2xRYkFNY2FJX0NtUTFBRzBWWlF6ajAiLCJpc3N1ZWRfYXQiOjE1MzQxNzYxMzUsInVzZXJfaWQiOiIxMDAwMDA3MTc3NjY5MDUifQ; shbts=1534176145.3237412; urlgen="{\"time\": 1534172077}:1fpFIz:aTMWQjLq8-TN9-XxDNWznhhCpJg"' -H 'accept-encoding: gzip, deflate, br' -H 'accept-language: es-ES,es;q=0.9,en;q=0.8' -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36' -H 'accept: */*' -H 'referer: https://www.instagram.com/riveauxmerino/following/' -H 'authority: www.instagram.com' -H 'x-requested-with: XMLHttpRequest' -H 'x-instagram-gis: 3388316f4c604e999b98d6a094c2623e' --compressed
             $csrftoken = $login_data->csrftoken;
@@ -1189,7 +1197,7 @@ namespace follows\cls {
             }
             $variables .= "}";
             $url .=  urlencode($variables);
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             $curl_str .= "-H 'Cookie: mid=$mid; sessionid=$sessionid; csrftoken=$csrftoken; ds_user_id=$ds_user_id' ";
             $curl_str .= "-H 'Origin: https://www.instagram.com' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate' ";
@@ -2015,10 +2023,11 @@ namespace follows\cls {
             return $cookies;
         }
 
-        public function like_fist_post($client_cookies, $client_insta_id) {
+        public function like_fist_post($client_cookies, $client_insta_id, $Client = NULL) {
             $result = $this->get_insta_chaining($client_cookies, $client_insta_id);
             //print_r($result);
             if ($result) {
+                $proxy = $this->get_proxy_str($Client);
                 $result = $this->make_insta_friendships_command($client_cookies, $result[0]->node->id, 'like', 'web/likes');
                 return $result;
 //              re
@@ -2057,14 +2066,14 @@ namespace follows\cls {
             return json_decode($output[0]);
         }
 
-        public function get_geo_post_user_info($cookies, $location_id, $post_reference) {
+        public function get_geo_post_user_info($cookies, $location_id, $post_reference, $proxy = "") {
             //echo " -------Obtindo dados de perfil que postou na geolocalizacao------------<br>\n<br>\n";
             $csrftoken = isset($cookies->csrftoken) ? $cookies->csrftoken : 0;
             $ds_user_id = isset($cookies->ds_user_id) ? $cookies->ds_user_id : 0;
             $sessionid = isset($cookies->sessionid) ? $cookies->sessionid : 0;
             $mid = isset($cookies->mid) ? $cookies->mid : 0;
             $url = "https://www.instagram.com/p/$post_reference/?taken-at=$location_id&__a=1";
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl $proxy '$url' ";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate, br' ";
             $curl_str .= "-H 'X-Requested-With: XMLHttpRequest' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
@@ -2082,14 +2091,14 @@ namespace follows\cls {
             return NULL;
         }
 
-        public function get_tag_post_user_info($cookies, $post_reference) {
+        public function get_tag_post_user_info($cookies, $post_reference, $proxy = "") {
             //echo " -------Obtindo dados de perfil que postou na geolocalizacao------------<br>\n<br>\n";
             $csrftoken = isset($cookies->csrftoken) ? $cookies->csrftoken : 0;
             $ds_user_id = isset($cookies->ds_user_id) ? $cookies->ds_user_id : 0;
             $sessionid = isset($cookies->sessionid) ? $cookies->sessionid : 0;
             $mid = isset($cookies->mid) ? $cookies->mid : 0;
             $url = "https://www.instagram.com/p/$post_reference/?__a=1";
-            $curl_str = "curl '$url' ";
+            $curl_str = "curl  $proxy '$url'";
             $curl_str .= "-H 'Accept-Encoding: gzip, deflate, br' ";
             $curl_str .= "-H 'X-Requested-With: XMLHttpRequest' ";
             $curl_str .= "-H 'Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4' ";
@@ -2443,7 +2452,25 @@ namespace follows\cls {
           }
           }
          */
-    }
+        
+        
+        public function get_proxy_str($Client)
+        {
+            if($Client != NULL)
+            {
+                 $myDB = new \follows\cls\DB();
+                 $proxy =  $myDB->get_client_proxy($Client->id);    
+                if($proxy === NULL)
+                {                   
+                    $proxy_id = $GLOBALS['sistem_config']->DEFAULT_PROXY;   
+                    $proxy = $myDB->GetProxy($proxy_id);
+                }                               
+                $proxy = "--proxy '$proxy->proxy_user:$proxy->proxy_password@$proxy->proxy:$proxy->port'"; 
+                return $proxy;
+            }
+            return "";
+        }
+    }  
 
 // end of Robot
 }
