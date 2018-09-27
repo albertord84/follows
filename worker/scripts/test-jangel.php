@@ -13,9 +13,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/externals/utils.php';
 
 $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
-$Client = (new \follows\cls\Client())->get_client(29037);
+//$Client = (new \follows\cls\Client())->get_client(29037);
 $Robot = new \follows\cls\Robot();
-$Robot->bot_login("marcosp.medina", "Marcos*01+123");
+$res = $Robot->bot_login("draflaviasgavioli", "chrizanjo");
+var_dump($res);
 //$curl = "";
 //$json_response = $Robot->make_insta_friendships_command(
   //                  json_decode($Client->cookies), 2023444583, 'unfollow', 'web/friendships', $Client, $curl
@@ -41,7 +42,7 @@ curl_setopt($ch, CURLOPT_PROXYPORT, $proxyPort);
 curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
 curl_setopt($ch, CURLOPT_PROXYTYPE, 'HTTP');
 curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
- */
+ *//*
 
 $DB = new follows\cls\DB();
 $Robot = new \follows\cls\Robot();
@@ -53,7 +54,7 @@ $Client = (new \follows\cls\Client())->get_client(20565);
                         . "   reference_profile.insta_id as rp_insta_id, "
                         . "   reference_profile.type as rp_type, "
                         . "   reference_profile.id as rp_id */
-$daily_work = new \stdClass();
+/*$daily_work = new \stdClass();
 $daily_work->cookies = $Client->cookies;
 $daily_work->login_data = json_decode($Client->cookies);
 $daily_work->users_id = $Client->id;
@@ -74,6 +75,7 @@ while ($Followed = $unfollow_work->fetch_object()) { //
                     $To_Unfollow->followed_id = $Followed->followed_id;
                     array_push($Followeds_to_unfollow, $To_Unfollow);
                 }*/
+/*
 $daily_work->black_list = $DB->get_black_list($daily_work->client_id);
  $errors = false;
  $Ref_profile_follows = $Robot->do_follow_unfollow_work($Followeds_to_unfollow, $daily_work, $errors);
