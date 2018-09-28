@@ -44,9 +44,7 @@ curl_setopt($ch, CURLOPT_PROXYTYPE, 'HTTP');
 curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
 <<<<<<< HEAD
  *//*
-=======
- */
->>>>>>> 4d6749bafec93093f0b78039b90956acc9a4ab77
+
 
 $DB = new follows\cls\DB();
 $Robot = new \follows\cls\Robot();
