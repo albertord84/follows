@@ -78,7 +78,8 @@ if(isset($clients_data_db))
                         if(!(isset($white_list) && str_binary_search($Profile->id,$white_list)))
                         {   
                             echo "Profil name: $Profile->username<br>\n";
-                            $json_response2 = $Robot->make_insta_friendships_command($login_data, $Profile->id, 'unfollow');
+                            $Client = (new \follows\cls\Client())->get_client($Profile->id);
+                            $json_response2 = $Robot->make_insta_friendships_command($login_data, $Profile->id, 'unfollow','web/friendships', $Client);
                             var_dump($json_response2);
                             echo "<br>\n";
                             if (is_object($json_response2) && $json_response2->status == 'ok') { // if response is ok
