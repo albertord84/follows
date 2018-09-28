@@ -42,7 +42,9 @@ curl_setopt($ch, CURLOPT_PROXYPORT, $proxyPort);
 curl_setopt($ch, CURLOPT_PROXYUSERPWD, $proxyauth);
 curl_setopt($ch, CURLOPT_PROXYTYPE, 'HTTP');
 curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+<<<<<<< HEAD
  *//*
+
 
 $DB = new follows\cls\DB();
 $Robot = new \follows\cls\Robot();
