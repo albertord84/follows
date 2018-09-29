@@ -197,8 +197,8 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
 
 //TEST FIRST LIKE
-/*$client = new follows\cls\Client();
+$client = new follows\cls\Client();
 $isela = $client->get_client("20565"); //id de cliente de dumbu
-$istaid = 3916799608; //id de insta del perfil al que le daras like a su primer post
+$istaid = 2023444583; //id de insta al que le pides los seguidores, le daras like al primer post del primer seguidor
 $Robot = new follows\cls\Robot();
-$Robot->like_fist_post(json_decode($isela->cookies), $istaid);*/
+$Robot->like_fist_post(json_decode($isela->cookies), $istaid, $isela);

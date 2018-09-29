@@ -793,10 +793,10 @@ namespace follows\cls {
             return $curl_str;
         }
 
-        public function get_insta_chaining($login_data, $user, $N = 1, $cursor = NULL) {
+        public function get_insta_chaining($login_data, $user, $N = 1, $cursor = NULL, $proxy = "") {
             try {
                 $url = "https://www.instagram.com/graphql/query/";
-                $curl_str = $this->make_curl_chaining_str("$url", $login_data, $user, $N, $cursor);
+                $curl_str = $this->make_curl_chaining_str("$url", $login_data, $user, $N, $cursor, $proxy);
                 if ($curl_str === NULL)
                     return NULL;
                 //print("<br><br>$curl_str<br><br>");
@@ -1010,7 +1010,7 @@ namespace follows\cls {
 
         public function make_curl_followers_query($query, $variables, $login_data = NULL, $proxy = "") {
 
-            $variables = urlencode($variables);
+           $variables = urlencode($variables);
             $url = "https://www.instagram.com/graphql/query/?query_hash=$query&variables=$variables";
             $curl_str = "curl $proxy '$url' ";
             if ($login_data !== NULL) {
@@ -2024,10 +2024,11 @@ namespace follows\cls {
         }
 
         public function like_fist_post($client_cookies, $client_insta_id, $Client = NULL) {
-            $result = $this->get_insta_chaining($client_cookies, $client_insta_id);
+            
+             $proxy = $this->get_proxy_str($Client);
+            $result = $this->get_insta_chaining($client_cookies, $client_insta_id,1,NULL,$proxy);
             //print_r($result);
             if ($result) {
-                $proxy = $this->get_proxy_str($Client);
                 $result = $this->make_insta_friendships_command($client_cookies, $result[0]->node->id, 'like', 'web/likes');
                 return $result;
 //              re
