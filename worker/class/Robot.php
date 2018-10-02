@@ -793,10 +793,10 @@ namespace follows\cls {
             return $curl_str;
         }
 
-        public function get_insta_chaining($login_data, $user, $N = 1, $cursor = NULL) {
+        public function get_insta_chaining($login_data, $user, $N = 1, $cursor = NULL, $proxy = "") {
             try {
                 $url = "https://www.instagram.com/graphql/query/";
-                $curl_str = $this->make_curl_chaining_str("$url", $login_data, $user, $N, $cursor);
+                $curl_str = $this->make_curl_chaining_str("$url", $login_data, $user, $N, $cursor, $proxy);
                 if ($curl_str === NULL)
                     return NULL;
                 //print("<br><br>$curl_str<br><br>");
@@ -1010,7 +1010,7 @@ namespace follows\cls {
 
         public function make_curl_followers_query($query, $variables, $login_data = NULL, $proxy = "") {
 
-            $variables = urlencode($variables);
+           $variables = urlencode($variables);
             $url = "https://www.instagram.com/graphql/query/?query_hash=$query&variables=$variables";
             $curl_str = "curl $proxy '$url' ";
             if ($login_data !== NULL) {
@@ -1512,8 +1512,9 @@ namespace follows\cls {
             curl_close($ch);
             return $content;
         }
+        
 
-        public function get_insta_data_from_client($ref_prof, $cookies) {
+        public function get_insta_data_from_client($ref_prof, $cookies, $proxy = NULL) {
             if ($ref_prof == "" || $ref_prof == NULL) {
                 throw new \Exception("This was and empty or null referece profile (ref_prof)");
             }
@@ -1529,15 +1530,18 @@ namespace follows\cls {
             $headers[] = "Accept-Language: pt-BR,pt;q=0.8,en-US;q=0.6,en;q=0.4";
             $headers[] = "Accept-Encoding: deflate, sdch";
             $headers[] = "Referer: https://www.instagram.com/";
-            $headers[] = "X-CSRFToken: $csrftoken";
-            $ip = "127.0.0.1";
-            $headers[] = "REMOTE_ADDR: $ip";
-            $headers[] = "HTTP_X_FORWARDED_FOR: $ip";
+            //$ip = "127.0.0.1";
+            //$headers[] = "REMOTE_ADDR: $ip";
+            //$headers[] = "HTTP_X_FORWARDED_FOR: $ip";
             $headers[] = "Content-Type: application/x-www-form-urlencoded";
 //                    $headers[] = "Content-Type: application/json";
             $headers[] = "X-Requested-With: XMLHttpRequest";
             $headers[] = "Authority: www.instagram.com";
-            $headers[] = "Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id";
+            if($cookies != NULL)
+            {                
+                $headers[] = "X-CSRFToken: $csrftoken";
+                $headers[] = "Cookie: mid=$mid; sessionid=$sessionid; s_network=; ig_pr=1; ig_vw=1855; csrftoken=$csrftoken; ds_user_id=$ds_user_id";
+            }
             $url = "https://www.instagram.com/web/search/topsearch/?context=blended&query=$ref_prof";
             $ch = curl_init("https://www.instagram.com/");
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -1546,6 +1550,18 @@ namespace follows\cls {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+            
+            if($proxy != NULL)
+            {
+                //$proxy->proxy, $proxy->port, $proxy->proxy_user, $proxy->proxy_password
+            //adding proxy
+                curl_setopt($ch, CURLOPT_PROXY, $proxy->proxy);
+                curl_setopt($ch, CURLOPT_PROXYPORT, $proxy->port);
+
+                curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+                // The username and password
+                curl_setopt($ch, CURLOPT_PROXYUSERPWD, "$proxy->proxy_user:$proxy->proxy_password");
+            }
             $output = curl_exec($ch);
             $string = curl_error($ch);
             curl_close($ch);
@@ -1635,13 +1651,20 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_geolocalization_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL) {
+        public function get_insta_geolocalization_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL, $user_id = NULL) {
             try {
                 $Profile = NULL;
+                //using proxy
+                $proxy = NULL;
+                if ($user_id != NULL) {
+                     $myDB = new \follows\cls\DB();
+                    $proxy = $myDB->get_client_proxy($user_id);
+                
+                }
                 if ($ref_prof != "") {
-                    $content = $this->get_insta_data_from_client($ref_prof, $cookies);
-                    $Profile = $this->process_get_insta_geolocalization_data($content, $ref_prof, $ref_prof_id);
+                    $content = $this->get_insta_data_from_client($ref_prof, $cookies, $proxy);                    
                     //var_dump($content);
+                    $Profile = $this->process_get_insta_geolocalization_data($content, $ref_prof, $ref_prof_id);
                 }
                 return $Profile;
             } catch (\Exception $ex) {
@@ -1650,11 +1673,17 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id) {
+        public function get_insta_ref_prof_data_from_client($cookies, $ref_prof, $ref_prof_id, $user_id = NULL) {
             try {
                 $Profile = NULL;
+                $proxy = NULL;
+                if ($user_id != NULL) {                
+                     $myDB = new \follows\cls\DB();
+                    $proxy = $myDB->get_client_proxy($user_id);
+                
+                }
                 if ($ref_prof != "") {
-                    $content = $this->get_insta_data_from_client($ref_prof, $cookies);
+                    $content = $this->get_insta_data_from_client($ref_prof, $cookies, $proxy);
                     $Profile = $this->process_get_insta_ref_prof_data($content, $ref_prof, $ref_prof_id);
                 }
                 return $Profile;
@@ -1663,15 +1692,22 @@ namespace follows\cls {
             }
         }
 
-        public function get_insta_tag_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL) {
+        public function get_insta_tag_data_from_client($cookies, $ref_prof, $ref_prof_id = NULL, $user_id = NULL) {
             try {
                 $Profile = NULL;
-                if ($ref_prof != "") {
-//                    $content = $this->get_insta_data_from_client($ref_prof, $cookies);
-                    $content = $this->get_insta_data_from_client($ref_prof, NULL);
-//                    var_dump($content);
-                    $Profile = $this->process_get_insta_tag_data($content, $ref_prof, $ref_prof_id);
+                //using proxy
+                $proxy = NULL;
+                if ($user_id != NULL) {
+                
+                    $myDB = new \follows\cls\DB();
+                    $proxy = $myDB->get_client_proxy($user_id);
+                
                 }
+                $content = $this->get_insta_data_from_client($ref_prof, $cookies, $proxy);
+//                  $content = $this->get_insta_data_from_client($ref_prof, NULL);
+//                  var_dump($content);                    
+                $Profile = $this->process_get_insta_tag_data($content, $ref_prof, $ref_prof_id);
+                
                 return $Profile;
             } catch (\Exception $ex) {
                 print_r($ex->message);
@@ -1754,6 +1790,7 @@ namespace follows\cls {
         }
 
         function process_get_insta_tag_data($content, $ref_prof, $ref_prof_id) {
+                
             $Profile = NULL;
             if (is_object($content) && $content->status === 'ok') {
                 $tags = $content->hashtags;
@@ -1762,7 +1799,10 @@ namespace follows\cls {
                     for ($i = 0; $i < count($tags); $i++) {
                         if ($tags[$i]->hashtag->name === $ref_prof) {
                             $Profile = $tags[$i]->hashtag;
-                            $Profile->follows = $this->get_insta_ref_prof_follows($ref_prof_id);
+                            if($ref_prof != NULL)
+                            {
+                                $Profile->follows = $this->get_insta_ref_prof_follows($ref_prof_id);
+                            }
                             break;
                         }
                     }
@@ -2024,10 +2064,11 @@ namespace follows\cls {
         }
 
         public function like_fist_post($client_cookies, $client_insta_id, $Client = NULL) {
-            $result = $this->get_insta_chaining($client_cookies, $client_insta_id);
+            
+             $proxy = $this->get_proxy_str($Client);
+            $result = $this->get_insta_chaining($client_cookies, $client_insta_id,1,NULL,$proxy);
             //print_r($result);
             if ($result) {
-                $proxy = $this->get_proxy_str($Client);
                 $result = $this->make_insta_friendships_command($client_cookies, $result[0]->node->id, 'like', 'web/likes');
                 return $result;
 //              re
