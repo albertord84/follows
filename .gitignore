@@ -1,3 +1,7 @@
-/src/testeJR/vendor1/mgp25/instagram-php/nbproject/private/
-/src/vendor-JA/mgp25/instagram-php/nbproject/private/
-/nbproject/private/
+/nbproject/
+/.idea/*
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
