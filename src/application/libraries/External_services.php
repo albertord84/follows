@@ -26,13 +26,14 @@ class External_services{
         return $response;
     }
         
-    function get_insta_ref_prof_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
+    function get_insta_ref_prof_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL, $user_id){
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
             'profile_name'=>urlencode($profile_name),
-            'dumbu_id_profile'=>urlencode($dumbu_id_profile)
+            'dumbu_id_profile'=>urlencode($dumbu_id_profile),
+            'user_id'=>urlencode($user_id)
         );
         $url = "http://$worker_server_name/follows/worker/callbacks/get_insta_ref_prof_data_from_client.php";
         $handler = curl_init();
@@ -66,13 +67,14 @@ class External_services{
         return json_decode($response); 
     }
     
-    function get_insta_geolocalization_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
+    function get_insta_geolocalization_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL, $user_id){
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
             'profile_name'=>urlencode($profile_name),
-            'dumbu_id_profile'=>urlencode($dumbu_id_profile)
+            'dumbu_id_profile'=>urlencode($dumbu_id_profile),
+            'user_id'=>urlencode($user_id)
         );
         $url = "http://$worker_server_name/follows/worker/callbacks/get_insta_geolocalization_data_from_client.php";
         $handler = curl_init();
@@ -87,13 +89,14 @@ class External_services{
         return json_decode($response); 
     }
     
-    function get_insta_tag_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL){
+    function get_insta_tag_data_from_client($cookies,$profile_name, $dumbu_id_profile=NULL, $user_id){
         $database_config = parse_ini_file(dirname(__FILE__) . "/../../../../FOLLOWS.INI", true);
         $worker_server_name = $database_config['server']['worker_server_name'];        
         $postData = array(
             'cookies'=>urlencode(json_encode($cookies)),
             'profile_name'=>urlencode($profile_name),
-            'dumbu_id_profile'=>urlencode($dumbu_id_profile)
+            'dumbu_id_profile'=>urlencode($dumbu_id_profile),
+            'user_id'=>urlencode($user_id)
         );
         $url = "http://$worker_server_name/follows/worker/callbacks/get_insta_tag_data_from_client.php";
         $handler = curl_init();
@@ -102,6 +105,7 @@ class External_services{
         curl_setopt($handler, CURLOPT_RETURNTRANSFER,true);  
         curl_setopt($handler, CURLOPT_POSTFIELDS, $postData);  
         $response = curl_exec($handler);
+//        var_dump($response);
         $info = curl_getinfo($handler);
         $string = curl_error($handler);
         curl_close($handler);

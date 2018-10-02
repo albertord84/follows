@@ -2,6 +2,7 @@
 
 require_once '../class/Worker.php';
 require_once '../class/system_config.php';
+require_once '../class/Robot.php';
 require_once '../class/Gmail.php';
 require_once '../class/Payment.php';
 require_once '../class/Client.php';
@@ -197,8 +198,21 @@ $GLOBALS['sistem_config'] = new follows\cls\system_config();
 
 
 //TEST FIRST LIKE
-$client = new follows\cls\Client();
+/*$client = new follows\cls\Client();
 $isela = $client->get_client("20565"); //id de cliente de dumbu
 $istaid = 2023444583; //id de insta al que le pides los seguidores, le daras like al primer post del primer seguidor
 $Robot = new follows\cls\Robot();
-$Robot->like_fist_post(json_decode($isela->cookies), $istaid, $isela);
+$Robot->like_fist_post(json_decode($isela->cookies), $istaid, $isela);*/
+
+//TEST CALLBACKS
+
+    $client = new follows\cls\Client();
+    $isela = $client->get_client("20565");
+
+    $GLOBALS['sistem_config'] = new follows\cls\system_config();
+    $Robot = new follows\cls\Robot();
+    $cookies = json_decode($isela->cookies);    
+    $profile_name = 'lovecats';
+    $ref_id = '45728';
+    $result = $Robot->get_insta_tag_data_from_client($cookies, $profile_name, $ref_id, 20565);
+        echo json_encode($result);

@@ -2715,8 +2715,8 @@ class Welcome extends CI_Controller {
         $this->is_ip_hacker();
         if ($this->session->userdata('id')) {
             //antes
-            require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
-            $this->Robot = new \follows\cls\Robot();
+            //require_once $_SERVER['DOCUMENT_ROOT'] . '/follows/worker/class/Robot.php';
+            //$this->Robot = new \follows\cls\Robot();
             //ahora
             $this->load->model('class/system_config');
             $GLOBALS['sistem_config'] = $this->system_config->load();
@@ -2740,7 +2740,7 @@ class Welcome extends CI_Controller {
                         //antes    
                         //$datas_of_profile = $this->Robot->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
                         //ahora
-                        $datas_of_profile = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile);
+                        $datas_of_profile = $this->external_services->get_insta_ref_prof_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile, $this->session->userdata('id'));
 
                         if ($datas_of_profile != NULL) {
                             $array_profiles[$cnt_ref_prof]['login_profile'] = $name_profile;
@@ -2772,7 +2772,7 @@ class Welcome extends CI_Controller {
                         //antes
                         //$datas_of_profile = $this->Robot->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
                         //ahora
-                        $datas_of_profile = $this->external_services->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile);
+                        $datas_of_profile = $this->external_services->get_insta_geolocalization_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile, $this->session->userdata('id'));
 
                         $array_geolocalization[$cnt_geolocalization]['login_geolocalization'] = $name_profile;
                         $array_geolocalization[$cnt_geolocalization]['geolocalization_pk'] = $client_active_profiles[$i]['insta_id'];
@@ -2793,7 +2793,7 @@ class Welcome extends CI_Controller {
                         //antes
                         //$datas_of_profile = $this->Robot->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')),$name_profile, $id_profile);
                         //ahora
-                        $datas_of_profile = $this->external_services->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile);
+                        $datas_of_profile = $this->external_services->get_insta_tag_data_from_client(json_decode($this->session->userdata('cookies')), $name_profile, $id_profile, $this->session->userdata('id'));
 
                         $array_hashtag[$cnt_hashtag]['login_hashtag'] = $name_profile;
                         $array_hashtag[$cnt_hashtag]['hashtag_pk'] = $client_active_profiles[$i]['insta_id'];
